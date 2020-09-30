@@ -20,9 +20,9 @@ Introduction:
     designed specifically for OpenWRT. It uses the Type-Enforcement
     security model to implement a targeted policy model that covers a
     moderate selection of basic components with the goal of enhancing
-    integrity to help ensure continuity of systems. Security-Enhanced
-    Linux (SELinux) is a flexible framework that allows for
-    fine-grained mandatory access control.
+    integrity to help ensure continuity of system operations.
+    Security-Enhanced Linux (SELinux) is a flexible framework that
+    allows for fine-grained mandatory access control.
 
     The SELinux policy is written in modern Common Intermediate
     Language that is native to SELinux and can easily be extended to
@@ -34,5 +34,5 @@ Introduction:
 
 Installation:
 
-    Please see support/selinux-policy for an example package manifest
-    for OpenWRT.
+    Please see support/selinux-policy-XXXX for an example package
+    manifest for OpenWRT.
