@@ -10,6 +10,7 @@
 
     (call packet.forward_all_netpackets (unconfined.subj_typeattr))
     (call packet.recvsend_all_netpackets (unconfined.subj_typeattr))
+    (call packet.relabelto_all_netpackets (unconfined.subj_typeattr))
 
     (call .forward_invalid_netpackets (unconfined.subj_typeattr))
     (call .recvsend_invalid_netpackets (unconfined.subj_typeattr))
