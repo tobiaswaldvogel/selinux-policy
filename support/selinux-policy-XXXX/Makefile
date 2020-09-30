@@ -23,13 +23,13 @@ include $(INCLUDE_DIR)/package.mk
 define Package/selinux-policy-XXXX
 	SECTION:=system
 	CATEGORY:=Base system
-	TITLE:=XXXX SELinux policy for OpenWRT
+	TITLE:=XXXX SELinux policy for OpenWrt
 	URL:=https://XXXX/
 	PKGARCH:=all
 endef
 
 define Package/selinux-policy-XXXX/description
-	XXXX SELinux security policy designed specifically for OpenWRT
+	XXXX SELinux security policy designed specifically for OpenWrt
 	and written in Common Intermediate Language.
 endef
 
