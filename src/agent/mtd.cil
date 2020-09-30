@@ -1,0 +1,34 @@
+;; -*- mode: CIL; fill-column: 79; indent-tabs-mode: nil; -*-
+;; SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
+;; SPDX-License-Identifier: Unlicense
+
+(in .sys
+    (call .mtd.subj_type_transition (subj)))
+
+(in .mtd
+
+    ;;
+    ;; Contexts
+    ;;
+
+    (filecon
+     "/usr/bin/mtd"
+     file
+     execfile_file_context)
+
+    ;;
+    ;; Policy
+    ;;
+
+    (blockinherit .agent.base_template)
+
+    (call .file.search_conffile_dirs (subj))
+
+    (call .libc.mapexecute_libfile_files (subj))
+    (call .libc.read_libfile_files (subj))
+
+    (call .libgccruntime.mapexecute_libfile_files (subj))
+    (call .libgccruntime.read_libfile_files (subj))
+
+    (call .libubox.mapexecute_libfile_files (subj))
+    (call .libubox.read_libfile_files (subj)))

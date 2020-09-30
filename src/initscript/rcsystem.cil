@@ -1,0 +1,38 @@
+;; -*- mode: CIL; fill-column: 79; indent-tabs-mode: nil; -*-
+;; SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
+;; SPDX-License-Identifier: Unlicense
+
+(in .sys
+    (call .rcsystem.subj_type_transition (subj)))
+
+(block rcsystem
+
+       ;;
+       ;; Contexts
+       ;;
+
+       (filecon
+        "/etc/init\.d/system"
+        file
+        initscriptfile_file_context)
+
+       ;;
+       ;; Policy
+       ;;
+
+       (blockinherit .initscript.base_template)
+
+       (allow subj self (capability (sys_time)))
+
+       (call .sys.search_sysctlfile_dirs (subj))
+
+       (call .kernel.search_sysctlfile_dirs (subj))
+       (call .kernel.write_sysctlfile_files (subj))
+
+       (call .locale.manage_miscfile_files (subj))
+       (call .locale.map_miscfile_files (subj))
+       (call .locale.tmp_obj_type_transition_miscfile (subj))
+       (call .locale.search_miscfile_dirs (subj))
+
+       (call .tmp.create_fs_lnk_files (subj))
+       (call .tmp.readwrite_fs_dirs (subj)))

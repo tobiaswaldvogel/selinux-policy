@@ -1,0 +1,36 @@
+;; -*- mode: CIL; fill-column: 79; indent-tabs-mode: nil; -*-
+;; SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
+;; SPDX-License-Identifier: Unlicense
+
+(in .sys
+    (call .rcumount.subj_type_transition (subj)))
+
+(block rcumount
+
+       ;;
+       ;; Contexts
+       ;;
+
+       (filecon
+        "/etc/init\.d/umount"
+        file
+        initscriptfile_file_context)
+
+       ;;
+       ;; Policy
+       ;;
+
+       (blockinherit .initscript.base_template)
+
+       (allow subj self (capability (sys_admin)))
+
+       (call .dev.stor.read_all_blk_files (subj))
+       (call .dev.stor.read.subj_type (subj))
+
+       (call .fs.getattr_all_filesystems (subj))
+       (call .fs.remount_all_filesystems (subj))
+       (call .fs.unmount_all_filesystems (subj))
+
+       (call .kernel.search_sysfile_dirs (subj))
+
+       (call .proc.list_fs_dirs (subj)))

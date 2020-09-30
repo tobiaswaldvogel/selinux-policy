@@ -1,0 +1,32 @@
+;; -*- mode: CIL; fill-column: 79; indent-tabs-mode: nil; -*-
+;; SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
+;; SPDX-License-Identifier: Unlicense
+
+(in .sys
+    (call .rcsysfixtime.subj_type_transition (subj)))
+
+(block rcsysfixtime
+
+       ;;
+       ;; Contexts
+       ;;
+
+       (filecon
+        "/etc/init\.d/sysfixtime"
+        file
+        initscriptfile_file_context)
+
+       ;;
+       ;; Policy
+       ;;
+
+       (blockinherit .initscript.base_template)
+
+       (allow subj self (capability (sys_time)))
+       (allow subj self create_unix_dgram_socket)
+
+       (call .clock.readwrite_nodedev_chr_files (subj))
+
+       (call .locale.read.subj_type (subj))
+
+       (call .logd.unix_dgram_send (subj)))

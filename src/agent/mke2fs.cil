@@ -1,0 +1,76 @@
+;; -*- mode: CIL; fill-column: 79; indent-tabs-mode: nil; -*-
+;; SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
+;; SPDX-License-Identifier: Unlicense
+
+(in .sys
+    (call .mke2fs.subj_type_transition (subj)))
+
+(in .file
+    (call .mke2fs.obj_type_transition_conffile (unconfined.subj_typeattr)))
+
+(block mke2fs
+
+       ;;
+       ;; Contexts
+       ;;
+
+       (filecon
+        "/etc/e2fsck\.conf"
+        file
+        conffile_file_context)
+
+       (filecon
+        "/usr/bin/mke2fs"
+        file
+        execfile_file_context)
+
+       ;;
+       ;; Macros
+       ;;
+
+       (macro obj_type_transition_conffile ((type ARG1))
+              (call .file.conffile_obj_type_transition
+                    (ARG1 conffile file "e2fsck.conf")))
+
+       ;;
+       ;; Policy
+       ;;
+
+       (blockinherit .agent.base_template)
+       (blockinherit .file.conf.obj_template)
+
+       (call read_conffile_files (subj))
+
+       (call .sys.read_fs_lnk_files (subj))
+       (call .sys.search_fs_dirs (subj))
+       (call .sys.writeinherited_fifo_files (subj))
+
+       (call .dev.readwrite_stordev_blk_files (subj))
+       (call .dev.search_sysfile_dirs (subj))
+       (call .dev.stor.readwrite.subj_type (subj))
+
+       (call .devices.list_sysfile_dirs (subj))
+
+       (call .file.search_conffile_dirs (subj))
+       (call .file.search_datafile_dirs (subj))
+
+       (call .libblkid.mapexecute_libfile_files (subj))
+       (call .libblkid.read_libfile_files (subj))
+
+       (call .libc.mapexecute_libfile_files (subj))
+       (call .libc.read_libfile_files (subj))
+
+       (call .libcomerr.mapexecute_libfile_files (subj))
+       (call .libcomerr.read_libfile_files (subj))
+
+       (call .libe2p.mapexecute_libfile_files (subj))
+       (call .libe2p.read_libfile_files (subj))
+
+       (call .libext2fs.mapexecute_libfile_files (subj))
+       (call .libext2fs.read_libfile_files (subj))
+
+       (call .libgccruntime.mapexecute_libfile_files (subj))
+       (call .libgccruntime.read_libfile_files (subj))
+
+       (call .libuuid.mapexecute_libfile_files (subj))
+       (call .libuuid.read_libfile_files (subj)))

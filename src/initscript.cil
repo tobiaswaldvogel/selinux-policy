@@ -1,0 +1,116 @@
+;; -*- mode: CIL; fill-column: 79; indent-tabs-mode: nil; -*-
+;; SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
+;; SPDX-License-Identifier: Unlicense
+
+(block initscript
+
+       ;;
+       ;; Policy
+       ;;
+
+       (blockinherit .subj.subj_all_macro_template)
+
+       (call .sys.list_rootfile_dirs (subj_typeattr))
+       (call .sys.writeinherited_fifo_files (subj_typeattr))
+       (call .sys.dontaudit_readwriteinherited_ptydev_chr_files
+             (subj_typeattr))
+
+       (call .agent.subj_type (subj_typeattr))
+
+       (call .console.dontaudit_readwriteinherited_ttydev_chr_files
+             (subj_typeattr))
+
+       (call .dev.dontaudit_readwriteinherited_ttydev_chr_files
+             (subj_typeattr))
+
+       (call .file.read_conffile_lnk_files (subj_typeattr))
+       (call .file.search_initscriptfile_dirs (subj_typeattr))
+
+       (call .functions.read_miscfile_files (subj_typeattr))
+       (call .functions.search_miscfile_dirs (subj_typeattr))
+
+       (call .jshn.subj_type_transition (subj_typeattr))
+
+       (call .jsonfilter.subj_type_transition (subj_typeattr))
+
+       (call .libc.mapexecute_libfile_files (subj_typeattr))
+       (call .libc.read_libfile_files (subj_typeattr))
+
+       (call .libfts.mapexecute_libfile_files (subj_typeattr))
+       (call .libfts.read_libfile_files (subj_typeattr))
+
+       (call .libgccruntime.mapexecute_libfile_files (subj_typeattr))
+       (call .libgccruntime.read_libfile_files (subj_typeattr))
+
+       (call .libpcre.mapexecute_libfile_files (subj_typeattr))
+       (call .libpcre.read_libfile_files (subj_typeattr))
+
+       (call .libselinux.linked.subj_type (subj_typeattr))
+
+       (call .libubox.read_datafile_files (subj_typeattr))
+       (call .libubox.search_datafile_dirs (subj_typeattr))
+
+       (call .nameservice.read_miscfile_files (subj_typeattr))
+
+       (call .rccommon.read_conffile_files (subj_typeattr))
+
+       (call .shell.execute_execfile_files (subj_typeattr))
+
+       (call .tmp.list_fs_dirs (subj_typeattr))
+
+       (call .tmpfile.addname_locktmpfile_dirs (subj_typeattr))
+       (call .tmpfile.create_locktmpfile_files (subj_typeattr))
+       (call .tmpfile.readwrite_locktmpfile_files (subj_typeattr))
+
+       (call .ubus.subj_type_transition (subj_typeattr))
+
+       (call .uci.subj_type_transition (subj_typeattr))
+
+       (call .validatedata.subj_type_transition (subj_typeattr))
+
+       (block exec
+
+              ;;
+              ;; Policy
+              ;;
+
+              (blockinherit .file.obj_all_macro_template)
+
+              (call .agent.exec.obj_type (obj_typeattr)))
+
+       ;;
+       ;; Templates
+       ;;
+
+       (block base_template
+
+              ;;
+              ;; Macros
+              ;;
+
+              (macro subj_type_transition ((type ARG1))
+                     (allow ARG1 subj (process (transition)))
+                     (dontaudit ARG1 subj
+                                (process (noatsecure siginh rlimitinh)))
+
+                     (allow subj ARG1 (process (sigchld)))
+
+                     (call initscriptfile_subj_type_transition (ARG1 subj))
+                     (call mapexecute_initscriptfile_files (ARG1))
+                     (call read_initscriptfile_files (ARG1)))
+
+              ;;
+              ;; Policy
+              ;;
+
+              (blockabstract base_template)
+
+              (blockinherit .file.initscript.obj_template)
+              (blockinherit .subj.common.subj_template)
+
+              (call entrypoint_initscriptfile_files (subj))
+              (call mapexecute_initscriptfile_files (subj))
+              (call read_initscriptfile_files (subj))
+
+              (call .initscript.exec.obj_type (initscriptfile))
+              (call .initscript.subj_type (subj))))

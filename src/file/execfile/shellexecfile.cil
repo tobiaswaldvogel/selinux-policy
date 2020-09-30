@@ -1,0 +1,37 @@
+;; -*- mode: CIL; fill-column: 79; indent-tabs-mode: nil; -*-
+;; SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
+;; SPDX-License-Identifier: Unlicense
+
+(in .file
+    (call .shell.obj_type_transition_execfile (unconfined.subj_typeattr)))
+
+(block shell
+
+       ;;
+       ;; Contexts
+       ;;
+
+       (filecon
+        "/usr/bin/bash"
+        file
+        execfile_file_context)
+       (filecon
+        "/usr/bin/busybox"
+        file
+        execfile_file_context)
+
+       ;;
+       ;; Macros
+       ;;
+
+       (macro obj_type_transition_execfile ((type ARG1))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "bash"))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "busybox")))
+
+       ;;
+       ;; Policy
+       ;;
+
+       (blockinherit file.exec.obj_template))

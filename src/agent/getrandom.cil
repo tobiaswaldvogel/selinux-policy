@@ -1,0 +1,39 @@
+;; -*- mode: CIL; fill-column: 79; indent-tabs-mode: nil; -*-
+;; SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
+;; SPDX-License-Identifier: Unlicense
+
+(in .sys
+    (call .getrandom.subj_type_transition (subj)))
+
+(block getrandom
+
+       ;;
+       ;; Contexts
+       ;;
+
+       (filecon
+        "/usr/bin/getrandom"
+        file
+        execfile_file_context)
+
+       ;;
+       ;; Policy
+       ;;
+
+       (blockinherit .agent.base_template)
+
+       (call .sys.writeinherited_fifo_files (subj))
+
+       (call .file.search_conffile_dirs (subj))
+
+       (call .libc.mapexecute_libfile_files (subj))
+       (call .libc.read_libfile_files (subj))
+
+       (call .libgccruntime.mapexecute_libfile_files (subj))
+       (call .libgccruntime.read_libfile_files (subj))
+
+       (call .libsetlbf.mapexecute_libfile_files (subj))
+       (call .libsetlbf.read_libfile_files (subj))
+
+       (call .urandomseed.use_fds (subj))
+       (call .urandomseed.writeinherited_miscfile_files (subj)))

@@ -1,0 +1,52 @@
+# -*- Mode: makefile; indent-tabs-mode: t -*-
+# SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
+# SPDX-License-Identifier: Unlicense
+
+include $(TOPDIR)/rules.mk
+
+PKG_NAME:=selinux-policy
+PKG_SOURCE_PROTO:=git
+PKG_SOURCE_URL:=https://git.defensec.nl/selinux-policy.git
+PKG_SOURCE_DATE:=XXXX-XX-XX
+PKG_SOURCE_VERSION:=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+PKG_MIRROR_HASH:=skip
+PKG_BUILD_DEPENDS:=secilc/host
+
+PKG_LICENSE:=Public Domain
+PKG_LICENSE_FILES:=LICENSE
+PKG_MAINTAINER:=Dominick Grift <dominick.grift@defensec.nl>
+PKG_CPE_ID:=cpe:/a:defensec:selinux-policy
+
+include $(INCLUDE_DIR)/package.mk
+
+define Package/selinux-policy
+	SECTION:=system
+	CATEGORY:=Base system
+	DEPENDS:=+policycoreutils
+	TITLE:=SELinux policy for OpenWRT
+	URL:=https://git.defensec.nl/
+	PKGARCH:=all
+endef
+
+define Package/selinux-policy/description
+	Basic SELinux security policy designed specifically for OpenWRT
+endef
+
+define Build/Compile
+	$(call Build/Compile/Default,policy)
+endef
+
+define Package/selinux-policy/conffiles
+/etc/selinux/config
+endef
+
+define Package/selinux-policy/install
+	$(INSTALL_DIR) $(1)/etc/selinux/$(PKG_NAME)/contexts/files/
+	$(INSTALL_DIR) $(1)/etc/selinux/$(PKG_NAME)/policy/
+	$(INSTALL_DATA) $(PKG_BUILD_DIR)/file_contexts.subs_dist $(1)/etc/selinux/$(PKG_NAME)/contexts/files/
+	$(INSTALL_DATA) $(PKG_BUILD_DIR)/file_contexts $(1)/etc/selinux/$(PKG_NAME)/contexts/files/
+	$(INSTALL_CONF) $(PKG_BUILD_DIR)/policy.* $(1)/etc/selinux/$(PKG_NAME)/policy/
+	$(INSTALL_DATA) ./files/selinux-config $(1)/etc/selinux/config
+endef
+
+$(eval $(call BuildPackage,selinux-policy))

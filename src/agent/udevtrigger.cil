@@ -1,0 +1,41 @@
+;; -*- mode: CIL; fill-column: 79; indent-tabs-mode: nil; -*-
+;; SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
+;; SPDX-License-Identifier: Unlicense
+
+(in .sys
+    (call .udevtrigger.subj_type_transition (subj)))
+
+(block udevtrigger
+
+       ;;
+       ;; Contexts
+       ;;
+
+       (filecon
+        "/usr/bin/udevtrigger"
+        file
+        execfile_file_context)
+
+       ;;
+       ;; Policy
+       ;;
+
+       (blockinherit .agent.base_template)
+
+       (call .sys.read_fs_lnk_files (subj))
+       (call .sys.search_fs_dirs (subj))
+
+       (call .bus.list_sysfile_dirs (subj))
+
+       (call .devices.search_sysfile_dirs (subj))
+       (call .devices.write_sysfile_files (subj))
+
+       (call .file.search_conffile_dirs (subj))
+
+       (call .libc.mapexecute_libfile_files (subj))
+       (call .libc.read_libfile_files (subj))
+
+       (call .libgccruntime.mapexecute_libfile_files (subj))
+       (call .libgccruntime.read_libfile_files (subj))
+
+       (call .sysfile.class.list_all_dirs (subj)))

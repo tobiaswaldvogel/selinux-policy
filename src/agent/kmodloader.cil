@@ -1,0 +1,90 @@
+;; -*- mode: CIL; fill-column: 79; indent-tabs-mode: nil; -*-
+;; SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
+;; SPDX-License-Identifier: Unlicense
+
+(in .sys
+    (call .kmodloader.subj_type_transition (subj)))
+
+(in .file
+    (call .kmodloader.obj_type_transition_conffile (unconfined.subj_typeattr)))
+
+(block kmodloader
+
+       ;;
+       ;; Contexts
+       ;;
+
+       (filecon
+        "/etc/modules-boot\.d"
+        dir
+        conffile_file_context)
+       (filecon
+        "/etc/modules-boot\.d/.*"
+        any
+        conffile_file_context)
+
+       (filecon
+        "/etc/modules\.d"
+        dir
+        conffile_file_context)
+       (filecon
+        "/etc/modules\.d/.*"
+        any
+        conffile_file_context)
+
+       (filecon
+        "/usr/bin/kmodloader"
+        file
+        execfile_file_context)
+
+       ;;
+       ;; Macros
+       ;;
+
+       (macro obj_type_transition_conffile ((type ARG1))
+              (call .file.conffile_obj_type_transition
+                    (ARG1 conffile dir "modules-boot.d"))
+              (call .file.conffile_obj_type_transition
+                    (ARG1 conffile dir "modules.d")))
+
+       ;;
+       ;; Policy
+       ;;
+
+       (blockinherit .agent.base_template)
+       (blockinherit .file.conf.obj_template)
+
+       (allow subj self (capability (sys_admin)))
+       (allow subj self (capability2 (syslog)))
+
+       (call list_conffile_dirs (subj))
+       (call read_conffile_files (subj))
+       (call read_conffile_lnk_files (subj))
+
+       (call .sys.loadkernelmodule.subj_type (subj))
+       (call .sys.readringbuffer (subj))
+       (call .sys.writeinherited_fifo_files (subj))
+
+       (call .debug.search_fs_dirs (subj))
+
+       (call .file.list_modulesfile_dirs (subj))
+       (call .file.modules.load_all_files (subj))
+       (call .file.modules.map_all_files (subj))
+       (call .file.modules.read_all_files (subj))
+       (call .file.search_conffile_dirs (subj))
+
+       (call .kmsg.readwrite_nodedev_chr_files (subj))
+
+       (call .libc.mapexecute_libfile_files (subj))
+       (call .libc.read_libfile_files (subj))
+
+       (call .libgccruntime.mapexecute_libfile_files (subj))
+       (call .libgccruntime.read_libfile_files (subj))
+
+       (call .libubox.mapexecute_libfile_files (subj))
+       (call .libubox.read_libfile_files (subj))
+
+       (call .modules.read_procfile_files (subj))
+
+       (optional kmodloader_opt_rcboot
+                 (call .rcboot.use_fds (subj))))

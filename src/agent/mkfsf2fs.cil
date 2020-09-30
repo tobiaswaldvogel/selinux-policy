@@ -1,0 +1,58 @@
+;; -*- mode: CIL; fill-column: 79; indent-tabs-mode: nil; -*-
+;; SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
+;; SPDX-License-Identifier: Unlicense
+
+(in .sys
+    (call .mkfsf2fs.subj_type_transition (subj)))
+
+(block mkfsf2fs
+
+       ;;
+       ;; Contexts
+       ;;
+
+       (filecon
+        "/usr/bin/mkfs\.f2fs"
+        file
+        execfile_file_context)
+
+       ;;
+       ;; Policy
+       ;;
+
+       (blockinherit .agent.base_template)
+
+       (allow subj self create_unix_stream_socket)
+
+       (call .sys.read_fs_lnk_files (subj))
+       (call .sys.search_fs_dirs (subj))
+       (call .sys.writeinherited_fifo_files (subj))
+       (call .sys.readwriteinherited_ptydev_chr_files (subj))
+
+       (call .dev.readwrite_stordev_blk_files (subj))
+       (call .dev.readwriteinherited_ttydev_chr_files (subj))
+       (call .dev.search_sysfile_dirs (subj))
+       (call .dev.stor.readwrite.subj_type (subj))
+
+       (call .devices.read_sysfile_files (subj))
+       (call .devices.search_sysfile_dirs (subj))
+
+       (call .file.read_conffile_lnk_files (subj))
+       (call .file.search_conffile_dirs (subj))
+       (call .file.search_datafile_dirs (subj))
+
+       (call .libc.mapexecute_libfile_files (subj))
+       (call .libc.read_libfile_files (subj))
+
+       (call .libgccruntime.mapexecute_libfile_files (subj))
+       (call .libgccruntime.read_libfile_files (subj))
+
+       (call .libf2fs.mapexecute_libfile_files (subj))
+       (call .libf2fs.read_libfile_files (subj))
+
+       (call .libuuid.mapexecute_libfile_files (subj))
+       (call .libuuid.read_libfile_files (subj))
+
+       (call .random.read_nodedev_chr_files (subj))
+
+       (call .version.read_procfile_files (subj)))

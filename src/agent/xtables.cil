@@ -1,0 +1,100 @@
+;; -*- mode: CIL; fill-column: 79; indent-tabs-mode: nil; -*-
+;; SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
+;; SPDX-License-Identifier: Unlicense
+
+(in .sys
+    (call .xtables.subj_type_transition (subj)))
+
+(in .file
+    (call .xtables.libfile_obj_type_transition_miscfile
+          (unconfined.subj_typeattr))
+    (call .xtables.obj_type_transition_runtimetmpfile
+          (unconfined.subj_typeattr)))
+
+(block xtables
+
+       ;;
+       ;; Contexts
+       ;;
+
+       (filecon
+        "/tmp/run/xtables\.lock"
+        file
+        runtimetmpfile_file_context)
+
+       (filecon
+        "/usr/bin/xtables-legacy-multi"
+        file
+        execfile_file_context)
+
+       (filecon
+        "/usr/lib/iptables"
+        dir
+        miscfile_file_context)
+       (filecon
+        "/usr/lib/iptables/.*"
+        any
+        miscfile_file_context)
+
+       ;;
+       ;; Macros
+       ;;
+
+       (macro libfile_obj_type_transition_miscfile ((type ARG1))
+              (call .file.libfile_obj_type_transition
+                    (ARG1 miscfile dir "iptables")))
+
+       (macro obj_type_transition_runtimetmpfile ((type ARG1))
+              (call .tmpfile.runtimetmpfile_obj_type_transition
+                    (ARG1 runtimetmpfile file "xtables.lock")))
+
+       ;;
+       ;; Policy
+       ;;
+
+       (blockinherit .agent.base_template)
+       (blockinherit .file.misc.obj_template)
+       (blockinherit .tmpfile.runtime.obj_template)
+
+       (allow subj self (capability (net_admin net_raw)))
+       (allow subj self create_rawip_socket)
+
+       (call manage_runtimetmpfile_files (subj))
+       (call obj_type_transition_runtimetmpfile (subj))
+
+       (call .sys.readwriteinherited_ptydev_chr_files (subj))
+       (call .sys.writeinherited_fifo_files (subj))
+
+       (call .dev.readwriteinherited_ttydev_chr_files (subj))
+
+       (call .file.search_conffile_dirs (subj))
+       (call .file.search_datafile_dirs (subj))
+
+       (call .libc.mapexecute_libfile_files (subj))
+       (call .libc.read_libfile_files (subj))
+
+       (call .libgccruntime.mapexecute_libfile_files (subj))
+       (call .libgccruntime.read_libfile_files (subj))
+
+       (call .libip6tc.mapexecute_libfile_files (subj))
+       (call .libip6tc.read_libfile_files (subj))
+       (call .libip4tc.mapexecute_libfile_files (subj))
+       (call .libip4tc.read_libfile_files (subj))
+
+       (call .libiptext.mapexecute_libfile_files (subj))
+       (call .libiptext.read_libfile_files (subj))
+       (call .libiptext4.mapexecute_libfile_files (subj))
+       (call .libiptext4.read_libfile_files (subj))
+       (call .libiptext6.mapexecute_libfile_files (subj))
+       (call .libiptext6.read_libfile_files (subj))
+
+       (call .libxtables.mapexecute_libfile_files (subj))
+       (call .libxtables.read_libfile_files (subj))
+
+       (call .nameservice.read_miscfile_files (subj))
+
+       (call .net.read_procfile_files (subj))
+
+       (call .proc.getattr_filesystems (subj))
+
+       (call .xattr.associate_filesystems (miscfile)))

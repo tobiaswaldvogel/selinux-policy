@@ -1,0 +1,10 @@
+/overlay/upper /
+/rom /
+/tmp/root/upper /
+
+/bin /usr/bin
+/sbin /usr/bin
+/usr/libexec /usr/bin
+/usr/sbin /usr/bin
+
+/lib /usr/lib

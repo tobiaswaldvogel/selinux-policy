@@ -1,0 +1,28 @@
+;; -*- mode: CIL; fill-column: 79; indent-tabs-mode: nil; -*-
+;; SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
+;; SPDX-License-Identifier: Unlicense
+
+(in .sys
+    (call .rclog.subj_type_transition (subj)))
+
+(block rclog
+
+       ;;
+       ;; Contexts
+       ;;
+
+       (filecon
+        "/etc/init\.d/log"
+        file
+        initscriptfile_file_context)
+
+       ;;
+       ;; Policy
+       ;;
+
+       (blockinherit .initscript.base_template)
+
+       (call .tmp.addname_fs_dirs (subj))
+
+       (call .tmpfile.create_logtmpfile_dirs (subj))
+       (call .tmpfile.obj_type_transition_logtmpfile (subj)))

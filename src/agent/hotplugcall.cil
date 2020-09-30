@@ -1,0 +1,97 @@
+;; -*- mode: CIL; fill-column: 79; indent-tabs-mode: nil; -*-
+;; SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
+;; SPDX-License-Identifier: Unlicense
+
+(in .sys
+    (call .hotplugcall.subj_type_transition (subj)))
+
+(block hotplugcall
+
+       ;;
+       ;; Contexts
+       ;;
+
+       (filecon
+        "/usr/bin/hotplug-call"
+        file
+        execfile_file_context)
+
+       ;;
+       ;; Policy
+       ;;
+
+       (blockinherit .agent.base_template)
+
+       (allow subj self create_unix_dgram_socket)
+
+       (call .sys.list_rootfile_dirs (subj))
+       (call .sys.search_sysctlfile_dirs (subj))
+       (call .sys.dontaudit_readwrite_udp_sockets (subj))
+
+       (call .cpuinfo.read_procfile_files (subj))
+
+       (call .dnsmasq.manage_statetmpfile_files (subj))
+       (call .dnsmasq.obj_type_transition_statetmpfile (subj))
+
+       (call .file.initscript.execute_all_files (subj))
+       (call .file.read_conffile_lnk_files (subj))
+       (call .file.search_initscriptfile_dirs (subj))
+
+       (call .fw3.subj_type_transition (subj))
+       (call .fw3.use_fds (subj))
+       (call .fw3.writeinherited_runtimetmpfile_files (subj))
+
+       (call .shell.execute_execfile_files (subj))
+
+       (call .functions.read_miscfile_files (subj))
+       (call .functions.search_miscfile_dirs (subj))
+
+       (call .hotplug.list_conffile_dirs (subj))
+       (call .hotplug.read_conffile_files (subj))
+
+       (call .jshn.subj_type_transition (subj))
+
+       (call .libc.mapexecute_libfile_files (subj))
+       (call .libc.read_libfile_files (subj))
+
+       (call .libfts.mapexecute_libfile_files (subj))
+       (call .libfts.read_libfile_files (subj))
+
+       (call .libgccruntime.mapexecute_libfile_files (subj))
+       (call .libgccruntime.read_libfile_files (subj))
+
+       (call .libpcre.mapexecute_libfile_files (subj))
+       (call .libpcre.read_libfile_files (subj))
+
+       (call .libselinux.linked.subj_type (subj))
+
+       (call .libubox.read_datafile_files (subj))
+       (call .libubox.search_datafile_dirs (subj))
+
+       (call .logd.unix_dgram_send (subj))
+
+       (call .nameservice.read_miscfile_files (subj))
+
+       (call .netifd.use_fds (subj))
+       (call .netifd.dontaudit_readwrite_netlink_kobject_uevent_sockets (subj))
+       (call .netifd.dontaudit_readwrite_netlink_route_sockets (subj))
+
+       (call .ntpdhotplug.use_fds (subj))
+
+       (call .rccommon.read_conffile_files (subj))
+
+       (call .sysctl.list_conffile_dirs (subj))
+       (call .sysctl.read_conffile_files (subj))
+
+       (call .tmp.list_fs_dirs (subj))
+
+       (call .tmpfile.addname_locktmpfile_dirs (subj))
+       (call .tmpfile.manage_locktmpfile_files (subj))
+       (call .tmpfile.search_statetmpfile_dirs (subj))
+
+       (call .ubus.subj_type_transition (subj))
+
+       (call .uci.subj_type_transition (subj))
+
+       (optional hotplugcall_opt_initscript
+                 (call .initscript.use_all_fds (subj))))

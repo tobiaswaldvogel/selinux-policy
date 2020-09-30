@@ -1,0 +1,157 @@
+;; -*- mode: CIL; fill-column: 79; indent-tabs-mode: nil; -*-
+;; SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
+;; SPDX-License-Identifier: Unlicense
+
+(in .sys
+    (call .fw3.subj_type_transition (subj)))
+
+(in .file
+    (call .fw3.obj_type_transition_datafile (unconfined.subj_typeattr))
+    (call .fw3.obj_type_transition_runtimetmpfile (unconfined.subj_typeattr)))
+
+(block fw3
+
+       ;;
+       ;; Contexts
+       ;;
+
+       (filecon
+        "/tmp/run/fw3\.lock"
+        file
+        runtimetmpfile_file_context)
+       (filecon
+        "/tmp/run/fw3\.state"
+        file
+        runtimetmpfile_file_context)
+
+       (filecon
+        "/usr/bin/fw3"
+        file
+        execfile_file_context)
+
+       (filecon
+        "/usr/share/fw3"
+        dir
+        datafile_file_context)
+       (filecon
+        "/usr/share/fw3/.*"
+        any
+        datafile_file_context)
+
+       ;;
+       ;; Macros
+       ;;
+
+       (macro obj_type_transition_datafile ((type ARG1))
+              (call .file.datafile_obj_type_transition
+                    (ARG1 datafile dir "fw3")))
+
+       (macro obj_type_transition_runtimetmpfile ((type ARG1))
+              (call .tmpfile.runtimetmpfile_obj_type_transition
+                    (ARG1 runtimetmpfile file "fw3.lock"))
+              (call .tmpfile.runtimetmpfile_obj_type_transition
+                    (ARG1 runtimetmpfile file "fw3.state")))
+
+       ;;
+       ;; Policy
+       ;;
+
+       (blockinherit .agent.base_template)
+       (blockinherit .file.data.obj_template)
+       (blockinherit .tmpfile.runtime.obj_template)
+
+       (allow subj self (capability (dac_override net_admin net_raw)))
+       (allow subj self create_netlink_route_socket)
+       (allow subj self create_rawip_socket)
+       (allow subj self create_udp_socket)
+       (allow subj self create_unix_stream_socket)
+       (allow subj self (netlink_route_socket (nlmsg_read)))
+       ;; this is due to it trying to create "contrack" file in /proc/net
+       (dontaudit subj self (dir (add_name write)))
+       (dontaudit subj self (file (create)))
+
+       (call search_datafile_dirs (subj))
+       (call read_datafile_files (subj))
+
+       (call manage_runtimetmpfile_files (subj))
+       (call obj_type_transition_runtimetmpfile (subj))
+
+       (call .sys.search_sysctlfile_dirs (subj))
+       (call .sys.writeinherited_fifo_files (subj))
+
+       (call .firewall.read_conffile_files (subj))
+
+       (call .hotplugcall.subj_type_transition (subj))
+       (call .hotplugcall.use_fds (subj))
+
+       (call .ipv4.search_sysctlfile_dirs (subj))
+       (call .ipv4.write_sysctlfile_files (subj))
+
+       (call .libc.mapexecute_libfile_files (subj))
+       (call .libc.read_libfile_files (subj))
+
+       (call .libfts.mapexecute_libfile_files (subj))
+       (call .libfts.read_libfile_files (subj))
+
+       (call .libgccruntime.mapexecute_libfile_files (subj))
+       (call .libgccruntime.read_libfile_files (subj))
+
+       (call .libip4tc.mapexecute_libfile_files (subj))
+       (call .libip4tc.read_libfile_files (subj))
+       (call .libip6tc.mapexecute_libfile_files (subj))
+       (call .libip6tc.read_libfile_files (subj))
+
+       (call .libiptext.mapexecute_libfile_files (subj))
+       (call .libiptext.read_libfile_files (subj))
+       (call .libiptext4.mapexecute_libfile_files (subj))
+       (call .libiptext4.read_libfile_files (subj))
+       (call .libiptext6.mapexecute_libfile_files (subj))
+       (call .libiptext6.read_libfile_files (subj))
+
+       (call .libpcre.mapexecute_libfile_files (subj))
+       (call .libpcre.read_libfile_files (subj))
+
+       (call .libubox.mapexecute_libfile_files (subj))
+       (call .libubox.read_libfile_files (subj))
+
+       (call .libubus.mapexecute_libfile_files (subj))
+       (call .libubus.read_libfile_files (subj))
+
+       (call .libuci.mapexecute_libfile_files (subj))
+       (call .libuci.read_libfile_files (subj))
+
+       (call .libxtables.mapexecute_libfile_files (subj))
+       (call .libxtables.read_libfile_files (subj))
+
+       (call .libselinux.linked.subj_type (subj))
+
+       (call .net.readwrite_procfile_files (subj))
+       (call .net.search_sysctlfile_dirs (subj))
+
+       (call .netifd.search_miscfile_dirs (subj))
+       (call .netifd.writeinherited_fifo_files (subj))
+       (call .netifd.dontaudit_readwrite_netlink_kobject_uevent_sockets (subj))
+       (call .netifd.dontaudit_readwrite_netlink_route_sockets (subj))
+
+       (call .odhcp6c.writeinherited_fifo_files (subj))
+
+       ;; this is due to it trying to create "contrack" file in /proc/net
+       (call .proc.getattr_filesystems (subj))
+       (call .proc.dontaudit_associate_filesystems (subj))
+
+       (call .shell.execute_execfile_files (subj))
+
+       (call .tmpfile.deletename_runtimetmpfile_dirs (subj))
+
+       (call .ubusd.unix_stream_connect (subj))
+
+       (call .uci.read_conffile_files (subj))
+       (call .uci.read_tmpfile_files (subj))
+       (call .uci.search_conffile_dirs (subj))
+       (call .uci.search_tmpfile_dirs (subj))
+
+       (call .xtables.manage_runtimetmpfile_files (subj))
+       (call .xtables.obj_type_transition_runtimetmpfile (subj))
+
+       (optional firewall_opt_rcfirewall
+                 (call .rcfirewall.use_fds (subj))))

@@ -1,0 +1,45 @@
+;; -*- mode: CIL; fill-column: 79; indent-tabs-mode: nil; -*-
+;; SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
+;; SPDX-License-Identifier: Unlicense
+
+(in .sys
+    (call .jsonfilter.subj_type_transition (subj)))
+
+(block jsonfilter
+
+       ;;
+       ;; Contexts
+       ;;
+
+       (filecon
+        "/usr/bin/jsonfilter"
+        file
+        execfile_file_context)
+
+       ;;
+       ;; Policy
+       ;;
+
+       (blockinherit .agent.base_template)
+
+       (call .sys.readwriteinherited_fifo_files (subj))
+
+       (call .file.search_conffile_dirs (subj))
+       (call .file.search_datafile_dirs (subj))
+
+       (call .libc.mapexecute_libfile_files (subj))
+       (call .libc.read_libfile_files (subj))
+
+       (call .libgccruntime.mapexecute_libfile_files (subj))
+       (call .libgccruntime.read_libfile_files (subj))
+
+       (call .libjsonc.mapexecute_libfile_files (subj))
+       (call .libjsonc.read_libfile_files (subj))
+
+       (call .libubox.mapexecute_libfile_files (subj))
+       (call .libubox.read_libfile_files (subj))
+
+       (call .random.read_nodedev_chr_files (subj))
+
+       (optional jsonfilter_opt_initscript
+                 (call .initscript.readwrite_all_inherited_fifo_files (subj))))

@@ -1,0 +1,46 @@
+;; -*- mode: CIL; fill-column: 79; indent-tabs-mode: nil; -*-
+;; SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
+;; SPDX-License-Identifier: Unlicense
+
+(in .sys
+    (call .wpad.subj_type_transition (subj)))
+
+(block wpad
+
+       ;;
+       ;; Contexts
+       ;;
+
+       (filecon
+        "/tmp/run/hostapd-.*\.conf"
+        file
+        runtimetmpfile_file_context)
+       (filecon
+        "/tmp/run/wifi-.*\.pid"
+        file
+        runtimetmpfile_file_context)
+
+       (filecon
+        "/usr/bin/wpad"
+        file
+        execfile_file_context)
+
+       ;;
+       ;; Macros
+       ;;
+
+       (macro obj_type_transition_runtimetmpfile ((type ARG1)(class ARG2)(name ARG3))
+              (call .tmpfile.runtimetmpfile_obj_type_transition
+                    (ARG1 runtimetmpfile ARG2 ARG3)))
+
+       ;;
+       ;; Policy
+       ;;
+
+       (blockinherit .agent.base_template)
+       (blockinherit .tmpfile.runtime.obj_template)
+
+       (call manage_runtimetmpfile_files (subj))
+       (call obj_type_transition_runtimetmpfile (subj file "*"))
+
+       (call .tmpfile.deletename_runtimetmpfile_dirs (subj)))

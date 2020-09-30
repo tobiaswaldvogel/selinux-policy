@@ -1,0 +1,34 @@
+;; -*- mode: CIL; fill-column: 79; indent-tabs-mode: nil; -*-
+;; SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
+;; SPDX-License-Identifier: Unlicense
+
+(in .dev
+    (call console.obj_type_transition_ttydev (unconfined.subj_typeattr)))
+
+(block console
+
+       ;;
+       ;; Contexts
+       ;;
+
+       (filecon
+        "/dev/console"
+        char
+        ttydev_file_context)
+
+       ;;
+       ;; Macros
+       ;;
+
+       (macro obj_type_transition_ttydev ((type ARG1))
+              (call .tmp.fs_obj_type_transition
+                    (ARG1 ttydev chr_file "console")))
+
+       (macro dontaudit_readwriteinherited_ttydev_chr_files ((type ARG1))
+              (dontaudit ARG1 ttydev readwriteinherited_chr_file))
+
+       ;;
+       ;; Policy
+       ;;
+
+       (blockinherit .dev.tty.obj_template))

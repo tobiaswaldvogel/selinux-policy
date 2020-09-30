@@ -1,0 +1,46 @@
+;; -*- mode: CIL; fill-column: 79; indent-tabs-mode: nil; -*-
+;; SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
+;; SPDX-License-Identifier: Unlicense
+
+(in .sys
+    (call .ifup.subj_type_transition (subj)))
+
+(block ifup
+
+       ;;
+       ;; Contexts
+       ;;
+
+       (filecon
+        "/usr/bin/ifup"
+        file
+        execfile_file_context)
+
+       ;;
+       ;; Policy
+       ;;
+
+       (blockinherit .agent.base_template)
+
+       (call .sys.writeinherited_fifo_files (subj))
+
+       (call .libc.mapexecute_libfile_files (subj))
+       (call .libc.read_libfile_files (subj))
+
+       (call .libfts.mapexecute_libfile_files (subj))
+       (call .libfts.read_libfile_files (subj))
+
+       (call .libgccruntime.mapexecute_libfile_files (subj))
+       (call .libgccruntime.read_libfile_files (subj))
+
+       (call .libpcre.mapexecute_libfile_files (subj))
+       (call .libpcre.read_libfile_files (subj))
+
+       (call .libselinux.linked.subj_type (subj))
+
+       (call .shell.execute_execfile_files (subj))
+
+       (call .ubus.subj_type_transition (subj))
+
+       (optional ifup_opt_rcnetwork
+                 (call .rcnetwork.use_fds (subj))))

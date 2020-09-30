@@ -1,0 +1,119 @@
+;; -*- mode: CIL; fill-column: 79; indent-tabs-mode: nil; -*-
+;; SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
+;; SPDX-License-Identifier: Unlicense
+
+(in .sys
+    (call .mountroot.subj_type_transition (subj)))
+
+(in .file
+    (call .mountroot.obj_type_transition_tmpfile (unconfined.subj_typeattr)))
+
+(block mountroot
+
+       ;;
+       ;; Contexts
+       ;;
+
+       (filecon
+        "/tmp/\.switch_jffs2"
+        file
+        tmpfile_file_context)
+
+       (filecon
+        "/usr/bin/mount_root"
+        file
+        execfile_file_context)
+
+       ;;
+       ;; Macros
+       ;;
+
+       (macro obj_type_transition_tmpfile ((type ARG1))
+              (call .tmp.fs_obj_type_transition
+                    (ARG1 tmpfile file ".switch_jffs2")))
+
+       ;;
+       ;; Policy
+       ;;
+
+       (blockinherit .agent.base_template)
+       (blockinherit .tmpfile.obj_template)
+
+       (allow subj self (capability (dac_override dac_read_search sys_admin)))
+       (allow subj self (capability2 (syslog)))
+       (allow subj self create_unix_dgram_socket)
+
+       (call manage_tmpfile_files (subj))
+       (call obj_type_transition_tmpfile (subj))
+
+       (call .sys.readringbuffer (subj))
+       (call .sys.requestmodule (subj))
+       (call .sys.setsched_subjects (subj)) ;; might be able to dontaudit this (could be mount related)
+       (call .sys.writeinherited_fifo_files (subj))
+       (call .sys.mountpoint.mounton_all_dirs (subj))
+
+       ;; the big hammer
+       (call .agent.exec.execute_all_files (subj))
+
+       (call .dev.node.getattr_all_chr_files (subj))
+       (call .dev.stor.read_all_blk_files (subj))
+       (call .dev.stor.readwrite.subj_type (subj))
+       (call .dev.write_stordev_blk_files (subj))
+
+       ;; this is probably a bug: /boot/boot
+       (call .dos.addname_fs_dirs (subj))
+       (call .dos.create_fs_dirs (subj))
+       (call .dos.setattr_fs_dirs (subj))
+
+       ;; the big hammer
+       (call .file.unconfined.subj_type (subj))
+
+       (call .filesystems.read_procfile_files (subj))
+
+       (call .kmsg.readwrite_nodedev_chr_files (subj))
+
+       (call .mke2fs.subj_type_transition (subj))
+
+       (call .libc.mapexecute_libfile_files (subj))
+       (call .libc.read_libfile_files (subj))
+
+       (call .libfstools.mapexecute_libfile_files (subj))
+       (call .libfstools.read_libfile_files (subj))
+
+       (call .libfts.mapexecute_libfile_files (subj))
+       (call .libfts.read_libfile_files (subj))
+
+       (call .libgccruntime.mapexecute_libfile_files (subj))
+       (call .libgccruntime.read_libfile_files (subj))
+
+       (call .libpcre.mapexecute_libfile_files (subj))
+       (call .libpcre.read_libfile_files (subj))
+
+       (call .libselinux.linked.subj_type (subj))
+
+       (call .libubox.mapexecute_libfile_files (subj))
+       (call .libubox.read_libfile_files (subj))
+
+       (call .logd.unix_dgram_send (subj))
+
+       (call .mkfsf2fs.subj_type_transition (subj))
+
+       (call .proc.list_fs_dirs (subj))
+       (call .pts.search_fs_dirs (subj))
+
+       (call .shell.execute_execfile_files (subj))
+
+       (call .sysctl.list_conffile_dirs (subj))
+       (call .sysctl.read_conffile_files (subj))
+
+       (call .tmp.getattr_filesystems (subj))
+       (call .tmp.manage_fs_dirs (subj))
+       (call .tmp.mount_filesystems (subj))
+
+       (call .xattr.getattr_filesystems (subj))
+       (call .xattr.mount_filesystems (subj))
+       (call .xattr.remount_filesystems (subj))
+
+       (optional mountroot_opt_restorecon
+                 ;; restorecon/busybox: might be temporary: for libfstools/overlay.c
+                 (call .fs.seclabel.getattr_all_filesystems (subj))))
