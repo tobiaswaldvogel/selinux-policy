@@ -5,7 +5,7 @@
 .PHONY: all clean policy check install
 
 modules = $(shell find src -name '*.cil' -type f -printf '%p ')
-polvers = 32
+polvers = 31
 
 all: clean policy check
 
