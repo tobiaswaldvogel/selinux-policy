@@ -53,6 +53,9 @@
        ;; Macros
        ;;
 
+       (macro getattr_execfile_files ((type ARG1))
+              (allow ARG1 execfile (file (getattr))))
+
        (macro obj_type_transition_runtimetmpfile ((type ARG1)(class ARG2)(name ARG3))
               (call .tmpfile.runtimetmpfile_obj_type_transition
                     (ARG1 runtimetmpfile ARG2 ARG3)))
@@ -92,6 +95,10 @@
        (call .libubus.mapexecute_libfile_files (subj))
        (call .libubus.read_libfile_files (subj))
 
+       (call .logd.unix_dgram_send (subj))
+
        (call .random.read_nodedev_chr_files (subj))
 
-       (call .tmpfile.deletename_runtimetmpfile_dirs (subj)))
+       (call .tmpfile.deletename_runtimetmpfile_dirs (subj))
+
+       (call .ubusd.unix_stream_connect (subj)))

@@ -22,6 +22,8 @@
 
        (blockinherit .initscript.base_template)
 
+       (call .wpad.getattr_execfile_files (subj))
+
        (call .wpad.create_runtimetmpfile_dirs (subj))
        (call .wpad.obj_type_transition_runtimetmpfile (subj dir "hostapd"))
        (call .wpad.obj_type_transition_runtimetmpfile
