@@ -50,6 +50,9 @@
 
        (call .ubus.subj_type_transition (subj))
 
+       (call .uci.addname_conffile_dirs (subj))
+       (call .uci.create_conffile_files (subj))
+       (call .uci.readwrite_conffile_files (subj))
        (call .uci.subj_type_transition (subj))
 
        (optional wifi_opt_rcnetwork
