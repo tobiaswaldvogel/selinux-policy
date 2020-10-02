@@ -86,6 +86,30 @@
               (call .tmp.fs_obj_type_transition
                     (ARG1 stordev chr_file "mtd9ro"))
               (call .tmp.fs_obj_type_transition
+                    (ARG1 stordev chr_file "mtd10"))
+              (call .tmp.fs_obj_type_transition
+                    (ARG1 stordev chr_file "mtd10ro"))
+              (call .tmp.fs_obj_type_transition
+                    (ARG1 stordev chr_file "mtd11"))
+              (call .tmp.fs_obj_type_transition
+                    (ARG1 stordev chr_file "mtd11ro"))
+              (call .tmp.fs_obj_type_transition
+                    (ARG1 stordev chr_file "mtd12"))
+              (call .tmp.fs_obj_type_transition
+                    (ARG1 stordev chr_file "mtd12ro"))
+              (call .tmp.fs_obj_type_transition
+                    (ARG1 stordev chr_file "mtd13"))
+              (call .tmp.fs_obj_type_transition
+                    (ARG1 stordev chr_file "mtd13ro"))
+              (call .tmp.fs_obj_type_transition
+                    (ARG1 stordev chr_file "mtd14"))
+              (call .tmp.fs_obj_type_transition
+                    (ARG1 stordev chr_file "mtd14ro"))
+              (call .tmp.fs_obj_type_transition
+                    (ARG1 stordev chr_file "mtd15"))
+              (call .tmp.fs_obj_type_transition
+                    (ARG1 stordev chr_file "mtd15ro"))
+              (call .tmp.fs_obj_type_transition
                     (ARG1 stordev blk_file "mtdblock0"))
               (call .tmp.fs_obj_type_transition
                     (ARG1 stordev blk_file "mtdblock1"))
@@ -105,6 +129,16 @@
                     (ARG1 stordev blk_file "mtdblock8"))
               (call .tmp.fs_obj_type_transition
                     (ARG1 stordev blk_file "mtdblock9"))
+              (call .tmp.fs_obj_type_transition
+                    (ARG1 stordev blk_file "mtdblock10"))
+              (call .tmp.fs_obj_type_transition
+                    (ARG1 stordev blk_file "mtdblock11"))
+              (call .tmp.fs_obj_type_transition
+                    (ARG1 stordev blk_file "mtdblock13"))
+              (call .tmp.fs_obj_type_transition
+                    (ARG1 stordev blk_file "mtdblock14"))
+              (call .tmp.fs_obj_type_transition
+                    (ARG1 stordev blk_file "mtdblock15"))
               (call .tmp.fs_obj_type_transition
                     (ARG1 stordev chr_file "ubi_ctrl"))
               (call .tmp.fs_obj_type_transition
