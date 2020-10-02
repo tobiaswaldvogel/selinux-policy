@@ -155,6 +155,34 @@
            (call .tmp.fs_obj_type_transition
                  (ARG1 ttydev chr_file "ttyS1"))
            (call .tmp.fs_obj_type_transition
+                 (ARG1 ttydev chr_file "ttyS2"))
+           (call .tmp.fs_obj_type_transition
+                 (ARG1 ttydev chr_file "ttyS3"))
+           (call .tmp.fs_obj_type_transition
+                 (ARG1 ttydev chr_file "ttyS4"))
+           (call .tmp.fs_obj_type_transition
+                 (ARG1 ttydev chr_file "ttyS5"))
+           (call .tmp.fs_obj_type_transition
+                 (ARG1 ttydev chr_file "ttyS6"))
+           (call .tmp.fs_obj_type_transition
+                 (ARG1 ttydev chr_file "ttyS7"))
+           (call .tmp.fs_obj_type_transition
+                 (ARG1 ttydev chr_file "ttyS8"))
+           (call .tmp.fs_obj_type_transition
+                 (ARG1 ttydev chr_file "ttyS9"))
+           (call .tmp.fs_obj_type_transition
+                 (ARG1 ttydev chr_file "ttyS10"))
+           (call .tmp.fs_obj_type_transition
+                 (ARG1 ttydev chr_file "ttyS11"))
+           (call .tmp.fs_obj_type_transition
+                 (ARG1 ttydev chr_file "ttyS12"))
+           (call .tmp.fs_obj_type_transition
+                 (ARG1 ttydev chr_file "ttyS13"))
+           (call .tmp.fs_obj_type_transition
+                 (ARG1 ttydev chr_file "ttyS14"))
+           (call .tmp.fs_obj_type_transition
+                 (ARG1 ttydev chr_file "ttyS15"))
+           (call .tmp.fs_obj_type_transition
                  (ARG1 ttydev chr_file "vcs"))
            (call .tmp.fs_obj_type_transition
                  (ARG1 ttydev chr_file "vcs1"))
