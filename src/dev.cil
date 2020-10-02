@@ -5,6 +5,13 @@
 (block dev
 
        ;;
+       ;; Macros
+       ;;
+
+       (macro getattr_all_chr_files ((type ARG1))
+              (allow ARG1 obj_typeattr (chr_file (getattr))))
+
+       ;;
        ;; Policy
        ;;
 

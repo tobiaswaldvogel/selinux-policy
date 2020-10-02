@@ -55,7 +55,7 @@
        ;; the big hammer
        (call .agent.exec.execute_all_files (subj))
 
-       (call .dev.node.getattr_all_chr_files (subj))
+       (call .dev.getattr_all_chr_files (subj))
        (call .dev.stor.read_all_blk_files (subj))
        (call .dev.stor.readwrite.subj_type (subj))
        (call .dev.write_stordev_blk_files (subj))
