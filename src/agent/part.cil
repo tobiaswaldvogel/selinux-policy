@@ -1,0 +1,31 @@
+;; -*- mode: CIL; fill-column: 79; indent-tabs-mode: nil; -*-
+;; SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
+;; SPDX-License-Identifier: Unlicense
+
+(in .sys
+    (call .part.subj_type_transition (subj)))
+
+(block part
+
+       ;;
+       ;; Contexts
+       ;;
+
+       (filecon
+        "/usr/bin/addpart"
+        file
+        execfile_file_context)
+       (filecon
+        "/usr/bin/delpart"
+        file
+        execfile_file_context)
+       (filecon
+        "/usr/bin/partx"
+        file
+        execfile_file_context)
+
+       ;;
+       ;; Policy
+       ;;
+
+       (blockinherit .agent.base_template))

@@ -1,0 +1,29 @@
+;; -*- mode: CIL; fill-column: 79; indent-tabs-mode: nil; -*-
+;; SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
+;; SPDX-License-Identifier: Unlicense
+
+(in .sys
+    (call .firstboot.subj_type_transition (subj)))
+
+(block firstboot
+
+       ;;
+       ;; Contexts
+       ;;
+
+       (filecon
+        "/usr/bin/firstboot"
+        file
+        execfile_file_context)
+       (filecon
+        "/usr/bin/jffs2reset"
+        file
+        execfile_file_context)
+
+       ;;
+       ;; Policy
+       ;;
+
+       (blockinherit .agent.base_template)
+
+       (call execute_execfile_files (subj)))
