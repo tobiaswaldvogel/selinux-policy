@@ -22,6 +22,7 @@
 
     (blockinherit .agent.base_template)
 
+    (allow subj self (capability (net_admin)))
     (allow subj self create_netlink_generic_socket)
 
     (call .sys.writeinherited_fifo_files (subj))
@@ -42,4 +43,12 @@
     (call .libubox.read_libfile_files (subj))
 
     (call .libuci.mapexecute_libfile_files (subj))
-    (call .libuci.read_libfile_files (subj)))
+    (call .libuci.read_libfile_files (subj))
+
+    (call .uci.read_conffile_files (subj))
+    (call .uci.read_tmpfile_files (subj))
+    (call .uci.search_conffile_dirs (subj))
+    (call .uci.search_tmpfile_dirs (subj))
+
+    (optional swconfig_opt_rcnetwork
+              (call .rcnetwork.use_fds (subj))))

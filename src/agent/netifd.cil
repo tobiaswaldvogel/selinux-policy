@@ -153,6 +153,8 @@
        (call .pppd.read_miscfile_files (subj))
        (call .pppd.subj_type_transition (subj))
 
+       (call .proc.list_fs_dirs (subj))
+
        (call .random.read_nodedev_chr_files (subj))
 
        (call .resolv.manage_tmpfile_dirs (subj))
