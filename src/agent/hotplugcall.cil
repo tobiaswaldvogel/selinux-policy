@@ -80,6 +80,9 @@
 
        (call .ntpdhotplug.use_fds (subj))
 
+       (call .preinit.read_tmpfile_files (subj))
+       (call .preinit.search_tmpfile_dirs (subj))
+
        (call .rccommon.read_conffile_files (subj))
 
        (call .sysctl.list_conffile_dirs (subj))
