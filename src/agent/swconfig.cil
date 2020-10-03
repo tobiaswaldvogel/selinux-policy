@@ -1,0 +1,23 @@
+;; -*- mode: CIL; fill-column: 79; indent-tabs-mode: nil; -*-
+;; SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
+;; SPDX-License-Identifier: Unlicense
+
+(in .sys
+    (call .swconfig.subj_type_transition (subj)))
+
+(block swconfig
+
+    ;;
+    ;; Contexts
+    ;;
+
+    (filecon
+     "/usr/bin/swconfig"
+     file
+     execfile_file_context)
+
+    ;;
+    ;; Policy
+    ;;
+
+    (blockinherit .agent.base_template))

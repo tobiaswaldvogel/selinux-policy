@@ -32,6 +32,10 @@
        (call .file.conf.getattr_all_files (subj))
        (call .file.conf.list_all_dirs (subj))
        (call .file.misc.getattr_all_files (subj))
+       (call .file.misc.list_all_dirs (subj))
+
+       (call .initscript.exec.getattr_all_files (subj))
+       (call .initscript.exec.list_all_dirs (subj))
 
        (call .locale.read.subj_type (subj))
 

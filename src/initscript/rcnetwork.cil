@@ -24,6 +24,8 @@
 
        (call .sys.search_sysctlfile_dirs (subj))
 
+       (call .class.search_sysfile_dirs (subj))
+
        (call .corepattern.getattr_sysctlfile_files (subj))
 
        (call .ifup.subj_type_transition (subj))
