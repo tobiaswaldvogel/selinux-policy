@@ -134,6 +134,8 @@
               (call .tmp.fs_obj_type_transition
                     (ARG1 stordev blk_file "mtdblock11"))
               (call .tmp.fs_obj_type_transition
+                    (ARG1 stordev blk_file "mtdblock12"))
+              (call .tmp.fs_obj_type_transition
                     (ARG1 stordev blk_file "mtdblock13"))
               (call .tmp.fs_obj_type_transition
                     (ARG1 stordev blk_file "mtdblock14"))
