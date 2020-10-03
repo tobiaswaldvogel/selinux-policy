@@ -51,9 +51,6 @@
            (macro entrypoint_all_files ((type ARG1))
                   (allow ARG1 obj_typeattr (file (entrypoint))))
 
-           (macro getattr_all_files ((type ARG1))
-                  (allow ARG1 obj_typeattr (file (getattr))))
-
            ;;
            ;; Policy
            ;;

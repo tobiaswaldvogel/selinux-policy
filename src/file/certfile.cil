@@ -7,16 +7,6 @@
     (block cert
 
            ;;
-           ;; Macros
-           ;;
-
-           (macro getattr_all_files ((type ARG1))
-                  (allow ARG1 obj_typeattr (file (getattr))))
-
-           (macro getattr_all_lnk_files ((type ARG1))
-                  (allow ARG1 obj_typeattr (lnk_file (getattr))))
-
-           ;;
            ;; Policy
            ;;
 

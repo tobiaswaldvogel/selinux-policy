@@ -2162,6 +2162,12 @@
               (macro execute_all_files ((type ARG1))
                      (allow ARG1 obj_typeattr execute_file))
 
+              (macro getattr_all_files ((type ARG1))
+                     (allow ARG1 obj_typeattr (file (getattr))))
+
+              (macro getattr_all_lnk_files ((type ARG1))
+                     (allow ARG1 obj_typeattr (lnk_file (getattr))))
+
               (macro list_all_dirs ((type ARG1))
                      (allow ARG1 obj_typeattr list_dir))
 
