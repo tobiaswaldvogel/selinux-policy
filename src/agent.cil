@@ -13,7 +13,6 @@
        ;; this should eventually not be needed but at this time /rom in unlabeled
        (call .list_unlabeled_dirs (subj_typeattr))
 
-       (call .sys.use_fds (subj_typeattr))
        (call .sys.dontaudit_readwriteinherited_ptydev_chr_files
              (subj_typeattr))
 
@@ -28,7 +27,6 @@
        ;; the big hammer
        (call .mountroot.use_fds (subj_typeattr))
 
-       ;; writing to pty's inherited from dropbear
        (call .subj.useinteractivefd.subj_type (subj_typeattr))
 
        ;; is this leaked from initscript?

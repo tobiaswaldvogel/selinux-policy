@@ -75,6 +75,8 @@
 
        (blockinherit .subj.subj_template)
 
+       (call .subj.interactivefd.subj_type (subj))
+
        (call .unconfined.subj_type (subj))
 
        (block loadkernelmodule
