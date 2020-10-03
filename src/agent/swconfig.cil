@@ -22,6 +22,8 @@
 
     (blockinherit .agent.base_template)
 
+    (allow subj self create_netlink_generic_socket)
+
     (call .sys.writeinherited_fifo_files (subj))
 
     (call .file.search_conffile_dirs (subj))
@@ -35,6 +37,9 @@
 
     (call .libnltiny.mapexecute_libfile_files (subj))
     (call .libnltiny.read_libfile_files (subj))
+
+    (call .libubox.mapexecute_libfile_files (subj))
+    (call .libubox.read_libfile_files (subj))
 
     (call .libuci.mapexecute_libfile_files (subj))
     (call .libuci.read_libfile_files (subj)))

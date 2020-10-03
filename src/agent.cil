@@ -28,6 +28,9 @@
        ;; the big hammer
        (call .mountroot.use_fds (subj_typeattr))
 
+       ;; writing to pty's inherited from dropbear
+       (call .subj.useinteractivefd.subj_type (subj_typeattr))
+
        ;; is this leaked from initscript?
        (call .tmpfile.writeinherited_locktmpfile_files (subj_typeattr))
 

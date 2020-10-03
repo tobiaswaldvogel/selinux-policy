@@ -124,6 +124,9 @@
 
        (call .urandomseed.writeinherited_fifo_files (subj))
 
+       ;; questionable, leak?
+       (call .watchdog.writeinherited_nodedev_chr_files (subj))
+
        (call .wifi.writeinherited_fifo_files (subj))
 
        (optional uci_opt_initscript
