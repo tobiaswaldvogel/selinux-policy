@@ -40,4 +40,6 @@
        (call .network.list_miscfile_dirs (subj))
        (call .network.read_miscfile_files (subj))
 
+       (call .swconfig.subj_type_transition (subj))
+
        (call .wifi.subj_type_transition (subj)))

@@ -21,10 +21,6 @@
     ;; Macros
     ;;
 
-    (macro obj_type_transition_execfile ((type ARG1))
-           (call .sys.rootfile_obj_type_transition
-                 (ARG1 execfile dir "bin")))
-
     (macro datafile_obj_type_transition_execfile ((type ARG1))
            (call .file.datafile_obj_type_transition
                  (ARG1 execfile dir "bin"))
@@ -32,6 +28,10 @@
                  (ARG1 execfile dir "libexec"))
            (call .file.datafile_obj_type_transition
                  (ARG1 execfile dir "sbin")))
+
+    (macro obj_type_transition_execfile ((type ARG1))
+           (call .sys.rootfile_obj_type_transition
+                 (ARG1 execfile dir "bin")))
 
     ;;
     ;; Policy
@@ -50,6 +50,9 @@
 
            (macro entrypoint_all_files ((type ARG1))
                   (allow ARG1 obj_typeattr (file (entrypoint))))
+
+           (macro getattr_all_files ((type ARG1))
+                  (allow ARG1 obj_typeattr (file (getattr))))
 
            ;;
            ;; Policy

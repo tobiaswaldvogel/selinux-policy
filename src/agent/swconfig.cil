@@ -20,4 +20,7 @@
     ;; Policy
     ;;
 
-    (blockinherit .agent.base_template))
+    (blockinherit .agent.base_template)
+
+    (call .libnltiny.mapexecute_libfile_files (subj))
+    (call .libnltiny.read_libfile_files (subj)))
