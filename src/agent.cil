@@ -10,6 +10,9 @@
 
        (blockinherit .subj.subj_all_macro_template)
 
+       ;; this should eventually not be needed but at this time /rom in unlabeled
+       (call .list_unlabeled_dirs (subj_typeattr))
+
        (call .sys.use_fds (subj_typeattr))
        (call .sys.dontaudit_readwriteinherited_ptydev_chr_files
              (subj_typeattr))

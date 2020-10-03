@@ -27,8 +27,11 @@
 
        (call .clock.readwrite_nodedev_chr_files (subj))
 
+       (call .file.cert.getattr_all_files (subj))
+       (call .file.cert.list_all_dirs (subj))
        (call .file.conf.getattr_all_files (subj))
        (call .file.conf.list_all_dirs (subj))
+       (call .file.misc.getattr_all_files (subj))
 
        (call .locale.read.subj_type (subj))
 
