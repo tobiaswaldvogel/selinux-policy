@@ -5,6 +5,10 @@
 (in .sys
     (call .wifi.subj_type_transition (subj)))
 
+(in .file
+    (call .wifi.libfile_obj_type_transition_miscfile
+          (unconfined.subj_typeattr)))
+
 (block wifi
 
        ;;
@@ -16,11 +20,29 @@
         file
         execfile_file_context)
 
+       (filecon
+        "/usr/lib/wifi"
+        dir
+        miscfile_file_context)
+       (filecon
+        "/usr/lib/wifi/.*"
+        any
+        miscfile_file_context)
+
+       ;;
+       ;; Macros
+       ;;
+
+       (macro libfile_obj_type_transition_miscfile ((type ARG1))
+              (call .file.libfile_obj_type_transition
+                    (ARG1 miscfile dir "wifi")))
+
        ;;
        ;; Policy
        ;;
 
        (blockinherit .agent.base_template)
+       (blockinherit .file.misc.obj_template)
 
        (call .functions.read_miscfile_files (subj))
        (call .functions.search_miscfile_dirs (subj))

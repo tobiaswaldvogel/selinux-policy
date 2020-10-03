@@ -27,6 +27,9 @@
 
        (call .clock.readwrite_nodedev_chr_files (subj))
 
+       (call .file.conf.getattr_all_files (subj))
+       (call .file.conf.list_all_dirs (subj))
+
        (call .locale.read.subj_type (subj))
 
        (call .logd.unix_dgram_send (subj)))

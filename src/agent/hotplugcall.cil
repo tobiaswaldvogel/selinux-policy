@@ -93,5 +93,7 @@
 
        (call .uci.subj_type_transition (subj))
 
+       (call .wifi.subj_type_transition (subj))
+
        (optional hotplugcall_opt_initscript
                  (call .initscript.use_all_fds (subj))))
