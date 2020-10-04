@@ -1,0 +1,100 @@
+;; -*- mode: CIL; fill-column: 79; indent-tabs-mode: nil; -*-
+;; SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
+;; SPDX-License-Identifier: Unlicense
+
+(in .sys
+    (call .ubiutil.subj_type_transition (subj)))
+
+(in .file
+    (call .ubiutil.obj_type_transition_execfile (unconfined.subj_typeattr)))
+
+(block ubiutil
+
+       ;;
+       ;; Contexts
+       ;;
+
+       (filecon
+        "/usr/bin/ubiattach"
+        file
+        execfile_file_context)
+       (filecon
+        "/usr/bin/ubiblock"
+        file
+        execfile_file_context)
+       (filecon
+        "/usr/bin/ubicrc32"
+        file
+        execfile_file_context)
+       (filecon
+        "/usr/bin/ubidetach"
+        file
+        execfile_file_context)
+       (filecon
+        "/usr/bin/ubiformat"
+        file
+        execfile_file_context)
+       (filecon
+        "/usr/bin/ubimkvol"
+        file
+        execfile_file_context)
+       (filecon
+        "/usr/bin/ubinfo"
+        file
+        execfile_file_context)
+       (filecon
+        "/usr/bin/ubinize"
+        file
+        execfile_file_context)
+       (filecon
+        "/usr/bin/ubirename"
+        file
+        execfile_file_context)
+       (filecon
+        "/usr/bin/ubirmvol"
+        file
+        execfile_file_context)
+       (filecon
+        "/usr/bin/ubirsvol"
+        file
+        execfile_file_context)
+       (filecon
+        "/usr/bin/ubiupdatevol"
+        file
+        execfile_file_context)
+
+       ;;
+       ;; Macros
+       ;;
+
+       (macro obj_type_transition_execfile ((type ARG1))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "ubiattach"))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "ubiblock"))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "ubicrc32"))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "ubidetach"))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "ubiformat"))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "ubimkvol"))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "ubinfo"))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "ubinize"))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "ubirename"))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "ubirmvol"))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "ubirsvol"))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "ubiupdatevol")))
+
+       ;;
+       ;; Policy
+       ;;
+
+       (blockinherit .agent.base_template))

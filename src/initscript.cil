@@ -11,7 +11,7 @@
        (blockinherit .subj.subj_all_macro_template)
 
        (call .sys.list_rootfile_dirs (subj_typeattr))
-       (call .sys.writeinherited_fifo_files (subj_typeattr))
+       (call .sys.readwriteinherited_fifo_files (subj_typeattr))
        (call .sys.dontaudit_readwriteinherited_ptydev_chr_files
              (subj_typeattr))
 
