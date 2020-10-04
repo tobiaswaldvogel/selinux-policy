@@ -37,12 +37,18 @@
        (allow subj self create_unix_dgram_socket)
 
        (call .sys.list_rootfile_dirs (subj))
+       (call .sys.search_fs_dirs (subj))
        (call .sys.search_sysctlfile_dirs (subj))
        (call .sys.dontaudit_readwrite_udp_sockets (subj))
+
+       (call .class.search_sysfile_dirs (subj))
 
        (call .cpuinfo.read_procfile_files (subj))
 
        (call .dev.stor.read.subj_type (subj))
+
+       (call .devices.read_sysfile_files (subj))
+       (call .devices.search_sysfile_dirs (subj))
 
        (call .dnsmasq.manage_statetmpfile_files (subj))
        (call .dnsmasq.obj_type_transition_statetmpfile (subj))
