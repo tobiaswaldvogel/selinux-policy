@@ -91,8 +91,7 @@
 
        (call .modules.read_procfile_files (subj))
 
-       ;; questionable, leak?
-       (call .watchdog.writeinherited_nodedev_chr_files (subj))
+       (call .watchdog.dontaudit_writeinherited_nodedev_chr_files (subj))
 
        (optional kmodloader_opt_rcboot
                  (call .rcboot.use_fds (subj))))

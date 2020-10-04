@@ -26,6 +26,9 @@
               (call .tmp.fs_obj_type_transition
                     (ARG1 nodedev chr_file "watchdog0")))
 
+       (macro dontaudit_writeinherited_nodedev_chr_files ((type ARG1))
+              (dontaudit ARG1 nodedev writeinherited_chr_file))
+
        ;;
        ;; Policy
        ;;

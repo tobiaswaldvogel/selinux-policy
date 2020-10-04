@@ -117,8 +117,7 @@
        (call .tmp.manage_fs_dirs (subj))
        (call .tmp.mount_filesystems (subj))
 
-       ;; questionable, leak?
-       (call .watchdog.writeinherited_nodedev_chr_files (subj))
+       (call .watchdog.dontaudit_writeinherited_nodedev_chr_files (subj))
 
        (call .xattr.getattr_filesystems (subj))
        (call .xattr.mount_filesystems (subj))

@@ -37,7 +37,7 @@
        (allow subj self create_unix_dgram_socket)
 
        (call .sys.list_rootfile_dirs (subj))
-       (call .sys.search_fs_dirs (subj))
+       (call .sys.read_fs_lnk_files (subj))
        (call .sys.search_sysctlfile_dirs (subj))
        (call .sys.dontaudit_readwrite_udp_sockets (subj))
 
