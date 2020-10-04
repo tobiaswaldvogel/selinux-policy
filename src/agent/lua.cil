@@ -3,8 +3,6 @@
 ;; SPDX-License-Identifier: Unlicense
 
 (in .file
-    (call .lua.libfile_obj_type_transition_miscfile
-          (unconfined.subj_typeattr))
     (call .lua.obj_type_transition_execfile (unconfined.subj_typeattr))
     (call .lua.obj_type_transition_libfile (unconfined.subj_typeattr)))
 
@@ -27,11 +25,11 @@
        (filecon
         "/usr/lib/lua"
         dir
-        miscfile_file_context)
+        libfile_file_context)
        (filecon
         "/usr/lib/lua/.*"
         any
-        miscfile_file_context)
+        libfile_file_context)
 
        ;;
        ;; Macros
@@ -47,6 +45,8 @@
 
        (macro obj_type_transition_libfile ((type ARG1))
               (call .file.libfile_obj_type_transition
+                    (ARG1 libfile dir "lua"))
+              (call .file.libfile_obj_type_transition
                     (ARG1 libfile file "liblua.so.5.1.5")))
 
        ;;
@@ -54,7 +54,4 @@
        ;;
 
        (blockinherit .file.exec.obj_template)
-       (blockinherit .file.lib.obj_template)
-       (blockinherit .file.misc.obj_template)
-
-       (call .xattr.associate_filesystems (miscfile)))
+       (blockinherit .file.lib.obj_template))

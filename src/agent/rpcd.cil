@@ -92,21 +92,44 @@
 
        (call .sys.read_fs_lnk_files (subj))
        (call .sys.requestmodule (subj))
+       (call .sys.search_sysctlfile_dirs (subj))
 
        (call .board.read_miscfile_files (subj))
 
        (call .class.list_sysfile_dirs (subj))
 
+       (call .cron.read_miscfile_files (subj))
+
+       (call .dnsmasq.read_tmpfile_files (subj))
+
        (call .file.read_conffile_lnk_files (subj))
+
+       (call .iproute2.read_conffile_files (subj))
+       (call .iproute2.search_conffile_dirs (subj))
+
+       (call .kernel.read_sysctlfile_files (subj))
+       (call .kernel.search_sysctlfile_dirs (subj))
+
+       (call .libblobmsg.mapexecute_libfile_files (subj))
+       (call .libblobmsg.read_libfile_files (subj))
 
        (call .libc.mapexecute_libfile_files (subj))
        (call .libc.read_libfile_files (subj))
+
+       (call .libfts.mapexecute_libfile_files (subj))
+       (call .libfts.read_libfile_files (subj))
 
        (call .libgccruntime.mapexecute_libfile_files (subj))
        (call .libgccruntime.read_libfile_files (subj))
 
        (call .libiwinfo.read_datafile_files (subj))
        (call .libiwinfo.search_datafile_dirs (subj))
+
+       (call .libjsonc.mapexecute_libfile_files (subj))
+       (call .libjsonc.read_libfile_files (subj))
+
+       (call .libpcre.mapexecute_libfile_files (subj))
+       (call .libpcre.read_libfile_files (subj))
 
        (call .libselinux.linked.subj_type (subj))
 
@@ -119,7 +142,21 @@
        (call .libuci.mapexecute_libfile_files (subj))
        (call .libuci.read_libfile_files (subj))
 
+       (call .logread.subj_type_transition (subj))
+
        (call .luci.subj_type_transition (subj))
+
+       (call .mtd.read_procfile_files (subj))
+
+       (call .nameservice.read_miscfile_files (subj))
+
+       (call .net.egress_netifs (subj))
+       (call .net.read_procfile_files (subj))
+       (call .net.sendto_netnodes (subj))
+
+       (call .odhcpd.read_hoststmpfile_files (subj))
+
+       (call .partitions.read_procfile_files (subj))
 
        (call .random.read_nodedev_chr_files (subj))
 
@@ -130,9 +167,17 @@
 
        (call .shell.execute_execfile_files (subj))
 
+       (call .subj.signal_all_subjects (subj))
+
        (call .tmpfile.deletename_runtimetmpfile_dirs (subj))
+       (call .tmpfile.search_hoststmpfile_dirs (subj))
 
        (call .uci.list_conffile_dirs (subj))
        (call .uci.list_tmpfile_dirs (subj))
        (call .uci.read_conffile_files (subj))
-       (call .uci.read_tmpfile_files (subj)))
+       (call .uci.read_tmpfile_files (subj))
+
+       (call .upgrade.read_miscfile_files (subj))
+       (call .upgrade.search_miscfile_dirs (subj))
+
+       (call .xtables.subj_type_transition (subj)))

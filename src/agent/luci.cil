@@ -103,6 +103,22 @@
        (call mapexecute_libfile_files (subj))
        (call read_libfile_files (subj))
 
+       (call .sys.read_fs_lnk_files (subj))
+
+       (call .class.search_sysfile_dirs (subj))
+
+       (call .devices.read_sysfile_files (subj))
+       (call .devices.search_sysfile_dirs (subj))
+
+       (call .fs.getattr_all_filesystems (subj))
+
+       (call .fw3.read_datafile_files (subj))
+       (call .fw3.search_datafile_dirs (subj))
+
+       (call .kernel.search_sysctlfile_dirs (subj))
+
+       (call .leds.list_sysfile_dirs (subj))
+
        (call .libc.mapexecute_libfile_files (subj))
        (call .libc.read_libfile_files (subj))
 
@@ -123,9 +139,20 @@
        (call .libubox.mapexecute_libfile_files (subj))
        (call .libubox.read_libfile_files (subj))
 
+       (call .lua.execute_execfile_files (subj))
+       (call .lua.mapexecute_libfile_files (subj))
+       (call .lua.read_libfile_files (subj))
+       (call .lua.search_libfile_dirs (subj))
+
+       (call .proc.list_fs_dirs (subj))
+
+       (call .random.read_nodedev_chr_files (subj))
+
        (call .rpcd.readwriteinherited_fifo_files (subj))
 
        (call .shell.execute_execfile_files (subj))
+
+       (call .subj.read_state_all_subjects (subj))
 
        (block bwc
 

@@ -32,6 +32,11 @@
         conffile_file_context)
 
        (filecon
+        "/tmp/opkg\.lock"
+        file
+        tmpfile_file_context)
+
+       (filecon
         "/tmp/opkg-lists"
         dir
         tmpfile_file_context)
@@ -87,7 +92,9 @@
 
        (macro obj_type_transition_tmpfile ((type ARG1))
               (call .tmp.fs_obj_type_transition
-                    (ARG1 tmpfile dir "opkg-lists")))
+                    (ARG1 tmpfile dir "opkg-lists"))
+              (call .tmp.fs_obj_type_transition
+                    (ARG1 tmpfile file "opkg.lock")))
 
        ;;
        ;; Policy
