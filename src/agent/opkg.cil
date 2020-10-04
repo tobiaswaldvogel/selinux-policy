@@ -99,6 +99,23 @@
 
        (call .xattr.associate_filesystems (miscfile))
 
+       (block call
+
+              ;;
+              ;; Contexts
+              ;;
+
+              (filecon
+               "/usr/bin/opkg-call"
+               file
+               execfile_file_context)
+
+              ;;
+              ;; Policy
+              ;;
+
+              (blockinherit .agent.base_template))
+
        (block key
 
               ;;
@@ -106,7 +123,7 @@
               ;;
 
               (filecon
-               "/usr/bin//opkg-key"
+               "/usr/bin/opkg-key"
                file
                execfile_file_context)
 

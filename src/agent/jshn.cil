@@ -33,7 +33,7 @@
 
        (blockinherit .agent.base_template)
 
-       (call .sys.writeinherited_fifo_files (subj))
+       (call .sys.readwriteinherited_fifo_files (subj))
        (call .sys.dontaudit_readwrite_udp_sockets (subj))
 
        (call .board.manage_miscfile_files (subj))
