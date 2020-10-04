@@ -5,6 +5,10 @@
 (in .sys
     (call .rcumount.subj_type_transition (subj)))
 
+(in .file
+    (call .rcumount.obj_type_transition_initscriptfile
+          (unconfined.subj_typeattr)))
+
 (block rcumount
 
        ;;
@@ -15,6 +19,14 @@
         "/etc/init\.d/umount"
         file
         initscriptfile_file_context)
+
+       ;;
+       ;; Macros
+       ;;
+
+       (macro obj_type_transition_initscriptfile ((type ARG1))
+              (call .file.initscriptfile_obj_type_transition
+                    (ARG1 execfile file "umount")))
 
        ;;
        ;; Policy

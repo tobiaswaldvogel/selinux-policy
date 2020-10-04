@@ -6,6 +6,8 @@
     (call .reloadconfig.subj_type_transition (subj)))
 
 (in .file
+    (call .reloadconfig.obj_type_transition_execfile
+          (unconfined.subj_typeattr))
     (call .reloadconfig.obj_type_transition_runtimetmpfile
           (unconfined.subj_typeattr)))
 
@@ -36,6 +38,10 @@
        ;;
        ;; Macros
        ;;
+
+       (macro obj_type_transition_execfile ((type ARG1))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "reload_config")))
 
        (macro obj_type_transition_runtimetmpfile ((type ARG1))
               (call .tmpfile.runtimetmpfile_obj_type_transition

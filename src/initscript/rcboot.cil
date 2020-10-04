@@ -6,6 +6,8 @@
     (call .rcboot.subj_type_transition (subj)))
 
 (in .file
+    (call .rcboot.obj_type_transition_initscriptfile
+          (unconfined.subj_typeattr))
     (call .rcboot.obj_type_transition_tmpfile (unconfined.subj_typeattr)))
 
 (block rcboot
@@ -27,6 +29,10 @@
        ;;
        ;; Macros
        ;;
+
+       (macro obj_type_transition_initscriptfile ((type ARG1))
+              (call .file.initscriptfile_obj_type_transition
+                    (ARG1 execfile file "boot")))
 
        (macro obj_type_transition_tmpfile ((type ARG1))
               (call .tmp.fs_obj_type_transition

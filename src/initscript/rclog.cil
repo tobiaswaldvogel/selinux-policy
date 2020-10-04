@@ -5,6 +5,10 @@
 (in .sys
     (call .rclog.subj_type_transition (subj)))
 
+(in .file
+    (call .rclog.obj_type_transition_initscriptfile
+          (unconfined.subj_typeattr)))
+
 (block rclog
 
        ;;
@@ -15,6 +19,14 @@
         "/etc/init\.d/log"
         file
         initscriptfile_file_context)
+
+       ;;
+       ;; Macros
+       ;;
+
+       (macro obj_type_transition_initscriptfile ((type ARG1))
+              (call .file.initscriptfile_obj_type_transition
+                    (ARG1 execfile file "log")))
 
        ;;
        ;; Policy

@@ -6,7 +6,8 @@
     (call .kmodloader.subj_type_transition (subj)))
 
 (in .file
-    (call .kmodloader.obj_type_transition_conffile (unconfined.subj_typeattr)))
+    (call .kmodloader.obj_type_transition_conffile (unconfined.subj_typeattr))
+    (call .kmodloader.obj_type_transition_execfile (unconfined.subj_typeattr)))
 
 (block kmodloader
 
@@ -46,6 +47,10 @@
                     (ARG1 conffile dir "modules-boot.d"))
               (call .file.conffile_obj_type_transition
                     (ARG1 conffile dir "modules.d")))
+
+       (macro obj_type_transition_execfile ((type ARG1))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "kmodloader")))
 
        ;;
        ;; Policy

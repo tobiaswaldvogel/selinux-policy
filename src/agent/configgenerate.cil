@@ -5,6 +5,10 @@
 (in .sys
     (call .configgenerate.subj_type_transition (subj)))
 
+(in .file
+    (call .configgenerate.obj_type_transition_execfile
+          (unconfined.subj_typeattr)))
+
 (block configgenerate
 
        ;;
@@ -15,6 +19,14 @@
         "/usr/bin/config_generate"
         file
         execfile_file_context)
+
+       ;;
+       ;; Macros
+       ;;
+
+       (macro obj_type_transition_execfile ((type ARG1))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "config_generate")))
 
        ;;
        ;; Policy

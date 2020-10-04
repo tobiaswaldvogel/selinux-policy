@@ -5,6 +5,10 @@
 (in .sys
     (call .validatedata.subj_type_transition (subj)))
 
+(in .file
+    (call .validatedata.obj_type_transition_execfile
+          (unconfined.subj_typeattr)))
+
 (block validatedata
 
        ;;
@@ -15,6 +19,14 @@
         "/usr/bin/validate_data"
         file
         execfile_file_context)
+
+       ;;
+       ;; Macros
+       ;;
+
+       (macro obj_type_transition_execfile ((type ARG1))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "validate_data")))
 
        ;;
        ;; Policy

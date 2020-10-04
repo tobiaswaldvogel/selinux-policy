@@ -5,6 +5,10 @@
 (in .sys
     (call .rcwpad.subj_type_transition (subj)))
 
+(in .file
+    (call .rcwpad.obj_type_transition_initscriptfile
+          (unconfined.subj_typeattr)))
+
 (block rcwpad
 
        ;;
@@ -15,6 +19,14 @@
         "/etc/init\.d/wpad"
         file
         initscriptfile_file_context)
+
+       ;;
+       ;; Macros
+       ;;
+
+       (macro obj_type_transition_initscriptfile ((type ARG1))
+              (call .file.initscriptfile_obj_type_transition
+                    (ARG1 execfile file "wpad")))
 
        ;;
        ;; Policy

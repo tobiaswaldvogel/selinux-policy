@@ -5,6 +5,10 @@
 (in .sys
     (call .rcfirewall.subj_type_transition (subj)))
 
+(in .file
+    (call .rcfirewall.obj_type_transition_initscriptfile
+          (unconfined.subj_typeattr)))
+
 (block rcfirewall
 
        ;;
@@ -15,6 +19,14 @@
         "/etc/init\.d/firewall"
         file
         initscriptfile_file_context)
+
+       ;;
+       ;; Macros
+       ;;
+
+       (macro obj_type_transition_initscriptfile ((type ARG1))
+              (call .file.initscriptfile_obj_type_transition
+                    (ARG1 execfile file "firewall")))
 
        ;;
        ;; Policy

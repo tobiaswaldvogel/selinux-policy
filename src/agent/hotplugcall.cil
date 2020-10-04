@@ -5,6 +5,10 @@
 (in .sys
     (call .hotplugcall.subj_type_transition (subj)))
 
+(in .file
+    (call .hotplugcall.obj_type_transition_execfile
+          (unconfined.subj_typeattr)))
+
 (block hotplugcall
 
        ;;
@@ -15,6 +19,14 @@
         "/usr/bin/hotplug-call"
         file
         execfile_file_context)
+
+       ;;
+       ;; Macros
+       ;;
+
+       (macro obj_type_transition_execfile ((type ARG1))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "hotplug-call")))
 
        ;;
        ;; Policy

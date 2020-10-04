@@ -6,6 +6,7 @@
     (call .ubusd.subj_type_transition (subj)))
 
 (in .file
+    (call .ubusd.obj_type_transition_execfile (unconfined.subj_typeattr))
     (call .ubusd.obj_type_transition_runtimetmpfile
           (unconfined.subj_typeattr)))
 
@@ -31,6 +32,10 @@
 
        (macro connectto_unix_stream_sockets ((type ARG1))
               (allow ARG1 subj (unix_stream_socket (connectto))))
+
+       (macro obj_type_transition_execfile ((type ARG1))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "ubusd")))
 
        (macro obj_type_transition_runtimetmpfile ((type ARG1))
               (call .tmpfile.runtimetmpfile_obj_type_transition

@@ -5,6 +5,9 @@
 (in .sys
     (call .firstboot.subj_type_transition (subj)))
 
+(in .file
+    (call .firstboot.obj_type_transition_execfile (unconfined.subj_typeattr)))
+
 (block firstboot
 
        ;;
@@ -19,6 +22,16 @@
         "/usr/bin/jffs2reset"
         file
         execfile_file_context)
+
+       ;;
+       ;; Macros
+       ;;
+
+       (macro obj_type_transition_execfile ((type ARG1))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "firstboot"))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "jffs2reset")))
 
        ;;
        ;; Policy

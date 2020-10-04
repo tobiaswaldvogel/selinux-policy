@@ -6,6 +6,7 @@
     (call .logread.subj_type_transition (subj)))
 
 (in .file
+    (call .logread.obj_type_transition_execfile (unconfined.subj_typeattr))
     (call .logread.obj_type_transition_logtmpfile
           (unconfined.subj_typeattr file "system.log"))
     (call .logread.obj_type_transition_runtimetmpfile
@@ -35,6 +36,10 @@
        ;;
        ;; Macros
        ;;
+
+       (macro obj_type_transition_execfile ((type ARG1))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "logread")))
 
        (macro obj_type_transition_logtmpfile ((type ARG1)(class ARG2)(name ARG3))
               (call .tmpfile.logtmpfile_obj_type_transition

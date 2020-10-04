@@ -6,7 +6,8 @@
     (call .mke2fs.subj_type_transition (subj)))
 
 (in .file
-    (call .mke2fs.obj_type_transition_conffile (unconfined.subj_typeattr)))
+    (call .mke2fs.obj_type_transition_conffile (unconfined.subj_typeattr))
+    (call .mke2fs.obj_type_transition_execfile (unconfined.subj_typeattr)))
 
 (block mke2fs
 
@@ -31,6 +32,10 @@
        (macro obj_type_transition_conffile ((type ARG1))
               (call .file.conffile_obj_type_transition
                     (ARG1 conffile file "e2fsck.conf")))
+
+       (macro obj_type_transition_execfile ((type ARG1))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "mke2fs")))
 
        ;;
        ;; Policy

@@ -5,6 +5,7 @@
 (in .file
     (call .preinit.libfile_obj_type_transition_miscfile
           (unconfined.subj_typeattr))
+    (call .preinit.obj_type_transition_execfile (unconfined.subj_typeattr))
     (call .preinit.obj_type_transition_tmpfile (unconfined.subj_typeattr)))
 
 (block preinit
@@ -48,6 +49,10 @@
        (macro libfile_obj_type_transition_miscfile ((type ARG1))
               (call .file.libfile_obj_type_transition
                     (ARG1 miscfile dir "preinit")))
+
+       (macro obj_type_transition_execfile ((type ARG1))
+              (call .file.conffile_obj_type_transition
+                    (ARG1 execfile file "preinit")))
 
        (macro obj_type_transition_tmpfile ((type ARG1))
               (call .tmp.fs_obj_type_transition

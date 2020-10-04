@@ -5,6 +5,9 @@
 (in .sys
     (call .ifup.subj_type_transition (subj)))
 
+(in .file
+    (call .ifup.obj_type_transition_execfile (unconfined.subj_typeattr)))
+
 (block ifup
 
        ;;
@@ -15,6 +18,14 @@
         "/usr/bin/ifup"
         file
         execfile_file_context)
+
+       ;;
+       ;; Macros
+       ;;
+
+       (macro obj_type_transition_execfile ((type ARG1))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "ifup")))
 
        ;;
        ;; Policy

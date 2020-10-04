@@ -7,7 +7,9 @@
 
 (in .file
     (call .urandomseed.conffile_obj_type_transition_miscfile
-          (unconfined.subj_typeattr file "urandom.seed")))
+          (unconfined.subj_typeattr file "urandom.seed"))
+    (call .urandomseed.obj_type_transition_execfile
+          (unconfined.subj_typeattr)))
 
 (block urandomseed
 
@@ -32,6 +34,10 @@
        (macro conffile_obj_type_transition_miscfile ((type ARG1)(class ARG2)(name ARG3))
               (call .file.conffile_obj_type_transition
                     (ARG1 miscfile ARG2 ARG3)))
+
+       (macro obj_type_transition_execfile ((type ARG1))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "urandom_seed")))
 
        ;;
        ;; Policy

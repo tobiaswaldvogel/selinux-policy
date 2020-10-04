@@ -7,6 +7,7 @@
 
 (in .file
     (call .pppd.obj_type_transition_conffile (unconfined.subj_typeattr))
+    (call .pppd.obj_type_transition_execfile (unconfined.subj_typeattr))
     (call .pppd.libfile_obj_type_transition_miscfile
           (unconfined.subj_typeattr)))
 
@@ -59,6 +60,10 @@
        (macro obj_type_transition_conffile ((type ARG1))
               (call .file.conffile_obj_type_transition
                     (ARG1 conffile dir "ppp")))
+
+       (macro obj_type_transition_execfile ((type ARG1))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "pppd")))
 
        (macro obj_type_transition_runtimetmpfile ((type ARG1)(class ARG2)(name ARG3))
               (call .tmpfile.runtimetmpfile_obj_type_transition

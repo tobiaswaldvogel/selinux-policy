@@ -6,6 +6,7 @@
     (call .rcled.subj_type_transition (subj)))
 
 (in .file
+    (call .rcled.obj_type_transition_initscriptfile (unconfined.subj_typeattr))
     (call .rcled.obj_type_transition_runtimetmpfile
           (unconfined.subj_typeattr)))
 
@@ -28,6 +29,10 @@
        ;;
        ;; Macros
        ;;
+
+       (macro obj_type_transition_initscriptfile ((type ARG1))
+              (call .file.initscriptfile_obj_type_transition
+                    (ARG1 execfile file "led")))
 
        (macro obj_type_transition_runtimetmpfile ((type ARG1))
               (call .tmpfile.runtimetmpfile_obj_type_transition

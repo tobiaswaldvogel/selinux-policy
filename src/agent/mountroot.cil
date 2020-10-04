@@ -6,6 +6,7 @@
     (call .mountroot.subj_type_transition (subj)))
 
 (in .file
+    (call .mountroot.obj_type_transition_execfile (unconfined.subj_typeattr))
     (call .mountroot.obj_type_transition_tmpfile (unconfined.subj_typeattr)))
 
 (block mountroot
@@ -27,6 +28,10 @@
        ;;
        ;; Macros
        ;;
+
+       (macro obj_type_transition_execfile ((type ARG1))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "mount_root")))
 
        (macro obj_type_transition_tmpfile ((type ARG1))
               (call .tmp.fs_obj_type_transition

@@ -5,6 +5,9 @@
 (in .sys
     (call .getrandom.subj_type_transition (subj)))
 
+(in .file
+    (call .getrandom.obj_type_transition_execfile (unconfined.subj_typeattr)))
+
 (block getrandom
 
        ;;
@@ -15,6 +18,14 @@
         "/usr/bin/getrandom"
         file
         execfile_file_context)
+
+       ;;
+       ;; Macros
+       ;;
+
+       (macro obj_type_transition_execfile ((type ARG1))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "getrandom")))
 
        ;;
        ;; Policy

@@ -5,6 +5,10 @@
 (in .sys
     (call .rcdnsmasq.subj_type_transition (subj)))
 
+(in .file
+    (call .rcdnsmasq.obj_type_transition_initscriptfile
+          (unconfined.subj_typeattr)))
+
 (block rcdnsmasq
 
        ;;
@@ -15,6 +19,14 @@
         "/etc/init\.d/dnsmasq"
         file
         initscriptfile_file_context)
+
+       ;;
+       ;; Macros
+       ;;
+
+       (macro obj_type_transition_initscriptfile ((type ARG1))
+              (call .file.initscriptfile_obj_type_transition
+                    (ARG1 execfile file "dnsmasq")))
 
        ;;
        ;; Policy

@@ -7,6 +7,7 @@
     (call .odhcpd.update.subj_type_transition (subj)))
 
 (in .file
+    (call .odhcpd.obj_type_transition_execfile (unconfined.subj_typeattr))
     (call .odhcpd.obj_type_transition_hoststmpfile (unconfined.subj_typeattr)))
 
 (block odhcpd
@@ -31,6 +32,10 @@
 
        (macro getattr_execfile_files ((type ARG1))
               (allow ARG1 execfile (file (getattr))))
+
+       (macro obj_type_transition_execfile ((type ARG1))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "odhcpd")))
 
        (macro obj_type_transition_hoststmpfile ((type ARG1))
               (call .tmpfile.hoststmpfile_obj_type_transition

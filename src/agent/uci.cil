@@ -9,6 +9,7 @@
     (call .uci.defaults.obj_type_transition_conffile
           (unconfined.subj_typeattr))
     (call .uci.obj_type_transition_conffile (unconfined.subj_typeattr))
+    (call .uci.obj_type_transition_execfile (unconfined.subj_typeattr))
     (call .uci.obj_type_transition_statetmpfile (unconfined.subj_typeattr))
     (call .uci.obj_type_transition_tmpfile (unconfined.subj_typeattr)))
 
@@ -50,10 +51,13 @@
        ;; Macros
        ;;
 
-
        (macro obj_type_transition_conffile ((type ARG1))
               (call .file.conffile_obj_type_transition
                     (ARG1 conffile dir "config")))
+
+       (macro obj_type_transition_execfile ((type ARG1))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "uci")))
 
        (macro obj_type_transition_statetmpfile ((type ARG1))
               (call .tmpfile.statetmpfile_obj_type_transition

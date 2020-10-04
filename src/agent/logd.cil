@@ -6,6 +6,7 @@
     (call .logd.subj_type_transition (subj)))
 
 (in .file
+    (call .logd.obj_type_transition_execfile (unconfined.subj_typeattr))
     (call .logd.tmp_obj_type_transition_miscfile (unconfined.subj_typeattr)))
 
 (block logd
@@ -27,6 +28,10 @@
        ;;
        ;; Macros
        ;;
+
+       (macro obj_type_transition_execfile ((type ARG1))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "logd")))
 
        (macro tmp_obj_type_transition_miscfile ((type ARG1))
               (call .tmp.fs_obj_type_transition

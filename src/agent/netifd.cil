@@ -7,7 +7,8 @@
 
 (in .file
     (call .netifd.libfile_obj_type_transition_miscfile
-          (unconfined.subj_typeattr)))
+          (unconfined.subj_typeattr))
+    (call .netifd.obj_type_transition_execfile (unconfined.subj_typeattr)))
 
 (block netifd
 
@@ -37,6 +38,10 @@
        ;;
        ;; Macro
        ;;
+
+       (macro obj_type_transition_execfile ((type ARG1))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "netifd")))
 
        (macro libfile_obj_type_transition_miscfile ((type ARG1))
               (call .file.libfile_obj_type_transition

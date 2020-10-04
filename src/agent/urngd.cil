@@ -5,6 +5,9 @@
 (in .sys
     (call .urngd.subj_type_transition (subj)))
 
+(in .file
+    (call .urngd.obj_type_transition_execfile (unconfined.subj_typeattr)))
+
 (block urngd
 
        ;;
@@ -15,6 +18,14 @@
         "/usr/bin/urngd"
         file
         execfile_file_context)
+
+       ;;
+       ;; Macros
+       ;;
+
+       (macro obj_type_transition_execfile ((type ARG1))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "urngd")))
 
        ;;
        ;; Policy
