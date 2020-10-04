@@ -12,6 +12,7 @@
     (call .luci.obj_type_transition_execfile (unconfined.subj_typeattr))
     (call .luci.obj_type_transition_conffile (unconfined.subj_typeattr))
     (call .luci.obj_type_transition_datafile (unconfined.subj_typeattr))
+    (call .luci.obj_type_transition_libfile (unconfined.subj_typeattr))
     (call .luci.obj_type_transition_tmpfile
           (unconfined.subj_typeattr dir "luci-modulecache"))
     (call .luci.reload.obj_type_transition_execfile
@@ -52,6 +53,11 @@
         execfile_file_context)
 
        (filecon
+        "/usr/lib/liblucihttp\.so\..*"
+        file
+        libfile_file_context)
+
+       (filecon
         "/usr/share/luci"
         dir
         datafile_file_context)
@@ -76,6 +82,10 @@
               (call .file.execfile_obj_type_transition
                     (ARG1 execfile file "luci")))
 
+       (macro obj_type_transition_libfile ((type ARG1))
+              (call .file.libfile_obj_type_transition
+                    (ARG1 libfile file "liblucihttp.so.0.1")))
+
        (macro obj_type_transition_tmpfile ((type ARG1)(class ARG2)(name ARG3))
               (call .tmp.fs_obj_type_transition
                     (ARG1 tmpfile ARG2 ARG3)))
@@ -87,10 +97,20 @@
        (blockinherit .agent.base_template)
        (blockinherit .file.conf.obj_template)
        (blockinherit .file.data.obj_template)
+       (blockinherit .file.lib.obj_template)
        (blockinherit .tmpfile.obj_template)
+
+       (call mapexecute_libfile_files (subj))
+       (call read_libfile_files (subj))
+
+       (call .libc.mapexecute_libfile_files (subj))
+       (call .libc.read_libfile_files (subj))
 
        (call .libfts.mapexecute_libfile_files (subj))
        (call .libfts.read_libfile_files (subj))
+
+       (call .libgccruntime.mapexecute_libfile_files (subj))
+       (call .libgccruntime.read_libfile_files (subj))
 
        (call .libjsonc.mapexecute_libfile_files (subj))
        (call .libjsonc.read_libfile_files (subj))
@@ -99,6 +119,11 @@
        (call .libpcre.read_libfile_files (subj))
 
        (call .libselinux.linked.subj_type (subj))
+
+       (call .libubox.mapexecute_libfile_files (subj))
+       (call .libubox.read_libfile_files (subj))
+
+       (call .rpcd.readwriteinherited_fifo_files (subj))
 
        (call .shell.execute_execfile_files (subj))
 
