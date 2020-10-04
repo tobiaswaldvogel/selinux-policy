@@ -78,6 +78,7 @@
        (blockinherit .file.lib.obj_template)
        (blockinherit .tmpfile.runtime.obj_template)
 
+       (allow subj self create_netlink_generic_socket)
        (allow subj self create_netlink_route_socket)
        (allow subj self create_udp_socket)
        (allow subj self create_unix_dgram_socket)
@@ -86,6 +87,10 @@
 
        (call list_datafile_dirs (subj))
        (call read_datafile_files (subj))
+
+       (call mapexecute_libfile_files (subj))
+       (call read_libfile_files (subj))
+       (call search_libfile_dirs (subj))
 
        (call manage_runtimetmpfile_dirs (subj))
        (call obj_type_transition_runtimetmpfile (subj))
@@ -100,8 +105,11 @@
 
        (call .cron.read_miscfile_files (subj))
 
+       (call .devices.list_sysfile_dirs (subj))
+
        (call .dnsmasq.read_tmpfile_files (subj))
 
+       (call .file.list_execfile_dirs (subj))
        (call .file.read_conffile_lnk_files (subj))
 
        (call .iproute2.read_conffile_files (subj))
@@ -160,6 +168,8 @@
 
        (call .random.read_nodedev_chr_files (subj))
 
+       (call .rclocal.read_conffile_files (subj))
+
        (call .resolv.read_tmpfile_files (subj))
 
        (call .shadow.read_authfile_files (subj))
@@ -171,6 +181,8 @@
 
        (call .tmpfile.deletename_runtimetmpfile_dirs (subj))
        (call .tmpfile.search_hoststmpfile_dirs (subj))
+
+       (call .ubusd.unix_stream_connect (subj))
 
        (call .uci.list_conffile_dirs (subj))
        (call .uci.list_tmpfile_dirs (subj))
