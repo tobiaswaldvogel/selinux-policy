@@ -8,7 +8,9 @@
 
 (in .file
     (call .odhcpd.obj_type_transition_execfile (unconfined.subj_typeattr))
-    (call .odhcpd.obj_type_transition_hoststmpfile (unconfined.subj_typeattr)))
+    (call .odhcpd.obj_type_transition_hoststmpfile (unconfined.subj_typeattr))
+    (call .odhcpd.update.obj_type_transition_execfile
+          (unconfined.subj_typeattr)))
 
 (block odhcpd
 
@@ -126,6 +128,14 @@
                "/usr/bin/odhcpd-update"
                file
                execfile_file_context)
+
+              ;;
+              ;; Macros
+              ;;
+
+              (macro obj_type_transition_execfile ((type ARG1))
+                     (call .file.execfile_obj_type_transition
+                           (ARG1 execfile file "odhcpd-update")))
 
               ;;
               ;; Policy

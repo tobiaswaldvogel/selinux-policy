@@ -3,6 +3,8 @@
 ;; SPDX-License-Identifier: Unlicense
 
 (in .file
+    (call .opkg.call.obj_type_transition_execfile (unconfined.subj_typeattr))
+    (call .opkg.key.obj_type_transition_execfile (unconfined.subj_typeattr))
     (call .opkg.libfile_obj_type_transition_miscfile
           (unconfined.subj_typeattr))
     (call .opkg.obj_type_transition_conffile (unconfined.subj_typeattr))
@@ -111,6 +113,14 @@
                execfile_file_context)
 
               ;;
+              ;; Macros
+              ;;
+
+              (macro obj_type_transition_execfile ((type ARG1))
+                     (call .file.execfile_obj_type_transition
+                           (ARG1 execfile file "opkg-call")))
+
+              ;;
               ;; Policy
               ;;
 
@@ -126,6 +136,14 @@
                "/usr/bin/opkg-key"
                file
                execfile_file_context)
+
+              ;;
+              ;; Macros
+              ;;
+
+              (macro obj_type_transition_execfile ((type ARG1))
+                     (call .file.execfile_obj_type_transition
+                           (ARG1 execfile file "opkg-key")))
 
               ;;
               ;; Policy
