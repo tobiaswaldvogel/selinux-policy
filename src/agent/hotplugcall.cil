@@ -42,6 +42,8 @@
 
        (call .cpuinfo.read_procfile_files (subj))
 
+       (call .dev.stor.read.subj_type (subj))
+
        (call .dnsmasq.manage_statetmpfile_files (subj))
        (call .dnsmasq.obj_type_transition_statetmpfile (subj))
 
@@ -49,13 +51,13 @@
        (call .file.read_conffile_lnk_files (subj))
        (call .file.search_initscriptfile_dirs (subj))
 
-       (call .firmware.search_miscfile_dirs (subj))
+       (call .firmware.addname_miscfile_dirs (subj))
+       (call .firmware.create_miscfile_files (subj))
+       (call .firmware.readwrite_miscfile_files (subj))
 
        (call .fw3.subj_type_transition (subj))
        (call .fw3.use_fds (subj))
        (call .fw3.writeinherited_runtimetmpfile_files (subj))
-
-       (call .shell.execute_execfile_files (subj))
 
        (call .functions.read_miscfile_files (subj))
        (call .functions.search_miscfile_dirs (subj))
@@ -84,6 +86,9 @@
 
        (call .logd.unix_dgram_send (subj))
 
+       (call .mtd.read_procfile_files (subj))
+       (call .mtd.read_stordev_chr_files (subj))
+
        (call .nameservice.read_miscfile_files (subj))
 
        (call .netifd.use_fds (subj))
@@ -96,6 +101,8 @@
        (call .preinit.search_tmpfile_dirs (subj))
 
        (call .rccommon.read_conffile_files (subj))
+
+       (call .shell.execute_execfile_files (subj))
 
        (call .sysctl.list_conffile_dirs (subj))
        (call .sysctl.read_conffile_files (subj))

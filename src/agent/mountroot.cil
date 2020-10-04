@@ -60,6 +60,8 @@
        ;; the big hammer
        (call .agent.exec.execute_all_files (subj))
 
+       (call .debug.search_fs_dirs (subj))
+
        (call .dev.getattr_all_chr_files (subj))
        (call .dev.stor.read_all_blk_files (subj))
        (call .dev.stor.readwrite.subj_type (subj))
@@ -114,6 +116,9 @@
        (call .tmp.getattr_filesystems (subj))
        (call .tmp.manage_fs_dirs (subj))
        (call .tmp.mount_filesystems (subj))
+
+       ;; questionable, leak?
+       (call .watchdog.writeinherited_nodedev_chr_files (subj))
 
        (call .xattr.getattr_filesystems (subj))
        (call .xattr.mount_filesystems (subj))
