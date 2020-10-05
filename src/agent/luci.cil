@@ -30,6 +30,9 @@
 (in .jshn
     (call .luci.writeinherited_fifo_files (subj)))
 
+(in .ubus
+    (call .luci.use_fds (subj)))
+
 (in .uhttpd
     (call .luci.cgi.subj_type_transition (subj)))
 
@@ -135,6 +138,7 @@
 
        (call .file.execute_initscriptfile_files (subj))
        (call .file.list_initscriptfile_dirs (subj))
+       (call .file.read_conffile_lnk_files (subj))
 
        (call .fs.getattr_all_filesystems (subj))
 

@@ -68,6 +68,12 @@
 
        (call .validatedata.subj_type_transition (subj_typeattr))
 
+       (optional initscript_opt_luci
+                 (call .luci.use_fds (subj_typeattr)))
+
+       (optional initscript_opt_rpcd
+                 (call .rpcd.readwriteinherited_fifo_files (subj_typeattr)))
+
        (block exec
 
               ;;
