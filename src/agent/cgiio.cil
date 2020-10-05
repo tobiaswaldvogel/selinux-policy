@@ -36,12 +36,18 @@
 
        (call .file.search_initscriptfile_dirs (subj))
 
+       (call .libc.mapexecute_libfile_files (subj))
+       (call .libc.read_libfile_files (subj))
+
+       (call .libgccruntime.mapexecute_libfile_files (subj))
+       (call .libgccruntime.read_libfile_files (subj))
+
        (call .tmpfile.search_runtimetmpfile_dirs (subj))
 
-       (call .shell.execfile_subj_type_transition (subj .sys.subj))
-       (call .shell.mapexecute_execfile_files (subj))
-       (call .shell.read_execfile_files (subj))
+       ;;(call .shell.execfile_subj_type_transition (subj .sys.subj))
+       ;;(call .shell.mapexecute_execfile_files (subj))
+       ;;(call .shell.read_execfile_files (subj))
 
        (call .ubusd.unix_stream_connect (subj))
 
-       (call .uhttpd.readinherited_fifo_files (subj)))
+       (call .uhttpd.readwriteinherited_fifo_files (subj)))

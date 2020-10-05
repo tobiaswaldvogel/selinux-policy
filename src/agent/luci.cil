@@ -134,8 +134,16 @@
 
        (call .fs.getattr_all_filesystems (subj))
 
+       (call .functions.read_miscfile_files (subj))
+       (call .functions.search_miscfile_dirs (subj))
+
+       (call .fw3.auditexecute_execfile_files (subj))
        (call .fw3.read_datafile_files (subj))
        (call .fw3.search_datafile_dirs (subj))
+
+       (call .initscript.exec.execute_all_files (subj))
+
+       (call .jshn.subj_type_transition (subj))
 
        (call .kernel.search_sysctlfile_dirs (subj))
 
@@ -181,6 +189,8 @@
        (call .proc.list_fs_dirs (subj))
 
        (call .random.read_nodedev_chr_files (subj))
+
+       (call .rccommon.read_conffile_files (subj))
 
        (call .rpcd.readwriteinherited_fifo_files (subj))
 
