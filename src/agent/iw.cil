@@ -42,6 +42,10 @@
        (call .sys.requestmodule (subj))
        (call .sys.search_fs_dirs (subj))
 
+       (call .class.search_sysfile_dirs (subj))
+
+       (call .debug.search_fs_dirs (subj))
+
        (call .devices.read_sysfile_files (subj))
        (call .devices.search_sysfile_dirs (subj))
 

@@ -120,6 +120,8 @@
 
        (call .jshn.subj_type_transition (subj))
 
+       (call .jsonfilter.subj_type_transition (subj))
+
        (call .kernel.read_sysctlfile_files (subj))
        (call .kernel.search_sysctlfile_dirs (subj))
 
@@ -197,6 +199,7 @@
        (call .uci.search_tmpfile_dirs (subj))
        (call .uci.subj_type_transition (subj))
 
+       (call .wpad.signal_subjects (subj))
        (call .wpad.subj_type_transition (subj))
 
        (call .xattr.associate_filesystems (miscfile)))

@@ -63,7 +63,7 @@
        (blockinherit .agent.base_template)
        (blockinherit .tmpfile.runtime.obj_template)
 
-       (allow subj self (capability (net_raw)))
+       (allow subj self (capability (net_admin net_raw)))
        (allow subj self create_netlink_generic_socket)
        (allow subj self create_netlink_route_socket)
        (allow subj self create_packet_socket)
@@ -79,6 +79,7 @@
 
        (call .sys.read_fs_lnk_files (subj))
        (call .sys.readinherited_fifo_files (subj))
+       (call .sys.search_fs_dirs (subj))
 
        (call .class.search_sysfile_dirs (subj))
 
@@ -106,6 +107,8 @@
        (call .libwolfssl.read_libfile_files (subj))
 
        (call .logd.unix_dgram_send (subj))
+
+       (call .netifd.read_runtimetmpfile_files (subj))
 
        (call .random.read_nodedev_chr_files (subj))
 

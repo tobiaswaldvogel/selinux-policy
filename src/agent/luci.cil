@@ -243,10 +243,29 @@
 
               (blockinherit .cgiscript.base_template)
 
+              (allow subj self create_unix_stream_socket)
+
+              (call .sys.writeinherited_fifo_files (subj))
+
+              (call .file.search_conffile_dirs (subj))
+
+              (call .libc.mapexecute_libfile_files (subj))
+              (call .libc.read_libfile_files (subj))
+
+              (call .libgccruntime.mapexecute_libfile_files (subj))
+              (call .libgccruntime.read_libfile_files (subj))
+
+              (call .libjsonc.mapexecute_libfile_files (subj))
+              (call .libjsonc.read_libfile_files (subj))
+
+              (call .lua.execute_execfile_files (subj))
+
               (call .luci.mapexecute_libfile_files (subj))
               (call .luci.read_datafile_files (subj))
               (call .luci.read_libfile_files (subj))
               (call .luci.search_datafile_dirs (subj))
+
+              (call .uhttpd.readwriteinherited_fifo_files (subj))
 
               (call .www.search_miscfile_dirs (subj)))
 

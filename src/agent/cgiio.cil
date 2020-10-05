@@ -1,0 +1,35 @@
+;; -*- mode: CIL; fill-column: 79; indent-tabs-mode: nil; -*-
+;; SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
+;; SPDX-License-Identifier: Unlicense
+
+(in .sys
+    (call .cgiio.subj_type_transition (subj)))
+
+(in .file
+    (call .cgiio.execfile_obj_type_transition_cgiscriptfile
+          (unconfined.subj_typeattr)))
+
+(block cgiio
+
+       ;;
+       ;; Contexts
+       ;;
+
+       (filecon
+        "/usr/bin/cgi-io"
+        file
+        cgiscriptfile_file_context)
+
+       ;;
+       ;; Macros
+       ;;
+
+       (macro execfile_obj_type_transition_cgiscriptfile ((type ARG1))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 cgiscriptfile file "cgi-io")))
+
+       ;;
+       ;; Policy
+       ;;
+
+       (blockinherit .cgiscript.base_template))

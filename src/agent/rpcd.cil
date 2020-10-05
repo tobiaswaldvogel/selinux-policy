@@ -198,6 +198,8 @@
        (call .netfilter.read_sysctlfile_files (subj))
        (call .netfilter.search_sysctlfile_dirs (subj))
 
+       (call .netifd.read_runtimetmpfile_files (subj))
+
        (call .odhcpd.read_hoststmpfile_files (subj))
 
        (call .partitions.read_procfile_files (subj))
@@ -231,5 +233,8 @@
        (call .wifi.subj_type_transition (subj))
 
        (call .wpad.search_runtimetmpfile_dirs (subj))
+
+       (call .www.list_miscfile_dirs (subj))
+       (call .www.read_miscfile_files (subj))
 
        (call .xtables.subj_type_transition (subj)))
