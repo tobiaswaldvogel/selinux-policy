@@ -15,6 +15,10 @@
         "/etc/profile"
         file
         conffile_file_context)
+       (filecon
+        "/etc/shinit"
+        file
+        conffile_file_context)
 
        ;;
        ;; Macros
@@ -22,7 +26,9 @@
 
        (macro obj_type_transition_conffile ((type ARG1))
               (call .file.conffile_obj_type_transition
-                    (ARG1 conffile file "profile")))
+                    (ARG1 conffile file "profile"))
+              (call .file.conffile_obj_type_transition
+                    (ARG1 conffile file "shinit")))
 
        ;;
        ;; Policy

@@ -41,6 +41,10 @@
         "/tmp/state/network"
         file
         statetmpfile_file_context)
+       (filecon
+        "/tmp/state/wireless"
+        file
+        statetmpfile_file_context)
 
        (filecon
         "/usr/bin/uci"
@@ -61,7 +65,9 @@
 
        (macro obj_type_transition_statetmpfile ((type ARG1))
               (call .tmpfile.statetmpfile_obj_type_transition
-                    (ARG1 statetmpfile file "network")))
+                    (ARG1 statetmpfile file "network"))
+              (call .tmpfile.statetmpfile_obj_type_transition
+                    (ARG1 statetmpfile file "wireless")))
 
        (macro obj_type_transition_tmpfile ((type ARG1))
               (call .tmp.fs_obj_type_transition

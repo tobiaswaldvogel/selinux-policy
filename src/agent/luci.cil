@@ -18,6 +18,9 @@
     (call .luci.reload.obj_type_transition_execfile
           (unconfined.subj_typeattr)))
 
+(in .wpad
+    (call .luci.use_fds (subj)))
+
 (block luci
 
        ;;
@@ -112,6 +115,8 @@
 
        (call .devices.read_sysfile_files (subj))
        (call .devices.search_sysfile_dirs (subj))
+
+       (call .dnsmasq.subj_type_transition (subj))
 
        (call .file.list_initscriptfile_dirs (subj))
 

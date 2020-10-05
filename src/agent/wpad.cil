@@ -72,8 +72,12 @@
        (blockinherit .agent.base_template)
        (blockinherit .tmpfile.runtime.obj_template)
 
+       (allow subj self (capability (net_raw)))
+       (allow subj self create_netlink_route_socket)
+       (allow subj self create_packet_socket)
        (allow subj self create_unix_dgram_socket)
        (allow subj self create_unix_stream_stream_socket)
+       (allow subj self (netlink_route_socket (nlmsg_write)))
 
        (call manage_runtimetmpfile_dirs (subj))
        (call manage_runtimetmpfile_files (subj))
@@ -82,7 +86,12 @@
        (call obj_type_transition_runtimetmpfile (subj dir "wpa_supplicant"))
        (call obj_type_transition_runtimetmpfile (subj file "*"))
 
+       (call .sys.read_fs_lnk_files (subj))
        (call .sys.readinherited_fifo_files (subj))
+
+       (call .class.search_sysfile_dirs (subj))
+
+       (call .devices.search_sysfile_dirs (subj))
 
        (call .file.search_conffile_dirs (subj))
        (call .file.search_datafile_dirs (subj))

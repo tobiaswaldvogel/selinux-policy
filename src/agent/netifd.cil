@@ -105,6 +105,8 @@
        (call .ipv6.search_sysctlfile_dirs (subj))
        (call .ipv6.readwrite_sysctlfile_files (subj))
 
+       (call .iw.subj_type_transition (subj))
+
        (call .jshn.subj_type_transition (subj))
 
        (call .kernel.read_sysctlfile_files (subj))

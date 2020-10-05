@@ -122,6 +122,8 @@
        (call .net.sendto_netnodes (subj))
        (call .net.tcp_bind_netnodes (subj))
 
+       (call .profile.read_conffile_files (subj))
+
        (call .ptmx.readwrite_nodedev_chr_files (subj))
 
        (call .random.read_sysctlfile_files (subj))
@@ -134,8 +136,6 @@
        (call .shell.execfile_subj_type_transition (subj .sys.subj))
        (call .shell.mapexecute_execfile_files (subj))
        (call .shell.read_execfile_files (subj))
-
-       (call .shells.read_conffile_files (subj))
 
        (call .ssh.tcp_bind_name_netports (subj))
 
