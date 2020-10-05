@@ -89,6 +89,9 @@
 
        (call .sys.writeinherited_fifo_files (subj))
 
+       (call .cgiio.subj_type_transition (subj))
+
+       (call .file.read_cgiscriptfile_lnk_files (subj))
        (call .file.search_cgiscriptfile_dirs (subj))
        (call .file.search_conffile_dirs (subj))
        (call .file.search_datafile_dirs (subj))
@@ -129,6 +132,10 @@
        (call .net.tcp_bind_netnodes (subj))
 
        (call .random.read_nodedev_chr_files (subj))
+
+       (call .tmpfile.search_runtimetmpfile_dirs (subj))
+
+       (call .ubusd.unix_stream_connect (subj))
 
        (call .www.list_miscfile_dirs (subj))
        (call .www.read_miscfile_files (subj))

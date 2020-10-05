@@ -32,4 +32,6 @@
        ;; Policy
        ;;
 
-       (blockinherit .cgiscript.base_template))
+       (blockinherit .cgiscript.base_template)
+
+       (call .tmpfile.search_runtimetmpfile_dirs (subj)))
