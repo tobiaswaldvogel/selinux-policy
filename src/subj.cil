@@ -2078,7 +2078,10 @@
 
               (allow subj_typeattr .subj.subj_typeattr
                      (process (not (execheap execstack))))
-              (allow subj_typeattr .subj.subj_typeattr (process2 (all))))
+              (allow subj_typeattr .subj.subj_typeattr (process2 (all)))
+
+              ;; old busybox
+              (allow subj_typeattr .subj.subj_typeattr (passwd (all))))
 
        (block useinteractivefd
 
