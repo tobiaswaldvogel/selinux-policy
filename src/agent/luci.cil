@@ -201,6 +201,8 @@
 
        (call .module.search_sysfile_dirs (subj))
 
+       (call .nameservice.read_miscfile_files (subj))
+
        (call .proc.list_fs_dirs (subj))
 
        (call .random.read_nodedev_chr_files (subj))
@@ -209,7 +211,11 @@
 
        (call .rpcd.readwriteinherited_fifo_files (subj))
 
-       (call .selinux.search_fs_dirs (subj))
+       (call .selinux.list_fs_dirs (subj))
+       (call .selinux.readwrite_fs_files (subj))
+
+       (call .shadow.read_authfile_files (subj))
+       (call .shadow.read.subj_type (subj))
 
        (call .shell.execute_execfile_files (subj))
 

@@ -29,6 +29,10 @@
         file
         miscfile_file_context)
        (filecon
+        "/etc/passwd~"
+        file
+        miscfile_file_context)
+       (filecon
         "/etc/protocols"
         file
         miscfile_file_context)

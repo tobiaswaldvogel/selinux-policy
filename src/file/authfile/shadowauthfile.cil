@@ -16,6 +16,10 @@
         "/etc/shadow"
         file
         authfile_file_context)
+       (filecon
+        "/etc/shadow~"
+        file
+        authfile_file_context)
 
        ;;
        ;; Macros

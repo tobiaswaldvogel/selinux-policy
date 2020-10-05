@@ -39,6 +39,7 @@
        (call .sys.writeinherited_fifo_files (subj))
 
        (call .file.search_conffile_dirs (subj))
+       (call .file.search_datafile_dirs (subj))
        (call .file.search_initscriptfile_dirs (subj))
 
        (call .libc.mapexecute_libfile_files (subj))
@@ -58,6 +59,8 @@
        (call .ubusd.unix_stream_connect (subj))
 
        (call .uhttpd.readwriteinherited_fifo_files (subj))
+
+       (call .xtables.subj_type_transition (subj))
 
        (optional cgiio_opt_rcfirewall
                  (call .rcfirewall.subj_type_transition (subj))))
