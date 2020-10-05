@@ -34,4 +34,7 @@
 
        (blockinherit .initscript.base_template)
 
-       (call .fw3.subj_type_transition (subj)))
+       (call .fw3.subj_type_transition (subj))
+
+       (optional rcfirewall_opt_cgiio
+                 (call .cgiio.writeinherited_fifo_files (subj))))

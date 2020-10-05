@@ -102,7 +102,7 @@
        (blockinherit .file.lib.obj_template)
        (blockinherit .tmpfile.runtime.obj_template)
 
-       (allow subj self (capability (net_admin)))
+       (allow subj self (capability (kill net_admin)))
        (allow subj self create_netlink_generic_socket)
        (allow subj self create_netlink_route_socket)
        (allow subj self create_udp_socket)
@@ -224,6 +224,7 @@
        (call .shell.execute_execfile_files (subj))
 
        (call .subj.signal_all_subjects (subj))
+       (call .subj.sigkill_all_subjects (subj))
 
        (call .tmpfile.deletename_runtimetmpfile_dirs (subj))
        (call .tmpfile.search_hoststmpfile_dirs (subj))

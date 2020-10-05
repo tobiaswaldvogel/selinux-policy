@@ -128,6 +128,8 @@
        (call mapexecute_libfile_files (subj))
        (call read_libfile_files (subj))
 
+       (call bwc.subj_type_transition (subj))
+
        (call .sys.read_fs_lnk_files (subj))
 
        (call .class.search_sysfile_dirs (subj))
@@ -223,6 +225,7 @@
 
        (call .stat.read_procfile_files (subj))
 
+       (call .subj.change_passwd_all_subjects (subj))
        (call .subj.read_state_all_subjects (subj))
 
        (call .tmpfile.search_locktmpfile_dirs (subj))

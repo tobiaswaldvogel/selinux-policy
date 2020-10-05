@@ -1599,6 +1599,9 @@
               ;; Macros
               ;;
 
+              (macro change_passwd_all_subjects ((type ARG1))
+                     (allow ARG1 subj_typeattr (passwd (passwd))))
+
               (macro getrlimit_all_subjects ((type ARG1))
                      (allow ARG1 subj_typeattr (process (getrlimit))))
 
@@ -1723,6 +1726,9 @@
               ;;
               ;; Macros
               ;;
+
+              (macro change_passwd_subjects ((type ARG1))
+                     (allow ARG1 subj (passwd (passwd))))
 
               (macro getrlimit_subjects ((type ARG1))
                      (allow ARG1 subj (process (getrlimit))))
