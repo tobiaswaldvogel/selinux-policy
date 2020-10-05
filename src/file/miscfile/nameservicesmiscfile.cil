@@ -21,6 +21,10 @@
         file
         miscfile_file_context)
        (filecon
+        "/etc/group~"
+        file
+        miscfile_file_context)
+       (filecon
         "/etc/hosts"
         file
         miscfile_file_context)
