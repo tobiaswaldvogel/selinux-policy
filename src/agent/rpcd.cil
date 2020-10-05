@@ -15,7 +15,7 @@
     (call .rpcd.obj_type_transition_runtimetmpfile (unconfined.subj_typeattr)))
 
 (in .jshn
-    (call .rpcd.writeinherited_fifo_files (subj)))
+    (call .rpcd.readwriteinherited_fifo_files (subj)))
 
 (in .ubus
     (call .rpcd.writeinherited_fifo_files (subj)))

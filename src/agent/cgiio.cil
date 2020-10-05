@@ -34,6 +34,9 @@
 
        (blockinherit .cgiscript.base_template)
 
+       (call .sys.writeinherited_fifo_files (subj))
+
+       (call .file.search_conffile_dirs (subj))
        (call .file.search_initscriptfile_dirs (subj))
 
        (call .libc.mapexecute_libfile_files (subj))
@@ -44,7 +47,7 @@
 
        (call .tmpfile.search_runtimetmpfile_dirs (subj))
 
-       ;;(call .shell.execfile_subj_type_transition (subj .sys.subj))
+       (call .shell.execfile_subj_type_transition (subj .sys.subj))
        ;;(call .shell.mapexecute_execfile_files (subj))
        ;;(call .shell.read_execfile_files (subj))
 
