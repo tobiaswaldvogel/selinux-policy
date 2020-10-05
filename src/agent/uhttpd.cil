@@ -54,6 +54,35 @@
        (call manage_conftmpfile_dirs (subj))
        (call obj_type_transition_conftmpfile (subj))
 
+       (call .sys.writeinherited_fifo_files (subj))
+
+       (call .file.search_cgiscriptfile_dirs (subj))
+       (call .file.search_conffile_dirs (subj))
+
+       (call .http.tcp_bind_name_netports (subj))
+
+       (call .libc.mapexecute_libfile_files (subj))
+       (call .libc.read_libfile_files (subj))
+
+       (call .libgccruntime.mapexecute_libfile_files (subj))
+       (call .libgccruntime.read_libfile_files (subj))
+
+       (call .libjsonscript.mapexecute_libfile_files (subj))
+       (call .libjsonscript.read_libfile_files (subj))
+
+       (call .libubox.mapexecute_libfile_files (subj))
+       (call .libubox.read_libfile_files (subj))
+
+       (call .net.egress_netifs (subj))
+       (call .net.sendto_netnodes (subj))
+       (call .net.tcp_bind_netnodes (subj))
+
+       (call .random.read_nodedev_chr_files (subj))
+
+       (call .www.list_miscfile_dirs (subj))
+       (call .www.read_miscfile_files (subj))
+       (call .www.read_miscfile_lnk_files (subj))
+
        (block cgiio
 
               ;;
