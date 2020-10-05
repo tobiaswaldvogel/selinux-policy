@@ -5,6 +5,9 @@
 (in .sys
     (call .rpcd.subj_type_transition (subj)))
 
+(in .dnsmasq
+    (call .rpcd.readinherited_fifo_files (subj)))
+
 (in .file
     (call .rpcd.obj_type_transition_datafile (unconfined.subj_typeattr))
     (call .rpcd.obj_type_transition_execfile (unconfined.subj_typeattr))
@@ -164,6 +167,8 @@
        (call .libuci.read_libfile_files (subj))
 
        (call .logread.subj_type_transition (subj))
+
+       (call .lua.search_libfile_dirs (subj))
 
        (call .luci.subj_type_transition (subj))
 

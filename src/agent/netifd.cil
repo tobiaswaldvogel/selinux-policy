@@ -88,6 +88,8 @@
        (call .sys.requestmodule (subj))
        (call .sys.search_sysctlfile_dirs (subj))
 
+       (call .class.list_sysfile_dirs (subj))
+
        (call .devices.list_sysfile_dirs (subj))
        (call .devices.readwrite_sysfile_files (subj))
 
@@ -184,6 +186,7 @@
        (call .uci.read_tmpfile_files (subj))
        (call .uci.search_conffile_dirs (subj))
        (call .uci.search_tmpfile_dirs (subj))
+       (call .uci.subj_type_transition (subj))
 
        (call .wpad.subj_type_transition (subj))
 

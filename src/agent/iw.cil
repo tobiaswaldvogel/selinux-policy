@@ -33,4 +33,6 @@
 
        (blockinherit .agent.base_template)
 
-       (allow subj self create_netlink_generic_socket))
+       (allow subj self create_netlink_generic_socket)
+
+       (call .netifd.writeinherited_fifo_files (subj)))

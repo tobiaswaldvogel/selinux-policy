@@ -7,6 +7,9 @@
     (call .luci.reload.subj_type_transition (subj))
     (call .luci.subj_type_transition (subj)))
 
+(in .dnsmasq
+    (call .luci.writeinherited_fifo_files (subj)))
+
 (in .file
     (call .luci.bwc.obj_type_transition_execfile (unconfined.subj_typeattr))
     (call .luci.obj_type_transition_execfile (unconfined.subj_typeattr))
