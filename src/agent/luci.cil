@@ -133,7 +133,7 @@
 
        (call .dnsmasq.subj_type_transition (subj))
 
-       (call .file.execute_execfile_files (subj))
+       (call .file.execute_initscriptfile_files (subj))
        (call .file.list_initscriptfile_dirs (subj))
 
        (call .fs.getattr_all_filesystems (subj))
@@ -144,8 +144,6 @@
        (call .fw3.read_datafile_files (subj))
        (call .fw3.search_datafile_dirs (subj))
        (call .fw3.subj_type_transition (subj))
-
-       (call .initscript.exec.execute_all_files (subj))
 
        (call .jshn.subj_type_transition (subj))
 
@@ -213,6 +211,60 @@
        (call .uci.subj_type_transition (subj))
 
        (call .wpad.subj_type_transition (subj))
+
+       (optional luci_opt_rcboot
+                 (call .rcboot.subj_type_transition (subj)))
+
+       (optional luci_opt_rccron
+                 (call .rccron.subj_type_transition (subj)))
+
+       (optional luci_opt_rcdnsmasq
+                 (call .rcdnsmasq.subj_type_transition (subj)))
+
+       (optional luci_opt_rcdropbear
+                 (call .rcdropbear.subj_type_transition (subj)))
+
+       (optional luci_opt_rcfirewall
+                 (call .rcfirewall.subj_type_transition (subj)))
+
+       (optional luci_opt_rcgpioswitch
+                 (call .rcgpioswitch.subj_type_transition (subj)))
+
+       (optional luci_opt_rcled
+                 (call .rcled.subj_type_transition (subj)))
+
+       (optional luci_opt_rclog
+                 (call .rclog.subj_type_transition (subj)))
+
+       (optional luci_opt_rcnetwork
+                 (call .rcnetwork.subj_type_transition (subj)))
+
+       (optional luci_opt_rcodhcpd
+                 (call .rcodhcpd.subj_type_transition (subj)))
+
+       (optional luci_opt_rcsysctl
+                 (call .rcsysctl.subj_type_transition (subj)))
+
+       (optional luci_opt_rcsysfixtime
+                 (call .rcsysfixtime.subj_type_transition (subj)))
+
+       (optional luci_opt_rcsysntpd
+                 (call .rcsysntpd.subj_type_transition (subj)))
+
+       (optional luci_opt_rcsystem
+                 (call .rcsystem.subj_type_transition (subj)))
+
+       (optional luci_opt_rcumount
+                 (call .rcumount.subj_type_transition (subj)))
+
+       (optional luci_opt_rcurandomseed
+                 (call .rcurandomseed.subj_type_transition (subj)))
+
+       (optional luci_opt_rcurngd
+                 (call .rcurngd.subj_type_transition (subj)))
+
+       (optional luci_opt_rcwpad
+                 (call .rcwpad.subj_type_transition (subj)))
 
        (block bwc
 

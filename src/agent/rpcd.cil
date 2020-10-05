@@ -29,6 +29,9 @@
 (in .wpad
     (call .rpcd.readinherited_fifo_files (subj)))
 
+(in .xtables
+    (call .rpcd.writeinherited_fifo_files (subj)))
+
 (block rpcd
 
        ;;
