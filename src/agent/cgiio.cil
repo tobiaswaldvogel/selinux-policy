@@ -34,6 +34,8 @@
 
        (blockinherit .cgiscript.base_template)
 
+       (allow subj self create_unix_stream_socket)
+
        (call .sys.writeinherited_fifo_files (subj))
 
        (call .file.search_conffile_dirs (subj))
