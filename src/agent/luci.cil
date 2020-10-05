@@ -4,6 +4,8 @@
 
 (in .sys
     (call .luci.bwc.subj_type_transition (subj))
+    (call .luci.cgi.subj_type_transition (subj))
+    (call .luci.peeraddr.subj_type_transition (subj))
     (call .luci.reload.subj_type_transition (subj))
     (call .luci.subj_type_transition (subj)))
 
@@ -12,12 +14,16 @@
 
 (in .file
     (call .luci.bwc.obj_type_transition_execfile (unconfined.subj_typeattr))
+    (call .luci.cgi.obj_type_transition_cgiscriptfile
+          (unconfined.subj_typeattr))
     (call .luci.obj_type_transition_execfile (unconfined.subj_typeattr))
     (call .luci.obj_type_transition_conffile (unconfined.subj_typeattr))
     (call .luci.obj_type_transition_datafile (unconfined.subj_typeattr))
     (call .luci.obj_type_transition_libfile (unconfined.subj_typeattr))
     (call .luci.obj_type_transition_tmpfile
           (unconfined.subj_typeattr dir "luci-modulecache"))
+    (call .luci.peeraddr.obj_type_transition_execfile
+          (unconfined.subj_typeattr))
     (call .luci.reload.obj_type_transition_execfile
           (unconfined.subj_typeattr)))
 
@@ -202,6 +208,56 @@
               (macro obj_type_transition_execfile ((type ARG1))
                      (call .file.execfile_obj_type_transition
                            (ARG1 execfile file "luci-bwc")))
+
+              ;;
+              ;; Policy
+              ;;
+
+              (blockinherit .agent.base_template))
+
+       (block cgi
+
+              ;;
+              ;; Contexts
+              ;;
+
+              (filecon
+               "/www/cgi-bin/luci"
+               file
+               cgiscriptfile_file_context)
+
+              ;;
+              ;; Macros
+              ;;
+
+              (macro obj_type_transition_cgiscriptfile ((type ARG1))
+                     (call .file.cgiscriptfile_obj_type_transition
+                           (ARG1 cgiscriptfile file "luci")))
+
+              ;;
+              ;; Policy
+              ;;
+
+              (blockinherit .cgiscript.base_template))
+
+       (block peeraddr
+
+              ;;
+              ;; Contexts
+              ;;
+
+              (filecon
+               "/usr/bin/luci-peeraddr"
+               file
+               execfile_file_context)
+
+              ;;
+              ;; Macros
+              ;;
+
+              (macro obj_type_transition_execfile ((type ARG1))
+                     (call .file.execfile_obj_type_transition
+                           (ARG1 execfile file "luci-peeraddr")))
 
               ;;
               ;; Policy

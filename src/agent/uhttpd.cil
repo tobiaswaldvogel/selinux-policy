@@ -1,0 +1,80 @@
+;; -*- mode: CIL; fill-column: 79; indent-tabs-mode: nil; -*-
+;; SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
+;; SPDX-License-Identifier: Unlicense
+
+(in .sys
+    (call .uhttpd.cgiio.subj_type_transition (subj))
+    (call .uhttpd.subj_type_transition (subj)))
+
+(in .file
+    (call .uhttpd.cgiio.execfile_obj_type_transition_cgiscriptfile
+          (unconfined.subj_typeattr))
+    (call .uhttpd.obj_type_transition_conftmpfile (unconfined.subj_typeattr))
+    (call .uhttpd.obj_type_transition_execfile (unconfined.subj_typeattr)))
+
+(block uhttpd
+
+       ;;
+       ;; Contexts
+       ;;
+
+       (filecon
+        "/tmp/etc/uhttpd"
+        dir
+        conftmpfile_file_context)
+       (filecon
+        "/tmp/etc/uhttpd/.*"
+        any
+        conftmpfile_file_context)
+
+       (filecon
+        "/usr/bin/uhttpd"
+        file
+        execfile_file_context)
+
+       ;;
+       ;; Macros
+       ;;
+
+       (macro obj_type_transition_conftmpfile ((type ARG1))
+              (call .tmpfile.conftmpfile_obj_type_transition
+                    (ARG1 conftmpfile dir "uhttpd")))
+
+       (macro obj_type_transition_execfile ((type ARG1))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "uhttpd")))
+
+       ;;
+       ;; Policy
+       ;;
+
+       (blockinherit .agent.base_template)
+       (blockinherit .tmpfile.conf.obj_template)
+
+       (call manage_conftmpfile_dirs (subj))
+       (call obj_type_transition_conftmpfile (subj))
+
+       (block cgiio
+
+              ;;
+              ;; Contexts
+              ;;
+
+              (filecon
+               "/usr/bin/cgi-io"
+               file
+               cgiscriptfile_file_context)
+
+              ;;
+              ;; Macros
+              ;;
+
+              (macro execfile_obj_type_transition_cgiscriptfile ((type ARG1))
+                     (call .file.execfile_obj_type_transition
+                           (ARG1 cgiscriptfile file "cgi-io")))
+
+              ;;
+              ;; Policy
+              ;;
+
+              (blockinherit .cgiscript.base_template)))

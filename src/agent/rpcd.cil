@@ -14,6 +14,18 @@
     (call .rpcd.obj_type_transition_libfile (unconfined.subj_typeattr))
     (call .rpcd.obj_type_transition_runtimetmpfile (unconfined.subj_typeattr)))
 
+(in .jshn
+    (call .rpcd.writeinherited_fifo_files (subj)))
+
+(in .ubus
+    (call .rpcd.writeinherited_fifo_files (subj)))
+
+(in .uci
+    (call .rpcd.use_fds (subj)))
+
+(in .wifi
+    (call .rpcd.writeinherited_fifo_files (subj)))
+
 (in .wpad
     (call .rpcd.readinherited_fifo_files (subj)))
 
@@ -122,6 +134,7 @@
 
        (call .file.list_execfile_dirs (subj))
        (call .file.read_conffile_lnk_files (subj))
+       (call .file.search_initscriptfile_dirs (subj))
 
        (call .iproute2.read_conffile_files (subj))
        (call .iproute2.search_conffile_dirs (subj))

@@ -17,6 +17,15 @@
        ;;
 
        (filecon
+        "/tmp/run/hostapd-.*\.conf"
+        file
+        runtimetmpfile_file_context)
+       (filecon
+        "/tmp/run/wifi-.*\.pid"
+        file
+        runtimetmpfile_file_context)
+
+       (filecon
         "/tmp/run/udhcpc-.*\.pid"
         file
         runtimetmpfile_file_context)

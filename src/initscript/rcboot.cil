@@ -32,7 +32,7 @@
 
        (macro obj_type_transition_initscriptfile ((type ARG1))
               (call .file.initscriptfile_obj_type_transition
-                    (ARG1 execfile file "boot")))
+                    (ARG1 initscriptfile file "boot")))
 
        (macro obj_type_transition_tmpfile ((type ARG1))
               (call .tmp.fs_obj_type_transition

@@ -71,7 +71,7 @@
        ;; might be a leak
        (call .net.readinherited_procfile_files (subj))
 
-       (call .netifd.writeinherited_fifo_files (subj))
+       (call .netifd.readwriteinherited_fifo_files (subj))
        (call .netifd.dontaudit_readwrite_netlink_kobject_uevent_sockets (subj))
        (call .netifd.dontaudit_readwrite_netlink_route_sockets (subj))
 

@@ -37,6 +37,14 @@
        (allow subj self create_netlink_generic_socket)
        (allow subj self create_unix_dgram_socket)
 
+       (call .sys.loadkernelmodule.subj_type (subj))
+       (call .sys.read_fs_lnk_files (subj))
+       (call .sys.requestmodule (subj))
+       (call .sys.search_fs_dirs (subj))
+
+       (call .devices.read_sysfile_files (subj))
+       (call .devices.search_sysfile_dirs (subj))
+
        (call .file.search_conffile_dirs (subj))
        (call .file.search_datafile_dirs (subj))
 
@@ -49,6 +57,6 @@
        (call .libnltiny.mapexecute_libfile_files (subj))
        (call .libnltiny.read_libfile_files (subj))
 
-       (call .netifd.writeinherited_fifo_files (subj))
+       (call .netifd.readwriteinherited_fifo_files (subj))
        (call .netifd.dontaudit_readwrite_netlink_kobject_uevent_sockets (subj))
        (call .netifd.dontaudit_readwrite_netlink_route_sockets (subj)))

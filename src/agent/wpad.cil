@@ -37,15 +37,6 @@
         runtimetmpfile_file_context)
 
        (filecon
-        "/tmp/run/hostapd-.*\.conf"
-        file
-        runtimetmpfile_file_context)
-       (filecon
-        "/tmp/run/wifi-.*\.pid"
-        file
-        runtimetmpfile_file_context)
-
-       (filecon
         "/usr/bin/wpad"
         file
         execfile_file_context)
@@ -82,11 +73,9 @@
        (allow subj self (netlink_route_socket (nlmsg_write)))
 
        (call manage_runtimetmpfile_dirs (subj))
-       (call manage_runtimetmpfile_files (subj))
        (call manage_runtimetmpfile_sock_files (subj))
        (call obj_type_transition_runtimetmpfile (subj dir "hostapd"))
        (call obj_type_transition_runtimetmpfile (subj dir "wpa_supplicant"))
-       (call obj_type_transition_runtimetmpfile (subj file "*"))
 
        (call .sys.read_fs_lnk_files (subj))
        (call .sys.readinherited_fifo_files (subj))
