@@ -9,6 +9,9 @@
     (call .cgiio.execfile_obj_type_transition_cgiscriptfile
           (unconfined.subj_typeattr)))
 
+(in .xtables
+    (call .cgiio.writeinherited_fifo_files (subj)))
+
 (block cgiio
 
        ;;

@@ -30,7 +30,7 @@
               (call .selinux.readwrite_fs_files (ARG1)))
 
        (macro computeav ((type ARG1))
-              (allow ARG1 self create_netlink_selinux_socket_perms)
+              (allow ARG1 self create_netlink_selinux_socket)
               (allow ARG1 .selinux (security (compute_av)))
               (call .selinux.list_fs_dirs (ARG1))
               (call .selinux.readwrite_fs_files (ARG1)))
