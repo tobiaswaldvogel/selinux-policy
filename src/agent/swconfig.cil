@@ -23,6 +23,9 @@
        ;; Macros
        ;;
 
+       (macro auditexecute_execfile_files ((type ARG1))
+              (allow ARG1 execfile (file (getattr execute))))
+
        (macro obj_type_transition_execfile ((type ARG1))
               (call .file.execfile_obj_type_transition
                     (ARG1 execfile file "swconfig")))

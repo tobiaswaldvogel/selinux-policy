@@ -34,4 +34,14 @@
 
        (blockinherit .cgiscript.base_template)
 
-       (call .tmpfile.search_runtimetmpfile_dirs (subj)))
+       (call .file.search_initscriptfile_dirs (subj))
+
+       (call .tmpfile.search_runtimetmpfile_dirs (subj))
+
+       (call .shell.execfile_subj_type_transition (subj .sys.subj))
+       (call .shell.mapexecute_execfile_files (subj))
+       (call .shell.read_execfile_files (subj))
+
+       (call .ubusd.unix_stream_connect (subj))
+
+       (call .uhttpd.readinherited_fifo_files (subj)))

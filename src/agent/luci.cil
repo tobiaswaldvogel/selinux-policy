@@ -260,9 +260,13 @@
 
               (call .class.search_sysfile_dirs (subj))
 
+              (call .dropbear.auditexecute_execfile_files (subj))
+
               (call .file.search_conffile_dirs (subj))
               (call .file.search_datafile_dirs (subj))
               (call .file.search_cgiscriptfile_dirs (subj))
+
+              (call .fw3.auditexecute_execfile_files (subj))
 
               (call .leds.list_sysfile_dirs (subj))
 
@@ -302,6 +306,8 @@
 
               (call .shadow.read_authfile_files (subj))
               (call .shadow.read.subj_type (subj))
+
+              (call .swconfig.auditexecute_execfile_files (subj))
 
               (call .tmpfile.search_runtimetmpfile_dirs (subj))
 
