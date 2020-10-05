@@ -5,35 +5,11 @@
 (in .sys
     (call .rpcd.subj_type_transition (subj)))
 
-(in .dnsmasq
-    (call .rpcd.readinherited_fifo_files (subj)))
-
 (in .file
     (call .rpcd.obj_type_transition_datafile (unconfined.subj_typeattr))
     (call .rpcd.obj_type_transition_execfile (unconfined.subj_typeattr))
     (call .rpcd.obj_type_transition_libfile (unconfined.subj_typeattr))
     (call .rpcd.obj_type_transition_runtimetmpfile (unconfined.subj_typeattr)))
-
-(in .jshn
-    (call .rpcd.readwriteinherited_fifo_files (subj)))
-
-(in .ubus
-    (call .rpcd.readwriteinherited_fifo_files (subj)))
-
-(in .uci
-    (call .rpcd.readwriteinherited_fifo_files (subj)))
-
-(in .wifi
-    (call .rpcd.writeinherited_fifo_files (subj)))
-
-(in .wpad
-    (call .rpcd.readinherited_fifo_files (subj)))
-
-(in .validatedata
-    (call .rpcd.use_fds (subj)))
-
-(in .xtables
-    (call .rpcd.writeinherited_fifo_files (subj)))
 
 (block rpcd
 

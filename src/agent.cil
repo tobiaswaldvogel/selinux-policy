@@ -32,6 +32,12 @@
        ;; is this leaked from initscript?
        (call .tmpfile.writeinherited_locktmpfile_files (subj_typeattr))
 
+       (optional agent_opt_luci
+                 (call .luci.writeinherited_fifo_files (subj_typeattr)))
+
+       (optional agent_opt_rpcd
+                 (call .rpcd.readwriteinherited_fifo_files (subj_typeattr)))
+
        (block exec
 
               ;;

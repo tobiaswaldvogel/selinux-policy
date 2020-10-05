@@ -9,9 +9,6 @@
     (call .luci.reload.subj_type_transition (subj))
     (call .luci.subj_type_transition (subj)))
 
-(in .dnsmasq
-    (call .luci.writeinherited_fifo_files (subj)))
-
 (in .file
     (call .luci.bwc.obj_type_transition_execfile (unconfined.subj_typeattr))
     (call .luci.cgi.obj_type_transition_cgiscriptfile
@@ -27,17 +24,8 @@
     (call .luci.reload.obj_type_transition_execfile
           (unconfined.subj_typeattr)))
 
-(in .jshn
-    (call .luci.writeinherited_fifo_files (subj)))
-
-(in .ubus
-    (call .luci.use_fds (subj)))
-
 (in .uhttpd
     (call .luci.cgi.subj_type_transition (subj)))
-
-(in .wpad
-    (call .luci.use_fds (subj)))
 
 (block luci
 
@@ -212,8 +200,6 @@
 
        (call .rccommon.read_conffile_files (subj))
 
-       (call .rpcd.readwriteinherited_fifo_files (subj))
-
        (call .selinux.computeav (subj))
 
        (call .shadow.manage_authfile_files (subj))
@@ -345,6 +331,10 @@
               (allow subj self create_unix_stream_socket)
 
               (call list_datafile_dirs (subj))
+              (call read_datafile_files (subj))
+
+              (call mapexecute_libfile_files (subj))
+              (call read_libfile_files (subj))
 
               (call manage_tmpfile_dirs (subj))
               (call manage_tmpfile_files (subj))
@@ -388,11 +378,6 @@
               (call .lua.list_libfile_dirs (subj))
               (call .lua.mapexecute_libfile_files (subj))
               (call .lua.read_libfile_files (subj))
-
-              (call .luci.mapexecute_libfile_files (subj))
-              (call .luci.read_datafile_files (subj))
-              (call .luci.read_libfile_files (subj))
-              (call .luci.search_datafile_dirs (subj))
 
               (call .nameservice.read_miscfile_files (subj))
 
