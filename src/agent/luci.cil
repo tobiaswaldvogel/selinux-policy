@@ -11,6 +11,8 @@
 
 (in .file
     (call .luci.bwc.obj_type_transition_execfile (unconfined.subj_typeattr))
+    (call .luci.bwc.obj_type_transition_runtimetmpfile
+          (unconfined.subj_typeattr))
     (call .luci.cgi.obj_type_transition_cgiscriptfile
           (unconfined.subj_typeattr))
     (call .luci.obj_type_transition_execfile (unconfined.subj_typeattr))
@@ -148,6 +150,7 @@
        (call .jshn.subj_type_transition (subj))
 
        (call .kernel.search_sysctlfile_dirs (subj))
+       (call .kernel.search_sysfile_dirs (subj))
 
        (call .leds.list_sysfile_dirs (subj))
 
@@ -194,6 +197,8 @@
 
        (call .nameservice.manage_miscfile_files (subj))
 
+       (call .net.read_procfile_files (subj))
+
        (call .proc.list_fs_dirs (subj))
 
        (call .random.read_nodedev_chr_files (subj))
@@ -213,6 +218,8 @@
 
        (call .subj.change_passwd_all_subjects (subj))
        (call .subj.read_state_all_subjects (subj))
+
+       (call .swconfig.subj_type_transition (subj))
 
        (call .tmpfile.search_locktmpfile_dirs (subj))
        (call .tmpfile.search_runtimetmpfile_dirs (subj))
@@ -285,6 +292,11 @@
               ;;
 
               (filecon
+               "/tmp/run/luci-bwc\.pid"
+               file
+               runtimetmpfile_file_context)
+
+              (filecon
                "/usr/bin/luci-bwc"
                file
                execfile_file_context)
@@ -297,11 +309,31 @@
                      (call .file.execfile_obj_type_transition
                            (ARG1 execfile file "luci-bwc")))
 
+              (macro obj_type_transition_runtimetmpfile ((type ARG1))
+                     (call .tmpfile.runtimetmpfile_obj_type_transition
+                           (ARG1 runtimetmpfile file "luci-bwc.pid")))
+
               ;;
               ;; Policy
               ;;
 
-              (blockinherit .agent.base_template))
+              (blockinherit .agent.base_template)
+              (blockinherit .tmpfile.runtime.obj_template)
+
+              (call manage_runtimetmpfile_files (subj))
+              (call obj_type_transition_runtimetmpfile (subj))
+
+              (call .file.search_conffile_dirs (subj))
+
+              (call .libc.mapexecute_libfile_files (subj))
+              (call .libc.read_libfile_files (subj))
+
+              (call .libgccruntime.mapexecute_libfile_files (subj))
+              (call .libgccruntime.read_libfile_files (subj))
+
+              (call .net.read_procfile_files (subj))
+
+              (call .tmpfile.deletename_runtimetmpfile_dirs (subj)))
 
        (block cgi
 

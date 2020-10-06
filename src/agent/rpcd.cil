@@ -78,9 +78,10 @@
        (blockinherit .file.lib.obj_template)
        (blockinherit .tmpfile.runtime.obj_template)
 
-       (allow subj self (capability (kill net_admin)))
+       (allow subj self (capability (kill net_admin net_raw setgid setuid)))
        (allow subj self create_netlink_generic_socket)
        (allow subj self create_netlink_route_socket)
+       (allow subj self create_rawip_socket)
        (allow subj self create_udp_socket)
        (allow subj self create_unix_dgram_socket)
        (allow subj self create_unix_stream_socket)
@@ -119,6 +120,8 @@
        (call .file.list_execfile_dirs (subj))
        (call .file.read_conffile_lnk_files (subj))
        (call .file.search_initscriptfile_dirs (subj))
+
+       (call .ifup.subj_type_transition (subj))
 
        (call .iproute2.read_conffile_files (subj))
        (call .iproute2.search_conffile_dirs (subj))
@@ -178,6 +181,7 @@
        (call .net.read_procfile_files (subj))
        (call .net.search_sysctlfile_dirs (subj))
        (call .net.sendto_netnodes (subj))
+       (call .net.udp_bind_netnodes (subj))
 
        (call .netfilter.read_sysctlfile_files (subj))
        (call .netfilter.search_sysctlfile_dirs (subj))
@@ -190,7 +194,7 @@
 
        (call .random.read_nodedev_chr_files (subj))
 
-       (call .rclocal.read_conffile_files (subj))
+       (call .rclocal.readwrite_conffile_files (subj))
 
        (call .resolv.read_tmpfile_files (subj))
 
