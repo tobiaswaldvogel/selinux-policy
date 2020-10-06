@@ -64,6 +64,8 @@
 
        (call .ifup.use_fds (subj))
 
+       (call .iw.subj_type_transition (subj))
+
        (call .jshn.subj_type_transition (subj))
 
        (call .libc.mapexecute_libfile_files (subj))

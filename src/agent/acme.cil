@@ -80,6 +80,8 @@
        (call .cron.read_miscfile_files (subj))
        (call .cron.search_miscfile_dirs (subj))
 
+       (call .file.search_initscriptfile_dirs (subj))
+
        (call .functions.read_miscfile_files (subj))
        (call .functions.search_miscfile_dirs (subj))
 
