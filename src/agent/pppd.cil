@@ -78,13 +78,14 @@
        (blockinherit .file.misc.obj_template)
        (blockinherit .tmpfile.runtime.obj_template)
 
-       (allow subj self (capability (net_admin net_raw setuid)))
+       (allow subj self (capability (net_admin net_raw setgid setuid)))
        (allow subj self create_packet_socket)
        (allow subj self create_pppox_socket)
        (allow subj self create_udp_socket)
        (allow subj self create_unix_dgram_socket)
 
        (call read_conffile_files (subj))
+       (call read_conffile_lnk_files (subj))
        (call search_conffile_dirs (subj))
 
        (call mapexecute_miscfile_files (subj))
@@ -93,6 +94,8 @@
 
        (call manage_runtimetmpfile_files (subj))
        (call obj_type_transition_runtimetmpfile (subj file "*"))
+
+       (call .sys.requestmodule (subj))
 
        (call .file.search_conffile_dirs (subj))
        (call .file.search_datafile_dirs (subj))
@@ -109,11 +112,16 @@
 
        (call .net.read_procfile_files (subj))
 
+       (call .netifd.read_miscfile_files (subj))
+       (call .netifd.search_miscfile_dirs (subj))
        (call .netifd.writeinherited_fifo_files (subj))
        (call .netifd.dontaudit_readwrite_netlink_kobject_uevent_sockets (subj))
        (call .netifd.dontaudit_readwrite_netlink_route_sockets (subj))
 
        (call .ppp.readwrite_nodedev_chr_files (subj))
+
+       (call .resolv.manage_tmpfile_files (subj))
+       (call .resolv.obj_type_transition_tmpfile (subj))
 
        (call .tmpfile.deletename_runtimetmpfile_dirs (subj))
 
