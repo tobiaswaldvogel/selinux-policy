@@ -70,6 +70,7 @@
 
        (call .sys.writeinherited_fifo_files (subj))
 
+       (call .cron.read_miscfile_files (subj))
        (call .cron.search_miscfile_dirs (subj))
 
        (call .functions.read_miscfile_files (subj))

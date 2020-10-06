@@ -209,6 +209,8 @@
        (call .subj.signal_all_subjects (subj))
        (call .subj.sigkill_all_subjects (subj))
 
+       (call .sysupgrade.read_conffile_files (subj))
+
        (call .tmpfile.deletename_runtimetmpfile_dirs (subj))
        (call .tmpfile.search_hoststmpfile_dirs (subj))
 
