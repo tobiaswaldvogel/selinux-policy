@@ -3,16 +3,16 @@
 ;; SPDX-License-Identifier: Unlicense
 
 (in .file
-    (call .socat.obj_type_transition_execfile (unconfined.subj_typeattr)))
+    (call .wget.obj_type_transition_execfile (unconfined.subj_typeattr)))
 
-(block socat
+(block wget
 
        ;;
        ;; Contexts
        ;;
 
        (filecon
-        "/usr/bin/socat"
+        "/usr/bin/wget-ssl"
         file
         execfile_file_context)
 
@@ -22,7 +22,7 @@
 
        (macro obj_type_transition_execfile ((type ARG1))
               (call .file.execfile_obj_type_transition
-                    (ARG1 execfile file "socat")))
+                    (ARG1 execfile file "wget-ssl")))
 
        ;;
        ;; Policy
