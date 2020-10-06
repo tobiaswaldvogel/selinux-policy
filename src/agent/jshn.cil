@@ -80,6 +80,9 @@
 
        (call .odhcpd.update.writeinherited_fifo_files (subj))
 
+       (call .pppd.writeinherited_fifo_files (subj))
+       (call .pppd.dontaudit_readwrite_packet_sockets (subj))
+
        (call .random.read_nodedev_chr_files (subj))
 
        (call .wifi.writeinherited_fifo_files (subj))

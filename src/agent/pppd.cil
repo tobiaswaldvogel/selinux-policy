@@ -69,6 +69,9 @@
               (call .tmpfile.runtimetmpfile_obj_type_transition
                     (ARG1 runtimetmpfile ARG2 ARG3)))
 
+       (macro dontaudit_readwrite_packet_sockets ((type ARG1))
+              (dontaudit ARG1 subj readwrite_packet_socket))
+
        ;;
        ;; Policy
        ;;
@@ -136,5 +139,7 @@
        (call .shell.execute_execfile_files (subj))
 
        (call .tmpfile.deletename_runtimetmpfile_dirs (subj))
+
+       (call .ubus.subj_type_transition (subj))
 
        (call .xattr.associate_filesystems (miscfile)))
