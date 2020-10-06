@@ -13,6 +13,8 @@
     (call .luci.bwc.obj_type_transition_execfile (unconfined.subj_typeattr))
     (call .luci.bwc.obj_type_transition_runtimetmpfile
           (unconfined.subj_typeattr))
+    (call .luci.bwc.obj_type_transition_statetmpfile
+          (unconfined.subj_typeattr))
     (call .luci.cgi.obj_type_transition_cgiscriptfile
           (unconfined.subj_typeattr))
     (call .luci.obj_type_transition_execfile (unconfined.subj_typeattr))
@@ -292,6 +294,15 @@
               ;;
 
               (filecon
+               "/tmp/lib/luci-bwc"
+               dir
+               statetmpfile_file_context)
+              (filecon
+               "/tmp/lib/luci-bwc/.*"
+               any
+               statetmpfile_file_context)
+
+              (filecon
                "/tmp/run/luci-bwc\.pid"
                file
                runtimetmpfile_file_context)
@@ -305,6 +316,9 @@
               ;; Macros
               ;;
 
+              (macro map_statetmpfile_files ((type ARG1))
+                     (allow ARG1 statetmpfile (file (map))))
+
               (macro obj_type_transition_execfile ((type ARG1))
                      (call .file.execfile_obj_type_transition
                            (ARG1 execfile file "luci-bwc")))
@@ -313,15 +327,35 @@
                      (call .tmpfile.runtimetmpfile_obj_type_transition
                            (ARG1 runtimetmpfile file "luci-bwc.pid")))
 
+              (macro obj_type_transition_statetmpfile ((type ARG1))
+                     (call .tmpfile.statetmpfile_obj_type_transition
+                           (ARG1 statetmpfile dir "luci-bwc")))
+
               ;;
               ;; Policy
               ;;
 
               (blockinherit .agent.base_template)
               (blockinherit .tmpfile.runtime.obj_template)
+              (blockinherit .tmpfile.state.obj_template)
+
+              (allow subj self create_netlink_generic_socket)
 
               (call manage_runtimetmpfile_files (subj))
               (call obj_type_transition_runtimetmpfile (subj))
+
+              (call manage_statetmpfile_dirs (subj))
+              (call manage_statetmpfile_files (subj))
+              (call map_statetmpfile_files (subj))
+              (call obj_type_transition_statetmpfile (subj))
+
+              (call .sys.read_fs_lnk_files (subj))
+              (call .sys.search_fs_dirs (subj))
+
+              (call .class.list_sysfile_dirs (subj))
+
+              (call .devices.read_sysfile_files (subj))
+              (call .devices.search_sysfile_dirs (subj))
 
               (call .file.search_conffile_dirs (subj))
               (call .file.search_datafile_dirs (subj))
@@ -335,13 +369,17 @@
               (call .libiwinfo.mapexecute_libfile_files (subj))
               (call .libiwinfo.read_libfile_files (subj))
 
+              (call .libubox.mapexecute_libfile_files (subj))
+              (call .libubox.read_libfile_files (subj))
+
               (call .libuci.mapexecute_libfile_files (subj))
               (call .libuci.read_libfile_files (subj))
 
+              (call .loadavg.read_procfile_files (subj))
+
               (call .net.read_procfile_files (subj))
 
-              (call .tmpfile.deletename_runtimetmpfile_dirs (subj))
-              (call .tmpfile.search_statetmpfile_dirs (subj)))
+              (call .tmpfile.deletename_runtimetmpfile_dirs (subj)))
 
        (block cgi
 

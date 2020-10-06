@@ -52,6 +52,9 @@
 
        (call .libselinux.linked.subj_type (subj))
 
+       (call .libubox.read_datafile_files (subj))
+       (call .libubox.search_datafile_dirs (subj))
+
        (call .shell.execute_execfile_files (subj))
 
        (call .ubus.subj_type_transition (subj))
@@ -59,6 +62,8 @@
        (call .uci.read_conffile_files (subj))
        (call .uci.search_conffile_dirs (subj))
        (call .uci.subj_type_transition (subj))
+
+       (call .wifi.subj_type_transition (subj))
 
        (optional ifup_opt_rcnetwork
                  (call .rcnetwork.use_fds (subj))))
