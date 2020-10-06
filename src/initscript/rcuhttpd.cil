@@ -36,11 +36,17 @@
 
        (call .file.deletename_conffile_dirs (subj))
 
-       (call .libustreamssl.getattr_libfile_files (subj))
+       (call .libustreamssl.mapexecute_libfile_files (subj))
+       (call .libustreamssl.read_libfile_files (subj))
+
+       (call .libwolfssl.mapexecute_libfile_files (subj))
+       (call .libwolfssl.read_libfile_files (subj))
 
        (call .openssl.execute_execfile_files (subj))
 
        (call .px5g.execute_execfile_files (subj))
+
+       (call .random.read_nodedev_chr_files (subj))
 
        (call .uhttpd.conffile_obj_type_transition_certfile (subj))
        (call .uhttpd.getattr_libfile_files (subj))

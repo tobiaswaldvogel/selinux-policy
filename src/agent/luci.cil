@@ -358,6 +358,8 @@
               (blockinherit .tmpfile.state.obj_template)
 
               (allow subj self create_netlink_generic_socket)
+              (allow subj self create_udp_socket)
+              (allow subj self create_unix_dgram_socket)
 
               (call manage_runtimetmpfile_files (subj))
               (call obj_type_transition_runtimetmpfile (subj))

@@ -21,9 +21,6 @@
        ;; Macros
        ;;
 
-       (macro getattr_libfile_files ((type ARG1))
-              (allow ARG1 libfile (file (getattr))))
-
        (macro obj_type_transition_libfile ((type ARG1))
               (call .file.libfile_obj_type_transition
                     (ARG1 libfile file "libustream-ssl.so")))
