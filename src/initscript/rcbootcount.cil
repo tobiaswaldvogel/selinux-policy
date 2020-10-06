@@ -36,4 +36,7 @@
 
        (call .fwenv.subj_type_transition (subj))
 
-       (call .mtd.subj_type_transition (subj)))
+       (call .mtd.subj_type_transition (subj))
+
+       (call .preinit.read_tmpfile_files (subj))
+       (call .preinit.search_tmpfile_dirs (subj)))
