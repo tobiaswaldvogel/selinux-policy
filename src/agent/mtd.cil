@@ -49,4 +49,7 @@
     (call .libubox.read_libfile_files (subj))
 
     (call .mtd.read_procfile_files (subj))
-    (call .mtd.readwrite_stordev_chr_files (subj)))
+    (call .mtd.readwrite_stordev_chr_files (subj))
+
+    (optional mtd_opt_rcbootcount
+              (call .rcbootcount.use_fds (subj))))
