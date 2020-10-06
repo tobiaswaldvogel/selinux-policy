@@ -63,6 +63,7 @@
 
        (allow subj self (capability (net_admin net_raw)))
        (allow subj self create_rawip_socket)
+       (allow subj self create_udp_socket)
 
        (call manage_runtimetmpfile_files (subj))
        (call obj_type_transition_runtimetmpfile (subj))
@@ -73,6 +74,7 @@
 
        (call .dev.readwriteinherited_ttydev_chr_files (subj))
 
+       (call .file.read_conffile_lnk_files (subj))
        (call .file.search_conffile_dirs (subj))
        (call .file.search_datafile_dirs (subj))
 
@@ -99,8 +101,13 @@
 
        (call .nameservice.read_miscfile_files (subj))
 
+       (call .net.egress_netifs (subj))
        (call .net.read_procfile_files (subj))
+       (call .net.sendto_netnodes (subj))
+       (call .net.udp_bind_netnodes (subj))
 
        (call .proc.getattr_filesystems (subj))
+
+       (call .resolv.read_tmpfile_files (subj))
 
        (call .xattr.associate_filesystems (miscfile)))
