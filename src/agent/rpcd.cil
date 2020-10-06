@@ -121,6 +121,8 @@
        (call .file.read_conffile_lnk_files (subj))
        (call .file.search_initscriptfile_dirs (subj))
 
+       (call .firewall.readwrite_conffile_files (subj))
+
        (call .ifup.subj_type_transition (subj))
 
        (call .iproute2.read_conffile_files (subj))
@@ -181,6 +183,7 @@
        (call .net.read_procfile_files (subj))
        (call .net.search_sysctlfile_dirs (subj))
        (call .net.sendto_netnodes (subj))
+       (call .net.rawip_bind_netnodes (subj))
        (call .net.udp_bind_netnodes (subj))
 
        (call .netfilter.read_sysctlfile_files (subj))
@@ -216,6 +219,8 @@
        (call .uci.manage_conffile_files (subj))
        (call .uci.read_tmpfile_files (subj))
 
+       (call .uhttpd.getattr_execfile_files (subj))
+
        (call .upgrade.read_miscfile_files (subj))
        (call .upgrade.search_miscfile_dirs (subj))
 
@@ -226,4 +231,7 @@
        (call .www.list_miscfile_dirs (subj))
        (call .www.read_miscfile_files (subj))
 
-       (call .xtables.subj_type_transition (subj)))
+       (call .xtables.subj_type_transition (subj))
+
+       (optional rpcd_opt_rcfirewall
+                 (call .rcfirewall.subj_type_transition (subj))))

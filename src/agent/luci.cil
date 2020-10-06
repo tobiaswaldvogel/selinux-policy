@@ -324,6 +324,7 @@
               (call obj_type_transition_runtimetmpfile (subj))
 
               (call .file.search_conffile_dirs (subj))
+              (call .file.search_datafile_dirs (subj))
 
               (call .libc.mapexecute_libfile_files (subj))
               (call .libc.read_libfile_files (subj))
@@ -331,9 +332,16 @@
               (call .libgccruntime.mapexecute_libfile_files (subj))
               (call .libgccruntime.read_libfile_files (subj))
 
+              (call .libiwinfo.mapexecute_libfile_files (subj))
+              (call .libiwinfo.read_libfile_files (subj))
+
+              (call .libuci.mapexecute_libfile_files (subj))
+              (call .libuci.read_libfile_files (subj))
+
               (call .net.read_procfile_files (subj))
 
-              (call .tmpfile.deletename_runtimetmpfile_dirs (subj)))
+              (call .tmpfile.deletename_runtimetmpfile_dirs (subj))
+              (call .tmpfile.search_statetmpfile_dirs (subj)))
 
        (block cgi
 

@@ -56,6 +56,9 @@
               (call .file.conffile_obj_type_transition
                     (ARG1 certfile file "uhttpd.key")))
 
+       (macro getattr_execfile_files ((type ARG1))
+              (allow ARG1 execfile (file (getattr))))
+
        (macro obj_type_transition_conftmpfile ((type ARG1))
               (call .tmpfile.conftmpfile_obj_type_transition
                     (ARG1 conftmpfile dir "uhttpd")))
