@@ -32,4 +32,18 @@
        ;; Policy
        ;;
 
-       (blockinherit .initscript.base_template))
+       (blockinherit .initscript.base_template)
+
+       (call .file.deletename_conffile_dirs (subj))
+
+       (call .libustreamssl.getattr_libfile_files (subj))
+
+       (call .openssl.execute_execfile_files (subj))
+
+       (call .px5g.execute_execfile_files (subj))
+
+       (call .uhttpd.conffile_obj_type_transition_certfile (subj))
+       (call .uhttpd.getattr_libfile_files (subj))
+       (call .uhttpd.manage_certfile_files (subj))
+       (call .uhttpd.manage_conftmpfile_dirs (subj))
+       (call .uhttpd.obj_type_transition_conftmpfile (subj)))

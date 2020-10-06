@@ -54,10 +54,17 @@
               (call .file.conffile_obj_type_transition
                     (ARG1 certfile file "uhttpd.crt"))
               (call .file.conffile_obj_type_transition
-                    (ARG1 certfile file "uhttpd.key")))
+                    (ARG1 certfile file "uhttpd.crt.new"))
+              (call .file.conffile_obj_type_transition
+                    (ARG1 certfile file "uhttpd.key"))
+              (call .file.conffile_obj_type_transition
+                    (ARG1 certfile file "uhttpd.key.new")))
 
        (macro getattr_execfile_files ((type ARG1))
               (allow ARG1 execfile (file (getattr))))
+
+       (macro getattr_libfile_files ((type ARG1))
+              (allow ARG1 libfile (file (getattr))))
 
        (macro obj_type_transition_conftmpfile ((type ARG1))
               (call .tmpfile.conftmpfile_obj_type_transition

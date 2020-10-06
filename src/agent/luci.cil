@@ -233,8 +233,14 @@
 
        (call .wpad.subj_type_transition (subj))
 
+       (optional luci_opt_rcacme
+                 (call .rcacme.subj_type_transition (subj)))
+
        (optional luci_opt_rcboot
                  (call .rcboot.subj_type_transition (subj)))
+
+       (optional luci_opt_rcbootcount
+                 (call .rcbootcount.subj_type_transition (subj)))
 
        (optional luci_opt_rccron
                  (call .rccron.subj_type_transition (subj)))
@@ -263,6 +269,12 @@
        (optional luci_opt_rcodhcpd
                  (call .rcodhcpd.subj_type_transition (subj)))
 
+       (optional luci_opt_rcrpcd
+                 (call .rcrpcd.subj_type_transition (subj)))
+
+       (optional luci_opt_rcsocat
+                 (call .rcsocat.subj_type_transition (subj)))
+
        (optional luci_opt_rcsysctl
                  (call .rcsysctl.subj_type_transition (subj)))
 
@@ -274,6 +286,9 @@
 
        (optional luci_opt_rcsystem
                  (call .rcsystem.subj_type_transition (subj)))
+
+       (optional luci_opt_rcucitrack
+                 (call .rcucitrack.subj_type_transition (subj)))
 
        (optional luci_opt_rcuhttpd
                  (call .rcuhttpd.subj_type_transition (subj)))
