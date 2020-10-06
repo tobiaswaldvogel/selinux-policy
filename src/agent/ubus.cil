@@ -82,6 +82,9 @@
 
        (call .odhcpd.update.use_fds (subj))
 
+       (call .pppd.use_fds (subj))
+       (call .pppd.dontaudit_readwrite_packet_sockets (subj))
+
        (call .random.read_nodedev_chr_files (subj))
 
        (call .tmpfile.search_runtimetmpfile_dirs (subj))
