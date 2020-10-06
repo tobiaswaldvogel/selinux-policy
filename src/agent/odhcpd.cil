@@ -59,7 +59,7 @@
        (allow subj self create_udp_socket)
        (allow subj self create_unix_dgram_socket)
        (allow subj self create_unix_stream_socket)
-       (allow subj self (netlink_route_socket (nlmsg_read)))
+       (allow subj self (netlink_route_socket (nlmsg_read nlmsg_write)))
 
        (call manage_hoststmpfile_files (subj))
        (call obj_type_transition_hoststmpfile (subj))
