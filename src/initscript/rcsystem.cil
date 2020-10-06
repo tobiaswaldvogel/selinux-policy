@@ -35,7 +35,9 @@
        (blockinherit .initscript.base_template)
 
        (allow subj self (capability (sys_time)))
+       (allow subj self (capability2 (syslog)))
 
+       (call .sys.controlsyslogconsole (subj))
        (call .sys.search_sysctlfile_dirs (subj))
 
        (call .kernel.search_sysctlfile_dirs (subj))

@@ -97,6 +97,8 @@
 
        (call .sys.requestmodule (subj))
 
+       (call .jshn.subj_type_transition (subj))
+
        (call .libc.mapexecute_libfile_files (subj))
        (call .libc.read_libfile_files (subj))
 

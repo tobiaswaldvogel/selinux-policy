@@ -116,6 +116,7 @@
        (allow subj self (capability (setuid)))
        (allow subj self (process (setfscreate setrlimit)))
        (allow subj self create_unix_dgram_socket)
+       (allow subj self create_unix_stream_socket)
 
        (call mapexecute_libfile_files (subj))
        (call read_libfile_files (subj))
@@ -186,6 +187,8 @@
 
        (call .loadavg.read_procfile_files (subj))
 
+       (call .locale.read.subj_type (subj))
+
        (call .logd.unix_dgram_send (subj))
 
        (call .lua.execute_execfile_files (subj))
@@ -228,6 +231,8 @@
        (call .tmpfile.write_locktmpfile_files (subj))
 
        (call .ubus.subj_type_transition (subj))
+
+       (call .ubusd.unix_stream_connect (subj))
 
        (call .uci.subj_type_transition (subj))
 

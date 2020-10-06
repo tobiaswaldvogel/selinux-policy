@@ -44,6 +44,9 @@
        ;; Macros
        ;;
 
+       (macro controlsyslogconsole ((type ARG1))
+              (allow ARG1 subj (system (syslog_console))))
+
        (macro modifyringbuffer ((type ARG1))
               (allow ARG1 subj (system (syslog_mod))))
 
