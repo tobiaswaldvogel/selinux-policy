@@ -11,6 +11,9 @@
           (unconfined.subj_typeattr))
     (call .acme.obj_type_transition_runtimetmpfile (unconfined.subj_typeattr)))
 
+(in .uci
+    (call .acme.writeinherited_fifo_files (subj)))
+
 (block acme
 
        ;;
@@ -67,6 +70,8 @@
        (blockinherit .tmpfile.runtime.obj_template)
 
        (allow subj self create_unix_dgram_socket)
+
+       (call readwrite_conffile_dirs (subj))
 
        (call delete_runtimetmpfile_files (subj))
 
