@@ -111,6 +111,9 @@
 
        (call .libselinux.linked.subj_type (subj))
 
+       (call .libubox.read_datafile_files (subj))
+       (call .libubox.search_datafile_dirs (subj))
+
        (call .logd.unix_dgram_send (subj))
 
        (call .nameservice.read_miscfile_files (subj))
