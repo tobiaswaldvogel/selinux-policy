@@ -77,8 +77,9 @@
 
        (call .sys.writeinherited_fifo_files (subj))
 
-       (call .cron.read_miscfile_files (subj))
-       (call .cron.search_miscfile_dirs (subj))
+       (call .cron.addname_miscfile_dirs (subj))
+       (call .cron.create_miscfile_files (subj))
+       (call .cron.readwrite_miscfile_files (subj))
 
        (call .file.search_initscriptfile_dirs (subj))
 
@@ -116,4 +117,7 @@
 
        (call .uci.subj_type_transition (subj))
 
-       (call .wget.execute_execfile_files (subj)))
+       (call .wget.execute_execfile_files (subj))
+
+       (optional acme_opt_rccron
+                 (call .rccron.subj_type_transition (subj))))
