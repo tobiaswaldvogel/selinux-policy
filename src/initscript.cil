@@ -68,9 +68,6 @@
 
        (call .validatedata.subj_type_transition (subj_typeattr))
 
-       (optional initscript_opt_rcucitrack
-                 (call .rcucitrack.use_fds (subj_typeattr)))
-
        (block exec
 
               ;;

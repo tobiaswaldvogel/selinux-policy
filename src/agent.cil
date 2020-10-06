@@ -35,6 +35,9 @@
        (optional agent_opt_luci
                  (call .luci.writeinherited_fifo_files (subj_typeattr)))
 
+       (optional agent_opt_rcucitrack
+                 (call .rcucitrack.use_fds (subj_typeattr)))
+
        (optional agent_opt_rpcd
                  (call .rpcd.readwriteinherited_fifo_files (subj_typeattr)))
 
