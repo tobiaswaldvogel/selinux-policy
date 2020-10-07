@@ -36,6 +36,9 @@
 
        (call .file.deletename_conffile_dirs (subj))
 
+       (call .libsetlbf.mapexecute_libfile_files (subj))
+       (call .libsetlbf.read_libfile_files (subj))
+
        (call .libustreamssl.mapexecute_libfile_files (subj))
        (call .libustreamssl.read_libfile_files (subj))
 
@@ -52,4 +55,7 @@
        (call .uhttpd.getattr_libfile_files (subj))
        (call .uhttpd.manage_certfile_files (subj))
        (call .uhttpd.manage_conftmpfile_dirs (subj))
-       (call .uhttpd.obj_type_transition_conftmpfile (subj)))
+       (call .uhttpd.obj_type_transition_conftmpfile (subj))
+
+       (optional rcuhttpd_opt_acme
+                 (call .acme.use_fds (subj))))
