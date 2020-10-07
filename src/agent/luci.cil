@@ -505,7 +505,10 @@
 
               (call .uhttpd.readwriteinherited_fifo_files (subj))
 
-              (call .www.search_miscfile_dirs (subj)))
+              (call .www.search_miscfile_dirs (subj))
+
+              (optional luci_cgi_opt_acme
+                        (call .acme.search_conffile_dirs (subj))))
 
        (block peeraddr
 
