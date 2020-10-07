@@ -12,7 +12,11 @@
           (unconfined.subj_typeattr dir "dropbear"))
     (call .dropbear.obj_type_transition_execfile (unconfined.subj_typeattr))
     (call .dropbear.obj_type_transition_runtimetmpfile
-          (unconfined.subj_typeattr file "dropbear.1.pid")))
+          (unconfined.subj_typeattr file "dropbear.1.pid"))
+    (call .dropbear.obj_type_transition_runtimetmpfile
+          (unconfined.subj_typeattr file "dropbear.2.pid"))
+    (call .dropbear.obj_type_transition_runtimetmpfile
+          (unconfined.subj_typeattr file "dropbear.3.pid")))
 
 (block dropbear
 

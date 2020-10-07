@@ -21,6 +21,15 @@
         file
         runtimetmpfile_file_context)
        (filecon
+        "/tmp/run/hostapd-.*\.psk"
+        file
+        runtimetmpfile_file_context)
+       (filecon
+        "/tmp/run/hostapd-.*\.vlan"
+        file
+        runtimetmpfile_file_context)
+
+       (filecon
         "/tmp/run/wifi-.*\.pid"
         file
         runtimetmpfile_file_context)

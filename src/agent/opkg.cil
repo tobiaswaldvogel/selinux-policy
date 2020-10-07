@@ -131,7 +131,14 @@
               ;; Policy
               ;;
 
-              (blockinherit .agent.base_template))
+              (blockinherit .agent.base_template)
+
+              (call .libselinux.linked.subj_type (subj))
+
+              (call .shell.execute_execfile_files (subj))
+
+              (optional opkg_call_opt_cgiio
+                        (call .cgiio.writeinherited_fifo_files (subj))))
 
        (block key
 
