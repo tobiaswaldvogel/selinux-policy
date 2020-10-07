@@ -58,4 +58,7 @@
        (call .uhttpd.obj_type_transition_conftmpfile (subj))
 
        (optional rcuhttpd_opt_acme
+                 (call .acme.getattr_conffile_files (subj))
+                 (call .acme.read_conffile_lnk_files (subj))
+                 (call .acme.search_conffile_dirs (subj))
                  (call .acme.use_fds (subj))))

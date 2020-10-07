@@ -149,4 +149,9 @@
 
        (call .www.list_miscfile_dirs (subj))
        (call .www.read_miscfile_files (subj))
-       (call .www.read_miscfile_lnk_files (subj)))
+       (call .www.read_miscfile_lnk_files (subj))
+
+       (optional uhttpd_opt_acme
+                 (call .acme.read_conffile_files (subj))
+                 (call .acme.read_conffile_lnk_files (subj))
+                 (call .acme.search_conffile_dirs (subj))))
