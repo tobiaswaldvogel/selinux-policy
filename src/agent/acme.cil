@@ -69,6 +69,7 @@
        (blockinherit .file.conf.obj_template)
        (blockinherit .tmpfile.runtime.obj_template)
 
+       (allow subj self create_udp_socket)
        (allow subj self create_unix_dgram_socket)
 
        (call manage_conffile_dirs (subj))
@@ -78,6 +79,7 @@
 
        (call delete_runtimetmpfile_files (subj))
 
+       (call .sys.deletename_rootfile_dirs (subj))
        (call .sys.writeinherited_fifo_files (subj))
 
        (call .cron.addname_miscfile_dirs (subj))
@@ -115,11 +117,18 @@
        (call .libssl.mapexecute_libfile_files (subj))
        (call .libssl.read_libfile_files (subj))
 
+       (call .libz.mapexecute_libfile_files (subj))
+       (call .libz.read_libfile_files (subj))
+
        (call .locale.read.subj_type (subj))
 
        (call .logd.unix_dgram_send (subj))
 
        (call .nameservice.read_miscfile_files (subj))
+
+       (call .net.egress_netifs (subj))
+       (call .net.sendto_netnodes (subj))
+       (call .net.udp_bind_netnodes (subj))
 
        (call .openssl.execute_execfile_files (subj))
 
@@ -130,6 +139,7 @@
        (call .socat.execute_execfile_files (subj))
 
        (call .ssl.read_certfile_files (subj))
+       (call .ssl.read_certfile_lnk_files (subj))
        (call .ssl.search_certfile_dirs (subj))
 
        (call .tmpfile.deletename_runtimetmpfile_dirs (subj))
@@ -137,6 +147,8 @@
        (call .uci.subj_type_transition (subj))
 
        (call .wget.execute_execfile_files (subj))
+       (call .wget.manage_miscfile_files (subj))
+       (call .wget.rootfile_obj_type_transition_miscfile (subj))
 
        (call .www.manage_miscfile_dirs (subj))
        (call .www.manage_miscfile_files (subj))

@@ -3,13 +3,20 @@
 ;; SPDX-License-Identifier: Unlicense
 
 (in .file
-    (call .wget.obj_type_transition_execfile (unconfined.subj_typeattr)))
+    (call .wget.obj_type_transition_execfile (unconfined.subj_typeattr))
+    (call .wget.rootfile_obj_type_transition_miscfile
+          (unconfined.subj_typeattr)))
 
 (block wget
 
        ;;
        ;; Contexts
        ;;
+
+       (filecon
+        "/\.wget-hsts"
+        file
+        miscfile_file_context)
 
        (filecon
         "/usr/bin/wget-ssl"
@@ -24,8 +31,15 @@
               (call .file.execfile_obj_type_transition
                     (ARG1 execfile file "wget-ssl")))
 
+       (macro rootfile_obj_type_transition_miscfile ((type ARG1))
+              (call .sys.rootfile_obj_type_transition
+                    (ARG1 miscfile file ".wget-hsts")))
+
        ;;
        ;; Policy
        ;;
 
-       (blockinherit .file.exec.obj_template))
+       (blockinherit .file.exec.obj_template)
+       (blockinherit .file.misc.obj_template)
+
+       (call .xattr.associate_filesystems (miscfile)))
