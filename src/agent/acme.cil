@@ -90,8 +90,13 @@
        (call .functions.read_miscfile_files (subj))
        (call .functions.search_miscfile_dirs (subj))
 
+       (call .http.tcp_connect_netports (subj))
+
        (call .libc.mapexecute_libfile_files (subj))
        (call .libc.read_libfile_files (subj))
+
+       (call .libcrypto.mapexecute_libfile_files (subj))
+       (call .libcrypto.read_libfile_files (subj))
 
        (call .libfts.mapexecute_libfile_files (subj))
        (call .libfts.read_libfile_files (subj))
@@ -118,9 +123,14 @@
 
        (call .openssl.execute_execfile_files (subj))
 
+       (call .resolv.read_tmpfile_files (subj))
+
        (call .shell.execute_execfile_files (subj))
 
        (call .socat.execute_execfile_files (subj))
+
+       (call .ssl.read_certfile_files (subj))
+       (call .ssl.search_certfile_dirs (subj))
 
        (call .tmpfile.deletename_runtimetmpfile_dirs (subj))
 
@@ -134,4 +144,7 @@
        (call .xtables.subj_type_transition (subj))
 
        (optional acme_opt_rccron
-                 (call .rccron.subj_type_transition (subj))))
+                 (call .rccron.subj_type_transition (subj)))
+
+       (optional acme_opt_rcuhttpd
+                 (call .rcuhttpd.subj_type_transition (subj))))

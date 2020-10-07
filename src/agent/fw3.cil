@@ -143,6 +143,9 @@
 
        (call .odhcp6c.writeinherited_fifo_files (subj))
 
+       (call .pppd.writeinherited_fifo_files (subj))
+       (call .pppd.dontaudit_readwrite_packet_sockets (subj))
+
        ;; this is due to it trying to create "contrack" file in /proc/net
        (call .proc.getattr_filesystems (subj))
        (call .proc.dontaudit_associate_filesystems (subj))

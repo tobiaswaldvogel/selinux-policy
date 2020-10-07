@@ -96,6 +96,9 @@
        (call .libiptext6.mapexecute_libfile_files (subj))
        (call .libiptext6.read_libfile_files (subj))
 
+       (call .libsetlbf.mapexecute_libfile_files (subj))
+       (call .libsetlbf.read_libfile_files (subj))
+
        (call .libxtables.mapexecute_libfile_files (subj))
        (call .libxtables.read_libfile_files (subj))
 
@@ -110,4 +113,7 @@
 
        (call .resolv.read_tmpfile_files (subj))
 
-       (call .xattr.associate_filesystems (miscfile)))
+       (call .xattr.associate_filesystems (miscfile))
+
+       (optional xtables_opt_acme
+                 (call .acme.readinherited_fifo_files (subj))))
