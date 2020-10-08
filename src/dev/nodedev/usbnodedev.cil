@@ -16,6 +16,11 @@
         char
         nodedev_file_context)
 
+       (filecon
+        "/dev/usb([0-9]+)?"
+        char
+        nodedev_file_context)
+
        ;;
        ;; Macros
        ;;
@@ -60,7 +65,9 @@
               (call .tmp.fs_obj_type_transition
                     (ARG1 nodedev chr_file "019"))
               (call .tmp.fs_obj_type_transition
-                    (ARG1 nodedev chr_file "020")))
+                    (ARG1 nodedev chr_file "020"))
+              (call .tmp.fs_obj_type_transition
+                    (ARG1 nodedev chr_file "usb1")))
 
        ;;
        ;; Policy

@@ -99,6 +99,15 @@
 
        (blockinherit .agent.base_template)
 
+       (call .sys.read_fs_lnk_files (subj))
+       (call .sys.search_fs_dirs (subj))
+
+       (call .class.list_sysfile_dirs (subj))
+       (call .class.read_sysfile_files (subj))
+
+       (call .devices.read_sysfile_files (subj))
+       (call .devices.search_sysfile_dirs (subj))
+
        (call .file.search_conffile_dirs (subj))
 
        (call .libc.mapexecute_libfile_files (subj))
