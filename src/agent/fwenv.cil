@@ -6,6 +6,8 @@
     (call .fwenv.subj_type_transition (subj)))
 
 (in .file
+    (call .fwenv.libfile_obj_type_transition_miscfile
+          (unconfined.subj_typeattr))
     (call .fwenv.obj_type_transition_conffile (unconfined.subj_typeattr))
     (call .fwenv.obj_type_transition_execfile (unconfined.subj_typeattr)))
 
@@ -25,9 +27,18 @@
         file
         execfile_file_context)
 
+       (filecon
+        "/usr/lib/uboot-envtools\.sh"
+        file
+        miscfile_file_context)
+
        ;;
        ;; Macros
        ;;
+
+       (macro libfile_obj_type_transition_miscfile ((type ARG1))
+              (call .file.libfile_obj_type_transition
+                    (ARG1 miscfile file "uboot-envtools.sh")))
 
        (macro obj_type_transition_conffile ((type ARG1))
               (call .file.conffile_obj_type_transition
@@ -42,4 +53,7 @@
        ;;
 
        (blockinherit .agent.base_template)
-       (blockinherit .file.conf.obj_template))
+       (blockinherit .file.conf.obj_template)
+       (blockinherit .file.misc.obj_template)
+
+       (call .xattr.associate_filesystems (miscfile)))
