@@ -115,6 +115,7 @@
 
        (call .tmp.getattr_filesystems (subj))
        (call .tmp.manage_fs_dirs (subj))
+       (call .tmp.manage_fs_lnk_files (subj))
        (call .tmp.mount_filesystems (subj))
 
        (call .watchdog.dontaudit_writeinherited_nodedev_chr_files (subj))

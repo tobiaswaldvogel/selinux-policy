@@ -88,6 +88,8 @@
 
        (call .random.read_nodedev_chr_files (subj))
 
+       (call .watchdog.dontaudit_writeinherited_nodedev_chr_files (subj))
+
        (call .wifi.writeinherited_fifo_files (subj))
 
        (optional jshn_opt_initscript
