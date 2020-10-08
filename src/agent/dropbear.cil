@@ -83,6 +83,7 @@
        (blockinherit .file.cert.obj_template)
        (blockinherit .tmpfile.runtime.obj_template)
 
+       (allow subj self (capability (setgid setuid)))
        (allow subj self (process (setrlimit)))
        (allow subj self create_udp_socket)
        (allow subj self create_unix_dgram_socket)
