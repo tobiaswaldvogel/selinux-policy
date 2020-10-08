@@ -67,7 +67,9 @@
               (call .tmp.fs_obj_type_transition
                     (ARG1 nodedev chr_file "020"))
               (call .tmp.fs_obj_type_transition
-                    (ARG1 nodedev chr_file "usb1")))
+                    (ARG1 nodedev chr_file "usb1"))
+              (call .tmp.fs_obj_type_transition
+                    (ARG1 nodedev chr_file "usb2")))
 
        ;;
        ;; Policy

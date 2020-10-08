@@ -99,11 +99,17 @@
 
        (blockinherit .agent.base_template)
 
+       (allow subj self (capability (sys_resource)))
+
        (call .sys.read_fs_lnk_files (subj))
        (call .sys.search_fs_dirs (subj))
 
        (call .class.list_sysfile_dirs (subj))
        (call .class.read_sysfile_files (subj))
+
+       (call .debug.search_fs_dirs (subj))
+
+       (call .dev.stor.read.subj_type (subj))
 
        (call .devices.read_sysfile_files (subj))
        (call .devices.search_sysfile_dirs (subj))
@@ -115,5 +121,7 @@
 
        (call .libgccruntime.mapexecute_libfile_files (subj))
        (call .libgccruntime.read_libfile_files (subj))
+
+       (call .mtd.read_stordev_chr_files (subj))
 
        (call .watchdog.dontaudit_writeinherited_nodedev_chr_files (subj)))
