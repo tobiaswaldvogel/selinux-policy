@@ -63,4 +63,6 @@
 
        (call .netifd.readwriteinherited_fifo_files (subj))
        (call .netifd.dontaudit_readwrite_netlink_kobject_uevent_sockets (subj))
-       (call .netifd.dontaudit_readwrite_netlink_route_sockets (subj)))
+       (call .netifd.dontaudit_readwrite_netlink_route_sockets (subj))
+
+       (call .wifi.writeinherited_fifo_files (subj)))

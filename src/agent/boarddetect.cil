@@ -58,6 +58,8 @@
 
        (call .configgenerate.use_fds (subj))
 
+       (call .dev.stor.read.subj_type (subj))
+
        (call .functions.search_miscfile_dirs (subj))
        (call .functions.read_miscfile_files (subj))
 
@@ -79,6 +81,9 @@
 
        (call .libubox.read_datafile_files (subj))
        (call .libubox.search_datafile_dirs (subj))
+
+       (call .mtd.read_procfile_files (subj))
+       (call .mtd.read_stordev_blk_files (subj))
 
        (call .preinit.read_tmpfile_files (subj))
        (call .preinit.search_tmpfile_dirs (subj))
