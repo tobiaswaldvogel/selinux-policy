@@ -106,6 +106,9 @@
        (call .sys.dontaudit_rlimitinh_subjects (subj))
        (call .sys.dontaudit_siginh_subjects (subj))
 
+       (call .file.manage_homefile_dirs (subj))
+       (call .file.manage_homefile_files (subj))
+       (call .file.manage_homefile_lnk_files (subj))
        (call .file.search_conffile_dirs (subj))
        (call .file.search_homefile_dirs (subj))
 
