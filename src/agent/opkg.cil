@@ -133,6 +133,12 @@
 
               (blockinherit .agent.base_template)
 
+              (call list_conffile_dirs (subj))
+              (call read_conffile_files (subj))
+
+              (call read_miscfile_files (subj))
+              (call search_miscfile_dirs (subj))
+
               (call .libc.mapexecute_libfile_files (subj))
               (call .libc.read_libfile_files (subj))
 
