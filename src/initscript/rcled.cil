@@ -48,7 +48,13 @@
        (call manage_runtimetmpfile_files (subj))
        (call obj_type_transition_runtimetmpfile (subj))
 
+       (call .sys.read_fs_lnk_files (subj))
+
        (call .class.search_sysfile_dirs (subj))
+
+       (call .devices.addname_sysfile_dirs (subj))
+       (call .devices.create_sysfile_files (subj))
+       (call .devices.readwrite_sysfile_files (subj))
 
        (call .leds.search_sysfile_dirs (subj))
        (call .leds.write_sysfile_files (subj))

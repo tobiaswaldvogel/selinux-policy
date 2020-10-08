@@ -50,15 +50,23 @@
        (call manage_tmpfile_files (subj))
        (call obj_type_transition_tmpfile (subj))
 
+       (call .sys.read_fs_lnk_files (subj))
        (call .sys.search_sysctlfile_dirs (subj))
 
        (call .board.read_miscfile_files (subj))
 
        (call .bpf.mount_filesystems (subj))
 
+       (call .class.search_sysfile_dirs (subj))
+
        (call .configgenerate.subj_type_transition (subj))
 
        (call .debug.mount_filesystems (subj))
+
+       (call .dev.stor.read.subj_type (subj))
+
+       (call .devices.read_sysfile_files (subj))
+       (call .devices.search_sysfile_dirs (subj))
 
        (call .filesystems.read_procfile_files (subj))
 
@@ -80,11 +88,16 @@
 
        (call .mountroot.subj_type_transition (subj))
 
+       (call .mtd.read_stordev_chr_files (subj))
+
        (call .net.search_sysctlfile_dirs (subj))
 
        (call .opkg.list_miscfile_dirs (subj))
        (call .opkg.read_conffile_files (subj))
        (call .opkg.read_miscfile_files (subj))
+
+       (call .preinit.read_tmpfile_files (subj))
+       (call .preinit.search_tmpfile_dirs (subj))
 
        (call .random.read_nodedev_chr_files (subj))
 
