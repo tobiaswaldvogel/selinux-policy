@@ -101,6 +101,8 @@
        (call .opkg.read_conffile_files (subj))
        (call .opkg.read_miscfile_files (subj))
 
+       (call .osrelease.read_miscfile_files (subj))
+
        (call .preinit.read_tmpfile_files (subj))
        (call .preinit.search_tmpfile_dirs (subj))
 
