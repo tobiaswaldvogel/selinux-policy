@@ -115,7 +115,9 @@
 
        (call .dnsmasq.read_tmpfile_files (subj))
 
-       (call .dropbear.search_certfile_dirs (subj))
+       (call .dropbear.addname_certfile_dirs (subj))
+       (call .dropbear.create_certfile_files (subj))
+       (call .dropbear.readwrite_certfile_files (subj))
 
        (call .file.list_execfile_dirs (subj))
        (call .file.read_conffile_lnk_files (subj))
