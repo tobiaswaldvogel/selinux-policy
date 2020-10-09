@@ -47,5 +47,10 @@
        (call .libz.mapexecute_libfile_files (subj))
        (call .libz.read_libfile_files (subj))
 
+       (call .nameservice.read_miscfile_files (subj))
+
+       (call .ssl.read_certfile_files (subj))
+       (call .ssl.search_certfile_dirs (subj))
+
        (optional sftpserver_opt_dropbear
                  (call .dropbear.readwriteinherited_fifo_files (subj))))
