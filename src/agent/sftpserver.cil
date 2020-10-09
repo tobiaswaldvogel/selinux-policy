@@ -37,4 +37,15 @@
        (call .file.manage_homefile_dirs (subj))
        (call .file.manage_homefile_files (subj))
        (call .file.manage_homefile_lnk_files (subj))
-       (call .file.search_mntfile_dirs (subj)))
+       (call .file.search_conffile_dirs (subj))
+       (call .file.search_datafile_dirs (subj))
+       (call .file.search_mntfile_dirs (subj))
+
+       (call .libcrypto.mapexecute_libfile_files (subj))
+       (call .libcrypto.read_libfile_files (subj))
+
+       (call .libz.mapexecute_libfile_files (subj))
+       (call .libz.read_libfile_files (subj))
+
+       (optional sftpserver_opt_dropbear
+                 (call .dropbear.readwriteinherited_fifo_files (subj))))
