@@ -1,0 +1,40 @@
+;; -*- mode: CIL; fill-column: 79; indent-tabs-mode: nil; -*-
+;; SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
+;; SPDX-License-Identifier: Unlicense
+
+(in .sys
+    (call .sftpserver.subj_type_transition (subj)))
+
+(in .file
+    (call .sftpserver.libfile_obj_type_transition_execfile
+          (unconfined.subj_typeattr)))
+
+(block sftpserver
+
+       ;;
+       ;; Contexts
+       ;;
+
+       (filecon
+        "/usr/lib/sftp-server"
+        file
+        execfile_file_context)
+
+       ;;
+       ;; Macros
+       ;;
+
+       (macro libfile_obj_type_transition_execfile ((type ARG1))
+              (call .file.libfile_obj_type_transition
+                    (ARG1 execfile file "sftp-server")))
+
+       ;;
+       ;; Policy
+       ;;
+
+       (blockinherit .agent.base_template)
+
+       (call .file.manage_homefile_dirs (subj))
+       (call .file.manage_homefile_files (subj))
+       (call .file.manage_homefile_lnk_files (subj))
+       (call .file.search_mntfile_dirs (subj)))
