@@ -28,11 +28,23 @@
               (call .file.libfile_obj_type_transition
                     (ARG1 execfile file "sftp-server")))
 
+       (macro obj_type_transition_tmpfile ((type ARG1)(class ARG2)(name ARG3))
+              (call .tmp.fs_obj_type_transition
+                    (ARG1 tmpfile ARG2 ARG3)))
+
        ;;
        ;; Policy
        ;;
 
        (blockinherit .agent.base_template)
+       (blockinherit .tmpfile.obj_template)
+
+       (call manage_tmpfile_dirs (subj))
+       (call manage_tmpfile_files (subj))
+       (call manage_tmpfile_lnk_files (subj))
+       (call obj_type_transition_tmpfile (subj dir "*"))
+       (call obj_type_transition_tmpfile (subj file "*"))
+       (call obj_type_transition_tmpfile (subj lnk_file "*"))
 
        (call .file.manage_homefile_dirs (subj))
        (call .file.manage_homefile_files (subj))
@@ -51,6 +63,8 @@
 
        (call .ssl.read_certfile_files (subj))
        (call .ssl.search_certfile_dirs (subj))
+
+       (call .tmp.deletename_fs_dirs (subj))
 
        (optional sftpserver_opt_dropbear
                  (call .dropbear.readwriteinherited_fifo_files (subj))))
