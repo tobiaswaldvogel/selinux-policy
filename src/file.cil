@@ -2450,6 +2450,15 @@
               (macro write_all_sock_files ((type ARG1))
                      (allow ARG1 obj_typeattr write_sock_file))
 
+              (macro dontaudit_getattr_all_dirs ((type ARG1))
+                     (dontaudit ARG1 obj_typeattr (dir (getattr))))
+
+              (macro dontaudit_getattr_all_files ((type ARG1))
+                     (dontaudit ARG1 obj_typeattr (file (getattr))))
+
+              (macro dontaudit_getattr_all_lnk_files ((type ARG1))
+                     (dontaudit ARG1 obj_typeattr (lnk_file (getattr))))
+
               ;;
               ;; Policy
               ;;
