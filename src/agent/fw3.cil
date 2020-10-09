@@ -95,14 +95,8 @@
        (call .ipv4.search_sysctlfile_dirs (subj))
        (call .ipv4.write_sysctlfile_files (subj))
 
-       (call .libc.mapexecute_libfile_files (subj))
-       (call .libc.read_libfile_files (subj))
-
        (call .libfts.mapexecute_libfile_files (subj))
        (call .libfts.read_libfile_files (subj))
-
-       (call .libgccruntime.mapexecute_libfile_files (subj))
-       (call .libgccruntime.read_libfile_files (subj))
 
        (call .libip4tc.mapexecute_libfile_files (subj))
        (call .libip4tc.read_libfile_files (subj))

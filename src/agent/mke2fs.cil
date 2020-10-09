@@ -62,9 +62,6 @@
        (call .libblkid.mapexecute_libfile_files (subj))
        (call .libblkid.read_libfile_files (subj))
 
-       (call .libc.mapexecute_libfile_files (subj))
-       (call .libc.read_libfile_files (subj))
-
        (call .libcomerr.mapexecute_libfile_files (subj))
        (call .libcomerr.read_libfile_files (subj))
 
@@ -73,9 +70,6 @@
 
        (call .libext2fs.mapexecute_libfile_files (subj))
        (call .libext2fs.read_libfile_files (subj))
-
-       (call .libgccruntime.mapexecute_libfile_files (subj))
-       (call .libgccruntime.read_libfile_files (subj))
 
        (call .libuuid.mapexecute_libfile_files (subj))
        (call .libuuid.read_libfile_files (subj)))

@@ -115,12 +115,6 @@
 
        (call .kernel.search_sysctlfile_dirs (subj))
 
-       (call .libc.mapexecute_libfile_files (subj))
-       (call .libc.read_libfile_files (subj))
-
-       (call .libgccruntime.mapexecute_libfile_files (subj))
-       (call .libgccruntime.read_libfile_files (subj))
-
        (call .loadavg.read_procfile_files (subj))
 
        (call .logd.unix_dgram_send (subj))

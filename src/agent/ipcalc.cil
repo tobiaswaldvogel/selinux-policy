@@ -35,14 +35,8 @@
 
        (call .devstatus.use_fds (subj))
 
-       (call .libc.mapexecute_libfile_files (subj))
-       (call .libc.read_libfile_files (subj))
-
        (call .libfts.mapexecute_libfile_files (subj))
        (call .libfts.read_libfile_files (subj))
-
-       (call .libgccruntime.mapexecute_libfile_files (subj))
-       (call .libgccruntime.read_libfile_files (subj))
 
        (call .libpcre.mapexecute_libfile_files (subj))
        (call .libpcre.read_libfile_files (subj))

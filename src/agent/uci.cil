@@ -110,12 +110,6 @@
 
        (call .ifup.writeinherited_fifo_files (subj))
 
-       (call .libc.mapexecute_libfile_files (subj))
-       (call .libc.read_libfile_files (subj))
-
-       (call .libgccruntime.mapexecute_libfile_files (subj))
-       (call .libgccruntime.read_libfile_files (subj))
-
        (call .libsetlbf.mapexecute_libfile_files (subj))
        (call .libsetlbf.read_libfile_files (subj))
 

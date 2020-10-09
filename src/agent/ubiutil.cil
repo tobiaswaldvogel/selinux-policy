@@ -116,12 +116,6 @@
 
        (call .file.search_conffile_dirs (subj))
 
-       (call .libc.mapexecute_libfile_files (subj))
-       (call .libc.read_libfile_files (subj))
-
-       (call .libgccruntime.mapexecute_libfile_files (subj))
-       (call .libgccruntime.read_libfile_files (subj))
-
        (call .mtd.read_stordev_chr_files (subj))
 
        (call .watchdog.dontaudit_writeinherited_nodedev_chr_files (subj)))

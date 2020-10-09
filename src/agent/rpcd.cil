@@ -136,14 +136,8 @@
        (call .libblobmsg.mapexecute_libfile_files (subj))
        (call .libblobmsg.read_libfile_files (subj))
 
-       (call .libc.mapexecute_libfile_files (subj))
-       (call .libc.read_libfile_files (subj))
-
        (call .libfts.mapexecute_libfile_files (subj))
        (call .libfts.read_libfile_files (subj))
-
-       (call .libgccruntime.mapexecute_libfile_files (subj))
-       (call .libgccruntime.read_libfile_files (subj))
 
        (call .libiwinfo.mapexecute_libfile_files (subj))
        (call .libiwinfo.read_datafile_files (subj))
