@@ -38,5 +38,5 @@
        ;; Policy
        ;;
 
-       (blockinherit .file.conf.obj_template)
-       (blockinherit .file.exec.obj_template))
+       (blockinherit .agent.base_template)
+       (blockinherit .file.conf.obj_template))
