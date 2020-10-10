@@ -4,7 +4,8 @@
 
 (in .file
     (call .sysupgrade.obj_type_transition_conffile (unconfined.subj_typeattr))
-    (call .sysupgrade.obj_type_transition_execfile (unconfined.subj_typeattr)))
+    (call .sysupgrade.obj_type_transition_execfile (unconfined.subj_typeattr))
+    (call .sysupgrade.obj_type_transition_tmpfile (unconfined.subj_typeattr)))
 
 (block sysupgrade
 
@@ -16,6 +17,11 @@
         "/etc/sysupgrade\.conf"
         file
         conffile_file_context)
+
+       (filecon
+        "/tmp/sysupgrade\.conffiles"
+        file
+        tmpfile_file_context)
 
        (filecon
         "/usr/bin/sysupgrade"
@@ -34,9 +40,14 @@
               (call .file.execfile_obj_type_transition
                     (ARG1 execfile file "sysupgrade")))
 
+       (macro obj_type_transition_tmpfile ((type ARG1))
+              (call .tmp.fs_obj_type_transition
+                    (ARG1 tmpfile file "sysupgrade.conffiles")))
+
        ;;
        ;; Policy
        ;;
 
        (blockinherit .agent.base_template)
-       (blockinherit .file.conf.obj_template))
+       (blockinherit .file.conf.obj_template)
+       (blockinherit .tmpfile.obj_template))
