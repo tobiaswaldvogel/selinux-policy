@@ -254,6 +254,9 @@
        (optional luci_opt_rcfirewall
                  (call .rcfirewall.subj_type_transition (subj)))
 
+       (optional luci_opt_rcfstab
+                 (call .rcfstab.subj_type_transition (subj)))
+
        (optional luci_opt_rcgpioswitch
                  (call .rcgpioswitch.subj_type_transition (subj)))
 
