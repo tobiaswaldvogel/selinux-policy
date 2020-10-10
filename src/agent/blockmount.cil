@@ -38,6 +38,7 @@
        (call .sys.writeinherited_fifo_files (subj))
 
        (call .dev.list_sysfile_dirs (subj))
+       (call .dev.stor.read_all_blk_files (subj))
        (call .dev.stor.read.subj_type (subj))
 
        (call .file.search_conffile_dirs (subj))
@@ -63,10 +64,15 @@
 
        (call .loopctl.read_nodedev_chr_files (subj))
 
+       (call .mtd.read_procfile_files (subj))
        (call .mtd.read_stordev_chr_files (subj))
 
+       (call .tmp.list_fs_dirs (subj))
+
        (call .uci.read_conffile_files (subj))
+       (call .uci.read_tmpfile_files (subj))
        (call .uci.search_conffile_dirs (subj))
+       (call .uci.search_tmpfile_dirs (subj))
 
        (call .watchdog.dontaudit_writeinherited_nodedev_chr_files (subj))
 
