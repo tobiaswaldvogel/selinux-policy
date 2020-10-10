@@ -43,8 +43,14 @@
        (call .libblkidtiny.mapexecute_libfile_files (subj))
        (call .libblkidtiny.read_libfile_files (subj))
 
+       (call .libblobmsg.mapexecute_libfile_files (subj))
+       (call .libblobmsg.read_libfile_files (subj))
+
        (call .libubox.mapexecute_libfile_files (subj))
        (call .libubox.read_libfile_files (subj))
+
+       (call .libubus.mapexecute_libfile_files (subj))
+       (call .libubus.read_libfile_files (subj))
 
        (call .libuci.mapexecute_libfile_files (subj))
        (call .libuci.read_libfile_files (subj))
