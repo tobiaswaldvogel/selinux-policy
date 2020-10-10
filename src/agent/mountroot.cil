@@ -118,6 +118,9 @@
        (call .xattr.mount_filesystems (subj))
        (call .xattr.remount_filesystems (subj))
 
+       (optional mountroot_opt_blockmount
+                 (call .blockmount.subj_type_transition (subj)))
+
        (optional mountroot_opt_restorecon
                  ;; restorecon/busybox: might be temporary: for libfstools/overlay.c
                  (call .fs.seclabel.getattr_all_filesystems (subj))))

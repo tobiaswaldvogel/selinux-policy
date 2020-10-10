@@ -146,4 +146,7 @@
 
        (call .wtmp.create_logtmpfile_files (subj))
        (call .wtmp.obj_type_transition_logtmpfile (subj))
-       (call .wtmp.readwrite_logtmpfile_files (subj)))
+       (call .wtmp.readwrite_logtmpfile_files (subj))
+
+       (optional rcboot_opt_blockmount
+                 (call .blockmount.subj_type_transition (subj))))

@@ -31,4 +31,17 @@
        ;; Policy
        ;;
 
-       (blockinherit .agent.base_template))
+       (blockinherit .agent.base_template)
+
+       (call .sys.read_fs_lnk_files (subj))
+
+       (call .dev.stor.read.subj_type (subj))
+
+       (call .libblkidtiny.mapexecute_libfile_files (subj))
+       (call .libblkidtiny.read_libfile_files (subj))
+
+       (call .loopctl.read_nodedev_chr_files (subj))
+
+       (call .mtd.read_stordev_chr_files (subj))
+
+       (call .xattr.unmount_filesystems (subj)))
