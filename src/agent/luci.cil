@@ -233,6 +233,9 @@
 
        (call .wpad.subj_type_transition (subj))
 
+       (optional luci_opt_blockmount
+                 (call .blockmount.subj_type_transition (subj)))
+
        (optional luci_opt_rcacme
                  (call .rcacme.subj_type_transition (subj)))
 
