@@ -70,6 +70,8 @@
        (call .file.search_conffile_dirs (subj))
        (call .file.search_datafile_dirs (subj))
 
+       (call .hotplugcall.use_fds (subj))
+
        (call .kmsg.readwrite_nodedev_chr_files (subj))
 
        (call .libblkidtiny.mapexecute_libfile_files (subj))
