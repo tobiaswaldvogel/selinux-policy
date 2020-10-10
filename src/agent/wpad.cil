@@ -77,8 +77,10 @@
        (call obj_type_transition_runtimetmpfile (subj dir "hostapd"))
        (call obj_type_transition_runtimetmpfile (subj dir "wpa_supplicant"))
 
+       (call .sys.loadkernelmodule.subj_type (subj))
        (call .sys.read_fs_lnk_files (subj))
        (call .sys.readinherited_fifo_files (subj))
+       (call .sys.requestmodule (subj))
        (call .sys.search_fs_dirs (subj))
 
        (call .class.search_sysfile_dirs (subj))
