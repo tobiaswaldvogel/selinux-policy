@@ -123,7 +123,11 @@
        (call .file.read_conffile_lnk_files (subj))
        (call .file.search_initscriptfile_dirs (subj))
 
+       (call .filesystems.read_procfile_files (subj))
+
        (call .firewall.readwrite_conffile_files (subj))
+
+       (call .fsck.subj_type_transition (subj))
 
        (call .ifup.subj_type_transition (subj))
 

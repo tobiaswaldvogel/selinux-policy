@@ -448,6 +448,8 @@
               (call .sys.search_fs_dirs (subj))
               (call .sys.writeinherited_fifo_files (subj))
 
+              (call .blockmount.auditexecute_execfile_files (subj))
+
               (call .class.search_sysfile_dirs (subj))
 
               (call .dropbear.auditexecute_execfile_files (subj))

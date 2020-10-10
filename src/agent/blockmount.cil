@@ -27,6 +27,10 @@
        ;; Macros
        ;;
 
+
+       (macro auditexecute_execfile_files ((type ARG1))
+              (allow ARG1 execfile (file (getattr execute))))
+
        (macro mounton_tmpfile_dirs ((type ARG1))
               (allow ARG1 tmpfile (dir (getattr mounton))))
 

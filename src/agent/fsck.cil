@@ -1,0 +1,34 @@
+;; -*- mode: CIL; fill-column: 79; indent-tabs-mode: nil; -*-
+;; SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
+;; SPDX-License-Identifier: Unlicense
+
+(in .sys
+    (call .fsck.subj_type_transition (subj)))
+
+(in .file
+    (call .fsck.obj_type_transition_execfile (unconfined.subj_typeattr)))
+
+(block fsck
+
+       ;;
+       ;; Contexts
+       ;;
+
+       (filecon
+        "/usr/bin/fsck\..*"
+        file
+        execfile_file_context)
+
+       ;;
+       ;; Macros
+       ;;
+
+       (macro obj_type_transition_execfile ((type ARG1))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "fsck.f2fs")))
+
+       ;;
+       ;; Policy
+       ;;
+
+       (blockinherit .agent.base_template))
