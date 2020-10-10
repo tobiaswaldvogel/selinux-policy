@@ -176,6 +176,7 @@
 
        (call .pppd.list_miscfile_dirs (subj))
        (call .pppd.read_miscfile_files (subj))
+       (call .pppd.sigkill_subjects (subj))
        (call .pppd.signal_subjects (subj))
        (call .pppd.subj_type_transition (subj))
 

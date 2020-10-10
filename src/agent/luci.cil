@@ -229,7 +229,9 @@
 
        (call .ubusd.unix_stream_connect (subj))
 
+       (call .uci.search_conffile_dirs (subj))
        (call .uci.subj_type_transition (subj))
+       (call .uci.write_conffile_files (subj))
 
        (call .wpad.subj_type_transition (subj))
 

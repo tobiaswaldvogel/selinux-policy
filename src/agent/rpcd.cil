@@ -235,5 +235,8 @@
 
        (call .xtables.subj_type_transition (subj))
 
+       (optional rpcd_optional_blockmount
+                 (call .blockmount.subj_type_transition (subj)))
+
        (optional rpcd_opt_rcfirewall
                  (call .rcfirewall.subj_type_transition (subj))))
