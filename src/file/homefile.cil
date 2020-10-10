@@ -30,6 +30,9 @@
     ;; Macros
     ;;
 
+    (macro mounton_homefile_dirs ((type ARG1))
+           (allow ARG1 homefile (dir (getattr mounton))))
+
     (macro obj_type_transition_homefile ((type ARG1))
            (call .sys.rootfile_obj_type_transition
                  (ARG1 homefile dir "home"))

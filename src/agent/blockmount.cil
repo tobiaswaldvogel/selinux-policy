@@ -54,7 +54,6 @@
        (call mounton_tmpfile_dirs (subj))
        (call obj_type_transition_tmpfile (subj dir "*"))
 
-       (call .sys.mountpoint.mounton_all_dirs (subj))
        (call .sys.read_fs_lnk_files (subj))
        (call .sys.readringbuffer (subj))
        (call .sys.search_fs_dirs (subj))
@@ -69,13 +68,16 @@
        (call .dev.create_stordev_blk_files (subj))
        (call .dev.list_sysfile_dirs (subj))
        (call .dev.obj_type_transition_stordev (subj))
-       (call .dev.stor.read_all_blk_files (subj))
-       (call .dev.stor.read.subj_type (subj))
+       (call .dev.stor.readwrite_all_blk_files (subj))
+       (call .dev.stor.readwrite.subj_type (subj))
 
        (call .devices.list_sysfile_dirs (subj))
        (call .devices.read_sysfile_files (subj))
 
        (call .file.manage_mntfile_dirs (subj))
+       (call .file.mounton_homefile_dirs (subj))
+       (call .file.mounton_mntfile_dirs (subj))
+       (call .file.mounton_overlayfile_dirs (subj))
        (call .file.search_conffile_dirs (subj))
        (call .file.search_datafile_dirs (subj))
        (call .file.search_overlayfile_dirs (subj))

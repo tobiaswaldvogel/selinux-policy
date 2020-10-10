@@ -30,6 +30,9 @@
     ;; Macros
     ;;
 
+    (macro mounton_overlayfile_dirs ((type ARG1))
+           (allow ARG1 overlayfile (dir (getattr mounton))))
+
     (macro obj_type_transition_overlayfile ((type ARG1))
            (call .sys.rootfile_obj_type_transition
                  (ARG1 overlayfile dir "overlay")))

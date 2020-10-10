@@ -21,6 +21,9 @@
     ;; Macros
     ;;
 
+    (macro mounton_mntfile_dirs ((type ARG1))
+           (allow ARG1 mntfile (dir (getattr mounton))))
+
     (macro obj_type_transition_mntfile ((type ARG1))
            (call .sys.rootfile_obj_type_transition
                  (ARG1 mntfile dir "mnt")))
