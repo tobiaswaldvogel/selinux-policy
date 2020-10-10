@@ -111,6 +111,8 @@
        (call .tmp.manage_fs_dirs (subj))
        (call .tmp.manage_fs_lnk_files (subj))
        (call .tmp.mount_filesystems (subj))
+       ;; the big hammer
+       (call .tmp.dontaudit_getattr_fs_chr_files (subj))
 
        (call .watchdog.dontaudit_writeinherited_nodedev_chr_files (subj))
 

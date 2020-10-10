@@ -48,6 +48,9 @@
               (call .sys.rootfile_obj_type_transition
                     (ARG1 fs dir "tmp")))
 
+       (macro dontaudit_getattr_fs_chr_files ((type ARG1))
+              (dontaudit ARG1 fs (chr_file (getattr))))
+
        ;;
        ;; Policy
        ;;

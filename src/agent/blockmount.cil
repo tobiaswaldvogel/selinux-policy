@@ -7,7 +7,10 @@
 
 (in .file
     (call .blockmount.obj_type_transition_execfile (unconfined.subj_typeattr))
-    (call .blockmount.obj_type_transition_tmpfile (unconfined.subj_typeattr)))
+    (call .blockmount.obj_type_transition_tmpfile
+          (unconfined.subj_typeattr dir "extroot"))
+    (call .blockmount.obj_type_transition_tmpfile
+          (unconfined.subj_typeattr dir "ubifs_cfg")))
 
 (block blockmount
 
@@ -31,11 +34,9 @@
               (call .file.execfile_obj_type_transition
                     (ARG1 execfile file "block")))
 
-       (macro obj_type_transition_tmpfile ((type ARG1))
+       (macro obj_type_transition_tmpfile ((type ARG1)(class ARG2)(name ARG3))
               (call .tmp.fs_obj_type_transition
-                    (ARG1 tmpfile dir "extroot"))
-              (call .tmp.fs_obj_type_transition
-                    (ARG1 tmpfile dir "ubifs_cfg")))
+                    (ARG1 tmpfile ARG2 ARG3)))
 
        ;;
        ;; Policy
@@ -44,12 +45,13 @@
        (blockinherit .agent.base_template)
        (blockinherit .tmpfile.obj_template)
 
+       (allow subj self (capability (mknod)))
        (allow subj self (capability2 (syslog)))
        (allow subj self create_unix_stream_socket)
 
        (call manage_tmpfile_dirs (subj))
        (call mounton_tmpfile_dirs (subj))
-       (call obj_type_transition_tmpfile (subj))
+       (call obj_type_transition_tmpfile (subj dir "*"))
 
        (call .sys.read_fs_lnk_files (subj))
        (call .sys.readringbuffer (subj))
@@ -61,7 +63,9 @@
 
        (call .debug.search_fs_dirs (subj))
 
+       (call .dev.create_stordev_blk_files (subj))
        (call .dev.list_sysfile_dirs (subj))
+       (call .dev.obj_type_transition_stordev (subj))
        (call .dev.stor.read_all_blk_files (subj))
        (call .dev.stor.read.subj_type (subj))
 
