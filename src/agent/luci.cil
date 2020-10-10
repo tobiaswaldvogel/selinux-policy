@@ -236,6 +236,11 @@
        (call .wpad.subj_type_transition (subj))
 
        (optional luci_opt_blockmount
+                 ;; mountpoints currently supported
+                 (call .file.search_homefile_dirs (subj))
+                 (call .file.search_mntfile_dirs (subj))
+                 (call .file.search_overlayfile_dirs (subj))
+
                  (call .blockmount.subj_type_transition (subj)))
 
        (optional luci_opt_rcacme
