@@ -6,13 +6,19 @@
     (call .blockmount.subj_type_transition (subj)))
 
 (in .file
-    (call .blockmount.obj_type_transition_execfile (unconfined.subj_typeattr)))
+    (call .blockmount.obj_type_transition_execfile (unconfined.subj_typeattr))
+    (call .blockmount.obj_type_transition_tmpfile (unconfined.subj_typeattr)))
 
 (block blockmount
 
        ;;
        ;; Contexts
        ;;
+
+       (filecon
+        "/tmp/extroot"
+        file
+        tmpfile_file_context)
 
        (filecon
         "/usr/bin/block"
@@ -27,19 +33,33 @@
               (call .file.execfile_obj_type_transition
                     (ARG1 execfile file "block")))
 
+       (macro obj_type_transition_tmpfile ((type ARG1))
+              (call .tmp.fs_obj_type_transition
+                    (ARG1 tmpfile dir "extroot")))
+
        ;;
        ;; Policy
        ;;
 
        (blockinherit .agent.base_template)
+       (blockinherit .tmpfile.obj_template)
+
+       (call manage_tmpfile_dirs (subj))
+       (call obj_type_transition_tmpfile (subj))
 
        (call .sys.read_fs_lnk_files (subj))
        (call .sys.search_fs_dirs (subj))
        (call .sys.writeinherited_fifo_files (subj))
 
+       (call .class.list_sysfile_dirs (subj))
+       (call .class.read_sysfile_files (subj))
+
        (call .dev.list_sysfile_dirs (subj))
        (call .dev.stor.read_all_blk_files (subj))
        (call .dev.stor.read.subj_type (subj))
+
+       (call .devices.list_sysfile_dirs (subj))
+       (call .devices.read_sysfile_files (subj))
 
        (call .file.search_conffile_dirs (subj))
        (call .file.search_datafile_dirs (subj))
