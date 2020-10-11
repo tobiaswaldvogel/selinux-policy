@@ -37,11 +37,8 @@
        (allow subj self (capability (sys_admin sys_rawio)))
 
        (call .getattr_invalid_filesystems (subj))
-       (call .getattr_unlabeled_filesystems (subj))
        (call .remount_invalid_filesystems (subj))
-       (call .remount_unlabeled_filesystems (subj))
        (call .unmount_invalid_filesystems (subj))
-       (call .unmount_unlabeled_filesystems (subj))
 
        (call .dev.stor.read_all_blk_files (subj))
        (call .dev.stor.read.subj_type (subj))
