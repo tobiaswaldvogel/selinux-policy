@@ -59,6 +59,9 @@
        (call .devices.list_sysfile_dirs (subj))
        (call .devices.read_sysfile_files (subj))
 
+       (call .ext4.read_sysfile_files (subj))
+       (call .ext4.search_sysfile_dirs (subj))
+
        (call .file.search_conffile_dirs (subj))
        (call .file.search_datafile_dirs (subj))
 

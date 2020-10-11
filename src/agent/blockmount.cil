@@ -92,6 +92,9 @@
 
        (call .kmsg.readwrite_nodedev_chr_files (subj))
 
+       (call .libblkid.mapexecute_libfile_files (subj))
+       (call .libblkid.read_libfile_files (subj))
+
        (call .libblkidtiny.mapexecute_libfile_files (subj))
        (call .libblkidtiny.read_libfile_files (subj))
 
