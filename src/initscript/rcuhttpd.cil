@@ -39,6 +39,7 @@
        (call .libcrypto.mapexecute_libfile_files (subj))
        (call .libcrypto.read_libfile_files (subj))
 
+       (call .liblua.getattr_libfile_files (subj))
        (call .liblua.search_libfile_dirs (subj))
 
        (call .libssl.mapexecute_libfile_files (subj))
