@@ -12,6 +12,13 @@
 /rom/usr/libexec /usr/bin
 /rom/usr/sbin /usr/bin
 
+/tmp/overlay/upper /
+/tmp/overlay/upper/bin /usr/bin
+/tmp/overlay/upper/lib /usr/lib
+/tmp/overlay/upper/sbin /usr/bin
+/tmp/overlay/upper/usr/libexec /usr/bin
+/tmp/overlay/upper/usr/sbin /usr/bin
+
 /tmp/root/upper /
 /tmp/root/upper/bin /usr/bin
 /tmp/root/upper/lib /usr/lib

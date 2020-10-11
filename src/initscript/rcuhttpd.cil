@@ -54,6 +54,9 @@
 
        (call .random.read_nodedev_chr_files (subj))
 
+       (call .ssl.read_certfile_files (subj))
+       (call .ssl.search_certfile_dirs (subj))
+
        (call .uhttpd.conffile_obj_type_transition_certfile (subj))
        (call .uhttpd.getattr_libfile_files (subj))
        (call .uhttpd.manage_certfile_files (subj))
