@@ -64,8 +64,10 @@
 
        (call .dev.getattr_all_chr_files (subj))
        (call .dev.stor.read_all_blk_files (subj))
+       (call .dev.stor.read_all_chr_files (subj))
        (call .dev.stor.readwrite.subj_type (subj))
        (call .dev.write_stordev_blk_files (subj))
+       (call .dev.write_stordev_chr_files (subj))
 
        ;; this is probably a bug: /boot/boot
        (call .dos.addname_fs_dirs (subj))

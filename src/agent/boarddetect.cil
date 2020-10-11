@@ -50,6 +50,7 @@
        (call list_conffile_dirs (subj))
        (call read_conffile_files (subj))
 
+       (call .sys.read_fs_lnk_files (subj))
        (call .sys.writeinherited_fifo_files (subj))
 
        (call .board.read_miscfile_files (subj))
