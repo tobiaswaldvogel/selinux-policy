@@ -18,6 +18,15 @@
      overlayfile_file_context)
 
     (filecon
+     "/tmp/overlay"
+     dir
+     overlayfile_file_context)
+    (filecon
+     "/tmp/overlay/.*"
+     any
+     overlayfile_file_context)
+
+    (filecon
      "/tmp/root/work"
      dir
      overlayfile_file_context)
@@ -38,6 +47,8 @@
                  (ARG1 overlayfile dir "overlay")))
 
     (macro tmp_obj_type_transition_overlayfile ((type ARG1))
+           (call .tmp.fs_obj_type_transition
+                 (ARG1 overlayfile dir "overlay"))
            (call .tmp.fs_obj_type_transition
                  (ARG1 overlayfile dir "work")))
 
