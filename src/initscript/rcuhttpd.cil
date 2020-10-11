@@ -36,6 +36,9 @@
 
        (call .file.deletename_conffile_dirs (subj))
 
+       (call .libcrypto.mapexecute_libfile_files (subj))
+       (call .libcrypto.read_libfile_files (subj))
+
        (call .libssl.mapexecute_libfile_files (subj))
        (call .libssl.read_libfile_files (subj))
 
