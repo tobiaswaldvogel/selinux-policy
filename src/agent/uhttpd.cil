@@ -42,10 +42,6 @@
         execfile_file_context)
 
        (filecon
-        "/usr/lib/uhttpd_lua\.so"
-        file
-        libfile_file_context)
-       (filecon
         "/usr/lib/uhttpd_ubus\.so"
         file
         libfile_file_context)
@@ -79,8 +75,6 @@
                     (ARG1 execfile file "uhttpd")))
 
        (macro obj_type_transition_libfile ((type ARG1))
-              (call .file.libfile_obj_type_transition
-                    (ARG1 libfile file "uhttpd_lua.so"))
               (call .file.libfile_obj_type_transition
                     (ARG1 libfile file "uhttpd_ubus.so")))
 
