@@ -44,6 +44,7 @@
        (blockinherit .agent.base_template)
        (blockinherit .tmpfile.obj_template)
 
+       ;; mknod is caused by "cp", probably copying over a devnode. bug?
        (allow subj self
               (capability (dac_override dac_read_search mknod sys_admin)))
        (allow subj self (capability2 (syslog)))
