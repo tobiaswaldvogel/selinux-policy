@@ -102,6 +102,8 @@
        (call .proc.list_fs_dirs (subj))
        (call .pts.search_fs_dirs (subj))
 
+       (call .selinux.checkcontext (subj))
+
        (call .shell.execute_execfile_files (subj))
 
        (call .sysctl.list_conffile_dirs (subj))
