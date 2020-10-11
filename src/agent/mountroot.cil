@@ -44,7 +44,8 @@
        (blockinherit .agent.base_template)
        (blockinherit .tmpfile.obj_template)
 
-       (allow subj self (capability (dac_override dac_read_search sys_admin)))
+       (allow subj self
+              (capability (dac_override dac_read_search mknod sys_admin)))
        (allow subj self (capability2 (syslog)))
        (allow subj self create_unix_dgram_socket)
 
@@ -123,6 +124,7 @@
        (call .xattr.getattr_filesystems (subj))
        (call .xattr.mount_filesystems (subj))
        (call .xattr.remount_filesystems (subj))
+       (call .xattr.unmount_filesystems (subj))
 
        (optional mountroot_opt_blockmount
                  (call .blockmount.subj_type_transition (subj))))
