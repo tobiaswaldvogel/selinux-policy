@@ -37,6 +37,10 @@
         runtimetmpfile_file_context)
 
        (filecon
+        "/usr/bin/hostapd"
+        file
+        execfile_file_context)
+       (filecon
         "/usr/bin/wpad"
         file
         execfile_file_context)
@@ -49,6 +53,8 @@
               (allow ARG1 execfile (file (getattr))))
 
        (macro obj_type_transition_execfile ((type ARG1))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "hostapd"))
               (call .file.execfile_obj_type_transition
                     (ARG1 execfile file "wpad")))
 

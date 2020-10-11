@@ -58,6 +58,8 @@
        (call .uhttpd.getattr_libfile_files (subj))
        (call .uhttpd.manage_certfile_files (subj))
        (call .uhttpd.manage_conftmpfile_dirs (subj))
+       (call .uhttpd.mapexecute_libfile_files (subj))
+       (call .uhttpd.read_libfile_files (subj))
        (call .uhttpd.obj_type_transition_conftmpfile (subj))
 
        (optional rcuhttpd_opt_acme
