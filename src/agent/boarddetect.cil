@@ -61,6 +61,8 @@
 
        (call .dev.stor.read.subj_type (subj))
 
+       (call .devices.search_sysfile_dirs (subj))
+
        (call .functions.search_miscfile_dirs (subj))
        (call .functions.read_miscfile_files (subj))
 

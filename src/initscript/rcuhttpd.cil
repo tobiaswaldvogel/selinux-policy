@@ -39,6 +39,8 @@
        (call .libcrypto.mapexecute_libfile_files (subj))
        (call .libcrypto.read_libfile_files (subj))
 
+       (call .liblua.search_libfile_dirs (subj))
+
        (call .libssl.mapexecute_libfile_files (subj))
        (call .libssl.read_libfile_files (subj))
 
@@ -61,8 +63,6 @@
        (call .uhttpd.getattr_libfile_files (subj))
        (call .uhttpd.manage_certfile_files (subj))
        (call .uhttpd.manage_conftmpfile_dirs (subj))
-       (call .uhttpd.mapexecute_libfile_files (subj))
-       (call .uhttpd.read_libfile_files (subj))
        (call .uhttpd.obj_type_transition_conftmpfile (subj))
 
        (optional rcuhttpd_opt_acme
