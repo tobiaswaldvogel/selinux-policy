@@ -83,10 +83,8 @@
        (call .file.manage_mntfile_dirs (subj))
        (call .file.mounton_homefile_dirs (subj))
        (call .file.mounton_mntfile_dirs (subj))
-       (call .file.mounton_overlayfile_dirs (subj))
        (call .file.search_conffile_dirs (subj))
        (call .file.search_datafile_dirs (subj))
-       (call .file.search_overlayfile_dirs (subj))
 
        (call .hotplugcall.use_fds (subj))
 
@@ -119,6 +117,9 @@
 
        (call .mtd.read_procfile_files (subj))
        (call .mtd.read_stordev_chr_files (subj))
+
+       (call .overlay.mounton_miscfile_dirs (subj))
+       (call .overlay.search_miscfile_dirs (subj))
 
        (call .tmp.deletename_fs_dirs (subj))
 

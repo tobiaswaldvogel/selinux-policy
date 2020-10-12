@@ -239,9 +239,8 @@
                  ;; mountpoints currently supported
                  (call .file.search_homefile_dirs (subj))
                  (call .file.search_mntfile_dirs (subj))
-                 (call .file.search_overlayfile_dirs (subj))
-
-                 (call .blockmount.subj_type_transition (subj)))
+                 (call .blockmount.subj_type_transition (subj))
+                 (call .overlay.search_miscfile_dirs (subj)))
 
        (optional luci_opt_rcacme
                  (call .rcacme.subj_type_transition (subj)))

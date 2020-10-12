@@ -47,8 +47,8 @@
            (call .sys.rootfile_obj_type_transition
                  (ARG1 lostfoundfile dir "lost+found")))
 
-    (macro overlayfile_obj_type_transition_lostfoundfile ((type ARG1))
-           (call .file.overlayfile_obj_type_transition
+    (macro overlaymiscfile_obj_type_transition_lostfoundfile ((type ARG1))
+           (call .overlay.miscfile_obj_type_transition
                  (ARG1 lostfoundfile dir "lost+found")))
 
     ;;
@@ -59,7 +59,7 @@
 
     (call mntfile_obj_type_transition_lostfoundfile (unconfined.subj_typeattr))
     (call obj_type_transition_lostfoundfile (unconfined.subj_typeattr))
-    (call overlayfile_obj_type_transition_lostfoundfile
+    (call overlaymiscfile_obj_type_transition_lostfoundfile
           (unconfined.subj_typeattr))
 
     (block lostfound

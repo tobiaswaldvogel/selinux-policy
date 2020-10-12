@@ -22,8 +22,8 @@
     ;; Macros
     ;;
 
-    (macro overlayfile_obj_type_transition_rootfile ((type ARG1))
-           (call .file.overlayfile_obj_type_transition
+    (macro overlaymiscfile_obj_type_transition_rootfile ((type ARG1))
+           (call .overlay.miscfile_obj_type_transition
                  (ARG1 rootfile dir "upper")))
 
     (macro tmp_obj_type_transition_rootfile ((type ARG1))
@@ -37,7 +37,7 @@
     (blockinherit .rootfile.obj_template))
 
 (in .file
-    (call .sys.overlayfile_obj_type_transition_rootfile
+    (call .sys.overlaymiscfile_obj_type_transition_rootfile
           (unconfined.subj_typeattr))
     (call .sys.tmp_obj_type_transition_rootfile
           (unconfined.subj_typeattr)))
