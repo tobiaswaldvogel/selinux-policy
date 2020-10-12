@@ -55,7 +55,7 @@ ephemeral network port
 ## src/net/netport.cil
 
 The `src/net/netport.cil` module defines network ports and access to
-them on the lowest level namely "all network ports" and in addition
+them at the lowest level namely "all network ports" and in addition
 declares a `port` security identifier and associated default network
 port type `net.netport`. This type is effectively never to be
 referenced because network ports are sliced into "reserved",
@@ -91,10 +91,10 @@ Macros providing access to `net.port.obj_typeattr`:
 * `net.port.udp_bind_name_all_netports`
 
 The `net.port.obj_base_template` is inherited in the `net` container
-to declare the default network port type to be associated with the
-`port` security identifier and is also inherited in the various
-equivalent higher level "reserved", "unresered" and "ephemeral" object
-base templates.
+to declare the default `net.netport` network port type to be
+associated with the `port` security identifier and is also inherited
+at the various equivalent intermediate level "reserved", "unresered"
+and "ephemeral" object base templates.
 
 Full access to all network ports is associated with the
 `net.unconfined.subj_typeattr` type attribute declared in the
@@ -103,7 +103,7 @@ Full access to all network ports is associated with the
 ## src/net/netport/reservednetport.cil
 
 The `src/net/netport/reservednetport.cil` module defines network ports
-and access to them on the reserved intermediate level namely
+and access to them at the reserved intermediate level namely
 "all reserved network ports" and in addition declares a generic
 reserved network port type `reserved.netport` to be associated
 with network ports 1-1023 by default. The network port context is
@@ -137,7 +137,7 @@ Macros providing access to `net.port.reserved.obj_typeattr`:
 ## src/net/netport/unreservednetport.cil
 
 The `src/net/netport/unreservednetport.cil` module defines network
-ports and access to them on the unreserved intermediate level namely
+ports and access to them at the unreserved intermediate level namely
 "all unreserved network ports" and in addition declares a generic
 unreserved network port type `unreserved.netport` to be associated
 with network ports 1024-32767 and 61000-65535 by default. The network
@@ -172,7 +172,7 @@ Macros providing access to `net.port.unreserved.obj_typeattr`:
 ## src/net/netport/ephemeralnetport.cil
 
 The `src/net/netport/ephemeralnetport.cil` module defines network
-ports and access to them on the ephemeral intermediate level namely
+ports and access to them at the ephemeral intermediate level namely
 "all ephemeral network ports" and in addition declares a generic
 ephemeral network port type `ephemeral.netport` to be associated
 with network ports 32768-60999 by default. The network port context is
@@ -243,7 +243,8 @@ EOF
 make
 
 # analyze policy
-seinfo policy.31 -xt myephemeral.netport
+seinfo policy.31 -x -t myephemeral.netport
+seinfo policy.31 -x --portcon 50000
 sesearch policy.31 -A -t myephemeral.netport
 ```
 A comphrensive collection of macros are now available to facilitate
