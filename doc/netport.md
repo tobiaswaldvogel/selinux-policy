@@ -243,7 +243,7 @@ seinfo policy.31 -x -t myephemeral.netport
 seinfo policy.31 -x --portcon 50000
 sesearch policy.31 -A -t myephemeral.netport
 ```
-A comphrensive collection of macros is now available to facilitate
+A comprehensive collection of macros is now available to facilitate
 access to network ports associated with the `myephemeral.netport` port
 type:
 
@@ -258,5 +258,5 @@ type:
 * `myephemeral.udp_bind_name_netports`
 
 Rules that reference all network ports, or all ephemeral network
-ports now also automatically associate with the `myephemeral.netport`
-network port type.
+ports are now also automatically associated with the
+`myephemeral.netport` network port type.
