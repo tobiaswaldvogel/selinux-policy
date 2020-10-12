@@ -14,43 +14,9 @@ using `types` (netport) and `type attributes` (obj_typeattr).
 
 Network ports are either "reserved", "unreserved" or "ephemeral".
 
-The modules that facilitate access to network ports on a lower level
+The modules that facilitate access to network ports at a lower level
 abstract and inherit templates that are used to declare and provide
 access to network port types and type attributes.
-
-* `net.port.obj_base_template` Declares a network port
-* `net.port.obj_all_macro_template` Macros that provide access to all
-network ports
-
-* `net.port.reserved.obj_base_template` Declares a reserved network
-port
-* `net.port.reserved.obj_all_macro_template` Macros that provide
-access to all reserved network ports
-* `net.port.reserved.obj_macro_template` Macros that provide access to
-a specified reserved network port
-* `net.port.reserved.obj_template` Declares a reserved network port
-and includes macros that provide access to the declared reserved
-network port
-
-* `net.port.unreserved.obj_base_template` Declares a unreserved
-network port
-* `net.port.unreserved.obj_all_macro_template` Macros that provide
-access to all unreserved network ports
-* `net.port.unreserved.obj_macro_template` Macros that provide access
-to a specified unreserved network port
-* `net.port.unreserved.obj_template` Declares a unreserved network
-port and includes macros that provide access to the declared
-unreserved network port
-
-* `net.port.ephemeral.obj_base_template` Declares a ephemeral
-network port
-* `net.port.ephemeral.obj_all_macro_template` Macros that provide
-access to all ephemeral network ports
-* `net.port.ephemeral.obj_macro_template` Macros that provide access
-to a specified ephemeral network port
-* `net.port.ephemeral.obj_template` Declares a ephemeral network
-port and includes macros that provide access to the declared
-ephemeral network port
 
 ## src/net/netport.cil
 
@@ -65,17 +31,11 @@ The `net.port.obj_all_macro_template` is only inherited in the `net`
 container to make a type attribute and macros available that can be
 referenced to operate on all network ports.
 
-Macros providing access to `net.netport`:
+Available templates:
 
-* `net.dccp_bind_name_netports`
-* `net.dccp_connect_netports`
-* `net.icmp_bind_name_netports`
-* `net.rawip_bind_name_netports`
-* `net.sctp_bind_name_netports`
-* `net.sctp_connect_netports`
-* `net.tcp_bind_name_netports`
-* `net.tcp_connect_netports`
-* `net.udp_bind_name_netports`
+* `net.port.obj_base_template` Declares a network port
+* `net.port.obj_all_macro_template` Macros that provide access to all
+network ports
 
 Macros providing access to `net.port.obj_typeattr`:
 
@@ -108,6 +68,18 @@ and access to them at the reserved intermediate level namely
 reserved network port type `reserved.netport` to be associated
 with network ports 1-1023 by default. The network port context is
 associated with protocols and port numbers using `portcon` statements.
+
+Available templates:
+
+* `net.port.reserved.obj_base_template` Declares a reserved network
+port
+* `net.port.reserved.obj_all_macro_template` Macros that provide
+access to all reserved network ports
+* `net.port.reserved.obj_macro_template` Macros that provide access to
+a specified reserved network port
+* `net.port.reserved.obj_template` Declares a reserved network port
+and includes macros that provide access to the declared reserved
+network port
 
 Macros providing access to `reserved.netport`:
 
@@ -144,6 +116,18 @@ with network ports 1024-32767 and 61000-65535 by default. The network
 port context is associated with protocols and port numbers using
 `portcon` statements.
 
+Available templates:
+
+* `net.port.unreserved.obj_base_template` Declares a unreserved
+network port
+* `net.port.unreserved.obj_all_macro_template` Macros that provide
+access to all unreserved network ports
+* `net.port.unreserved.obj_macro_template` Macros that provide access
+to a specified unreserved network port
+* `net.port.unreserved.obj_template` Declares a unreserved network
+port and includes macros that provide access to the declared
+unreserved network port
+
 Macros providing access to `unreserved.netport`:
 
 * `unreserved.dccp_bind_name_netports`
@@ -177,6 +161,18 @@ ports and access to them at the ephemeral intermediate level namely
 ephemeral network port type `ephemeral.netport` to be associated
 with network ports 32768-60999 by default. The network port context is
 associated with protocols and port numbers using `portcon` statements.
+
+Available templates:
+
+* `net.port.ephemeral.obj_base_template` Declares a ephemeral
+network port
+* `net.port.ephemeral.obj_all_macro_template` Macros that provide
+access to all ephemeral network ports
+* `net.port.ephemeral.obj_macro_template` Macros that provide access
+to a specified ephemeral network port
+* `net.port.ephemeral.obj_template` Declares a ephemeral network
+port and includes macros that provide access to the declared
+ephemeral network port
 
 Macros providing access to `ephemeral.netport`:
 
@@ -247,7 +243,7 @@ seinfo policy.31 -x -t myephemeral.netport
 seinfo policy.31 -x --portcon 50000
 sesearch policy.31 -A -t myephemeral.netport
 ```
-A comphrensive collection of macros are now available to facilitate
+A comphrensive collection of macros is now available to facilitate
 access to network ports associated with the `myephemeral.netport` port
 type:
 
