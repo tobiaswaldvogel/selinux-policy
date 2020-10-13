@@ -213,10 +213,10 @@ be associated with protocol `tcp` and port number `50000`:
 
 ```
 # create directory if it does not exist
-mkdir -p src/net/netport/ephemeralport
+mkdir -p src/net/netport/ephemeralnetport
 
 # create module
-cat > src/net/netport/ephemeralport/myephemeralnetport.cil <<EOF
+cat > src/net/netport/ephemeralnetport/myephemeralnetport.cil <<EOF
 (block myephemeral
 
        ;;
@@ -269,10 +269,10 @@ we could instead inherit `net.port.epehemeral.obj_base_template`
 and create applicable macros manually:
 ```
 # create directory if it does not exist
-mkdir -p src/net/netport/ephemeralport
+mkdir -p src/net/netport/ephemeralnetport
 
 # create module
-cat > src/net/netport/ephemeralport/myephemeralnetport.cil <<EOF
+cat > src/net/netport/ephemeralnetport/myephemeralnetport.cil <<EOF
 (block myephemeral
 
        ;;
