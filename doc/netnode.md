@@ -8,7 +8,7 @@ Network nodes are referenced using `types` (netnode) and
 * `net.node.obj_typeattr` all network nodes
 
 The `src/net/netnode.cil` module facilitates access to network nodes
-at a lower level. Ir abstracts and inherits templates that are used
+at a lower level. It abstracts and inherits templates that are used
 to declare and provide access to network node types and type
 attributes.
 
