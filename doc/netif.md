@@ -42,9 +42,11 @@ Macros providing access to `net.netif.obj_typeattr`:
 * `net.netif.ingress_all_netifs`
 * `net.netif.obj_type`
 
-The `net.netif.obj_base_template` is inherited in the `net` container
+The `net.netif.obj_template` is inherited in the `net` container
 to declare the default `net.netif` network interface type to be
-associated with the `netif` security identifier.
+associated with the `netif` security identifier along with a
+collection of macros that can be used to operate on associated network
+interfaces.
 
 Full access to all network interfaces is associated with the
 `net.unconfined.subj_typeattr` type attribute declared in the

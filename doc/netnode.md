@@ -47,9 +47,10 @@ Macros providing access to `net.node.obj_typeattr`:
 * `net.node.tcp_bind_all_netnodes`
 * `net.node.udp_bind_all_netnodes`
 
-The `net.node.obj_base_template` is inherited in the `net` container
+The `net.node.obj_template` is inherited in the `net` container
 to declare the default `net.netnode` network node type to be
-associated with the `node` security identifier.
+associated with the `node` security identifier along with a collection
+of macros that can be used to operate on associated network nodes.
 
 Full access to all network nodes is associated with the
 `net.unconfined.subj_typeattr` type attribute declared in the
