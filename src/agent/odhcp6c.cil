@@ -43,7 +43,7 @@
        (call .sys.search_sysctlfile_dirs (subj))
        (call .sys.writeinherited_fifo_files (subj))
 
-       (call .dhcp.udp_bind_name_netports (subj))
+       (call .dhcp.udp_bind_netports (subj))
 
        (call .functions.read_miscfile_files (subj))
        (call .functions.search_miscfile_dirs (subj))

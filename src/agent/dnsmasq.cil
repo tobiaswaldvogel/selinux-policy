@@ -174,10 +174,10 @@
 
        (call .sys.readwriteinherited_fifo_files (subj))
 
-       (call .dhcp.udp_bind_name_netports (subj))
+       (call .dhcp.udp_bind_netports (subj))
 
-       (call .dns.tcp_bind_name_netports (subj))
-       (call .dns.udp_bind_name_netports (subj))
+       (call .dns.tcp_bind_netports (subj))
+       (call .dns.udp_bind_netports (subj))
 
        (call .file.read_conffile_lnk_files (subj))
        (call .file.search_conffile_dirs (subj))
@@ -196,7 +196,7 @@
        (call .nameservice.read_miscfile_files (subj))
 
        (call .net.egress_netifs (subj))
-       (call .net.port.unreserved.udp_bind_name_all_netports (subj))
+       (call .net.port.unreserved.udp_bind_all_netports (subj))
        (call .net.sendto_netnodes (subj))
        (call .net.tcp_bind_netnodes (subj))
        (call .net.udp_bind_netnodes (subj))

@@ -211,7 +211,7 @@ sysctl_dev
 (macro dccp_bind_invalid_netnodes ((type ARG1))
        (allow ARG1 .invalid (dccp_socket (node_bind))))
 
-(macro dccp_bind_name_invalid_netports ((type ARG1))
+(macro dccp_bind_invalid_netports ((type ARG1))
        (allow ARG1 .invalid (dccp_socket (name_bind))))
 
 (macro dccp_connect_invalid_netports ((type ARG1))
@@ -268,7 +268,7 @@ sysctl_dev
 (macro icmp_bind_invalid_netnodes ((type ARG1))
        (allow ARG1 .invalid (icmp_socket (node_bind))))
 
-(macro icmp_bind_name_invalid_netports ((type ARG1))
+(macro icmp_bind_invalid_netports ((type ARG1))
        (allow ARG1 .invalid (icmp_socket (name_bind))))
 
 (macro ingress_invalid_netifs ((type ARG1))
@@ -357,7 +357,7 @@ sysctl_dev
 (macro rawip_bind_invalid_netnodes ((type ARG1))
        (allow ARG1 .invalid (rawip_socket (node_bind))))
 
-(macro rawip_bind_name_invalid_netports ((type ARG1))
+(macro rawip_bind_invalid_netports ((type ARG1))
        (allow ARG1 .invalid (rawip_socket (name_bind))))
 
 (macro read_invalid ((type ARG1))
@@ -570,7 +570,7 @@ sysctl_dev
 (macro sctp_bind_invalid_netnodes ((type ARG1))
        (allow ARG1 .invalid (sctp_socket (node_bind))))
 
-(macro sctp_bind_name_invalid_netports ((type ARG1))
+(macro sctp_bind_invalid_netports ((type ARG1))
        (allow ARG1 .invalid (sctp_socket (name_bind))))
 
 (macro sctp_connect_invalid_netports ((type ARG1))
@@ -588,7 +588,7 @@ sysctl_dev
 (macro tcp_bind_invalid_netnodes ((type ARG1))
        (allow ARG1 .invalid (tcp_socket (node_bind))))
 
-(macro tcp_bind_name_invalid_netports ((type ARG1))
+(macro tcp_bind_invalid_netports ((type ARG1))
        (allow ARG1 .invalid (tcp_socket (name_bind))))
 
 (macro tcp_connect_invalid_netports ((type ARG1))
@@ -597,7 +597,7 @@ sysctl_dev
 (macro udp_bind_invalid_netnodes ((type ARG1))
        (allow ARG1 .invalid (udp_socket (node_bind))))
 
-(macro udp_bind_name_invalid_netports ((type ARG1))
+(macro udp_bind_invalid_netports ((type ARG1))
        (allow ARG1 .invalid (udp_socket (name_bind))))
 
 (macro unmount_invalid_filesystems ((type ARG1))

@@ -39,16 +39,16 @@ network ports
 
 Macros providing access to `net.port.obj_typeattr`:
 
-* `net.port.dccp_bind_name_all_netports`
+* `net.port.dccp_bind_all_netports`
 * `net.port.dccp_connect_all_netports`
-* `net.port.icmp_bind_name_all_netports`
+* `net.port.icmp_bind_all_netports`
 * `net.port.obj_type`
-* `net.port.rawip_bind_name_all_netports`
-* `net.port.sctp_bind_name_all_netports`
+* `net.port.rawip_bind_all_netports`
+* `net.port.sctp_bind_all_netports`
 * `net.port.sctp_connect_all_netports`
-* `net.port.tcp_bind_name_all_netports`
+* `net.port.tcp_bind_all_netports`
 * `net.port.tcp_connect_all_netports`
-* `net.port.udp_bind_name_all_netports`
+* `net.port.udp_bind_all_netports`
 
 The `net.port.obj_base_template` is inherited in the `net` container
 to declare the default `net.netport` network port type to be
@@ -83,28 +83,28 @@ network port
 
 Macros providing access to `reserved.netport`:
 
-* `reserved.dccp_bind_name_netports`
+* `reserved.dccp_bind_netports`
 * `reserved.dccp_connect_netports`
-* `reserved.icmp_bind_name_netports`
-* `reserved.rawip_bind_name_netports`
-* `reserved.sctp_bind_name_netports`
+* `reserved.icmp_bind_netports`
+* `reserved.rawip_bind_netports`
+* `reserved.sctp_bind_netports`
 * `reserved.sctp_connect_netports`
-* `reserved.tcp_bind_name_netports`
+* `reserved.tcp_bind_netports`
 * `reserved.tcp_connect_netports`
-* `reserved.udp_bind_name_netports`
+* `reserved.udp_bind_netports`
 
 Macros providing access to `net.port.reserved.obj_typeattr`:
 
-* `net.port.reserved.dccp_bind_name_all_netports`
+* `net.port.reserved.dccp_bind_all_netports`
 * `net.port.reserved.dccp_connect_all_netports`
-* `net.port.reserved.icmp_bind_name_all_netports`
+* `net.port.reserved.icmp_bind_all_netports`
 * `net.port.reserved.obj_type`
-* `net.port.reserved.rawip_bind_name_all_netports`
-* `net.port.reserved.sctp_bind_name_all_netports`
+* `net.port.reserved.rawip_bind_all_netports`
+* `net.port.reserved.sctp_bind_all_netports`
 * `net.port.reserved.sctp_connect_all_netports`
-* `net.port.reserved.tcp_bind_name_all_netports`
+* `net.port.reserved.tcp_bind_all_netports`
 * `net.port.reserved.tcp_connect_all_netports`
-* `net.port.reserved.udp_bind_name_all_netports`
+* `net.port.reserved.udp_bind_all_netports`
 
 ## src/net/netport/unreservednetport.cil
 
@@ -130,28 +130,28 @@ unreserved network port
 
 Macros providing access to `unreserved.netport`:
 
-* `unreserved.dccp_bind_name_netports`
+* `unreserved.dccp_bind_netports`
 * `unreserved.dccp_connect_netports`
-* `unreserved.icmp_bind_name_netports`
-* `unreserved.rawip_bind_name_netports`
-* `unreserved.sctp_bind_name_netports`
+* `unreserved.icmp_bind_netports`
+* `unreserved.rawip_bind_netports`
+* `unreserved.sctp_bind_netports`
 * `unreserved.sctp_connect_netports`
-* `unreserved.tcp_bind_name_netports`
+* `unreserved.tcp_bind_netports`
 * `unreserved.tcp_connect_netports`
-* `unreserved.udp_bind_name_netports`
+* `unreserved.udp_bind_netports`
 
 Macros providing access to `net.port.unreserved.obj_typeattr`:
 
-* `net.port.unreserved.dccp_bind_name_all_netports`
+* `net.port.unreserved.dccp_bind_all_netports`
 * `net.port.unreserved.dccp_connect_all_netports`
-* `net.port.unreserved.icmp_bind_name_all_netports`
+* `net.port.unreserved.icmp_bind_all_netports`
 * `net.port.unreserved.obj_type`
-* `net.port.unreserved.rawip_bind_name_all_netports`
-* `net.port.unreserved.sctp_bind_name_all_netports`
+* `net.port.unreserved.rawip_bind_all_netports`
+* `net.port.unreserved.sctp_bind_all_netports`
 * `net.port.unreserved.sctp_connect_all_netports`
-* `net.port.unreserved.tcp_bind_name_all_netports`
+* `net.port.unreserved.tcp_bind_all_netports`
 * `net.port.unreserved.tcp_connect_all_netports`
-* `net.port.unreserved.udp_bind_name_all_netports`
+* `net.port.unreserved.udp_bind_all_netports`
 
 ## src/net/netport/ephemeralnetport.cil
 
@@ -176,28 +176,28 @@ ephemeral network port
 
 Macros providing access to `ephemeral.netport`:
 
-* `ephemeral.dccp_bind_name_netports`
+* `ephemeral.dccp_bind_netports`
 * `ephemeral.dccp_connect_netports`
-* `ephemeral.icmp_bind_name_netports`
-* `ephemeral.rawip_bind_name_netports`
-* `ephemeral.sctp_bind_name_netports`
+* `ephemeral.icmp_bind_netports`
+* `ephemeral.rawip_bind_netports`
+* `ephemeral.sctp_bind_netports`
 * `ephemeral.sctp_connect_netports`
-* `ephemeral.tcp_bind_name_netports`
+* `ephemeral.tcp_bind_netports`
 * `ephemeral.tcp_connect_netports`
-* `ephemeral.udp_bind_name_netports`
+* `ephemeral.udp_bind_netports`
 
 Macros providing access to `net.port.reserved.obj_typeattr`:
 
-* `net.port.ephemeral.dccp_bind_name_all_netports`
+* `net.port.ephemeral.dccp_bind_all_netports`
 * `net.port.ephemeral.dccp_connect_all_netports`
-* `net.port.ephemeral.icmp_bind_name_all_netports`
+* `net.port.ephemeral.icmp_bind_all_netports`
 * `net.port.ephemeral.obj_type`
-* `net.port.ephemeral.rawip_bind_name_all_netports`
-* `net.port.ephemeral.sctp_bind_name_all_netports`
+* `net.port.ephemeral.rawip_bind_all_netports`
+* `net.port.ephemeral.sctp_bind_all_netports`
 * `net.port.ephemeral.sctp_connect_all_netports`
-* `net.port.ephemeral.tcp_bind_name_all_netports`
+* `net.port.ephemeral.tcp_bind_all_netports`
 * `net.port.ephemeral.tcp_connect_all_netports`
-* `net.port.ephemeral.udp_bind_name_all_netports`
+* `net.port.ephemeral.udp_bind_all_netports`
 
 # Private Network Port Types
 
@@ -247,15 +247,15 @@ A comprehensive collection of macros is now available to facilitate
 access to network ports associated with the `myephemeral.netport` port
 type:
 
-* `myephemeral.dccp_bind_name_netports`
+* `myephemeral.dccp_bind_netports`
 * `myephemeral.dccp_connect_netports`
-* `myephemeral.icmp_bind_name_netports`
-* `myephemeral.rawip_bind_name_netports`
-* `myephemeral.sctp_bind_name_netports`
+* `myephemeral.icmp_bind_netports`
+* `myephemeral.rawip_bind_netports`
+* `myephemeral.sctp_bind_netports`
 * `myephemeral.sctp_connect_netports`
-* `myephemeral.tcp_bind_name_netports`
+* `myephemeral.tcp_bind_netports`
 * `myephemeral.tcp_connect_netports`
-* `myephemeral.udp_bind_name_netports`
+* `myephemeral.udp_bind_netports`
 
 Rules that reference all network ports, or all ephemeral network
 ports are now also automatically associated with the
@@ -288,7 +288,7 @@ cat > src/net/netport/ephemeralnetport/myephemeralnetport.cil <<EOF
        ;; Macros
        ;;
 
-       (macro tcp_bind_name_netports ((type ARG1))
+       (macro tcp_bind_netports ((type ARG1))
               (allow ARG1 self create_tcp_stream_socket)
               (allow ARG1 netport (tcp_socket (name_bind))))
 
