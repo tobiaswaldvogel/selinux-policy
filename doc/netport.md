@@ -199,9 +199,9 @@ Macros providing access to `net.port.reserved.obj_typeattr`:
 * `net.port.ephemeral.tcp_connect_all_netports`
 * `net.port.ephemeral.udp_bind_name_all_netports`
 
-# Private Network Port types
+# Private Network Port Types
 
-Network ports to be associated with private types are to be declared
+Private types to be associated with network ports are to be declared
 in either `src/net/netport/reservednetport`,
 `src/net/netport/unreservednetport` or
 `src/net/netport/ephemeralnetport` directories depending on the port
@@ -215,7 +215,7 @@ be associated with protocol `tcp` and port number `50000`:
 # create directory if it does not exist
 mkdir -p src/net/netport/ephemeralport
 
-# create the module
+# create module
 cat > src/net/netport/ephemeralport/myephemeralnetport.cil <<EOF
 (block myephemeral
 
@@ -260,3 +260,54 @@ type:
 Rules that reference all network ports, or all ephemeral network
 ports are now also automatically associated with the
 `myephemeral.netport` network port type.
+
+In the example above macros for all protocols were automatically
+inherited from `net.port.ephemeral.obj_macro_template`, which in turn
+was inherited from `net.port.ephemeral.obj_template`. Since our
+`myephemeral.netport` type is associated only with the `tcp` protocol
+we could instead inherit `net.port.epehemeral.obj_base_template`
+and create applicable macros manually:
+```
+# create directory if it does not exist
+mkdir -p src/net/netport/ephemeralport
+
+# create module
+cat > src/net/netport/ephemeralport/myephemeralnetport.cil <<EOF
+(block myephemeral
+
+       ;;
+       ;; Contexts
+       ;;
+
+       (portcon
+       "tcp"
+       50000
+       netport_context)
+
+       ;;
+       ;; Macros
+       ;;
+
+       (macro tcp_bind_name_netports ((type ARG1))
+              (allow ARG1 self create_tcp_stream_socket)
+              (allow ARG1 netport (tcp_socket (name_bind))))
+
+       (macro tcp_connect_netports ((type ARG1))
+              (allow ARG1 self create_tcp_socket)
+              (allow ARG1 netport (tcp_socket (name_connect))))
+
+       ;;
+       ;; Policy
+       ;;
+
+       (blockinherit .net.port.ephemeral.obj_base_template))
+EOF
+
+# build policy
+make
+
+# analyze policy
+seinfo policy.31 -x -t myephemeral.netport
+seinfo policy.31 -x --portcon 50000
+sesearch policy.31 -A -t myephemeral.netport
+```
