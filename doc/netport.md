@@ -261,9 +261,9 @@ Rules that reference all network ports, or all ephemeral network
 ports are now also automatically associated with the
 `myephemeral.netport` network port type.
 
-In the example above macros for all protocols were automatically
+In the example above macros for all protocols are automatically
 inherited from `net.port.ephemeral.obj_macro_template`, which in turn
-was inherited from `net.port.ephemeral.obj_template`. Since our
+is inherited from `net.port.ephemeral.obj_template`. Since our
 `myephemeral.netport` type is associated only with the `tcp` protocol
 we could instead inherit `net.port.epehemeral.obj_base_template`
 and create applicable macros manually:

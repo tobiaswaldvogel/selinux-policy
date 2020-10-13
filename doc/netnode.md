@@ -19,6 +19,8 @@ them at the lowest level namely "all network nodes" and in addition
 declares a `node` security identifier and associated default network
 node type `net.netnode`. All network nodes are associated with this
 `net.netnode` network node type by default unless specified otherwise.
+The network node context is associated with ip addresses and subnet
+masks using `nodecon` statements.
 
 The `net.node.obj_all_macro_template` template is only inherited in
 the `net` container to make a type attribute and macros available that

@@ -96,8 +96,7 @@ Network packet types can be associated with protocols,
 network interfaces, ip addresses, and port numbers using the
 `iptables` and `nft` commands if the kernel supports `secmark` and if
 the respective commands are built with `secmark` support. Packets are
-labeled as they flow into system. Packet labels do not traverse
-networks.
+labeled as they flow into system and do not traverse networks.
 
 For a `nft` `secmark` example see:
 <https://git.netfilter.org/nftables/plain/files/examples/secmark.nft>

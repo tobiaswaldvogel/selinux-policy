@@ -19,7 +19,12 @@ to them at the lowest level namely "all network interfaces" and in
 addition declares a `netif` security identifier and associated
 default network interface type `net.netif`. All network interfaces are
 associated with this `net.netif` network interface type by default
-unless specified otherwise.
+unless specified otherwise. The network interface context is
+associated with network interfaces using `netifcon` statements. Note
+that even though the `netifcon` statement also expects a network
+packet context, that this is deprecated and that you should use the
+`(.u .r .invalid (systemlow systemlow))` context as a placeholder
+there.
 
 The `net.netif.obj_all_macro_template` template is only inherited in
 the `net` container to make a type attribute and macros available that
