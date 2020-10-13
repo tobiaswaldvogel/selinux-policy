@@ -71,8 +71,8 @@ cat > src/net/netif/myloopbacknetif.cil <<EOF
 
        (netifcon
        lo
-       (u r netif (systemlow systemlow))
-       (u r invalid (systemlow systemlow))) ;; packets, unused
+       (.u .r netif (systemlow systemlow))
+       (.u .r .invalid (systemlow systemlow))) ;; packets, unused
 
        ;;
        ;; Policy
