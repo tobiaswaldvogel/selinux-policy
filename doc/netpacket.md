@@ -60,7 +60,7 @@ port numbers:
 mkdir -p src/net/netpacket
 
 # create module
-cat > src/net/netnode/myinternalnetpacket.cil <<EOF
+cat > src/net/netpacket/myinternalnetpacket.cil <<EOF
 (block myinternal
 
        ;;
