@@ -13,10 +13,10 @@ modulesminimal = $(shell find src -type f -name '*.cil' \
 	! -name liblualibfile.cil ! -name libssllibfile.cil \
 	! -name libzlibfile.cil ! -name luaexecfile.cil \
 	! -name luci.cil ! -name opensslexecfile.cil \
-	! -name px5gexecfile.cil ! -name socatexecfile.cil \
-	! -name wgetexecfile.cil ! -name wgetmiscfile.cil \
-	! -name rpcd.cil ! -name sftpserver.cil ! -name uhttpd.cil \
-	-printf '%p ')
+	! -name px5gexecfile.cil ! -name rpcd.cil \
+	! -name sftpserver.cil ! -name socatexecfile.cil \
+	! -name uhttpd.cil ! -name wgetexecfile.cil \
+	! -name wgetmiscfile.cil -printf '%p ')
 polvers = 31
 
 all: clean policy check
