@@ -67,7 +67,7 @@ cat > src/net/netendport/myibnetworknetendport.cil <<EOF
        (ibendportcon
        mlx4_0
        1
-       (.u .r netendport (systemlow systemlow)))
+       netendport_context)
 
        ;;
        ;; Policy

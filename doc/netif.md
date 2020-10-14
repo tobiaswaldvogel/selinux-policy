@@ -78,7 +78,7 @@ cat > src/net/netif/myloopbacknetif.cil <<EOF
 
        (netifcon
        lo
-       (.u .r netif (systemlow systemlow))
+       netif_context
        (.u .r .invalid (systemlow systemlow))) ;; packets, unused
 
        ;;

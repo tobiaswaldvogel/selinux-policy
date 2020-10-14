@@ -80,7 +80,7 @@ cat > src/net/netnode/my48prefixnetnode.cil <<EOF
        (nodecon
        (2001:db8:1:0:0:0:0:0)
        (ffff:ffff:ffff:0:0:0:0:0)
-       (.u .r netnode (systemlow systemlow)))
+       netnode_context)
 
        ;;
        ;; Policy
