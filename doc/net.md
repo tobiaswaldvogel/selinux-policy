@@ -42,14 +42,14 @@ Macros providing access to `net.unconfined.subj_typeattr`:
 * `net.unconfined.dontaudit_rlimitinh_all_subjects`
 * `net.unconfined.dontaudit_siginh_all_subjects`
 
-# Unconfined Access To Network
+## Unconfined Access To Network
 
 If you would for example want to associate unconfined network access
 with existing subject type `myagent.subj` declared in
 `src/agent/myagent.cil`:
 
 ```
-# create module
+# append existing module
 cat >> src/agent/myagent.cil <<EOF
 (in .myagent
 
@@ -67,7 +67,7 @@ make
 seinfo policy.31 -x -t myagent.subj
 sesearch policy.31 -A -s myagent.subj
 ```
-# Reference All Network Unconfined Associates
+## Reference All Network Unconfined Associates
 
 If you would for example want to associate a rule allowing processes
 associated with the existing subject type `myagent.subj` declared in
@@ -76,7 +76,7 @@ types associated with the `net.unconfined.subj_typeattr` type
 attribute:
 
 ```
-# create module
+# append existing module
 cat >> src/agent/myagent.cil <<EOF
 (in .myagent
 
