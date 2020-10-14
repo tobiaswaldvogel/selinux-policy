@@ -19,7 +19,8 @@ to them at the lowest level namely "all network SPD's" and in
 addition declares a default network SPD type `net.netspd` which can be
 associated with one or more IPSec Security Policy Databases in
 LibreSWAN configuration using the `policy-label=u:r:net.netspd`
-directive.
+directive provided that LibreSWAN is built with this functionally
+enabled.
 
 The `net.spd.subj_all_macro_template` template is only inherited in
 the `net` container to make a type attribute and macros available that
