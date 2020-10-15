@@ -26,7 +26,7 @@ Types associated with Debug files are therefore associated with the
 `file.obj_typeattr` type attribute by calling the `file.obj_type`
 macro declared in the `src/file.cil` module with the `obj_typeattr`
 argument in the `debugfile` container and they are also associated
-with a rule that allows these types to associate with Debug
+with a rule that allows these types to associate with Debug and Trace
 filesystems by calling the `debug.associate_filesystems` macro
 declared in the `src/fs/debugfs.cil` module with the `obj_typeattr`
 argument in the `debugfile` container.
