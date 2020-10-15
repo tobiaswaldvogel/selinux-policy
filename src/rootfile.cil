@@ -34,7 +34,11 @@
     ;; Policy
     ;;
 
-    (blockinherit .rootfile.obj_template))
+    (blockinherit .rootfile.obj_template)
+
+    (call .sys.mountpoint.obj_type (rootfile))
+
+    (call .xattr.associate_filesystems (rootfile)))
 
 (in .file
     (call .sys.overlaymiscfile_obj_type_transition_rootfile
@@ -50,12 +54,9 @@
 
        (blockinherit .file.obj_all_macro_template)
 
-       (call .sys.mountpoint.obj_type (obj_typeattr))
-
        (call .file.obj_type (obj_typeattr))
 
        (call .root.associate_filesystems (obj_typeattr))
-       (call .xattr.associate_filesystems (obj_typeattr))
 
        ;;
        ;; Templates
