@@ -114,10 +114,7 @@
 
               (blockinherit .subj.subj_all_macro_template)
 
-              (allow subj_typeattr self (process (setfscreate)))
-
-              (call .selinux.list_fs_dirs (subj_typeattr))
-              (call .selinux.read_fs_files (subj_typeattr)))
+              (allow subj_typeattr self (process (setfscreate))))
 
        (block setsecparam
 

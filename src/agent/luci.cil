@@ -114,7 +114,7 @@
        (blockinherit .tmpfile.obj_template)
 
        (allow subj self (capability (setuid)))
-       (allow subj self (process (setfscreate setrlimit)))
+       (allow subj self (process (setrlimit)))
        (allow subj self create_unix_dgram_socket)
        (allow subj self create_unix_stream_socket)
 
@@ -206,6 +206,7 @@
        (call .rccommon.read_conffile_files (subj))
 
        (call .selinux.computeav (subj))
+       (call .selinux.setfscreate.subj_type (subj))
 
        (call .shadow.manage_authfile_files (subj))
        (call .shadow.read.subj_type (subj))
