@@ -128,7 +128,7 @@
        (call .ubusd.unix_stream_connect (subj))
 
        ;; initial block detect > /etc/config/fstab
-       (call .uci.readwrite_conffile_files (subj))
+       (call .uci.fstab.readwrite_conffile_files (subj))
        (call .uci.read_tmpfile_files (subj))
        (call .uci.search_conffile_dirs (subj))
        (call .uci.search_tmpfile_dirs (subj))

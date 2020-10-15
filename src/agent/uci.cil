@@ -8,10 +8,14 @@
 (in .file
     (call .uci.defaults.obj_type_transition_conffile
           (unconfined.subj_typeattr))
+    (call .uci.fstab.obj_type_transition_conffile
+          (unconfined.subj_typeattr))
     (call .uci.obj_type_transition_conffile (unconfined.subj_typeattr))
     (call .uci.obj_type_transition_execfile (unconfined.subj_typeattr))
     (call .uci.obj_type_transition_statetmpfile (unconfined.subj_typeattr))
-    (call .uci.obj_type_transition_tmpfile (unconfined.subj_typeattr)))
+    (call .uci.obj_type_transition_tmpfile (unconfined.subj_typeattr))
+    (call .uci.wireless.obj_type_transition_conffile
+          (unconfined.subj_typeattr)))
 
 (block uci
 
@@ -80,8 +84,9 @@
        ;; Policy
        ;;
 
+       (blockinherit conf.obj_template)
+
        (blockinherit .agent.base_template)
-       (blockinherit .file.conf.obj_template)
        (blockinherit .tmpfile.obj_template)
        (blockinherit .tmpfile.state.obj_template)
 
@@ -137,6 +142,30 @@
        (optional uci_opt_initscript
                  (call .initscript.readwrite_all_inherited_fifo_files (subj)))
 
+       (block conf
+
+              ;;
+              ;; Policy
+              ;;
+
+              (blockinherit .file.obj_all_macro_template)
+
+              ;;
+              ;; Templates
+              ;;
+
+              (block obj_template
+
+                     ;;
+                     ;; Policy
+                     ;;
+
+                     (blockabstract obj_template)
+
+                     (blockinherit .file.conf.obj_template)
+
+                     (call .uci.conf.obj_type (conffile))))
+
        (block defaults
 
               ;;
@@ -164,4 +193,62 @@
               ;; Policy
               ;;
 
-              (blockinherit .file.conf.obj_template)))
+              (blockinherit conf.obj_template))
+
+       (block fstab
+
+              ;;
+              ;; Contexts
+              ;;
+
+              (filecon
+               "/etc/config/fstab"
+               file
+               conffile_file_context)
+              (filecon
+               "/etc/config/fstab\..*"
+               file
+               conffile_file_context)
+
+              ;;
+              ;; Macros
+              ;;
+
+              (macro obj_type_transition_conffile ((type ARG1))
+                     (call uci.conffile_obj_type_transition
+                           (ARG1 conffile file "fstab")))
+
+              ;;
+              ;; Policy
+              ;;
+
+              (blockinherit conf.obj_template))
+
+       (block wireless
+
+              ;;
+              ;; Contexts
+              ;;
+
+              (filecon
+               "/etc/config/wireless"
+               file
+               conffile_file_context)
+              (filecon
+               "/etc/config/wireless\..*"
+               file
+               conffile_file_context)
+
+              ;;
+              ;; Macros
+              ;;
+
+              (macro obj_type_transition_conffile ((type ARG1))
+                     (call uci.conffile_obj_type_transition
+                           (ARG1 conffile file "wireless")))
+
+              ;;
+              ;; Policy
+              ;;
+
+              (blockinherit conf.obj_template)))
