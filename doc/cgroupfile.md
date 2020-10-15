@@ -19,9 +19,9 @@ default Cgroup file type.
 
 The `file.obj_all_macro_template` is only inherited in the
 `cgroupfile` container to make a type attribute and macros available
-that can be referenced to operate on all cgroup files.
+that can be referenced to operate on all Cgroup files.
 
-Cgroup files are files that associate with cgroup filesystems. Types
+Cgroup files are files that associate with Cgroup filesystems. Types
 associated with Cgroup files are therefore associated with the
 `file.obj_typeattr` type attribute by calling the `file.obj_type`
 macro declared in the `src/file.cil` module with the `obj_typeattr`

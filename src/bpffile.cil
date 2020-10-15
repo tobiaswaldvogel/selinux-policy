@@ -210,6 +210,12 @@
               (macro read_bpffile_files ((type ARG1))
                      (allow ARG1 bpffile read_file))
 
+              (macro read_bpffile_lnk_files ((type ARG1))
+                     (allow ARG1 bpffile read_lnk_file))
+
+              (macro read_bpffile_sock_files ((type ARG1))
+                     (allow ARG1 bpffile read_sock_file))
+
               (macro readinherited_bpffile_blk_files ((type ARG1))
                      (allow ARG1 bpffile readinherited_blk_file))
 
@@ -224,12 +230,6 @@
 
               (macro readinherited_bpffile_sock_files ((type ARG1))
                      (allow ARG1 bpffile readinherited_sock_file))
-
-              (macro read_bpffile_lnk_files ((type ARG1))
-                     (allow ARG1 bpffile read_lnk_file))
-
-              (macro read_bpffile_sock_files ((type ARG1))
-                     (allow ARG1 bpffile read_sock_file))
 
               (macro readwrite_bpffile ((type ARG1))
                      (allow ARG1 bpffile (allfiles (readwrite))))
@@ -249,6 +249,12 @@
               (macro readwrite_bpffile_files ((type ARG1))
                      (allow ARG1 bpffile readwrite_file))
 
+              (macro readwrite_bpffile_lnk_files ((type ARG1))
+                     (allow ARG1 bpffile readwrite_lnk_file))
+
+              (macro readwrite_bpffile_sock_files ((type ARG1))
+                     (allow ARG1 bpffile readwrite_sock_file))
+
               (macro readwriteinherited_bpffile_blk_files ((type ARG1))
                      (allow ARG1 bpffile readwriteinherited_blk_file))
 
@@ -266,12 +272,6 @@
 
               (macro readwriteinherited_bpffile_sock_files ((type ARG1))
                      (allow ARG1 bpffile readwriteinherited_sock_file))
-
-              (macro readwrite_bpffile_lnk_files ((type ARG1))
-                     (allow ARG1 bpffile readwrite_lnk_file))
-
-              (macro readwrite_bpffile_sock_files ((type ARG1))
-                     (allow ARG1 bpffile readwrite_sock_file))
 
               (macro relabel_bpffile ((type ARG1))
                      (allow ARG1 bpffile (allfiles (relabel))))
@@ -390,6 +390,12 @@
               (macro write_bpffile_files ((type ARG1))
                      (allow ARG1 bpffile write_file))
 
+              (macro write_bpffile_lnk_files ((type ARG1))
+                     (allow ARG1 bpffile write_lnk_file))
+
+              (macro write_bpffile_sock_files ((type ARG1))
+                     (allow ARG1 bpffile write_sock_file))
+
               (macro writeinherited_bpffile_blk_files ((type ARG1))
                      (allow ARG1 bpffile writeinherited_blk_file))
 
@@ -407,12 +413,6 @@
 
               (macro writeinherited_bpffile_sock_files ((type ARG1))
                      (allow ARG1 bpffile writeinherited_sock_file))
-
-              (macro write_bpffile_lnk_files ((type ARG1))
-                     (allow ARG1 bpffile write_lnk_file))
-
-              (macro write_bpffile_sock_files ((type ARG1))
-                     (allow ARG1 bpffile write_sock_file))
 
               ;;
               ;; Policy

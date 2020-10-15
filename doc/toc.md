@@ -2,6 +2,9 @@
 
 ## Files
 
+### BPF Files
+- [BPF Files](bpffile.md#bpf-files)
+
 ### Cgroup Files
 - [Cgroup Files](cgroupfile.md#cgroup-files)
 
