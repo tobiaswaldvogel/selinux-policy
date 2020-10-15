@@ -15,7 +15,7 @@ access to Cgroup file types and type attributes.
 
 The `src/cgroupfile.cil` module defines Cgroup files and access to
 them at the lowest level namely "all Cgroup files". There is no
-Cgroup file type.
+default Cgroup file type.
 
 The `file.obj_all_macro_template` is only inherited in the
 `cgroupfile` container to make a type attribute and macros available
@@ -224,6 +224,7 @@ file type:
 * `mygroup.appendinherited_cgroupfile_chr_files`
 * `mygroup.appendinherited_cgroupfile_fifo_files`
 * `mygroup.appendinherited_cgroupfile_files`
+* `mygroup.cgroupfile_obj_type_transition`
 * `mygroup.create_cgroupfile`
 * `mygroup.create_cgroupfile_blk_files`
 * `mygroup.create_cgroupfile_chr_files`
@@ -264,7 +265,6 @@ file type:
 * `mygroup.mounton_cgroupfile_files`
 * `mygroup.mounton_cgroupfile_lnk_files`
 * `mygroup.mounton_cgroupfile_sock_files`
-* `mygroup.obj_type`
 * `mygroup.read_cgroupfile`
 * `mygroup.read_cgroupfile_blk_files`
 * `mygroup.read_cgroupfile_chr_files`
@@ -346,7 +346,7 @@ In the example above macros for all file classes are automatically
 inherited from `cgroupfile.obj_macro_template`, which in turn
 is inherited from `cgroupfile.obj_template`. Since Cgroup files are
 usually files we could instead inherit `cgroupfile.obj_base_template`
-and create applicable macros manually:
+and create only applicable macros manually:
 ```
 # create directory if it does not exist
 mkdir -p src/cgroupfile
