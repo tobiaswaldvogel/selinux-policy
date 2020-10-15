@@ -1,15 +1,10 @@
 # Table of Contents
 
 ## Files
-
-### BPF Files
 - [BPF Files](bpffile.md#bpf-files)
-
-### Cgroup Files
 - [Cgroup Files](cgroupfile.md#cgroup-files)
-
-### Debug Files
 - [Debug Files](debugfile.md#debug-files)
+- [Sys Files](sysfile.md#sys-files)
 
 ## Network
 - [Network](net.md#network)
