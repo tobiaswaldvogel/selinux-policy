@@ -3124,7 +3124,7 @@ Macros providing access to `sysfile.power.obj_typeattr`:
 
 # Private Sys File Types
 
-Private types to be associated with Debug files are to be declared
+Private types to be associated with Sys files are to be declared
 in either `src/sysfile/blocksysfile`, `src/sysfile/bussysfile`,
 `src/sysfile/classsysfile`, `src/sysfile/devsysfile`,
 `src/sysfile/devicessysfile`, `src/sysfile/firmwaresysfile`,
