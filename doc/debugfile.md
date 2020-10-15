@@ -15,7 +15,8 @@ access to Debug file types and type attributes.
 
 The `src/debugfile.cil` module defines Debug files and access to
 them at the lowest level namely "all Debug files". There is no
-default Debug file type.
+default Debug file type. The Debug file context is associated with
+files using `genfscon` statements.
 
 The `file.obj_all_macro_template` is only inherited in the
 `debugfile` container to make a type attribute and macros available

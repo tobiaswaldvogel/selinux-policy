@@ -15,7 +15,8 @@ access to BPF file types and type attributes.
 
 The `src/bpffile.cil` module defines BPF files and access to
 them at the lowest level namely "all BPF files". There is no
-default BPF file type.
+default BPF file type. The BPF file context is associated with files
+using `genfscon` statements.
 
 The `file.obj_all_macro_template` is only inherited in the
 `bpffile` container to make a type attribute and macros available

@@ -15,7 +15,8 @@ access to Cgroup file types and type attributes.
 
 The `src/cgroupfile.cil` module defines Cgroup files and access to
 them at the lowest level namely "all Cgroup files". There is no
-default Cgroup file type.
+default Cgroup file type. The Cgroup file context is associated with
+files using `genfscon` statements.
 
 The `file.obj_all_macro_template` is only inherited in the
 `cgroupfile` container to make a type attribute and macros available
