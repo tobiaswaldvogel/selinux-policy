@@ -2246,6 +2246,12 @@
               (macro read_all_files ((type ARG1))
                      (allow ARG1 obj_typeattr read_file))
 
+              (macro read_all_lnk_files ((type ARG1))
+                     (allow ARG1 obj_typeattr read_lnk_file))
+
+              (macro read_all_sock_files ((type ARG1))
+                     (allow ARG1 obj_typeattr read_sock_file))
+
               (macro readinherited_all_blk_files ((type ARG1))
                      (allow ARG1 obj_typeattr readinherited_blk_file))
 
@@ -2260,12 +2266,6 @@
 
               (macro readinherited_all_sock_files ((type ARG1))
                      (allow ARG1 obj_typeattr readinherited_sock_file))
-
-              (macro read_all_lnk_files ((type ARG1))
-                     (allow ARG1 obj_typeattr read_lnk_file))
-
-              (macro read_all_sock_files ((type ARG1))
-                     (allow ARG1 obj_typeattr read_sock_file))
 
               (macro readwrite_all ((type ARG1))
                      (allow ARG1 obj_typeattr (allfiles (readwrite))))
@@ -2285,6 +2285,12 @@
               (macro readwrite_all_files ((type ARG1))
                      (allow ARG1 obj_typeattr readwrite_file))
 
+              (macro readwrite_all_lnk_files ((type ARG1))
+                     (allow ARG1 obj_typeattr readwrite_lnk_file))
+
+              (macro readwrite_all_sock_files ((type ARG1))
+                     (allow ARG1 obj_typeattr readwrite_sock_file))
+
               (macro readwriteinherited_all_blk_files ((type ARG1))
                      (allow ARG1 obj_typeattr readwriteinherited_blk_file))
 
@@ -2302,12 +2308,6 @@
 
               (macro readwriteinherited_all_sock_files ((type ARG1))
                      (allow ARG1 obj_typeattr readwriteinherited_sock_file))
-
-              (macro readwrite_all_lnk_files ((type ARG1))
-                     (allow ARG1 obj_typeattr readwrite_lnk_file))
-
-              (macro readwrite_all_sock_files ((type ARG1))
-                     (allow ARG1 obj_typeattr readwrite_sock_file))
 
               (macro relabel_all ((type ARG1))
                      (allow ARG1 obj_typeattr (allfiles (relabel))))
@@ -2426,6 +2426,12 @@
               (macro write_all_files ((type ARG1))
                      (allow ARG1 obj_typeattr write_file))
 
+              (macro write_all_lnk_files ((type ARG1))
+                     (allow ARG1 obj_typeattr write_lnk_file))
+
+              (macro write_all_sock_files ((type ARG1))
+                     (allow ARG1 obj_typeattr write_sock_file))
+
               (macro writeinherited_all_blk_files ((type ARG1))
                      (allow ARG1 obj_typeattr writeinherited_blk_file))
 
@@ -2443,12 +2449,6 @@
 
               (macro writeinherited_all_sock_files ((type ARG1))
                      (allow ARG1 obj_typeattr writeinherited_sock_file))
-
-              (macro write_all_lnk_files ((type ARG1))
-                     (allow ARG1 obj_typeattr write_lnk_file))
-
-              (macro write_all_sock_files ((type ARG1))
-                     (allow ARG1 obj_typeattr write_sock_file))
 
               (macro dontaudit_manage_all_dirs ((type ARG1))
                      (dontaudit ARG1 obj_typeattr manage_dir))

@@ -210,6 +210,12 @@
               (macro read_cgroupfile_files ((type ARG1))
                      (allow ARG1 cgroupfile read_file))
 
+              (macro read_cgroupfile_lnk_files ((type ARG1))
+                     (allow ARG1 cgroupfile read_lnk_file))
+
+              (macro read_cgroupfile_sock_files ((type ARG1))
+                     (allow ARG1 cgroupfile read_sock_file))
+
               (macro readinherited_cgroupfile_blk_files ((type ARG1))
                      (allow ARG1 cgroupfile readinherited_blk_file))
 
@@ -224,12 +230,6 @@
 
               (macro readinherited_cgroupfile_sock_files ((type ARG1))
                      (allow ARG1 cgroupfile readinherited_sock_file))
-
-              (macro read_cgroupfile_lnk_files ((type ARG1))
-                     (allow ARG1 cgroupfile read_lnk_file))
-
-              (macro read_cgroupfile_sock_files ((type ARG1))
-                     (allow ARG1 cgroupfile read_sock_file))
 
               (macro readwrite_cgroupfile ((type ARG1))
                      (allow ARG1 cgroupfile (allfiles (readwrite))))
@@ -249,6 +249,12 @@
               (macro readwrite_cgroupfile_files ((type ARG1))
                      (allow ARG1 cgroupfile readwrite_file))
 
+              (macro readwrite_cgroupfile_lnk_files ((type ARG1))
+                     (allow ARG1 cgroupfile readwrite_lnk_file))
+
+              (macro readwrite_cgroupfile_sock_files ((type ARG1))
+                     (allow ARG1 cgroupfile readwrite_sock_file))
+
               (macro readwriteinherited_cgroupfile_blk_files ((type ARG1))
                      (allow ARG1 cgroupfile readwriteinherited_blk_file))
 
@@ -266,12 +272,6 @@
 
               (macro readwriteinherited_cgroupfile_sock_files ((type ARG1))
                      (allow ARG1 cgroupfile readwriteinherited_sock_file))
-
-              (macro readwrite_cgroupfile_lnk_files ((type ARG1))
-                     (allow ARG1 cgroupfile readwrite_lnk_file))
-
-              (macro readwrite_cgroupfile_sock_files ((type ARG1))
-                     (allow ARG1 cgroupfile readwrite_sock_file))
 
               (macro relabel_cgroupfile ((type ARG1))
                      (allow ARG1 cgroupfile (allfiles (relabel))))
@@ -390,6 +390,12 @@
               (macro write_cgroupfile_files ((type ARG1))
                      (allow ARG1 cgroupfile write_file))
 
+              (macro write_cgroupfile_lnk_files ((type ARG1))
+                     (allow ARG1 cgroupfile write_lnk_file))
+
+              (macro write_cgroupfile_sock_files ((type ARG1))
+                     (allow ARG1 cgroupfile write_sock_file))
+
               (macro writeinherited_cgroupfile_blk_files ((type ARG1))
                      (allow ARG1 cgroupfile writeinherited_blk_file))
 
@@ -407,12 +413,6 @@
 
               (macro writeinherited_cgroupfile_sock_files ((type ARG1))
                      (allow ARG1 cgroupfile writeinherited_sock_file))
-
-              (macro write_cgroupfile_lnk_files ((type ARG1))
-                     (allow ARG1 cgroupfile write_lnk_file))
-
-              (macro write_cgroupfile_sock_files ((type ARG1))
-                     (allow ARG1 cgroupfile write_sock_file))
 
               ;;
               ;; Policy

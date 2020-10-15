@@ -1,5 +1,11 @@
-## Table of Contents
+# Table of Contents
 
+## Files
+
+### Cgroup Files
+- [Cgroup Files](cgroupfile.md#cgroup-files)
+
+## Network
 - [Network](net.md#network)
 - [Network Packets](netpacket.md#network-packets)
 - [Network Ports](netport.md#network-ports)
