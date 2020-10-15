@@ -535,7 +535,6 @@
 
               (allow subj_typeattr obj_typeattr (filesystem (not associate)))
 
-              (call .associate_invalid_filesystems (subj_typeattr))
               (call .getattr_invalid_filesystems (subj_typeattr))
               (call .mount_invalid_filesystems (subj_typeattr))
               (call .quotaget_invalid_filesystems (subj_typeattr))
