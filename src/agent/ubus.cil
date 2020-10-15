@@ -91,4 +91,4 @@
        (call .wifi.use_fds (subj))
 
        (optional ubus_opt_initscript
-                 (call .initscript.write_all_inherited_fifo_files (subj))))
+                 (call .initscript.writeinherited_all_fifo_files (subj))))

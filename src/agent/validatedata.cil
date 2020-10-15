@@ -56,4 +56,4 @@
        (call .uci.search_tmpfile_dirs (subj))
 
        (optional validatedata_opt_initscript
-                 (call .initscript.write_all_inherited_fifo_files (subj))))
+                 (call .initscript.writeinherited_all_fifo_files (subj))))

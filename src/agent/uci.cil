@@ -135,7 +135,7 @@
        (call .wifi.readwriteinherited_fifo_files (subj))
 
        (optional uci_opt_initscript
-                 (call .initscript.readwrite_all_inherited_fifo_files (subj)))
+                 (call .initscript.readwriteinherited_all_fifo_files (subj)))
 
        (block defaults
 

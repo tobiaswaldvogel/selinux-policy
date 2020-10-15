@@ -20,10 +20,10 @@ Macros providing access to `net.unconfined.subj_typeattr`:
 * `net.unconfined.ps_all_subjects`
 * `net.unconfined.ptrace_all_subjects`
 * `net.unconfined.read_state_all_subjects`
-* `net.unconfined.read_all_inherited_fifo_files`
+* `net.unconfined.readinherited_all_fifo_files`
 * `net.unconfined.readwrite_all_unix_dgram_sockets`
 * `net.unconfined.readwrite_all_unix_stream_sockets`
-* `net.unconfined.readwrite_all_inherited_fifo_files`
+* `net.unconfined.readwriteinherited_all_fifo_files`
 * `net.unconfined.recvfrom_all_associations`
 * `net.unconfined.recvfromsendto_all_associations`
 * `net.unconfined.sendto_all_associations`
@@ -38,6 +38,7 @@ Macros providing access to `net.unconfined.subj_typeattr`:
 * `net.unconfined.use_all_fds`
 * `net.unconfined.write_all_unix_dgram_sockets`
 * `net.unconfined.write_all_unix_stream_sockets`
+* `net.unconfined.writeinherited_all_fifo_files`
 * `net.unconfined.dontaudit_noatsecure_all_subjects`
 * `net.unconfined.dontaudit_rlimitinh_all_subjects`
 * `net.unconfined.dontaudit_siginh_all_subjects`

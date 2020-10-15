@@ -1629,7 +1629,7 @@
                      (allow ARG1 subj_typeattr read_file)
                      (allow ARG1 subj_typeattr read_lnk_file))
 
-              (macro read_all_inherited_fifo_files ((type ARG1))
+              (macro readinherited_all_fifo_files ((type ARG1))
                      (allow ARG1 subj_typeattr readinherited_fifo_file)
                      (call use_all_fds (ARG1)))
 
@@ -1639,7 +1639,7 @@
               (macro readwrite_all_unix_stream_sockets ((type ARG1))
                      (allow ARG1 subj_typeattr readwrite_unix_stream_socket))
 
-              (macro readwrite_all_inherited_fifo_files ((type ARG1))
+              (macro readwriteinherited_all_fifo_files ((type ARG1))
                      (allow ARG1 subj_typeattr readwriteinherited_fifo_file)
                      (call use_all_fds (ARG1)))
 
@@ -1686,7 +1686,7 @@
               (macro write_all_unix_stream_sockets ((type ARG1))
                      (allow ARG1 subj_typeattr write_unix_stream_socket))
 
-              (macro write_all_inherited_fifo_files ((type ARG1))
+              (macro writeinherited_all_fifo_files ((type ARG1))
                      (allow ARG1 subj_typeattr writeinherited_fifo_file)
                      (call use_all_fds (ARG1)))
 
