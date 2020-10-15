@@ -210,6 +210,12 @@
               (macro read_debugfile_files ((type ARG1))
                      (allow ARG1 debugfile read_file))
 
+              (macro read_debugfile_lnk_files ((type ARG1))
+                     (allow ARG1 debugfile read_lnk_file))
+
+              (macro read_debugfile_sock_files ((type ARG1))
+                     (allow ARG1 debugfile read_sock_file))
+
               (macro readinherited_debugfile_blk_files ((type ARG1))
                      (allow ARG1 debugfile readinherited_blk_file))
 
@@ -224,12 +230,6 @@
 
               (macro readinherited_debugfile_sock_files ((type ARG1))
                      (allow ARG1 debugfile readinherited_sock_file))
-
-              (macro read_debugfile_lnk_files ((type ARG1))
-                     (allow ARG1 debugfile read_lnk_file))
-
-              (macro read_debugfile_sock_files ((type ARG1))
-                     (allow ARG1 debugfile read_sock_file))
 
               (macro readwrite_debugfile ((type ARG1))
                      (allow ARG1 debugfile (allfiles (readwrite))))
@@ -249,6 +249,12 @@
               (macro readwrite_debugfile_files ((type ARG1))
                      (allow ARG1 debugfile readwrite_file))
 
+              (macro readwrite_debugfile_lnk_files ((type ARG1))
+                     (allow ARG1 debugfile readwrite_lnk_file))
+
+              (macro readwrite_debugfile_sock_files ((type ARG1))
+                     (allow ARG1 debugfile readwrite_sock_file))
+
               (macro readwriteinherited_debugfile_blk_files ((type ARG1))
                      (allow ARG1 debugfile readwriteinherited_blk_file))
 
@@ -266,12 +272,6 @@
 
               (macro readwriteinherited_debugfile_sock_files ((type ARG1))
                      (allow ARG1 debugfile readwriteinherited_sock_file))
-
-              (macro readwrite_debugfile_lnk_files ((type ARG1))
-                     (allow ARG1 debugfile readwrite_lnk_file))
-
-              (macro readwrite_debugfile_sock_files ((type ARG1))
-                     (allow ARG1 debugfile readwrite_sock_file))
 
               (macro relabel_debugfile ((type ARG1))
                      (allow ARG1 debugfile (allfiles (relabel))))
@@ -390,6 +390,12 @@
               (macro write_debugfile_files ((type ARG1))
                      (allow ARG1 debugfile write_file))
 
+              (macro write_debugfile_lnk_files ((type ARG1))
+                     (allow ARG1 debugfile write_lnk_file))
+
+              (macro write_debugfile_sock_files ((type ARG1))
+                     (allow ARG1 debugfile write_sock_file))
+
               (macro writeinherited_debugfile_blk_files ((type ARG1))
                      (allow ARG1 debugfile writeinherited_blk_file))
 
@@ -407,12 +413,6 @@
 
               (macro writeinherited_debugfile_sock_files ((type ARG1))
                      (allow ARG1 debugfile writeinherited_sock_file))
-
-              (macro write_debugfile_lnk_files ((type ARG1))
-                     (allow ARG1 debugfile write_lnk_file))
-
-              (macro write_debugfile_sock_files ((type ARG1))
-                     (allow ARG1 debugfile write_sock_file))
 
               ;;
               ;; Policy

@@ -8,6 +8,9 @@
 ### Cgroup Files
 - [Cgroup Files](cgroupfile.md#cgroup-files)
 
+### Debug Files
+- [Debug Files](debugfile.md#debug-files)
+
 ## Network
 - [Network](net.md#network)
 - [Network Packets](netpacket.md#network-packets)

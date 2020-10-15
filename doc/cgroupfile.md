@@ -194,7 +194,7 @@ cat > src/cgroupfile/mygroupcgroupfile.cil <<EOF
        (genfscon
        "cgroup2"
        "/mygroup"
-       cgroupfile_context)
+       cgroupfile_file_context)
 
        ;;
        ;; Policy
@@ -362,7 +362,7 @@ cat > src/cgroupfile/mygroupcgroupfile.cil <<EOF
        (genfscon
        "cgroup2"
        "/mygroup"
-       cgroupfile_context)
+       cgroupfile_file_context)
 
        ;;
        ;; Macros

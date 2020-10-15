@@ -194,7 +194,7 @@ cat > src/bpffile/myprogbpffile.cil <<EOF
        (genfscon
        "bpf"
        "/myprog"
-       bpffile_context)
+       bpffile_file_context)
 
        ;;
        ;; Policy
