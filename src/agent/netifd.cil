@@ -206,6 +206,7 @@
        (call .uci.search_tmpfile_dirs (subj))
        (call .uci.subj_type_transition (subj))
 
+       (call .wpad.search_runtimetmpfile_dirs (subj))
        (call .wpad.signal_subjects (subj))
        (call .wpad.subj_type_transition (subj))
 

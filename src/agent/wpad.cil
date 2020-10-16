@@ -37,6 +37,11 @@
         runtimetmpfile_file_context)
 
        (filecon
+        "/tmp/wpa_ctrl.*"
+        socket
+        tmpfile_file_context)
+
+       (filecon
         "/usr/bin/hostapd"
         file
         execfile_file_context)
@@ -62,11 +67,28 @@
               (call .tmpfile.runtimetmpfile_obj_type_transition
                     (ARG1 runtimetmpfile ARG2 ARG3)))
 
+       (macro obj_type_transition_tmpfile ((type ARG1)(class ARG2)(name ARG3))
+              (call .tmp.fs_obj_type_transition
+                    (ARG1 tmpfile ARG2 ARG3)))
+
+       (macro sendto_unix_dgram_sockets ((type ARG1))
+              (allow ARG1 subj (unix_dgram_socket (sendto))))
+
+       (macro unix_dgram_send_runtimetmpfile ((type ARG1))
+              (call search_runtimetmpfile_dirs (ARG1))
+              (call sendto_unix_dgram_sockets (ARG1))
+              (call write_runtimetmpfile_sock_files (ARG1)))
+
+       (macro unix_dgram_send_tmpfile ((type ARG1))
+              (call sendto_unix_dgram_sockets (ARG1))
+              (call write_tmpfile_sock_files (ARG1)))
+
        ;;
        ;; Policy
        ;;
 
        (blockinherit .agent.base_template)
+       (blockinherit .tmpfile.obj_template)
        (blockinherit .tmpfile.runtime.obj_template)
 
        (allow subj self (capability (net_admin net_raw)))
@@ -77,11 +99,15 @@
        (allow subj self create_unix_dgram_socket)
        (allow subj self create_unix_stream_stream_socket)
        (allow subj self (netlink_route_socket (nlmsg_write)))
+       (allow subj self (unix_dgram_socket (sendto)))
 
        (call manage_runtimetmpfile_dirs (subj))
        (call manage_runtimetmpfile_sock_files (subj))
        (call obj_type_transition_runtimetmpfile (subj dir "hostapd"))
        (call obj_type_transition_runtimetmpfile (subj dir "wpa_supplicant"))
+
+       (call manage_tmpfile_sock_files (subj))
+       (call obj_type_transition_tmpfile (subj sock_file "*"))
 
        (call .sys.loadkernelmodule.subj_type (subj))
        (call .sys.read_fs_lnk_files (subj))
@@ -118,4 +144,7 @@
 
        (call .tmpfile.deletename_runtimetmpfile_dirs (subj))
 
-       (call .ubusd.unix_stream_connect (subj)))
+       (call .ubusd.unix_stream_connect (subj))
+
+       (optional wpad_opt_rpcd
+                 (call .rpcd.unix_dgram_send (subj))))
