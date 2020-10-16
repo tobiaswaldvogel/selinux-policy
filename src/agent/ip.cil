@@ -55,9 +55,15 @@
 
        (macro obj_type_transition_execfile ((type ARG1))
               (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "bridge"))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "devlink"))
+              (call .file.execfile_obj_type_transition
                     (ARG1 execfile file "ip-full"))
               (call .file.execfile_obj_type_transition
-                    (ARG1 execfile file "ip-tiny")))
+                    (ARG1 execfile file "ip-tiny"))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "tc")))
 
        (macro obj_type_transition_runtimetmpfile ((type ARG1)(class ARG2)(name ARG3))
               (call .tmpfile.runtimetmpfile_obj_type_transition
