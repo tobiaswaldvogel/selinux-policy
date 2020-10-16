@@ -67,19 +67,4 @@
 
        (call .fs.search_sysfile_dirs (subj))
 
-       (call .libblkid.mapexecute_libfile_files (subj))
-       (call .libblkid.read_libfile_files (subj))
-
-       (call .libcomerr.mapexecute_libfile_files (subj))
-       (call .libcomerr.read_libfile_files (subj))
-
-       (call .libe2p.mapexecute_libfile_files (subj))
-       (call .libe2p.read_libfile_files (subj))
-
-       (call .libext2fs.mapexecute_libfile_files (subj))
-       (call .libext2fs.read_libfile_files (subj))
-
-       (call .libuuid.mapexecute_libfile_files (subj))
-       (call .libuuid.read_libfile_files (subj))
-
        (call .random.read_nodedev_chr_files (subj)))

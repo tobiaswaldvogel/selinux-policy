@@ -85,20 +85,6 @@
 
        (call .mke2fs.subj_type_transition (subj))
 
-       (call .libfstools.mapexecute_libfile_files (subj))
-       (call .libfstools.read_libfile_files (subj))
-
-       (call .libfts.mapexecute_libfile_files (subj))
-       (call .libfts.read_libfile_files (subj))
-
-       (call .libpcre.mapexecute_libfile_files (subj))
-       (call .libpcre.read_libfile_files (subj))
-
-       (call .libselinux.linked.subj_type (subj))
-
-       (call .libubox.mapexecute_libfile_files (subj))
-       (call .libubox.read_libfile_files (subj))
-
        (call .logd.unix_dgram_send (subj))
 
        (call .mkfsf2fs.subj_type_transition (subj))
@@ -107,6 +93,7 @@
        (call .pts.search_fs_dirs (subj))
 
        (call .selinux.checkcontext (subj))
+       (call .selinux.linked.subj_type (subj))
 
        (call .shell.execute_execfile_files (subj))
 

@@ -7,7 +7,6 @@
 
 (in .file
     (call .ip.obj_type_transition_execfile (unconfined.subj_typeattr))
-    (call .ip.obj_type_transition_libfile (unconfined.subj_typeattr))
     (call .ip.obj_type_transition_runtimetmpfile
           (unconfined.subj_typeattr dir "netns")))
 
@@ -50,15 +49,6 @@
         file
         execfile_file_context)
 
-       (filecon
-        "/usr/lib/tc"
-        dir
-        libfile_file_context)
-       (filecon
-        "/usr/lib/tc/.*"
-        any
-        libfile_file_context)
-
        ;;
        ;; Macros
        ;;
@@ -68,10 +58,6 @@
                     (ARG1 execfile file "ip-full"))
               (call .file.execfile_obj_type_transition
                     (ARG1 execfile file "ip-tiny")))
-
-       (macro obj_type_transition_libfile ((type ARG1))
-              (call .file.libfile_obj_type_transition
-                    (ARG1 libfile dir "tc")))
 
        (macro obj_type_transition_runtimetmpfile ((type ARG1)(class ARG2)(name ARG3))
               (call .tmpfile.runtimetmpfile_obj_type_transition
@@ -85,7 +71,6 @@
        ;;
 
        (blockinherit .agent.base_template)
-       (blockinherit .file.lib.obj_template)
        (blockinherit .tmpfile.runtime.obj_template)
 
        (allow subj self (capability (net_admin)))
@@ -93,10 +78,6 @@
        (allow subj self create_netlink_xfrm_socket)
        (allow subj self create_unix_dgram_socket)
        (allow subj self (netlink_route_socket (nlmsg_read nlmsg_write)))
-
-       (call mapexecute_libfile_files (subj))
-       (call read_libfile_files (subj))
-       (call search_libfile_dirs (subj))
 
        (call manage_runtimetmpfile_dirs (subj))
        (call mounton_runtimetmpfile_dirs (subj))
@@ -115,18 +96,6 @@
 
        (call .iproute2.list_conffile_dirs (subj))
        (call .iproute2.read_conffile_files (subj))
-
-       (call .libelf.mapexecute_libfile_files (subj))
-       (call .libelf.read_libfile_files (subj))
-
-       (call .libmnl.mapexecute_libfile_files (subj))
-       (call .libmnl.read_libfile_files (subj))
-
-       (call .libxtables.mapexecute_libfile_files (subj))
-       (call .libxtables.read_libfile_files (subj))
-
-       (call .libz.mapexecute_libfile_files (subj))
-       (call .libz.read_libfile_files (subj))
 
        (call .net.read_procfile_files (subj))
 

@@ -56,12 +56,6 @@
        (call .file.dontaudit_manage_all_files (subj))
        (call .file.dontaudit_manage_all_lnk_files (subj))
 
-       (call .libcrypto.mapexecute_libfile_files (subj))
-       (call .libcrypto.read_libfile_files (subj))
-
-       (call .libz.mapexecute_libfile_files (subj))
-       (call .libz.read_libfile_files (subj))
-
        (call .locale.read.subj_type (subj))
 
        (call .mnt.search_miscfile_dirs (subj))

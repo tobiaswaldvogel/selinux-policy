@@ -33,23 +33,14 @@
 
        (call .jsonfilter.subj_type_transition (subj_typeattr))
 
-       (call .libfts.mapexecute_libfile_files (subj_typeattr))
-       (call .libfts.read_libfile_files (subj_typeattr))
-
-       (call .libpcre.mapexecute_libfile_files (subj_typeattr))
-       (call .libpcre.read_libfile_files (subj_typeattr))
-
-       (call .libselinux.linked.subj_type (subj_typeattr))
-
-       (call .libsetlbf.mapexecute_libfile_files (subj_typeattr))
-       (call .libsetlbf.read_libfile_files (subj_typeattr))
-
        (call .libubox.read_datafile_files (subj_typeattr))
        (call .libubox.search_datafile_dirs (subj_typeattr))
 
        (call .nameservice.read_miscfile_files (subj_typeattr))
 
        (call .rccommon.read_conffile_files (subj_typeattr))
+
+       (call .selinux.linked.subj_type (subj_typeattr))
 
        (call .shell.execute_execfile_files (subj_typeattr))
 

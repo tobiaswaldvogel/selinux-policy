@@ -8,7 +8,6 @@
 (in .file
     (call .rpcd.obj_type_transition_datafile (unconfined.subj_typeattr))
     (call .rpcd.obj_type_transition_execfile (unconfined.subj_typeattr))
-    (call .rpcd.obj_type_transition_libfile (unconfined.subj_typeattr))
     (call .rpcd.obj_type_transition_runtimetmpfile
           (unconfined.subj_typeattr dir "rpcd")))
 
@@ -38,15 +37,6 @@
         execfile_file_context)
 
        (filecon
-        "/usr/lib/rpcd"
-        dir
-        libfile_file_context)
-       (filecon
-        "/usr/lib/rpcd/.*"
-        any
-        libfile_file_context)
-
-       (filecon
         "/usr/share/rpcd"
         dir
         datafile_file_context)
@@ -58,10 +48,6 @@
        ;;
        ;; Macros
        ;;
-
-       (macro obj_type_transition_libfile ((type ARG1))
-              (call .file.libfile_obj_type_transition
-                    (ARG1 libfile dir "rpcd")))
 
        (macro obj_type_transition_datafile ((type ARG1))
               (call .file.datafile_obj_type_transition
@@ -88,7 +74,6 @@
 
        (blockinherit .agent.base_template)
        (blockinherit .file.data.obj_template)
-       (blockinherit .file.lib.obj_template)
        (blockinherit .tmpfile.runtime.obj_template)
 
        (allow subj self (capability (kill net_admin net_raw setgid setuid)))
@@ -102,10 +87,6 @@
 
        (call list_datafile_dirs (subj))
        (call read_datafile_files (subj))
-
-       (call list_libfile_dirs (subj))
-       (call mapexecute_libfile_files (subj))
-       (call read_libfile_files (subj))
 
        (call manage_runtimetmpfile_dirs (subj))
        (call manage_runtimetmpfile_files (subj))
@@ -152,39 +133,8 @@
        (call .kernel.read_sysctlfile_files (subj))
        (call .kernel.search_sysctlfile_dirs (subj))
 
-       (call .libblobmsg.mapexecute_libfile_files (subj))
-       (call .libblobmsg.read_libfile_files (subj))
-
-       (call .libfts.mapexecute_libfile_files (subj))
-       (call .libfts.read_libfile_files (subj))
-
-       (call .libiwinfo.mapexecute_libfile_files (subj))
        (call .libiwinfo.read_datafile_files (subj))
-       (call .libiwinfo.read_libfile_files (subj))
        (call .libiwinfo.search_datafile_dirs (subj))
-
-       (call .libjsonc.mapexecute_libfile_files (subj))
-       (call .libjsonc.read_libfile_files (subj))
-
-       (call .liblua.read_libfile_files (subj))
-       (call .liblua.search_libfile_dirs (subj))
-
-       (call .libnltiny.mapexecute_libfile_files (subj))
-       (call .libnltiny.read_libfile_files (subj))
-
-       (call .libpcre.mapexecute_libfile_files (subj))
-       (call .libpcre.read_libfile_files (subj))
-
-       (call .libselinux.linked.subj_type (subj))
-
-       (call .libubox.mapexecute_libfile_files (subj))
-       (call .libubox.read_libfile_files (subj))
-
-       (call .libubus.mapexecute_libfile_files (subj))
-       (call .libubus.read_libfile_files (subj))
-
-       (call .libuci.mapexecute_libfile_files (subj))
-       (call .libuci.read_libfile_files (subj))
 
        (call .logread.subj_type_transition (subj))
 
@@ -215,6 +165,8 @@
        (call .rclocal.readwrite_conffile_files (subj))
 
        (call .resolv.read_tmpfile_files (subj))
+
+       (call .selinux.linked.subj_type (subj))
 
        (call .shadow.read_authfile_files (subj))
        (call .shadow.read.subj_type (subj))

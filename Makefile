@@ -9,13 +9,7 @@ modulesminimal = $(shell find src -type f -name '*.cil' \
 	-regextype posix-egrep \
 	! -regex 'src/(cgi|init)?script/.*\.cil' \
 	! -name acme.cil ! -name autonoseclabelfs.cil \
-	! -name blockmount.cil ! -name ip.cil \
-	! -name libconfuselibfile.cil ! -name libblkidtinylibfile.cil \
-	! -name libcryptolibfile.cil ! -name libelflibfile.cil \
-	! -name liblualibfile.cil ! -name libmnllibfile.cil \
-	! -name libnllibfile.cil ! -name libnlroutelibfile.cil \
-	! -name libpcaplibfile.cil ! -name libssllibfile.cil \
-	! -name libzlibfile.cil ! -name luaexecfile.cil \
+	! -name blockmount.cil ! -name ip.cil ! -name luaexecfile.cil \
 	! -name luci.cil ! -name opensslexecfile.cil \
 	! -name px5gexecfile.cil ! -name rpcd.cil \
 	! -name sftpserver.cil ! -name socatexecfile.cil \

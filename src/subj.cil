@@ -1871,10 +1871,12 @@
               (call .zero.map_nodedev_chr_files (subj_typeattr))
               (call .zero.readwrite_nodedev_chr_files (subj_typeattr))
 
+              (call .file.list_libfile_dirs (subj_typeattr))
+              (call .file.mapexecute_libfile_files (subj_typeattr))
               (call .file.read_execfile_lnk_files (subj_typeattr))
+              (call .file.read_libfile_files (subj_typeattr))
               (call .file.read_libfile_lnk_files (subj_typeattr))
               (call .file.search_execfile_dirs (subj_typeattr))
-              (call .file.search_libfile_dirs (subj_typeattr))
 
               (call .proc.read_fs_lnk_files (subj_typeattr))
               (call .proc.search_fs_dirs (subj_typeattr))

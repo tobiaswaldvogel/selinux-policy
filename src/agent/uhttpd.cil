@@ -9,8 +9,7 @@
     (call .uhttpd.conffile_obj_type_transition_certfile
           (unconfined.subj_typeattr))
     (call .uhttpd.obj_type_transition_conftmpfile (unconfined.subj_typeattr))
-    (call .uhttpd.obj_type_transition_execfile (unconfined.subj_typeattr))
-    (call .uhttpd.obj_type_transition_libfile (unconfined.subj_typeattr)))
+    (call .uhttpd.obj_type_transition_execfile (unconfined.subj_typeattr)))
 
 (block uhttpd
 
@@ -41,11 +40,6 @@
         file
         execfile_file_context)
 
-       (filecon
-        "/usr/lib/uhttpd_ubus\.so"
-        file
-        libfile_file_context)
-
        ;;
        ;; Macros
        ;;
@@ -63,9 +57,6 @@
        (macro getattr_execfile_files ((type ARG1))
               (allow ARG1 execfile (file (getattr))))
 
-       (macro getattr_libfile_files ((type ARG1))
-              (allow ARG1 libfile (file (getattr))))
-
        (macro obj_type_transition_conftmpfile ((type ARG1))
               (call .tmpfile.conftmpfile_obj_type_transition
                     (ARG1 conftmpfile dir "uhttpd")))
@@ -74,17 +65,12 @@
               (call .file.execfile_obj_type_transition
                     (ARG1 execfile file "uhttpd")))
 
-       (macro obj_type_transition_libfile ((type ARG1))
-              (call .file.libfile_obj_type_transition
-                    (ARG1 libfile file "uhttpd_ubus.so")))
-
        ;;
        ;; Policy
        ;;
 
        (blockinherit .agent.base_template)
        (blockinherit .file.cert.obj_template)
-       (blockinherit .file.lib.obj_template)
        (blockinherit .tmpfile.conf.obj_template)
 
        (allow subj self create_unix_stream_socket)
@@ -93,9 +79,6 @@
 
        (call manage_conftmpfile_dirs (subj))
        (call obj_type_transition_conftmpfile (subj))
-
-       (call mapexecute_libfile_files (subj))
-       (call read_libfile_files (subj))
 
        (call .sys.writeinherited_fifo_files (subj))
 
@@ -107,27 +90,6 @@
        (call .file.search_datafile_dirs (subj))
 
        (call .http.tcp_bind_netports (subj))
-
-       (call .libblobmsg.mapexecute_libfile_files (subj))
-       (call .libblobmsg.read_libfile_files (subj))
-
-       (call .libjsonc.mapexecute_libfile_files (subj))
-       (call .libjsonc.read_libfile_files (subj))
-
-       (call .libjsonscript.mapexecute_libfile_files (subj))
-       (call .libjsonscript.read_libfile_files (subj))
-
-       (call .libubox.mapexecute_libfile_files (subj))
-       (call .libubox.read_libfile_files (subj))
-
-       (call .libubus.mapexecute_libfile_files (subj))
-       (call .libubus.read_libfile_files (subj))
-
-       (call .libustreamssl.mapexecute_libfile_files (subj))
-       (call .libustreamssl.read_libfile_files (subj))
-
-       (call .libwolfssl.mapexecute_libfile_files (subj))
-       (call .libwolfssl.read_libfile_files (subj))
 
        (call .lua.execute_execfile_files (subj))
 

@@ -70,6 +70,25 @@
               (call .selinux.list_fs_dirs (ARG1))
               (call .selinux.readwrite_fs_files (ARG1)))
 
+       (block linked
+
+              ;;
+              ;; Policy
+              ;;
+
+              (blockinherit .subj.subj_all_macro_template)
+
+              (call getattr_filesystems (subj_typeattr))
+              (call read_conffile_files (subj_typeattr))
+              (call search_conffile_dirs (subj_typeattr))
+
+              (call .sys.search_fs_dirs (subj_typeattr))
+
+              (call .file.search_conffile_dirs (subj_typeattr))
+              (call .file.search_datafile_dirs (subj_typeattr))
+
+              (call .fs.search_sysfile_dirs (subj_typeattr)))
+
        (block loadpolicy
 
               ;;

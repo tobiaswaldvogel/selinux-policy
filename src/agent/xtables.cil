@@ -78,24 +78,6 @@
        (call .file.search_conffile_dirs (subj))
        (call .file.search_datafile_dirs (subj))
 
-       (call .libip6tc.mapexecute_libfile_files (subj))
-       (call .libip6tc.read_libfile_files (subj))
-       (call .libip4tc.mapexecute_libfile_files (subj))
-       (call .libip4tc.read_libfile_files (subj))
-
-       (call .libiptext.mapexecute_libfile_files (subj))
-       (call .libiptext.read_libfile_files (subj))
-       (call .libiptext4.mapexecute_libfile_files (subj))
-       (call .libiptext4.read_libfile_files (subj))
-       (call .libiptext6.mapexecute_libfile_files (subj))
-       (call .libiptext6.read_libfile_files (subj))
-
-       (call .libsetlbf.mapexecute_libfile_files (subj))
-       (call .libsetlbf.read_libfile_files (subj))
-
-       (call .libxtables.mapexecute_libfile_files (subj))
-       (call .libxtables.read_libfile_files (subj))
-
        (call .nameservice.read_miscfile_files (subj))
 
        (call .net.egress_netifs (subj))

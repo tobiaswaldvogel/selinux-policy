@@ -95,38 +95,6 @@
        (call .ipv4.search_sysctlfile_dirs (subj))
        (call .ipv4.write_sysctlfile_files (subj))
 
-       (call .libfts.mapexecute_libfile_files (subj))
-       (call .libfts.read_libfile_files (subj))
-
-       (call .libip4tc.mapexecute_libfile_files (subj))
-       (call .libip4tc.read_libfile_files (subj))
-       (call .libip6tc.mapexecute_libfile_files (subj))
-       (call .libip6tc.read_libfile_files (subj))
-
-       (call .libiptext.mapexecute_libfile_files (subj))
-       (call .libiptext.read_libfile_files (subj))
-       (call .libiptext4.mapexecute_libfile_files (subj))
-       (call .libiptext4.read_libfile_files (subj))
-       (call .libiptext6.mapexecute_libfile_files (subj))
-       (call .libiptext6.read_libfile_files (subj))
-
-       (call .libpcre.mapexecute_libfile_files (subj))
-       (call .libpcre.read_libfile_files (subj))
-
-       (call .libubox.mapexecute_libfile_files (subj))
-       (call .libubox.read_libfile_files (subj))
-
-       (call .libubus.mapexecute_libfile_files (subj))
-       (call .libubus.read_libfile_files (subj))
-
-       (call .libuci.mapexecute_libfile_files (subj))
-       (call .libuci.read_libfile_files (subj))
-
-       (call .libxtables.mapexecute_libfile_files (subj))
-       (call .libxtables.read_libfile_files (subj))
-
-       (call .libselinux.linked.subj_type (subj))
-
        (call .net.readwrite_procfile_files (subj))
        (call .net.search_sysctlfile_dirs (subj))
 
@@ -143,6 +111,8 @@
        ;; this is due to it trying to create "contrack" file in /proc/net
        (call .proc.getattr_filesystems (subj))
        (call .proc.dontaudit_associate_filesystems (subj))
+
+       (call .selinux.linked.subj_type (subj))
 
        (call .shell.execute_execfile_files (subj))
 

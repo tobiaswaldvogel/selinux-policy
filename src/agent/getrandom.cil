@@ -37,8 +37,5 @@
 
        (call .file.search_conffile_dirs (subj))
 
-       (call .libsetlbf.mapexecute_libfile_files (subj))
-       (call .libsetlbf.read_libfile_files (subj))
-
        (call .urandomseed.use_fds (subj))
        (call .urandomseed.writeinherited_miscfile_files (subj)))
