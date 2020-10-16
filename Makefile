@@ -8,7 +8,8 @@ modules = $(shell find src -type f -name '*.cil' -printf '%p ')
 modulesminimal = $(shell find src -type f -name '*.cil' \
 	-regextype posix-egrep \
 	! -regex 'src/(cgi|init)?script/.*\.cil' \
-	! -name acme.cil ! -name blockmount.cil ! -name ip.cil \
+	! -name acme.cil ! -name autonoseclabelfs.cil \
+	! -name blockmount.cil ! -name ip.cil \
 	! -name libconfuselibfile.cil ! -name libblkidtinylibfile.cil \
 	! -name libcryptolibfile.cil ! -name libelflibfile.cil \
 	! -name liblualibfile.cil ! -name libmnllibfile.cil \
