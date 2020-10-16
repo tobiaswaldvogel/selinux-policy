@@ -1,0 +1,49 @@
+;; -*- mode: CIL; fill-column: 79; indent-tabs-mode: nil; -*-
+;; SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
+;; SPDX-License-Identifier: Unlicense
+
+(in .sys
+    (call .ip.subj_type_transition (subj)))
+
+(in .file
+    (call .ip.obj_type_transition_execfile (unconfined.subj_typeattr)))
+
+(in .netifd
+    (call .ip.subj_type_transition (subj)))
+
+(block ip
+
+       ;;
+       ;; Contexts
+       ;;
+
+       (filecon
+        "/usr/bin/ip-full"
+        file
+        execfile_file_context)
+       (filecon
+        "/usr/bin/ip-tiny"
+        file
+        execfile_file_context)
+
+       ;;
+       ;; Macros
+       ;;
+
+       (macro obj_type_transition_execfile ((type ARG1))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "ip-full"))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "ip-tiny")))
+
+       ;;
+       ;; Policy
+       ;;
+
+       (blockinherit .agent.base_template)
+
+       (call .libelf.mapexecute_libfile_files (subj))
+       (call .libelf.read_libfile_files (subj))
+
+       (call .libz.mapexecute_libfile_files (subj))
+       (call .libz.read_libfile_files (subj)))

@@ -1,0 +1,31 @@
+;; -*- mode: CIL; fill-column: 79; indent-tabs-mode: nil; -*-
+;; SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
+;; SPDX-License-Identifier: Unlicense
+
+(in .file
+    (call .libmnl.obj_type_transition_libfile (unconfined.subj_typeattr)))
+
+(block libmnl
+
+       ;;
+       ;; Contexts
+       ;;
+
+       (filecon
+        "/usr/lib/libmnl\.so\..*"
+        file
+        libfile_file_context)
+
+       ;;
+       ;; Macros
+       ;;
+
+       (macro obj_type_transition_libfile ((type ARG1))
+              (call .file.libfile_obj_type_transition
+                    (ARG1 libfile file "libmnl.so.0.2.0")))
+
+       ;;
+       ;; Policy
+       ;;
+
+       (blockinherit file.lib.obj_template))
