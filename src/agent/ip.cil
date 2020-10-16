@@ -78,6 +78,9 @@
               (call .tmpfile.runtimetmpfile_obj_type_transition
                     (ARG1 runtimetmpfile ARG2 ARG3)))
 
+       (macro watch_runtimetmpfile_dirs ((type ARG1))
+              (allow ARG1 runtimetmpfile (dir (watch))))
+
        ;;
        ;; Policy
        ;;
@@ -90,7 +93,7 @@
        (allow subj self create_netlink_route_socket)
        (allow subj self create_netlink_xfrm_socket)
        (allow subj self create_unix_dgram_socket)
-       (allow subj self (netlink_route_socket (nlmsg_write)))
+       (allow subj self (netlink_route_socket (nlmsg_read nlmsg_write)))
 
        (call mapexecute_libfile_files (subj))
        (call read_libfile_files (subj))
@@ -99,15 +102,20 @@
        (call manage_runtimetmpfile_dirs (subj))
        (call mounton_runtimetmpfile_dirs (subj))
        (call obj_type_transition_runtimetmpfile (subj dir "*"))
+       (call watch_runtimetmpfile_dirs (subj))
 
        (call .sys.loadkernelmodule.subj_type (subj))
        (call .sys.readwriteinherited_ptydev_chr_files (subj))
        (call .sys.requestmodule (subj))
+       (call .sys.writeinherited_fifo_files (subj))
 
        (call .dev.readwriteinherited_ttydev_chr_files (subj))
 
        (call .file.search_conffile_dirs (subj))
        (call .file.search_datafile_dirs (subj))
+
+       (call .iproute2.list_conffile_dirs (subj))
+       (call .iproute2.read_conffile_files (subj))
 
        (call .libelf.mapexecute_libfile_files (subj))
        (call .libelf.read_libfile_files (subj))
@@ -115,8 +123,13 @@
        (call .libmnl.mapexecute_libfile_files (subj))
        (call .libmnl.read_libfile_files (subj))
 
+       (call .libxtables.mapexecute_libfile_files (subj))
+       (call .libxtables.read_libfile_files (subj))
+
        (call .libz.mapexecute_libfile_files (subj))
        (call .libz.read_libfile_files (subj))
+
+       (call .net.read_procfile_files (subj))
 
        (call .ns.read_fs_files (subj))
 
