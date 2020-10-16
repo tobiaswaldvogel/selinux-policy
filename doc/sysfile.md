@@ -186,6 +186,9 @@ container:
 * `sysfile.writeinherited_all_fifo_files`
 * `sysfile.writeinherited_all_files`
 * `sysfile.writeinherited_all_sock_files`
+* `sysfile.dontaudit_manage_all_dirs`
+* `sysfile.dontaudit_manage_all_files`
+* `sysfile.dontaudit_manage_all_lnk_files`
 
 The `sysfile.obj_base_template` and `sysfile.obj_macro_template` are
 inherited at the various equivalent intermediate level "block", "bus",
@@ -457,6 +460,9 @@ Macros providing access to `sysfile.block.obj_typeattr`:
 * `sysfile.block.writeinherited_all_fifo_files`
 * `sysfile.block.writeinherited_all_files`
 * `sysfile.block.writeinherited_all_sock_files`
+* `sysfile.block.dontaudit_manage_all_dirs`
+* `sysfile.block.dontaudit_manage_all_files`
+* `sysfile.block.dontaudit_manage_all_lnk_files`
 
 ## src/sysfile/bussysfile.cil
 
@@ -723,6 +729,9 @@ Macros providing access to `sysfile.bus.obj_typeattr`:
 * `sysfile.bus.writeinherited_all_fifo_files`
 * `sysfile.bus.writeinherited_all_files`
 * `sysfile.bus.writeinherited_all_sock_files`
+* `sysfile.bus.dontaudit_manage_all_dirs`
+* `sysfile.bus.dontaudit_manage_all_files`
+* `sysfile.bus.dontaudit_manage_all_lnk_files`
 
 ## src/sysfile/classsysfile.cil
 
@@ -989,6 +998,9 @@ Macros providing access to `sysfile.class.obj_typeattr`:
 * `sysfile.class.writeinherited_all_fifo_files`
 * `sysfile.class.writeinherited_all_files`
 * `sysfile.class.writeinherited_all_sock_files`
+* `sysfile.class.dontaudit_manage_all_dirs`
+* `sysfile.class.dontaudit_manage_all_files`
+* `sysfile.class.dontaudit_manage_all_lnk_files`
 
 ## src/sysfile/devicessysfile.cil
 
@@ -1255,6 +1267,9 @@ Macros providing access to `sysfile.devices.obj_typeattr`:
 * `sysfile.devices.writeinherited_all_fifo_files`
 * `sysfile.devices.writeinherited_all_files`
 * `sysfile.devices.writeinherited_all_sock_files`
+* `sysfile.devices.dontaudit_manage_all_dirs`
+* `sysfile.devices.dontaudit_manage_all_files`
+* `sysfile.devices.dontaudit_manage_all_lnk_files`
 
 ## src/sysfile/devsysfile.cil
 
@@ -1521,6 +1536,9 @@ Macros providing access to `sysfile.dev.obj_typeattr`:
 * `sysfile.dev.writeinherited_all_fifo_files`
 * `sysfile.dev.writeinherited_all_files`
 * `sysfile.dev.writeinherited_all_sock_files`
+* `sysfile.dev.dontaudit_manage_all_dirs`
+* `sysfile.dev.dontaudit_manage_all_files`
+* `sysfile.dev.dontaudit_manage_all_lnk_files`
 
 ## src/sysfile/firmwaresysfile.cil
 
@@ -1788,6 +1806,9 @@ Macros providing access to `sysfile.firmware.obj_typeattr`:
 * `sysfile.firmware.writeinherited_all_fifo_files`
 * `sysfile.firmware.writeinherited_all_files`
 * `sysfile.firmware.writeinherited_all_sock_files`
+* `sysfile.firmware.dontaudit_manage_all_dirs`
+* `sysfile.firmware.dontaudit_manage_all_files`
+* `sysfile.firmware.dontaudit_manage_all_lnk_files`
 
 ## src/sysfile/fssysfile.cil
 
@@ -2054,6 +2075,9 @@ Macros providing access to `sysfile.fs.obj_typeattr`:
 * `sysfile.fs.writeinherited_all_fifo_files`
 * `sysfile.fs.writeinherited_all_files`
 * `sysfile.fs.writeinherited_all_sock_files`
+* `sysfile.fs.dontaudit_manage_all_dirs`
+* `sysfile.fs.dontaudit_manage_all_files`
+* `sysfile.fs.dontaudit_manage_all_lnk_files`
 
 ## src/sysfile/hypervisorsysfile.cil
 
@@ -2323,6 +2347,9 @@ Macros providing access to `sysfile.hypervisor.obj_typeattr`:
 * `sysfile.hypervisor.writeinherited_all_fifo_files`
 * `sysfile.hypervisor.writeinherited_all_files`
 * `sysfile.hypervisor.writeinherited_all_sock_files`
+* `sysfile.hypervisor.dontaudit_manage_all_dirs`
+* `sysfile.hypervisor.dontaudit_manage_all_files`
+* `sysfile.hypervisor.dontaudit_manage_all_lnk_files`
 
 ## src/sysfile/kernelsysfile.cil
 
@@ -2589,6 +2616,9 @@ Macros providing access to `sysfile.kernel.obj_typeattr`:
 * `sysfile.kernel.writeinherited_all_fifo_files`
 * `sysfile.kernel.writeinherited_all_files`
 * `sysfile.kernel.writeinherited_all_sock_files`
+* `sysfile.kernel.dontaudit_manage_all_dirs`
+* `sysfile.kernel.dontaudit_manage_all_files`
+* `sysfile.kernel.dontaudit_manage_all_lnk_files`
 
 ## src/sysfile/modulesysfile.cil
 
@@ -2855,6 +2885,9 @@ Macros providing access to `sysfile.module.obj_typeattr`:
 * `sysfile.module.writeinherited_all_fifo_files`
 * `sysfile.module.writeinherited_all_files`
 * `sysfile.module.writeinherited_all_sock_files`
+* `sysfile.module.dontaudit_manage_all_dirs`
+* `sysfile.module.dontaudit_manage_all_files`
+* `sysfile.module.dontaudit_manage_all_lnk_files`
 
 ## src/sysfile/powersysfile.cil
 
@@ -3121,6 +3154,9 @@ Macros providing access to `sysfile.power.obj_typeattr`:
 * `sysfile.power.writeinherited_all_fifo_files`
 * `sysfile.power.writeinherited_all_files`
 * `sysfile.power.writeinherited_all_sock_files`
+* `sysfile.power.dontaudit_manage_all_dirs`
+* `sysfile.power.dontaudit_manage_all_files`
+* `sysfile.power.dontaudit_manage_all_lnk_files`
 
 # Private Sys File Types
 
@@ -3129,7 +3165,7 @@ in either `src/sysfile/blocksysfile`, `src/sysfile/bussysfile`,
 `src/sysfile/classsysfile`, `src/sysfile/devsysfile`,
 `src/sysfile/devicessysfile`, `src/sysfile/firmwaresysfile`,
 `src/sysfile/fssysfile`, `src/sysfile/hypervisorsysfile`,
-`src/sysfile/kernelsysfile`, `src/sysfile/modulesysfile`,
+`src/sysfile/kernelsysfile`, `src/sysfile/modulesysfile` or
 `src/sysfile/powersysfile` directories depending on the location a
 given Sys file type is associated with. There are currently various
 existing examples available in the `src/sysfile/classsysfile` and
