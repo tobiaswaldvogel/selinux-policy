@@ -52,7 +52,6 @@
        (call .file.read_conffile_lnk_files (subj))
        (call .file.search_conffile_dirs (subj))
        (call .file.search_datafile_dirs (subj))
-       (call .file.search_mntfile_dirs (subj))
        (call .file.dontaudit_manage_all_dirs (subj))
        (call .file.dontaudit_manage_all_files (subj))
        (call .file.dontaudit_manage_all_lnk_files (subj))
@@ -64,6 +63,8 @@
        (call .libz.read_libfile_files (subj))
 
        (call .locale.read.subj_type (subj))
+
+       (call .mnt.search_miscfile_dirs (subj))
 
        (call .nameservice.read_miscfile_files (subj))
 

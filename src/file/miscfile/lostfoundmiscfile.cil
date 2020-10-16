@@ -3,7 +3,7 @@
 ;; SPDX-License-Identifier: Unlicense
 
 (in .file
-    (call .lostfound.mntfile_obj_type_transition_miscfile
+    (call .lostfound.mntmiscfile_obj_type_transition_miscfile
           (unconfined.subj_typeattr))
     (call .lostfound.obj_type_transition_miscfile (unconfined.subj_typeattr))
     (call .lostfound.overlaymiscfile_obj_type_transition_miscfile
@@ -46,8 +46,8 @@
        ;; Macros
        ;;
 
-       (macro mntfile_obj_type_transition_miscfile ((type ARG1))
-              (call .file.mntfile_obj_type_transition
+       (macro mntmiscfile_obj_type_transition_miscfile ((type ARG1))
+              (call .mnt.miscfile_obj_type_transition
                     (ARG1 miscfile dir "lost+found")))
 
        (macro obj_type_transition_miscfile ((type ARG1))

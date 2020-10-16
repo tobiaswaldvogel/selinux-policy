@@ -80,9 +80,7 @@
        (call .devices.list_sysfile_dirs (subj))
        (call .devices.read_sysfile_files (subj))
 
-       (call .file.manage_mntfile_dirs (subj))
        (call .file.mounton_homefile_dirs (subj))
-       (call .file.mounton_mntfile_dirs (subj))
        (call .file.search_conffile_dirs (subj))
        (call .file.search_datafile_dirs (subj))
 
@@ -114,6 +112,9 @@
        (call .logd.unix_dgram_send (subj))
 
        (call .loopctl.read_nodedev_chr_files (subj))
+
+       (call .mnt.manage_miscfile_dirs (subj))
+       (call .mnt.mounton_miscfile_dirs (subj))
 
        (call .mtd.read_procfile_files (subj))
        (call .mtd.read_stordev_chr_files (subj))
