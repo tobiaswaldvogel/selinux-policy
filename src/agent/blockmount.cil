@@ -82,7 +82,6 @@
 
        (call .file.mounton_homefile_dirs (subj))
        (call .file.search_conffile_dirs (subj))
-       (call .file.search_datafile_dirs (subj))
 
        (call .hotplugcall.use_fds (subj))
 

@@ -72,7 +72,6 @@
 
        (call .file.read_conffile_lnk_files (subj))
        (call .file.search_conffile_dirs (subj))
-       (call .file.search_datafile_dirs (subj))
 
        (call .locale.read.subj_type (subj))
 

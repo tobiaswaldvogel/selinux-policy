@@ -62,7 +62,6 @@
        (call .acl.read_datafile_files (subj))
 
        (call .file.search_conffile_dirs (subj))
-       (call .file.search_datafile_dirs (subj))
 
        (call .logd.readinherited_fifo_files (subj))
 

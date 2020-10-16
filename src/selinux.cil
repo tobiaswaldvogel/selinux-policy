@@ -85,7 +85,6 @@
               (call .sys.search_fs_dirs (subj_typeattr))
 
               (call .file.search_conffile_dirs (subj_typeattr))
-              (call .file.search_datafile_dirs (subj_typeattr))
 
               (call .fs.search_sysfile_dirs (subj_typeattr)))
 

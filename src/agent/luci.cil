@@ -355,7 +355,6 @@
               (call .devices.search_sysfile_dirs (subj))
 
               (call .file.search_conffile_dirs (subj))
-              (call .file.search_datafile_dirs (subj))
 
               (call .loadavg.read_procfile_files (subj))
 
@@ -407,9 +406,8 @@
 
               (call .dropbear.auditexecute_execfile_files (subj))
 
-              (call .file.search_conffile_dirs (subj))
-              (call .file.search_datafile_dirs (subj))
               (call .file.search_cgiscriptfile_dirs (subj))
+              (call .file.search_conffile_dirs (subj))
 
               (call .fw3.auditexecute_execfile_files (subj))
 
