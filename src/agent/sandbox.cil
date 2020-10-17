@@ -155,6 +155,7 @@
              (subj_typeattr))
        (call .dev.sandboxopen.open_all_chr_files (subj_typeattr))
 
+       (call .file.deletename_homefile_dirs (subj_typeattr))
        (call .file.sandboxexcept.list_all_dirs (subj_typeattr))
        (call .file.sandboxexcept.mapexecute_all_files (subj_typeattr))
        (call .file.sandboxexcept.read_all_fifo_files (subj_typeattr))
