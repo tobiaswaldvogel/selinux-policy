@@ -29,6 +29,7 @@ Macros providing access to `net.unconfined.subj_typeattr`:
 * `net.unconfined.sendto_all_associations`
 * `net.unconfined.setrlimit_all_subjects`
 * `net.unconfined.setsched_all_subjects`
+* `net.unconfined.sigchld_all_subjects`
 * `net.unconfined.sigkill_all_subjects`
 * `net.unconfined.signal_all_subjects`
 * `net.unconfined.signull_all_subjects`
@@ -39,7 +40,9 @@ Macros providing access to `net.unconfined.subj_typeattr`:
 * `net.unconfined.write_all_unix_dgram_sockets`
 * `net.unconfined.write_all_unix_stream_sockets`
 * `net.unconfined.writeinherited_all_fifo_files`
+* `net.unconfined.dontaudit_getattr_all_subjects`
 * `net.unconfined.dontaudit_noatsecure_all_subjects`
+* `net.unconfined.dontaudit_ps_all_subjects`
 * `net.unconfined.dontaudit_rlimitinh_all_subjects`
 * `net.unconfined.dontaudit_siginh_all_subjects`
 

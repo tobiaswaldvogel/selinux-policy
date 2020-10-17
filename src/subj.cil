@@ -8,7 +8,7 @@
 
 (classmap
  allsockets
- (common))
+ (common getattr))
 
 (classmapping
  allsockets
@@ -17,9 +17,20 @@
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
 (classmapping
  allsockets
+ getattr
+ (appletalk_socket
+  (getattr)))
+(classmapping
+ allsockets
  common
  (dccp_socket
-  (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
+  (not (accept listen map name_connect name_bind node_bind relabelfrom
+               relabelto recvfrom sendto))))
+(classmapping
+ allsockets
+ getattr
+ (dccp_socket
+  (getattr)))
 (classmapping
  allsockets
  common
@@ -27,9 +38,21 @@
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
 (classmapping
  allsockets
+ getattr
+ (key_socket
+  (getattr)))
+(classmapping
+ allsockets
  common
  (netlink_audit_socket
-  (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
+  (not (accept listen map name_bind nlmsg_read nlmsg_readpriv nlmsg_relay
+               nlmsg_tty_audit nlmsg_write relabelfrom relabelto recvfrom
+               sendto))))
+(classmapping
+ allsockets
+ getattr
+ (netlink_audit_socket
+  (getattr)))
 (classmapping
  allsockets
  common
@@ -37,9 +60,19 @@
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
 (classmapping
  allsockets
+ getattr
+ (netlink_connector_socket
+  (getattr)))
+(classmapping
+ allsockets
  common
  (netlink_crypto_socket
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
+(classmapping
+ allsockets
+ getattr
+ (netlink_crypto_socket
+  (getattr)))
 (classmapping
  allsockets
  common
@@ -47,9 +80,19 @@
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
 (classmapping
  allsockets
+ getattr
+ (netlink_dnrt_socket
+  (getattr)))
+(classmapping
+ allsockets
  common
  (netlink_fib_lookup_socket
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
+(classmapping
+ allsockets
+ getattr
+ (netlink_fib_lookup_socket
+  (getattr)))
 (classmapping
  allsockets
  common
@@ -57,9 +100,19 @@
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
 (classmapping
  allsockets
+ getattr
+ (netlink_generic_socket
+  (getattr)))
+(classmapping
+ allsockets
  common
  (netlink_iscsi_socket
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
+(classmapping
+ allsockets
+ getattr
+ (netlink_iscsi_socket
+  (getattr)))
 (classmapping
  allsockets
  common
@@ -67,9 +120,19 @@
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
 (classmapping
  allsockets
+ getattr
+ (netlink_kobject_uevent_socket
+  (getattr)))
+(classmapping
+ allsockets
  common
  (netlink_netfilter_socket
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
+(classmapping
+ allsockets
+ getattr
+ (netlink_netfilter_socket
+  (getattr)))
 (classmapping
  allsockets
  common
@@ -77,14 +140,30 @@
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
 (classmapping
  allsockets
+ getattr
+ (netlink_nflog_socket
+  (getattr)))
+(classmapping
+ allsockets
  common
  (netlink_rdma_socket
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
 (classmapping
  allsockets
+ getattr
+ (netlink_rdma_socket
+  (getattr)))
+(classmapping
+ allsockets
  common
  (netlink_route_socket
-  (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
+  (not (accept listen map name_bind nlmsg_read nlmsg_write relabelfrom
+               relabelto recvfrom sendto))))
+(classmapping
+ allsockets
+ getattr
+ (netlink_route_socket
+  (getattr)))
 (classmapping
  allsockets
  common
@@ -92,9 +171,19 @@
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
 (classmapping
  allsockets
+ getattr
+ (netlink_scsitransport_socket
+  (getattr)))
+(classmapping
+ allsockets
  common
  (netlink_selinux_socket
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
+(classmapping
+ allsockets
+ getattr
+ (netlink_selinux_socket
+  (getattr)))
 (classmapping
  allsockets
  common
@@ -102,14 +191,31 @@
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
 (classmapping
  allsockets
+ getattr
+ (netlink_socket
+  (getattr)))
+(classmapping
+ allsockets
  common
  (netlink_tcpdiag_socket
-  (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
+  (not (accept listen map name_bind nlmsg_read nlmsg_write relabelfrom
+               relabelto recvfrom sendto))))
+(classmapping
+ allsockets
+ getattr
+ (netlink_tcpdiag_socket
+  (getattr)))
 (classmapping
  allsockets
  common
  (netlink_xfrm_socket
-  (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
+  (not (accept listen map name_bind nlmsg_read nlmsg_write relabelfrom
+               relabelto recvfrom sendto))))
+(classmapping
+ allsockets
+ getattr
+ (netlink_xfrm_socket
+  (getattr)))
 (classmapping
  allsockets
  common
@@ -117,9 +223,20 @@
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
 (classmapping
  allsockets
+ getattr
+ (packet_socket
+  (getattr)))
+(classmapping
+ allsockets
  common
  (rawip_socket
-  (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
+  (not (accept listen map name_bind node_bind relabelfrom relabelto recvfrom
+               sendto))))
+(classmapping
+ allsockets
+ getattr
+ (rawip_socket
+  (getattr)))
 (classmapping
  allsockets
  common
@@ -127,19 +244,42 @@
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
 (classmapping
  allsockets
+ getattr
+ (socket
+  (getattr)))
+(classmapping
+ allsockets
  common
  (tcp_socket
-  (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
+  (not (accept listen map name_connect name_bind node_bind relabelfrom
+               relabelto recvfrom sendto))))
+(classmapping
+ allsockets
+ getattr
+ (tcp_socket
+  (getattr)))
 (classmapping
  allsockets
  common
  (tun_socket
-  (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
+  (not (accept attach_queue listen map name_bind relabelfrom relabelto
+               recvfrom sendto))))
+(classmapping
+ allsockets
+ getattr
+ (tun_socket
+  (getattr)))
 (classmapping
  allsockets
  common
  (udp_socket
-  (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
+  (not (accept listen map name_bind node_bind relabelfrom relabelto recvfrom
+               sendto))))
+(classmapping
+ allsockets
+ getattr
+ (udp_socket
+  (getattr)))
 (classmapping
  allsockets
  common
@@ -147,9 +287,20 @@
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
 (classmapping
  allsockets
+ getattr
+ (unix_dgram_socket
+  (getattr)))
+(classmapping
+ allsockets
  common
  (unix_stream_socket
-  (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
+  (not (accept connectto listen map name_bind relabelfrom relabelto recvfrom
+               sendto))))
+(classmapping
+ allsockets
+ getattr
+ (unix_stream_socket
+  (getattr)))
 
 ;; extended
 (classmapping
@@ -159,9 +310,19 @@
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
 (classmapping
  allsockets
+ getattr
+ (alg_socket
+  (getattr)))
+(classmapping
+ allsockets
  common
  (atmpvc_socket
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
+(classmapping
+ allsockets
+ getattr
+ (atmpvc_socket
+  (getattr)))
 (classmapping
  allsockets
  common
@@ -169,9 +330,19 @@
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
 (classmapping
  allsockets
+ getattr
+ (atmsvc_socket
+  (getattr)))
+(classmapping
+ allsockets
  common
  (ax25_socket
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
+(classmapping
+ allsockets
+ getattr
+ (ax25_socket
+  (getattr)))
 (classmapping
  allsockets
  common
@@ -179,9 +350,19 @@
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
 (classmapping
  allsockets
+ getattr
+ (bluetooth_socket
+  (getattr)))
+(classmapping
+ allsockets
  common
  (caif_socket
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
+(classmapping
+ allsockets
+ getattr
+ (caif_socket
+  (getattr)))
 (classmapping
  allsockets
  common
@@ -189,14 +370,30 @@
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
 (classmapping
  allsockets
+ getattr
+ (can_socket
+  (getattr)))
+(classmapping
+ allsockets
  common
  (decnet_socket
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
 (classmapping
  allsockets
+ getattr
+ (decnet_socket
+  (getattr)))
+(classmapping
+ allsockets
  common
  (icmp_socket
-  (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
+  (not (accept listen map name_bind node_bind relabelfrom relabelto recvfrom
+               sendto))))
+(classmapping
+ allsockets
+ getattr
+ (icmp_socket
+  (getattr)))
 (classmapping
  allsockets
  common
@@ -204,9 +401,19 @@
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
 (classmapping
  allsockets
+ getattr
+ (ieee802154_socket
+  (getattr)))
+(classmapping
+ allsockets
  common
  (ipx_socket
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
+(classmapping
+ allsockets
+ getattr
+ (ipx_socket
+  (getattr)))
 (classmapping
  allsockets
  common
@@ -214,9 +421,19 @@
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
 (classmapping
  allsockets
+ getattr
+ (irda_socket
+  (getattr)))
+(classmapping
+ allsockets
  common
  (isdn_socket
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
+(classmapping
+ allsockets
+ getattr
+ (isdn_socket
+  (getattr)))
 (classmapping
  allsockets
  common
@@ -224,9 +441,19 @@
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
 (classmapping
  allsockets
+ getattr
+ (iucv_socket
+  (getattr)))
+(classmapping
+ allsockets
  common
  (kcm_socket
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
+(classmapping
+ allsockets
+ getattr
+ (kcm_socket
+  (getattr)))
 (classmapping
  allsockets
  common
@@ -234,9 +461,19 @@
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
 (classmapping
  allsockets
+ getattr
+ (llc_socket
+  (getattr)))
+(classmapping
+ allsockets
  common
  (netrom_socket
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
+(classmapping
+ allsockets
+ getattr
+ (netrom_socket
+  (getattr)))
 (classmapping
  allsockets
  common
@@ -244,9 +481,19 @@
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
 (classmapping
  allsockets
+ getattr
+ (nfc_socket
+  (getattr)))
+(classmapping
+ allsockets
  common
  (phonet_socket
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
+(classmapping
+ allsockets
+ getattr
+ (phonet_socket
+  (getattr)))
 (classmapping
  allsockets
  common
@@ -254,9 +501,19 @@
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
 (classmapping
  allsockets
+ getattr
+ (pppox_socket
+  (getattr)))
+(classmapping
+ allsockets
  common
  (qipcrtr_socket
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
+(classmapping
+ allsockets
+ getattr
+ (qipcrtr_socket
+  (getattr)))
 (classmapping
  allsockets
  common
@@ -264,9 +521,19 @@
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
 (classmapping
  allsockets
+ getattr
+ (rds_socket
+  (getattr)))
+(classmapping
+ allsockets
  common
  (rose_socket
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
+(classmapping
+ allsockets
+ getattr
+ (rose_socket
+  (getattr)))
 (classmapping
  allsockets
  common
@@ -274,9 +541,20 @@
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
 (classmapping
  allsockets
+ getattr
+ (rxrpc_socket
+  (getattr)))
+(classmapping
+ allsockets
  common
  (sctp_socket
-  (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
+  (not (accept association listen map name_connect name_bind node_bind
+               relabelfrom relabelto recvfrom sendto))))
+(classmapping
+ allsockets
+ getattr
+ (sctp_socket
+  (getattr)))
 (classmapping
  allsockets
  common
@@ -284,9 +562,19 @@
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
 (classmapping
  allsockets
+ getattr
+ (smc_socket
+  (getattr)))
+(classmapping
+ allsockets
  common
  (tipc_socket
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
+(classmapping
+ allsockets
+ getattr
+ (tipc_socket
+  (getattr)))
 (classmapping
  allsockets
  common
@@ -294,14 +582,29 @@
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
 (classmapping
  allsockets
+ getattr
+ (vsock_socket
+  (getattr)))
+(classmapping
+ allsockets
  common
  (x25_socket
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
 (classmapping
  allsockets
+ getattr
+ (x25_socket
+  (getattr)))
+(classmapping
+ allsockets
  common
  (xdp_socket
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
+(classmapping
+ allsockets
+ getattr
+ (xdp_socket
+  (getattr)))
 
 ;;
 ;; Classperms
@@ -1659,6 +1962,9 @@
               (macro setsched_all_subjects ((type ARG1))
                      (allow ARG1 subj_typeattr (process (setsched))))
 
+              (macro sigchld_all_subjects ((type ARG1))
+                     (allow ARG1 subj_typeattr (process (sigchld))))
+
               (macro sigkill_all_subjects ((type ARG1))
                      (allow ARG1 subj_typeattr (process (sigkill))))
 
@@ -1690,8 +1996,17 @@
                      (allow ARG1 subj_typeattr writeinherited_fifo_file)
                      (call use_all_fds (ARG1)))
 
+              (macro dontaudit_getattr_all_sockets ((type ARG1))
+                     (dontaudit ARG1 subj_typeattr (allsockets (getattr))))
+
               (macro dontaudit_noatsecure_all_subjects ((type ARG1))
                      (dontaudit ARG1 subj_typeattr (process (noatsecure))))
+
+              (macro dontaudit_ps_all_subjects ((type ARG1))
+                     (dontaudit ARG1 subj_typeattr (process (getattr)))
+                     (dontaudit ARG1 subj_typeattr list_dir)
+                     (dontaudit ARG1 subj_typeattr read_file)
+                     (dontaudit ARG1 subj_typeattr read_lnk_file))
 
               (macro dontaudit_rlimitinh_all_subjects ((type ARG1))
                      (dontaudit ARG1 subj_typeattr (process (rlimitinh))))
@@ -1786,6 +2101,9 @@
               (macro setsched_subjects ((type ARG1))
                      (allow ARG1 subj (process (setsched))))
 
+              (macro sigchld_subjects ((type ARG1))
+                     (allow ARG1 subj (process (sigchld))))
+
               (macro sigkill_subjects ((type ARG1))
                      (allow ARG1 subj (process (sigkill))))
 
@@ -1814,8 +2132,17 @@
                      (allow ARG1 subj writeinherited_fifo_file)
                      (call use_fds (ARG1)))
 
+              (macro dontaudit_getattr_sockets ((type ARG1))
+                     (dontaudit ARG1 subj (allsockets (getattr))))
+
               (macro dontaudit_noatsecure_subjects ((type ARG1))
                      (dontaudit ARG1 subj (process (noatsecure))))
+
+              (macro dontaudit_ps_subjects ((type ARG1))
+                     (dontaudit ARG1 subj (process (getattr)))
+                     (dontaudit ARG1 subj list_dir)
+                     (dontaudit ARG1 subj read_file)
+                     (dontaudit ARG1 subj read_lnk_file))
 
               (macro dontaudit_rlimitinh_subjects ((type ARG1))
                      (dontaudit ARG1 subj (process (rlimitinh))))

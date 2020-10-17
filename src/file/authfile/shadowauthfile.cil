@@ -29,6 +29,9 @@
               (call .file.conffile_obj_type_transition
                     (ARG1 authfile file "shadow")))
 
+       (macro dontaudit_read_authfile_files ((type ARG1))
+              (dontaudit ARG1 authfile read_file))
+
        ;;
        ;; Policy
        ;;

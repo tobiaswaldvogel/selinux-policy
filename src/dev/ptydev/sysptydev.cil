@@ -1,0 +1,27 @@
+;; -*- mode: CIL; fill-column: 79; indent-tabs-mode: nil; -*-
+;; SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
+;; SPDX-License-Identifier: Unlicense
+
+(in .sys
+
+    ;;
+    ;; Macros
+    ;;
+
+    (macro obj_type_transition_ptydev ((type ARG1))
+           (call .pts.fs_obj_type_transition
+                 (ARG1 ptydev chr_file "*")))
+
+    (macro setattr_ptydev_chr_files ((type ARG1))
+           (allow ARG1 ptydev (chr_file (setattr))))
+
+    (macro dontaudit_readwriteinherited_ptydev_chr_files ((type ARG1))
+           (dontaudit ARG1 ptydev readwriteinherited_chr_file))
+
+    ;;
+    ;; Policy
+    ;;
+
+    (blockinherit .dev.pty.obj_template)
+
+    (call obj_type_transition_ptydev (subj)))

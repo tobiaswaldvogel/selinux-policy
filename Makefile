@@ -39,6 +39,7 @@ install: install.$(polvers)
 install.%:
 	install -d $(DESTDIR)/etc/selinux/selinux-policy/contexts/files/
 	install -d $(DESTDIR)/etc/selinux/selinux-policy/policy/
+	install -m 644 customizable_types $(DESTDIR)/etc/selinux/selinux-policy/contexts/
 	install -m 644 file_contexts $(DESTDIR)/etc/selinux/selinux-policy/contexts/files/
 	install -m 644 file_contexts.subs_dist $(DESTDIR)/etc/selinux/selinux-policy/contexts/files/
 	install -m 600 policy.$* $(DESTDIR)/etc/selinux/selinux-policy/policy/
