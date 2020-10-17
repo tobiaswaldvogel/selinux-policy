@@ -114,6 +114,8 @@
        (blockinherit .file.home.obj_template)
        (blockinherit .tmpfile.obj_template)
 
+       (dontaudit subj_typeattr self (capability (all)))
+       (dontaudit subj_typeattr self (capability2 (all)))
        (allow subj_typeattr self
               (process (not (dyntransition execheap execstack getcap setcap
                                            setcurrent setexec share
@@ -146,6 +148,10 @@
 
        (call manage_tmpfile (subj_typeattr))
        (call obj_type_transition_tmpfile (subj_typeattr allfiles "*"))
+
+       (call .recvfromsendtoassoc.subj_type (subj_typeattr))
+       (call .recvpeer.subj_type (subj_typeattr))
+       (call .recvsendpacket.subj_type (subj_typeattr))
 
        (call .sys.readwriteinherited_fifo_files (subj_typeattr))
        (call .sys.sigchld_subjects (subj_typeattr))

@@ -2185,9 +2185,9 @@
 
               (call subj.subj_type (subj_typeattr))
 
-              (call recvfromsendtoassoc.subj_type (subj_typeattr))
-              (call recvpeer.subj_type (subj_typeattr))
-              (call recvsendpacket.subj_type (subj_typeattr))
+              (call .recvfromsendtoassoc.subj_type (subj_typeattr))
+              (call .recvpeer.subj_type (subj_typeattr))
+              (call .recvsendpacket.subj_type (subj_typeattr))
 
               (call .sys.read_rootfile_lnk_files (subj_typeattr))
               (call .sys.search_rootfile_dirs (subj_typeattr))
