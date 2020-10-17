@@ -215,7 +215,7 @@
 
               (blockinherit .sandbox.subj_template)
 
-              (call .net.port.unreserved.tcp_connect_all_netports (subj))
+              (call .net.port.tcp_connect_all_netports (subj))
               (call .net.tcp_bind_netnodes (subj)))
 
        (block unreserved_net
@@ -226,7 +226,7 @@
 
               (blockinherit .sandbox.subj_template)
 
+              (call .net.port.tcp_connect_all_netports (subj))
               (call .net.port.unreserved.tcp_bind_all_netports (subj))
-              (call .net.port.unreserved.tcp_connect_all_netports (subj))
               (call .net.port.unreserved.udp_bind_all_netports (subj))
               (call .net.tcp_bind_netnodes (subj))))
