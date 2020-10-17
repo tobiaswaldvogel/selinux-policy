@@ -33,6 +33,8 @@
 
        (blockinherit .agent.base_template)
 
+       (call .sys.writeinherited_fifo_files (subj))
+
        (call .devstatus.use_fds (subj))
 
        (call .netifd.search_miscfile_dirs (subj))
