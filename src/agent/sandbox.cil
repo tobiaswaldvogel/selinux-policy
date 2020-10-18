@@ -128,7 +128,7 @@
        (allow subj_typeattr self (msg (all)))
        (allow subj_typeattr self (msgq (all)))
        (allow subj_typeattr self (sem (all)))
-       (allow subj_typeattr subj (shm (all)))
+       (allow subj_typeattr self (shm (all)))
        (allow subj_typeattr self (netlink_route_socket (nlmsg_read)))
        (allow subj_typeattr self (packet_socket (map)))
        (allow subj_typeattr self (unix_dgram_socket (sendto)))
