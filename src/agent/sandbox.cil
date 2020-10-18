@@ -207,18 +207,7 @@
 
               (call .sandbox.subj_type (subj)))
 
-       (block connect_unreserved
-
-              ;;
-              ;; Policy
-              ;;
-
-              (blockinherit .sandbox.subj_template)
-
-              (call .net.port.tcp_connect_all_netports (subj))
-              (call .net.tcp_bind_netnodes (subj)))
-
-       (block unreserved_net
+       (block net
 
               ;;
               ;; Policy
