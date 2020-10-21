@@ -61,9 +61,6 @@
               (call .tmpfile.runtimetmpfile_obj_type_transition
                     (ARG1 runtimetmpfile ARG2 ARG3)))
 
-       (macro sendto_unix_dgram_sockets ((type ARG1))
-              (allow ARG1 subj (unix_dgram_socket (sendto))))
-
        (macro unix_dgram_send ((type ARG1))
               (call sendto_unix_dgram_sockets (ARG1))
               (call write_runtimetmpfile_sock_files (ARG1)))

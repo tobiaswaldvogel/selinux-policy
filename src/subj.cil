@@ -1905,6 +1905,10 @@
               (macro change_passwd_all_subjects ((type ARG1))
                      (allow ARG1 subj_typeattr (passwd (passwd))))
 
+              (macro connectto_all_unix_stream_sockets ((type ARG1))
+                     (allow ARG1 subj_typeattr
+                            (unix_stream_socket (connectto))))
+
               (macro getrlimit_all_subjects ((type ARG1))
                      (allow ARG1 subj_typeattr (process (getrlimit))))
 
@@ -1955,6 +1959,9 @@
 
               (macro sendto_all_associations ((type ARG1))
                      (allow ARG1 subj_typeattr (association (sendto))))
+
+              (macro sendto_all_unix_dgram_sockets ((type ARG1))
+                     (allow ARG1 subj_typeattr (unix_dgram_socket (sendto))))
 
               (macro setrlimit_all_subjects ((type ARG1))
                      (allow ARG1 subj_typeattr (process (setrlimit))))
@@ -2045,6 +2052,9 @@
               (macro change_passwd_subjects ((type ARG1))
                      (allow ARG1 subj (passwd (passwd))))
 
+              (macro connectto_unix_stream_sockets ((type ARG1))
+                     (allow ARG1 subj (unix_stream_socket (connectto))))
+
               (macro getrlimit_subjects ((type ARG1))
                      (allow ARG1 subj (process (getrlimit))))
 
@@ -2094,6 +2104,9 @@
 
               (macro sendto_associations ((type ARG1))
                      (allow ARG1 subj (association (sendto))))
+
+              (macro sendto_unix_dgram_sockets ((type ARG1))
+                     (allow ARG1 subj (unix_dgram_socket (sendto))))
 
               (macro setrlimit_subjects ((type ARG1))
                      (allow ARG1 subj (process (setrlimit))))

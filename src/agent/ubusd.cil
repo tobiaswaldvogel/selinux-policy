@@ -30,9 +30,6 @@
        ;; Macros
        ;;
 
-       (macro connectto_unix_stream_sockets ((type ARG1))
-              (allow ARG1 subj (unix_stream_socket (connectto))))
-
        (macro obj_type_transition_execfile ((type ARG1))
               (call .file.execfile_obj_type_transition
                     (ARG1 execfile file "ubusd")))
