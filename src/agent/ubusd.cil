@@ -17,8 +17,12 @@
        ;;
 
        (filecon
-        "/tmp/run/ubus\.sock"
-        socket
+        "/tmp/run/ubus"
+        dir
+        runtimetmpfile_file_context)
+       (filecon
+        "/tmp/run/ubus/.*"
+        any
         runtimetmpfile_file_context)
 
        (filecon
@@ -36,10 +40,11 @@
 
        (macro obj_type_transition_runtimetmpfile ((type ARG1))
               (call .tmpfile.runtimetmpfile_obj_type_transition
-                    (ARG1 runtimetmpfile sock_file "ubus.sock")))
+                    (ARG1 runtimetmpfile dir "ubus")))
 
        (macro unix_stream_connect ((type ARG1))
               (call connectto_unix_stream_sockets (ARG1))
+              (call search_runtimetmpfile_dirs (subj))
               (call write_runtimetmpfile_sock_files (ARG1)))
 
        ;;
@@ -52,6 +57,7 @@
        (allow subj self create_unix_dgram_socket)
        (allow subj self create_unix_stream_stream_socket)
 
+       (call manage_runtimetmpfile_dirs (subj))
        (call manage_runtimetmpfile_sock_files (subj))
        (call obj_type_transition_runtimetmpfile (subj))
 
