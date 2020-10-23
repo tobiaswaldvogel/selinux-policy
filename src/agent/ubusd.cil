@@ -44,7 +44,7 @@
 
        (macro unix_stream_connect ((type ARG1))
               (call connectto_unix_stream_sockets (ARG1))
-              (call search_runtimetmpfile_dirs (subj))
+              (call search_runtimetmpfile_dirs (ARG1))
               (call write_runtimetmpfile_sock_files (ARG1)))
 
        ;;
