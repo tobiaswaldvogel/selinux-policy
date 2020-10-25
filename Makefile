@@ -2,7 +2,7 @@
 # SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
 # SPDX-License-Identifier: Unlicense
 
-.PHONY: all clean minimal policy check install
+.PHONY: all clean minimal minwg policy check install
 
 modules = $(shell find src -type f -name '*.cil' -printf '%p ')
 modulesminimal = $(shell find src -type f -name '*.cil' \
@@ -10,6 +10,16 @@ modulesminimal = $(shell find src -type f -name '*.cil' \
 	! -regex 'src/(cgi|init)?script/.*\.cil' \
 	! -name acme.cil ! -name autonoseclabelfs.cil \
 	! -name blockmount.cil ! -name ip.cil ! -name luaexecfile.cil \
+	! -name luci.cil ! -name opensslexecfile.cil \
+	! -name px5gexecfile.cil ! -name rpcd.cil \
+	! -name sftpserver.cil ! -name socatexecfile.cil \
+	! -name uhttpd.cil ! -name wgetexecfile.cil \
+	! -name wgetmiscfile.cil ! -name wireguard.cil -printf '%p ')
+modulesminwg = $(shell find src -type f -name '*.cil' \
+	-regextype posix-egrep \
+	! -regex 'src/(cgi|init)?script/.*\.cil' \
+	! -name acme.cil ! -name autonoseclabelfs.cil \
+	! -name blockmount.cil ! -name luaexecfile.cil \
 	! -name luci.cil ! -name opensslexecfile.cil \
 	! -name px5gexecfile.cil ! -name rpcd.cil \
 	! -name sftpserver.cil ! -name socatexecfile.cil \
@@ -25,6 +35,10 @@ clean.%:
 
 minimal: minimal.$(polvers)
 minimal.%: $(modulesminimal)
+	secilc --policyvers=$* $^
+
+minwg: minwg.$(polvers)
+minwg.%: $(modulesminwg)
 	secilc --policyvers=$* $^
 
 policy: policy.$(polvers)

@@ -1,0 +1,57 @@
+;; -*- mode: CIL; fill-column: 79; indent-tabs-mode: nil; -*-
+;; SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
+;; SPDX-License-Identifier: Unlicense
+
+(in .sys
+    (call .wireguard.subj_type_transition (subj)))
+
+(in .file
+    (call .wireguard.obj_type_transition_execfile (unconfined.subj_typeattr))
+    (call .wireguard.obj_type_transition_tmpfile (unconfined.subj_typeattr)))
+
+(in .netifd
+    (call .wireguard.subj_type_transition (subj)))
+
+(in wireguard
+
+    ;;
+    ;; Contexts
+    ;;
+
+    (filecon
+     "/tmp/wireguard"
+     dir
+     tmpfile_file_context)
+    (filecon
+     "/tmp/wireguard/.*"
+     any
+     tmpfile_file_context)
+
+    (filecon
+     "/usr/bin/wg"
+     file
+     execfile_file_context)
+
+    ;;
+    ;; Macros
+    ;;
+
+    (macro obj_type_transition_execfile ((type ARG1))
+           (call .file.execfile_obj_type_transition
+                 (ARG1 execfile file "wg")))
+
+    (macro obj_type_transition_tmpfile ((type ARG1))
+           (call .tmp.fs_obj_type_transition
+                 (ARG1 tmpfile dir "wireguard")))
+
+    ;;
+    ;; Policy
+    ;;
+
+    (blockinherit .agent.base_template)
+    (blockinherit .tmpfile.obj_template)
+
+    (call .sys.readwriteinherited_ptydev_chr_files (subj))
+    (call .sys.writeinherited_fifo_files (subj))
+
+    (call .dev.readwriteinherited_ttydev_chr_files (subj)))
