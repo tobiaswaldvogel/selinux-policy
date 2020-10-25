@@ -40,6 +40,7 @@
        (allow subj self create_unix_dgram_socket)
        (allow subj self (netlink_route_socket (nlmsg_read)))
 
+       (call .sys.requestmodule (subj))
        (call .sys.search_sysctlfile_dirs (subj))
        (call .sys.writeinherited_fifo_files (subj))
 

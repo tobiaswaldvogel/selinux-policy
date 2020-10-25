@@ -59,6 +59,7 @@
     (allow subj self (capability (net_admin)))
     (allow subj self create_netlink_generic_socket)
     (allow subj self create_netlink_route_socket)
+    (allow subj self create_udp_socket)
     (allow subj self (netlink_route_socket (nlmsg_read)))
 
     (call read_tmpfile_files (subj))
