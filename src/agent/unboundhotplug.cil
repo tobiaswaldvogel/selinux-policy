@@ -10,7 +10,8 @@
     ;; the cap_dac_override is due to bad permissions on /tmp/lib/unbound
     ;;
 
-    (allow subj self (capability (chown dac_override fowner fsetid)))
+    (allow subj self
+           (capability (chown dac_override fowner fsetid sys_ptrace)))
 
     (call .proc.list_fs_dirs (subj))
 
