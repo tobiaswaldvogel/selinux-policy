@@ -81,6 +81,9 @@
               (call .tmpfile.statetmpfile_obj_type_transition
                     (ARG1 statetmpfile dir "unbound")))
 
+       (macro setattr_statetmpfile_dirs ((type ARG1))
+              (allow ARG1 statetmpfile (dir (setattr))))
+
        ;;
        ;; Policy
        ;;

@@ -73,6 +73,8 @@
 
        (call .jshn.subj_type_transition (subj))
 
+       (call .jsonfilter.subj_type_transition (subj))
+
        (call .libubox.read_datafile_files (subj))
        (call .libubox.search_datafile_dirs (subj))
 

@@ -45,7 +45,7 @@
 
        (call .file.search_conffile_dirs (subj))
 
-       (call .hotplugcall.use_fds (subj))
+       (call .hotplugcall.writeinherited_fifo_files (subj))
 
        (call .ifup.writeinherited_fifo_files (subj))
 
