@@ -109,6 +109,7 @@
        (call .sys.writeinherited_fifo_files (subj))
 
        (call .dns.tcp_bind_netports (subj))
+       (call .dns.tcp_connect_netports (subj))
        (call .dns.udp_bind_netports (subj))
 
        (call .file.read_conffile_lnk_files (subj))
