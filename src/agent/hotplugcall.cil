@@ -53,9 +53,6 @@
        (call .devices.readwrite_sysfile_files (subj))
        (call .devices.addname_sysfile_dirs (subj))
 
-       (call .dnsmasq.manage_statetmpfile_files (subj))
-       (call .dnsmasq.obj_type_transition_statetmpfile (subj))
-
        (call .file.initscript.execute_all_files (subj))
        (call .file.read_conffile_lnk_files (subj))
        (call .file.search_initscriptfile_dirs (subj))
@@ -78,6 +75,8 @@
 
        (call .libubox.read_datafile_files (subj))
        (call .libubox.search_datafile_dirs (subj))
+
+       (call .locale.read.subj_type (subj))
 
        (call .logd.unix_dgram_send (subj))
 
@@ -121,5 +120,12 @@
        (optional hotplugcall_opt_blockmount
                  (call .blockmount.subj_type_transition (subj)))
 
+       (optional hotplugcall_opt_dnsmasq
+                 (call .dnsmasq.manage_statetmpfile_files (subj))
+                 (call .dnsmasq.obj_type_transition_statetmpfile (subj)))
+
        (optional hotplugcall_opt_initscript
-                 (call .initscript.use_all_fds (subj))))
+                 (call .initscript.use_all_fds (subj)))
+
+       (optional hotplugcall_opt_rcunbound
+                 (call .rcunbound.subj_type_transition (subj))))

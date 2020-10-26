@@ -273,6 +273,9 @@
        (optional luci_opt_rcumount
                  (call .rcumount.subj_type_transition (subj)))
 
+       (optional luci_opt_rcunbound
+                 (call .rcunbound.subj_type_transition (subj)))
+
        (optional luci_opt_rcurandomseed
                  (call .rcurandomseed.subj_type_transition (subj)))
 
