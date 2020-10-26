@@ -1,0 +1,26 @@
+;; -*- mode: CIL; fill-column: 79; indent-tabs-mode: nil; -*-
+;; SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
+;; SPDX-License-Identifier: Unlicense
+
+(in .hotplugcall
+
+    ;;
+    ;; installs a hotplug script that runs ugly /etc/init.d/unbound
+    ;; these rules are needed when initscripts are not targeted
+    ;; the cap_dac_override is due to bad permissions on /tmp/lib/unbound
+    ;;
+
+    (allow subj self (capability (chown dac_override fowner)))
+
+    (call .proc.list_fs_dirs (subj))
+
+    (call .resolv.read_tmpfile_files (subj))
+
+    (call .ssl.read_certfile_files (subj))
+    (call .ssl.search_certfile_dirs (subj))
+
+    (call .unbound.list_conffile_dirs (subj))
+    (call .unbound.manage_statetmpfile_files (subj))
+    (call .unbound.read_miscfile_files (subj))
+    (call .unbound.readwrite_statetmpfile_dirs (subj))
+    (call .unbound.search_miscfile_dirs (subj)))

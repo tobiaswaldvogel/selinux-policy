@@ -14,13 +14,6 @@
     (call .unbound.obj_type_transition_statetmpfile
           (unconfined.subj_typeattr)))
 
-(in .hotplugcall
-    ;; some "stamp" file, this requires cap_dac_override due to bad permissions on /tmp/lib/unbound
-    (call .unbound.manage_statetmpfile_files (subj))
-    (call .unbound.read_miscfile_files (subj))
-    (call .unbound.readwrite_statetmpfile_dirs (subj))
-    (call .unbound.search_miscfile_dirs (subj)))
-
 (block unbound
 
        ;;

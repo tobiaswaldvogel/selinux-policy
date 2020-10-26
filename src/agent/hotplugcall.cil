@@ -34,8 +34,6 @@
 
        (blockinherit .agent.base_template)
 
-       ;; bad permissions on /tmp/lib/unbound
-       (allow subj self (capability (dac_override)))
        (allow subj self create_unix_dgram_socket)
 
        (call .sys.list_rootfile_dirs (subj))
@@ -97,8 +95,6 @@
        (call .preinit.search_tmpfile_dirs (subj))
 
        (call .rccommon.read_conffile_files (subj))
-
-       (call .resolv.read_tmpfile_files (subj))
 
        (call .selinux.linked.subj_type (subj))
 

@@ -4,7 +4,8 @@
 
 .PHONY: all clean minimal minwg minwgunbound policy check install
 
-modules = $(shell find src -type f -name '*.cil' -printf '%p ')
+modules = $(shell find src -type f -name '*.cil' \
+	! -name unboundhotplug.cil -printf '%p ')
 modulesminimal = $(shell find src -type f -name '*.cil' \
 	-regextype posix-egrep \
 	! -regex 'src/(cgi|init)?script/.*\.cil' \
@@ -14,8 +15,8 @@ modulesminimal = $(shell find src -type f -name '*.cil' \
 	! -name px5gexecfile.cil ! -name rpcd.cil \
 	! -name sftpserver.cil ! -name socatexecfile.cil \
 	! -name uhttpd.cil ! -name unbound.cil \
-	! -name wgetexecfile.cil ! -name wgetmiscfile.cil \
-	! -name wireguard.cil -printf '%p ')
+	! -name unboundhotplug.cil ! -name wgetexecfile.cil \
+	! -name wgetmiscfile.cil ! -name wireguard.cil -printf '%p ')
 modulesminwg = $(shell find src -type f -name '*.cil' \
 	-regextype posix-egrep \
 	! -regex 'src/(cgi|init)?script/.*\.cil' \
@@ -25,7 +26,7 @@ modulesminwg = $(shell find src -type f -name '*.cil' \
 	! -name px5gexecfile.cil ! -name rpcd.cil \
 	! -name sftpserver.cil ! -name socatexecfile.cil \
 	! -name uhttpd.cil ! -name unbound.cil \
-	! -name wgetexecfile.cil \
+	! -name unboundhotplug.cil ! -name wgetexecfile.cil \
 	! -name wgetmiscfile.cil -printf '%p ')
 modulesminwgunbound = $(shell find src -type f -name '*.cil' \
 	-regextype posix-egrep \
