@@ -34,8 +34,11 @@
        (blockinherit .agent.base_template)
 
        (call .sys.readwriteinherited_fifo_files (subj))
+       (call .sys.dontaudit_readwrite_udp_sockets (subj))
 
        (call .file.search_conffile_dirs (subj))
+
+       (call .hotplugcall.writeinherited_fifo_files (subj))
 
        (call .netifd.readwriteinherited_fifo_files (subj))
        (call .netifd.dontaudit_readwrite_netlink_kobject_uevent_sockets (subj))

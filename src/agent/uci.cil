@@ -98,6 +98,7 @@
 
        (call .sys.readwriteinherited_fifo_files (subj))
        (call .sys.readwriteinherited_ptydev_chr_files (subj))
+       (call .sys.dontaudit_readwrite_udp_sockets (subj))
 
        (call .dev.readwriteinherited_ttydev_chr_files (subj))
 
