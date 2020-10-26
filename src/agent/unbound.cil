@@ -2,9 +2,6 @@
 ;; SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
 ;; SPDX-License-Identifier: Unlicense
 
-;; TEMP
-(auditallow subj.subj_typeattr file.conffile (file (create)))
-
 (in .sys
     (call .unbound.subj_type_transition (subj)))
 
@@ -18,6 +15,7 @@
           (unconfined.subj_typeattr)))
 
 (in .hotplugcall
+    ;; some "stamp" file, this requires cap_dac_override due to bad permissions on /tmp/lib/unbound
     (call .unbound.manage_statetmpfile_files (subj))
     (call .unbound.read_miscfile_files (subj))
     (call .unbound.readwrite_statetmpfile_dirs (subj))
@@ -100,9 +98,10 @@
        (blockinherit .tmpfile.runtime.obj_template)
        (blockinherit .tmpfile.state.obj_template)
 
-       (allow subj self (capability (sys_chroot sys_resource)))
+       (allow subj self (capability (setgid setuid sys_chroot sys_resource)))
        (allow subj self (process (setrlimit)))
        (allow subj self create_unix_dgram_socket)
+       (allow subj self create_unix_stream_socket)
 
        (call manage_runtimetmpfile_files (subj))
        (call obj_type_transition_runtimetmpfile (subj))
