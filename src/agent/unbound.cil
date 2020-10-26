@@ -1,0 +1,100 @@
+;; -*- mode: CIL; fill-column: 79; indent-tabs-mode: nil; -*-
+;; SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
+;; SPDX-License-Identifier: Unlicense
+
+(in .sys
+    (call .unbound.subj_type_transition (subj)))
+
+(in .file
+    (call .unbound.obj_type_transition_conffile (unconfined.subj_typeattr))
+    (call .unbound.obj_type_transition_execfile (unconfined.subj_typeattr))
+    (call .unbound.obj_type_transition_miscfile (unconfined.subj_typeattr))
+    (call .unbound.obj_type_transition_runtimetmpfile
+          (unconfined.subj_typeattr))
+    (call .unbound.obj_type_transition_statetmpfile
+          (unconfined.subj_typeattr)))
+
+(block unbound
+
+       ;;
+       ;; Contexts
+       ;;
+
+       (filecon
+        "/etc/unbound"
+        dir
+        conffile_file_context)
+       (filecon
+        "/etc/unbound/.*"
+        any
+        conffile_file_context)
+
+       (filecon
+        "/tmp/lib/unbound"
+        dir
+        statetmpfile_file_context)
+       (filecon
+        "/tmp/lib/unbound/.*"
+        any
+        statetmpfile_file_context)
+
+       (filecon
+        "/tmp/run/unbound\.pid"
+        file
+        runtimetmpfile_file_context)
+
+       (filecon
+        "/usr/bin/unbound"
+        file
+        execfile_file_context)
+
+       (filecon
+        "/usr/lib/unbound"
+        dir
+        miscfile_file_context)
+       (filecon
+        "/usr/lib/unbound/.*"
+        any
+        miscfile_file_context)
+
+       ;;
+       ;; Macros
+       ;;
+
+       (macro obj_type_transition_conffile ((type ARG1))
+              (call .file.conffile_obj_type_transition
+                    (ARG1 conffile dir "unbound")))
+
+       (macro obj_type_transition_execfile ((type ARG1))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "unbound")))
+
+       (macro obj_type_transition_miscfile ((type ARG1))
+              (call .file.libfile_obj_type_transition
+                    (ARG1 miscfile dir "unbound")))
+
+       (macro obj_type_transition_runtimetmpfile ((type ARG1))
+              (call .tmpfile.runtimetmpfile_obj_type_transition
+                    (ARG1 runtimetmpfile file "unbound.pid")))
+
+       (macro obj_type_transition_statetmpfile ((type ARG1))
+              (call .tmpfile.statetmpfile_obj_type_transition
+                    (ARG1 statetmpfile dir "unbound")))
+
+       ;;
+       ;; Policy
+       ;;
+
+       (blockinherit .agent.base_template)
+       (blockinherit .file.conf.obj_template)
+       (blockinherit .file.misc.obj_template)
+       (blockinherit .tmpfile.runtime.obj_template)
+       (blockinherit .tmpfile.state.obj_template)
+
+       (call manage_runtimetmpfile_files (subj))
+       (call obj_type_transition_runtimetmpfile (subj))
+
+       (call manage_statetmpfile_dirs (subj))
+       (call obj_type_transition_statetmpfile (subj))
+
+       (call .tmpfile.deletename_runtimetmpfile_dirs (subj)))
