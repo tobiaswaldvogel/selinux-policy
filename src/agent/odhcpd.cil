@@ -90,6 +90,8 @@
        (call .shell.mapexecute_execfile_files (subj))
        (call .shell.read_execfile_files (subj))
 
+       (call .tmpfile.manage_hoststmpfile_dirs (subj))
+       (call .tmpfile.obj_type_transition_hoststmpfile (subj))
        (call .tmpfile.search_runtimetmpfile_dirs (subj))
 
        (call .ubusd.unix_stream_connect (subj))
