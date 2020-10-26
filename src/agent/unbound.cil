@@ -100,4 +100,27 @@
        (call manage_statetmpfile_dirs (subj))
        (call obj_type_transition_statetmpfile (subj))
 
+       (call .sys.writeinherited_fifo_files (subj))
+
+       (call .dns.tcp_bind_netports (subj))
+       (call .dns.udp_bind_netports (subj))
+
+       (call .file.read_conffile_lnk_files (subj))
+       (call .file.search_conffile_dirs (subj))
+
+       (call .locale.read.subj_type (subj))
+
+       (call .logd.unix_dgram_send (subj))
+
+       (call .net.egress_netifs (subj))
+       (call .net.port.unreserved.udp_bind_all_netports (subj))
+       (call .net.sendto_netnodes (subj))
+       (call .net.tcp_bind_netnodes (subj))
+       (call .net.udp_bind_netnodes (subj))
+
+       (call .ssl.read_certfile_files (subj))
+       (call .ssl.search_certfile_dirs (subj))
+
+       (call .tmp.associate_filesystems (miscfile))
+
        (call .tmpfile.deletename_runtimetmpfile_dirs (subj)))
