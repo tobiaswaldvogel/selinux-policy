@@ -5,13 +5,11 @@
 (in .hotplugcall
 
     ;;
-    ;; installs a hotplug script that runs ugly /etc/init.d/unbound
+    ;; installs a hotplug script that runs /etc/init.d/unbound
     ;; these rules are needed when initscripts are not targeted
-    ;; the cap_dac_override is due to bad permissions on /tmp/lib/unbound
     ;;
 
-    (allow subj self
-           (capability (chown dac_override fowner fsetid sys_ptrace)))
+    (allow subj self (capability (chown fowner fsetid sys_ptrace)))
 
     (call .proc.list_fs_dirs (subj))
 
@@ -28,9 +26,7 @@
 
     (call .unbound.execute_execfile_files (subj))
     (call .unbound.list_conffile_dirs (subj))
-    (call .unbound.manage_statetmpfile_files (subj))
     (call .unbound.read_conffile_files (subj))
     (call .unbound.read_miscfile_files (subj))
-    (call .unbound.readwrite_statetmpfile_dirs (subj))
     (call .unbound.search_miscfile_dirs (subj))
     (call .unbound.setattr_statetmpfile_dirs (subj)))

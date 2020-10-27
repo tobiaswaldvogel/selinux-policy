@@ -130,4 +130,11 @@
                  (call .initscript.use_all_fds (subj)))
 
        (optional hotplugcall_opt_rcunbound
-                 (call .rcunbound.subj_type_transition (subj))))
+                 (call .rcunbound.subj_type_transition (subj)))
+
+       (optional hotplugcall_opt_unbound
+                 ;; bad permissions on /tmp/lib/unbound
+                 (allow subj self (capability (dac_override)))
+
+                 (call .unbound.manage_statetmpfile_files (subj))
+                 (call .unbound.readwrite_statetmpfile_dirs (subj))))
