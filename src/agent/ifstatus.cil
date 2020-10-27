@@ -8,6 +8,9 @@
 (in .file
     (call .ifstatus.obj_type_transition_execfile (unconfined.subj_typeattr)))
 
+(in .ubus
+    (call .ifstatus.use_fds (subj)))
+
 (block ifstatus
 
        ;;

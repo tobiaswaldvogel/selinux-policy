@@ -199,7 +199,7 @@
        (call .resolv.read_tmpfile_files (subj))
        (call .resolv.search_tmpfile_dirs (subj))
 
+       (call .ssl.list_certfile_dirs (subj))
        (call .ssl.read_certfile_files (subj))
-       (call .ssl.search_certfile_dirs (subj))
 
        (call .tmpfile.search_conftmpfile_dirs (subj)))
