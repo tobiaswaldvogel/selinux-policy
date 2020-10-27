@@ -62,6 +62,9 @@
               (call .tmpfile.runtimetmpfile_obj_type_transition
                     (ARG1 runtimetmpfile dir "chrony")))
 
+       (macro setattr_conffile_files ((type ARG1))
+              (allow ARG1 conffile (file (setattr))))
+
        ;;
        ;; Policy
        ;;
@@ -102,7 +105,9 @@
        (call .sys.readwriteinherited_ptydev_chr_files (subj))
 
        (call .chrony.manage_runtimetmpfile_sock_files (subj))
+       (call .chrony.read_conffile_files (subj))
        (call .chrony.readwrite_runtimetmpfile_dirs (subj))
+       (call .chrony.search_conffile_dirs (subj))
 
        (call .chronyd.sendto_unix_dgram_sockets (subj))
 
@@ -155,13 +160,14 @@
        (blockinherit .agent.base_template)
 
        (allow subj self
-              (capability (chown dac_override dac_read_search setgid setuid
-                                 sys_time)))
+              (capability (chown dac_override dac_read_search fsetid setgid
+                                 setuid sys_time)))
        (allow subj self (process (setcap)))
        (allow subj self create_unix_dgram_socket)
 
        (call .cpuinfo.read_procfile_files (subj))
 
+       (call .chrony.append_conffile_files (subj))
        (call .chrony.manage_runtimetmpfile_dirs (subj))
        (call .chrony.manage_runtimetmpfile_files (subj))
        (call .chrony.manage_runtimetmpfile_sock_files (subj))
@@ -169,6 +175,7 @@
        (call .chrony.read_conffile_files (subj))
        (call .chrony.read_conftmpfile_files (subj))
        (call .chrony.search_conffile_dirs (subj))
+       (call .chrony.setattr_conffile_files (subj))
 
        (call .chronyc.sendto_unix_dgram_sockets (subj))
 
