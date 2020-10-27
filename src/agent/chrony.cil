@@ -96,6 +96,7 @@
        (blockinherit .agent.base_template)
 
        (allow subj self (capability (dac_override dac_read_search)))
+       (allow subj self create_udp_socket)
        (allow subj self create_unix_dgram_socket)
 
        (call .sys.readwriteinherited_ptydev_chr_files (subj))
@@ -112,6 +113,9 @@
        (call .file.search_conffile_dirs (subj))
 
        (call .hotplugcall.readinherited_fifo_files (subj))
+
+       (call .net.egress_netifs (subj))
+       (call .net.sendto_netnodes (subj))
 
        (call .netifd.readinherited_fifo_files (subj))
        (call .netifd.dontaudit_readwrite_netlink_kobject_uevent_sockets (subj))
@@ -144,7 +148,10 @@
 
        (blockinherit .agent.base_template)
 
-       (allow subj self (capability (chown sys_time)))
+       (allow subj self
+              (capability (chown dac_override dac_read_search setgid
+                                 sys_time)))
+       (allow subj self (process (setcap)))
        (allow subj self create_unix_dgram_socket)
 
        (call .cpuinfo.read_procfile_files (subj))
@@ -153,9 +160,13 @@
        (call .chrony.manage_runtimetmpfile_files (subj))
        (call .chrony.manage_runtimetmpfile_sock_files (subj))
        (call .chrony.obj_type_transition_runtimetmpfile (subj))
+       (call .chrony.read_conffile_files (subj))
        (call .chrony.read_conftmpfile_files (subj))
+       (call .chrony.search_conffile_dirs (subj))
 
        (call .chronyc.sendto_unix_dgram_sockets (subj))
+
+       (call .chronycmd.udp_bind_netports (subj))
 
        (call .file.read_conffile_lnk_files (subj))
        (call .file.search_conffile_dirs (subj))
@@ -167,6 +178,8 @@
        (call .net.egress_netifs (subj))
        (call .net.sendto_netnodes (subj))
        (call .net.udp_bind_netnodes (subj))
+
+       (call .ntp.udp_bind_netports (subj))
 
        (call .resolv.read_tmpfile_files (subj))
 

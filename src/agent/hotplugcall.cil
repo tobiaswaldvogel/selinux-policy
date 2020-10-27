@@ -71,6 +71,8 @@
        (call .hotplug.list_conffile_dirs (subj))
        (call .hotplug.read_conffile_files (subj))
 
+       (call .ifstatus.subj_type_transition (subj))
+
        (call .jshn.subj_type_transition (subj))
 
        (call .jsonfilter.subj_type_transition (subj))
