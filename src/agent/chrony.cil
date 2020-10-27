@@ -95,9 +95,29 @@
 
        (blockinherit .agent.base_template)
 
+       (allow subj self (capability (dac_override dac_read_search)))
+       (allow subj self create_unix_dgram_socket)
+
        (call .sys.readwriteinherited_ptydev_chr_files (subj))
 
-       (call .dev.readwriteinherited_ttydev_chr_files (subj)))
+       (call .chrony.manage_runtimetmpfile_sock_files (subj))
+       (call .chrony.readwrite_runtimetmpfile_dirs (subj))
+
+       (call .chronyd.sendto_unix_dgram_sockets (subj))
+
+       (call .cpuinfo.read_procfile_files (subj))
+
+       (call .dev.readwriteinherited_ttydev_chr_files (subj))
+
+       (call .file.search_conffile_dirs (subj))
+
+       (call .hotplugcall.readinherited_fifo_files (subj))
+
+       (call .netifd.readinherited_fifo_files (subj))
+       (call .netifd.dontaudit_readwrite_netlink_kobject_uevent_sockets (subj))
+       (call .netifd.dontaudit_readwrite_netlink_route_sockets (subj))
+
+       (call .tmpfile.search_runtimetmpfile_dirs (subj)))
 
 (block chronyd
 
@@ -122,4 +142,32 @@
        ;; Policy
        ;;
 
-       (blockinherit .agent.base_template))
+       (blockinherit .agent.base_template)
+
+       (allow subj self (capability (chown sys_time)))
+       (allow subj self create_unix_dgram_socket)
+
+       (call .cpuinfo.read_procfile_files (subj))
+
+       (call .chrony.manage_runtimetmpfile_dirs (subj))
+       (call .chrony.manage_runtimetmpfile_files (subj))
+       (call .chrony.manage_runtimetmpfile_sock_files (subj))
+       (call .chrony.obj_type_transition_runtimetmpfile (subj))
+       (call .chrony.read_conftmpfile_files (subj))
+
+       (call .chronyc.sendto_unix_dgram_sockets (subj))
+
+       (call .file.read_conffile_lnk_files (subj))
+       (call .file.search_conffile_dirs (subj))
+
+       (call .logd.unix_dgram_send (subj))
+
+       (call .nameservice.read_miscfile_files (subj))
+
+       (call .net.egress_netifs (subj))
+       (call .net.sendto_netnodes (subj))
+       (call .net.udp_bind_netnodes (subj))
+
+       (call .resolv.read_tmpfile_files (subj))
+
+       (call .tmpfile.search_conftmpfile_dirs (subj)))
