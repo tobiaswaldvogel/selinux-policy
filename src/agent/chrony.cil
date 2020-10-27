@@ -110,16 +110,22 @@
 
        (call .dev.readwriteinherited_ttydev_chr_files (subj))
 
+       (call .file.read_conffile_lnk_files (subj))
        (call .file.search_conffile_dirs (subj))
 
        (call .hotplugcall.readinherited_fifo_files (subj))
 
+       (call .nameservice.read_miscfile_files (subj))
+
        (call .net.egress_netifs (subj))
        (call .net.sendto_netnodes (subj))
+       (call .net.udp_bind_netnodes (subj))
 
        (call .netifd.readinherited_fifo_files (subj))
        (call .netifd.dontaudit_readwrite_netlink_kobject_uevent_sockets (subj))
        (call .netifd.dontaudit_readwrite_netlink_route_sockets (subj))
+
+       (call .resolv.read_tmpfile_files (subj))
 
        (call .tmpfile.search_runtimetmpfile_dirs (subj)))
 
@@ -149,7 +155,7 @@
        (blockinherit .agent.base_template)
 
        (allow subj self
-              (capability (chown dac_override dac_read_search setgid
+              (capability (chown dac_override dac_read_search setgid setuid
                                  sys_time)))
        (allow subj self (process (setcap)))
        (allow subj self create_unix_dgram_socket)
@@ -181,6 +187,12 @@
 
        (call .ntp.udp_bind_netports (subj))
 
+       (call .ntpnts.tcp_connect_netports (subj))
+
        (call .resolv.read_tmpfile_files (subj))
+       (call .resolv.search_tmpfile_dirs (subj))
+
+       (call .ssl.read_certfile_files (subj))
+       (call .ssl.search_certfile_dirs (subj))
 
        (call .tmpfile.search_conftmpfile_dirs (subj)))
