@@ -216,6 +216,9 @@
        (optional luci_opt_rcbootcount
                  (call .rcbootcount.subj_type_transition (subj)))
 
+       (optional luci_opt_rcchronyd
+                 (call .rcchronyd.subj_type_transition (subj)))
+
        (optional luci_opt_rccron
                  (call .rccron.subj_type_transition (subj)))
 

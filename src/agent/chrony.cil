@@ -1,0 +1,125 @@
+;; -*- mode: CIL; fill-column: 79; indent-tabs-mode: nil; -*-
+;; SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
+;; SPDX-License-Identifier: Unlicense
+
+(in .sys
+    (call .chronyc.subj_type_transition (subj))
+    (call .chronyd.subj_type_transition (subj)))
+
+(in .file
+    (call .chrony.obj_type_transition_conffile (unconfined.subj_typeattr))
+    (call .chrony.obj_type_transition_conftmpfile (unconfined.subj_typeattr))
+    (call .chrony.obj_type_transition_runtimetmpfile
+          (unconfined.subj_typeattr))
+    (call .chronyc.obj_type_transition_execfile (unconfined.subj_typeattr))
+    (call .chronyd.obj_type_transition_execfile (unconfined.subj_typeattr)))
+
+(in .hotplugcall
+    (call .chronyc.subj_type_transition (subj)))
+
+(block chrony
+
+       ;;
+       ;; Contexts
+       ;;
+
+       (filecon
+        "/etc/chrony"
+        dir
+        conffile_file_context)
+       (filecon
+        "/etc/chrony/.*"
+        any
+        conffile_file_context)
+
+       (filecon
+        "/tmp/etc/chrony\.conf"
+        file
+        conftmpfile_file_context)
+
+       (filecon
+        "/tmp/run/chrony"
+        dir
+        runtimetmpfile_file_context)
+       (filecon
+        "/tmp/run/chrony/.*"
+        any
+        runtimetmpfile_file_context)
+
+       ;;
+       ;; Macros
+       ;;
+
+       (macro obj_type_transition_conffile ((type ARG1))
+              (call .file.conffile_obj_type_transition
+                    (ARG1 conffile dir "chrony")))
+
+       (macro obj_type_transition_conftmpfile ((type ARG1))
+              (call .tmpfile.conftmpfile_obj_type_transition
+                    (ARG1 conftmpfile file "chrony.conf")))
+
+       (macro obj_type_transition_runtimetmpfile ((type ARG1))
+              (call .tmpfile.runtimetmpfile_obj_type_transition
+                    (ARG1 runtimetmpfile dir "chrony")))
+
+       ;;
+       ;; Policy
+       ;;
+
+       (blockinherit .file.conf.obj_template)
+       (blockinherit .tmpfile.conf.obj_template)
+       (blockinherit .tmpfile.runtime.obj_template))
+
+(block chronyc
+
+       ;;
+       ;; Contexts
+       ;;
+
+       (filecon
+        "/usr/bin/chronyc"
+        file
+        execfile_file_context)
+
+       ;;
+       ;; Macros
+       ;;
+
+       (macro obj_type_transition_execfile ((type ARG1))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "chronyc")))
+
+       ;;
+       ;; Policy
+       ;;
+
+       (blockinherit .agent.base_template)
+
+       (call .sys.readwriteinherited_ptydev_chr_files (subj))
+
+       (call .dev.readwriteinherited_ttydev_chr_files (subj)))
+
+(block chronyd
+
+       ;;
+       ;; Contexts
+       ;;
+
+       (filecon
+        "/usr/bin/chronyd"
+        file
+        execfile_file_context)
+
+       ;;
+       ;; Macros
+       ;;
+
+       (macro obj_type_transition_execfile ((type ARG1))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "chronyd")))
+
+       ;;
+       ;; Policy
+       ;;
+
+       (blockinherit .agent.base_template))

@@ -2,7 +2,7 @@
 # SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
 # SPDX-License-Identifier: Unlicense
 
-.PHONY: all clean minimal minwg minwgunbound policy check install
+.PHONY: all clean minimal minwg minwgunbound minwgunboundchrony policy check install
 
 # Default selection of modules, unboundhotplug can be excluded if rcunbound is included (theyre mutually exclusive)
 modules = $(shell find src -type f -name '*.cil' \
@@ -13,29 +13,44 @@ modulesminimal = $(shell find src -type f -name '*.cil' \
 	-regextype posix-egrep \
 	! -regex 'src/(cgi|init)?script/.*\.cil' \
 	! -name acme.cil ! -name autonoseclabelfs.cil \
-	! -name blockmount.cil ! -name ip.cil ! -name luaexecfile.cil \
-	! -name luci.cil ! -name opensslexecfile.cil \
-	! -name px5gexecfile.cil ! -name rpcd.cil \
-	! -name sftpserver.cil ! -name socatexecfile.cil \
-	! -name uhttpd.cil ! -name unbound.cil \
-	! -name unboundhotplug.cil ! -name wgetexecfile.cil \
-	! -name wgetmiscfile.cil ! -name wireguard.cil -printf '%p ')
+	! -name blockmount.cil ! -name chrony.cil ! -name ip.cil \
+	! -name luaexecfile.cil ! -name luci.cil \
+	! -name opensslexecfile.cil ! -name px5gexecfile.cil \
+	! -name rpcd.cil ! -name sftpserver.cil \
+	! -name socatexecfile.cil ! -name uhttpd.cil \
+	! -name unbound.cil ! -name unboundhotplug.cil \
+	! -name wgetexecfile.cil ! -name wgetmiscfile.cil \
+	! -name wireguard.cil -printf '%p ')
 
 # Selection of least required modules (no LuCI), plus wireguard and its ip dependency
 modulesminwg = $(shell find src -type f -name '*.cil' \
 	-regextype posix-egrep \
 	! -regex 'src/(cgi|init)?script/.*\.cil' \
 	! -name acme.cil ! -name autonoseclabelfs.cil \
-	! -name blockmount.cil ! -name luaexecfile.cil \
-	! -name luci.cil ! -name opensslexecfile.cil \
-	! -name px5gexecfile.cil ! -name rpcd.cil \
-	! -name sftpserver.cil ! -name socatexecfile.cil \
-	! -name uhttpd.cil ! -name unbound.cil \
-	! -name unboundhotplug.cil ! -name wgetexecfile.cil \
-	! -name wgetmiscfile.cil -printf '%p ')
+	! -name blockmount.cil ! -name chrony.cil \
+	! -name luaexecfile.cil ! -name luci.cil \
+	! -name opensslexecfile.cil ! -name px5gexecfile.cil \
+	! -name rpcd.cil ! -name sftpserver.cil \
+	! -name socatexecfile.cil ! -name uhttpd.cil \
+	! -name unbound.cil ! -name unboundhotplug.cil \
+	! -name wgetexecfile.cil ! -name wgetmiscfile.cil \
+	-printf '%p ')
 
 # Selection of least required modules minus DNSMasq (no LuCI), plus unbound-daemon, wireguard and its ip dependency
 modulesminwgunbound = $(shell find src -type f -name '*.cil' \
+	-regextype posix-egrep \
+	! -regex 'src/(cgi|init)?script/.*\.cil' \
+	! -name acme.cil ! -name autonoseclabelfs.cil \
+	! -name blockmount.cil ! -name chrony.cil \
+	! -name dnsmasq.cil ! -name luaexecfile.cil ! -name luci.cil \
+	! -name opensslexecfile.cil ! -name px5gexecfile.cil \
+	! -name rpcd.cil ! -name sftpserver.cil \
+	! -name socatexecfile.cil ! -name uhttpd.cil \
+	! -name wgetexecfile.cil ! -name wgetmiscfile.cil \
+	-printf '%p ')
+
+# Selection of least required modules minus DNSMasq (no LuCI), plus unbound-daemon, chrony, wireguard and its ip dependency
+modulesminwgunboundchrony = $(shell find src -type f -name '*.cil' \
 	-regextype posix-egrep \
 	! -regex 'src/(cgi|init)?script/.*\.cil' \
 	! -name acme.cil ! -name autonoseclabelfs.cil \
@@ -64,6 +79,10 @@ minwg.%: $(modulesminwg)
 
 minwgunbound: minwgunbound.$(polvers)
 minwgunbound.%: $(modulesminwgunbound)
+	secilc --policyvers=$* $^
+
+minwgunboundchrony: minwgunboundchrony.$(polvers)
+minwgunboundchrony.%: $(modulesminwgunboundchrony)
 	secilc --policyvers=$* $^
 
 policy: policy.$(polvers)
