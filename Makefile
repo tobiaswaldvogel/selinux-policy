@@ -4,8 +4,11 @@
 
 .PHONY: all clean minimal minwg minwgunbound policy check install
 
+# Default selection of modules, unboundhotplug can be excluded if rcunbound is included (theyre mutually exclusive)
 modules = $(shell find src -type f -name '*.cil' \
 	! -name unboundhotplug.cil -printf '%p ')
+
+# Selection of least required modules (no LuCI: optimized for base snapshot image)
 modulesminimal = $(shell find src -type f -name '*.cil' \
 	-regextype posix-egrep \
 	! -regex 'src/(cgi|init)?script/.*\.cil' \
@@ -17,6 +20,8 @@ modulesminimal = $(shell find src -type f -name '*.cil' \
 	! -name uhttpd.cil ! -name unbound.cil \
 	! -name unboundhotplug.cil ! -name wgetexecfile.cil \
 	! -name wgetmiscfile.cil ! -name wireguard.cil -printf '%p ')
+
+# Selection of least required modules (no LuCI), plus wireguard and its ip dependency
 modulesminwg = $(shell find src -type f -name '*.cil' \
 	-regextype posix-egrep \
 	! -regex 'src/(cgi|init)?script/.*\.cil' \
@@ -28,6 +33,8 @@ modulesminwg = $(shell find src -type f -name '*.cil' \
 	! -name uhttpd.cil ! -name unbound.cil \
 	! -name unboundhotplug.cil ! -name wgetexecfile.cil \
 	! -name wgetmiscfile.cil -printf '%p ')
+
+# Selection of least required modules minus DNSMasq (no LuCI), plus unbound-daemon, wireguard and its ip dependency
 modulesminwgunbound = $(shell find src -type f -name '*.cil' \
 	-regextype posix-egrep \
 	! -regex 'src/(cgi|init)?script/.*\.cil' \
@@ -37,8 +44,8 @@ modulesminwgunbound = $(shell find src -type f -name '*.cil' \
 	! -name opensslexecfile.cil ! -name px5gexecfile.cil \
 	! -name rpcd.cil ! -name sftpserver.cil \
 	! -name socatexecfile.cil ! -name uhttpd.cil \
-	! -name wgetexecfile.cil \
-	! -name wgetmiscfile.cil -printf '%p ')
+	! -name wgetexecfile.cil ! -name wgetmiscfile.cil \
+	-printf '%p ')
 polvers = 31
 
 all: clean policy check
