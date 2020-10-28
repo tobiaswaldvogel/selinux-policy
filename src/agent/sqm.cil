@@ -15,7 +15,10 @@
     (call .sqm.subj_type_transition (subj)))
 
 (in .ip
-    (call .sqm.use_fds (subj)))
+    (call .sqm.writeinherited_fifo_files (subj)))
+
+(in .uci
+    (call .sqm.writeinherited_fifo_files (subj)))
 
 (block sqm
 
@@ -88,6 +91,8 @@
        (blockinherit .file.conf.obj_template)
        (blockinherit .tmpfile.runtime.obj_template)
 
+       (allow subj self create_unix_dgram_socket)
+
        (call read_conffile_files (subj))
        (call search_conffile_dirs (subj))
 
@@ -97,7 +102,14 @@
        (call manage_runtimetmpfile_files (subj))
        (call obj_type_transition_runtimetmpfile (subj))
 
+       (call .sys.read_fs_lnk_files (subj))
        (call .sys.writeinherited_fifo_files (subj))
+
+       (call .class.search_sysfile_dirs (subj))
+
+       (call .devices.search_sysfile_dirs (subj))
+
+       (call .file.read_conffile_lnk_files (subj))
 
        (call .functions.read_miscfile_files (subj))
        (call .functions.search_miscfile_dirs (subj))
@@ -108,7 +120,13 @@
 
        (call .kmodloader.subj_type_transition (subj))
 
-       (call .netifd.use_fds (subj))
+       (call .locale.read.subj_type (subj))
+
+       (call .logd.unix_dgram_send (subj))
+
+       (call .nameservice.read_miscfile_files (subj))
+
+       (call .netifd.readinherited_fifo_files (subj))
        (call .netifd.dontaudit_readwrite_netlink_kobject_uevent_sockets (subj))
        (call .netifd.dontaudit_readwrite_netlink_route_sockets (subj))
 

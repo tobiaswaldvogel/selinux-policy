@@ -6,8 +6,6 @@
     (call .xtables.subj_type_transition (subj)))
 
 (in .file
-    (call .xtables.libfile_obj_type_transition_miscfile
-          (unconfined.subj_typeattr))
     (call .xtables.obj_type_transition_execfile (unconfined.subj_typeattr))
     (call .xtables.obj_type_transition_runtimetmpfile
           (unconfined.subj_typeattr)))
@@ -28,22 +26,9 @@
         file
         execfile_file_context)
 
-       (filecon
-        "/usr/lib/iptables"
-        dir
-        miscfile_file_context)
-       (filecon
-        "/usr/lib/iptables/.*"
-        any
-        miscfile_file_context)
-
        ;;
        ;; Macros
        ;;
-
-       (macro libfile_obj_type_transition_miscfile ((type ARG1))
-              (call .file.libfile_obj_type_transition
-                    (ARG1 miscfile dir "iptables")))
 
        (macro obj_type_transition_execfile ((type ARG1))
               (call .file.execfile_obj_type_transition
@@ -91,4 +76,7 @@
        (call .xattr.associate_filesystems (miscfile))
 
        (optional xtables_opt_acme
-                 (call .acme.readinherited_fifo_files (subj))))
+                 (call .acme.readinherited_fifo_files (subj)))
+
+       (optional xtables_opt_sqm
+                 (call .sqm.readinherited_fifo_files (subj))))
