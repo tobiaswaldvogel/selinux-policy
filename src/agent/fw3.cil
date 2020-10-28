@@ -72,6 +72,7 @@
        (allow subj self create_netlink_route_socket)
        (allow subj self create_rawip_socket)
        (allow subj self create_udp_socket)
+       (allow subj self create_unix_dgram_socket)
        (allow subj self create_unix_stream_socket)
        (allow subj self (netlink_route_socket (nlmsg_read)))
        ;; this is due to it trying to create "contrack" file in /proc/net
@@ -94,6 +95,8 @@
 
        (call .ipv4.search_sysctlfile_dirs (subj))
        (call .ipv4.write_sysctlfile_files (subj))
+
+       (call .module.search_sysfile_dirs (subj))
 
        (call .net.readwrite_procfile_files (subj))
        (call .net.search_sysctlfile_dirs (subj))

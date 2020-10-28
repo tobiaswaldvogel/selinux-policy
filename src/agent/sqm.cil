@@ -14,6 +14,9 @@
 (in .hotplugcall
     (call .sqm.subj_type_transition (subj)))
 
+(in .ip
+    (call .sqm.use_fds (subj)))
+
 (block sqm
 
        ;;
@@ -88,15 +91,32 @@
        (call read_conffile_files (subj))
        (call search_conffile_dirs (subj))
 
+       (call execute_execfile_files (subj))
+
        (call manage_runtimetmpfile_dirs (subj))
        (call manage_runtimetmpfile_files (subj))
        (call obj_type_transition_runtimetmpfile (subj))
 
+       (call .sys.writeinherited_fifo_files (subj))
+
+       (call .functions.read_miscfile_files (subj))
+       (call .functions.search_miscfile_dirs (subj))
+
+       (call .hotplugcall.use_fds (subj))
+
        (call .ip.subj_type_transition (subj))
+
+       (call .kmodloader.subj_type_transition (subj))
+
+       (call .netifd.use_fds (subj))
+       (call .netifd.dontaudit_readwrite_netlink_kobject_uevent_sockets (subj))
+       (call .netifd.dontaudit_readwrite_netlink_route_sockets (subj))
 
        (call .selinux.linked.subj_type (subj))
 
        (call .shell.execute_execfile_files (subj))
+
+       (call .uci.subj_type_transition (subj))
 
        (optional sqm_opt_xtables
                  (call .xtables.subj_type_transition (subj))))
