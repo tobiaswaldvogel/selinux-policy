@@ -255,6 +255,9 @@
        (optional luci_opt_rcsocat
                  (call .rcsocat.subj_type_transition (subj)))
 
+       (optional luci_opt_rcsqm
+                 (call .rcsqm.subj_type_transition (subj)))
+
        (optional luci_opt_rcsysctl
                  (call .rcsysctl.subj_type_transition (subj)))
 

@@ -1,0 +1,102 @@
+;; -*- mode: CIL; fill-column: 79; indent-tabs-mode: nil; -*-
+;; SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
+;; SPDX-License-Identifier: Unlicense
+
+(in .sys
+    (call .sqm.subj_type_transition (subj)))
+
+(in .file
+    (call .sqm.libfile_obj_type_transition_execfile
+          (unconfined.subj_typeattr))
+    (call .sqm.obj_type_transition_conffile (unconfined.subj_typeattr))
+    (call .sqm.obj_type_transition_runtimetmpfile (unconfined.subj_typeattr)))
+
+(in .hotplugcall
+    (call .sqm.subj_type_transition (subj)))
+
+(block sqm
+
+       ;;
+       ;; Contexts
+       ;;
+
+       (filecon
+        "/etc/sqm"
+        dir
+        conffile_file_context)
+       (filecon
+        "/etc/sqm/.*"
+        any
+        conffile_file_context)
+
+       (filecon
+        "/tmp/run/sqm"
+        dir
+        runtimetmpfile_file_context)
+       (filecon
+        "/tmp/run/sqm/.*"
+        any
+        runtimetmpfile_file_context)
+
+       (filecon
+        "/usr/lib/sqm/run\.sh"
+        file
+        execfile_file_context)
+       (filecon
+        "/usr/lib/sqm/start-sqm"
+        file
+        execfile_file_context)
+       (filecon
+        "/usr/lib/sqm/stop-sqm"
+        file
+        execfile_file_context)
+       (filecon
+        "/usr/lib/sqm/update-available-qdiscs"
+        file
+        execfile_file_context)
+
+       ;;
+       ;; Macros
+       ;;
+
+       (macro libfile_obj_type_transition_execfile ((type ARG1))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "run.sh"))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "start-sqm"))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "stop-sqm"))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "update-available-qdiscs")))
+
+       (macro obj_type_transition_conffile ((type ARG1))
+              (call .file.conffile_obj_type_transition
+                    (ARG1 conffile dir "sqm")))
+
+       (macro obj_type_transition_runtimetmpfile ((type ARG1))
+              (call .tmpfile.runtimetmpfile_obj_type_transition
+                    (ARG1 runtimetmpfile dir "sqm")))
+
+       ;;
+       ;; Policy
+       ;;
+
+       (blockinherit .agent.base_template)
+       (blockinherit .file.conf.obj_template)
+       (blockinherit .tmpfile.runtime.obj_template)
+
+       (call read_conffile_files (subj))
+       (call search_conffile_dirs (subj))
+
+       (call manage_runtimetmpfile_dirs (subj))
+       (call manage_runtimetmpfile_files (subj))
+       (call obj_type_transition_runtimetmpfile (subj))
+
+       (call .ip.subj_type_transition (subj))
+
+       (call .selinux.linked.subj_type (subj))
+
+       (call .shell.execute_execfile_files (subj))
+
+       (optional sqm_opt_xtables
+                 (call .xtables.subj_type_transition (subj))))

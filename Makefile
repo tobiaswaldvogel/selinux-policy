@@ -2,14 +2,14 @@
 # SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
 # SPDX-License-Identifier: Unlicense
 
-.PHONY: all clean minimal minwg minwgunbound minwgunboundchrony policy check install
+.PHONY: all clean min minwg minwgub minwgubchr minwgubchrsqm policy check install
 
 # Default selection of modules, unboundhotplug can be excluded if rcunbound is included (theyre mutually exclusive)
 modules = $(shell find src -type f -name '*.cil' \
 	! -name unboundhotplug.cil -printf '%p ')
 
 # Selection of least required modules (no LuCI: optimized for base snapshot image)
-modulesminimal = $(shell find src -type f -name '*.cil' \
+modulesmin = $(shell find src -type f -name '*.cil' \
 	-regextype posix-egrep \
 	! -regex 'src/(cgi|init)?script/.*\.cil' \
 	! -name acme.cil ! -name autonoseclabelfs.cil \
@@ -17,7 +17,7 @@ modulesminimal = $(shell find src -type f -name '*.cil' \
 	! -name luaexecfile.cil ! -name luci.cil \
 	! -name opensslexecfile.cil ! -name px5gexecfile.cil \
 	! -name rpcd.cil ! -name sftpserver.cil \
-	! -name socatexecfile.cil ! -name uhttpd.cil \
+	! -name socatexecfile.cil ! -name sqm.cil ! -name uhttpd.cil \
 	! -name unbound.cil ! -name unboundhotplug.cil \
 	! -name wgetexecfile.cil ! -name wgetmiscfile.cil \
 	! -name wireguard.cil -printf '%p ')
@@ -31,13 +31,13 @@ modulesminwg = $(shell find src -type f -name '*.cil' \
 	! -name luaexecfile.cil ! -name luci.cil \
 	! -name opensslexecfile.cil ! -name px5gexecfile.cil \
 	! -name rpcd.cil ! -name sftpserver.cil \
-	! -name socatexecfile.cil ! -name uhttpd.cil \
+	! -name socatexecfile.cil ! -name sqm.cil ! -name uhttpd.cil \
 	! -name unbound.cil ! -name unboundhotplug.cil \
 	! -name wgetexecfile.cil ! -name wgetmiscfile.cil \
 	-printf '%p ')
 
 # Selection of least required modules minus DNSMasq (no LuCI), plus unbound-daemon, wireguard and its ip dependency
-modulesminwgunbound = $(shell find src -type f -name '*.cil' \
+modulesminwgub = $(shell find src -type f -name '*.cil' \
 	-regextype posix-egrep \
 	! -regex 'src/(cgi|init)?script/.*\.cil' \
 	! -name acme.cil ! -name autonoseclabelfs.cil \
@@ -45,12 +45,25 @@ modulesminwgunbound = $(shell find src -type f -name '*.cil' \
 	! -name dnsmasq.cil ! -name luaexecfile.cil ! -name luci.cil \
 	! -name opensslexecfile.cil ! -name px5gexecfile.cil \
 	! -name rpcd.cil ! -name sftpserver.cil \
-	! -name socatexecfile.cil ! -name uhttpd.cil \
+	! -name socatexecfile.cil ! -name sqm.cil ! -name uhttpd.cil \
 	! -name wgetexecfile.cil ! -name wgetmiscfile.cil \
 	-printf '%p ')
 
 # Selection of least required modules minus DNSMasq (no LuCI), plus unbound-daemon, chrony, wireguard and its ip dependency
-modulesminwgunboundchrony = $(shell find src -type f -name '*.cil' \
+modulesminwgubchr = $(shell find src -type f -name '*.cil' \
+	-regextype posix-egrep \
+	! -regex 'src/(cgi|init)?script/.*\.cil' \
+	! -name acme.cil ! -name autonoseclabelfs.cil \
+	! -name blockmount.cil ! -name dnsmasq.cil \
+	! -name luaexecfile.cil ! -name luci.cil \
+	! -name opensslexecfile.cil ! -name px5gexecfile.cil \
+	! -name rpcd.cil ! -name sftpserver.cil \
+	! -name socatexecfile.cil ! -name sqm.cil ! -name uhttpd.cil \
+	! -name wgetexecfile.cil ! -name wgetmiscfile.cil \
+	-printf '%p ')
+
+# Selection of least required modules minus DNSMasq (no LuCI), plus unbound-daemon, chrony, sqm, wireguard and its ip dependency
+modulesminwgubchrsqm = $(shell find src -type f -name '*.cil' \
 	-regextype posix-egrep \
 	! -regex 'src/(cgi|init)?script/.*\.cil' \
 	! -name acme.cil ! -name autonoseclabelfs.cil \
@@ -69,20 +82,24 @@ clean: clean.$(polvers)
 clean.%:
 	rm -f policy.$* file_contexts
 
-minimal: minimal.$(polvers)
-minimal.%: $(modulesminimal)
+min: min.$(polvers)
+min.%: $(modulesmin)
 	secilc --policyvers=$* $^
 
 minwg: minwg.$(polvers)
 minwg.%: $(modulesminwg)
 	secilc --policyvers=$* $^
 
-minwgunbound: minwgunbound.$(polvers)
-minwgunbound.%: $(modulesminwgunbound)
+minwgub: minwgub.$(polvers)
+minwgub.%: $(modulesminwgub)
 	secilc --policyvers=$* $^
 
-minwgunboundchrony: minwgunboundchrony.$(polvers)
-minwgunboundchrony.%: $(modulesminwgunboundchrony)
+minwgubchr: minwgubchr.$(polvers)
+minwgubchr.%: $(modulesminwgubchr)
+	secilc --policyvers=$* $^
+
+minwgubchrsqm: minwgubchrsqm.$(polvers)
+minwgubchrsqm.%: $(modulesminwgubchrsqm)
 	secilc --policyvers=$* $^
 
 policy: policy.$(polvers)
