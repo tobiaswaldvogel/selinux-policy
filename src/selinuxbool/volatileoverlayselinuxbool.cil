@@ -4,7 +4,7 @@
 
 (tunable
  volatile_overlay
- true)
+ false)
 
 (tunableif .volatile_overlay
            (true
