@@ -17,6 +17,9 @@
 (in .ip
     (call .sqm.writeinherited_fifo_files (subj)))
 
+(in .kmodloader
+    (call .sqm.use_fds (subj)))
+
 (in .uci
     (call .sqm.writeinherited_fifo_files (subj)))
 
@@ -107,6 +110,7 @@
 
        (call .class.search_sysfile_dirs (subj))
 
+       (call .devices.read_sysfile_files (subj))
        (call .devices.search_sysfile_dirs (subj))
 
        (call .file.read_conffile_lnk_files (subj))
@@ -123,6 +127,8 @@
        (call .locale.read.subj_type (subj))
 
        (call .logd.unix_dgram_send (subj))
+
+       (call .module.search_sysfile_dirs (subj))
 
        (call .nameservice.read_miscfile_files (subj))
 

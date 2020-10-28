@@ -79,4 +79,4 @@
                  (call .acme.readinherited_fifo_files (subj)))
 
        (optional xtables_opt_sqm
-                 (call .sqm.readinherited_fifo_files (subj))))
+                 (call .sqm.readwriteinherited_fifo_files (subj))))
