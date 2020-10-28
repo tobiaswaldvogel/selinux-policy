@@ -36,6 +36,10 @@
 
        (blockinherit .agent.base_template)
 
+       (call .sys.readwriteinherited_ptydev_chr_files (subj))
+
+       (call .dev.readwriteinherited_ttydev_chr_files (subj))
+
        (call .hotplugcall.writeinherited_fifo_files (subj))
 
        (call .netifd.readinherited_fifo_files (subj))
