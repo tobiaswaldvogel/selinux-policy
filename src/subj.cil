@@ -1902,36 +1902,36 @@
               ;; Macros
               ;;
 
-              (macro change_passwd_all_subjects ((type ARG1))
+              (macro passwd_all ((type ARG1))
                      (allow ARG1 subj_typeattr (passwd (passwd))))
 
               (macro connectto_all_unix_stream_sockets ((type ARG1))
                      (allow ARG1 subj_typeattr
                             (unix_stream_socket (connectto))))
 
-              (macro getrlimit_all_subjects ((type ARG1))
+              (macro getrlimit_all ((type ARG1))
                      (allow ARG1 subj_typeattr (process (getrlimit))))
 
-              (macro getsched_all_subjects ((type ARG1))
+              (macro getsched_all ((type ARG1))
                      (allow ARG1 subj_typeattr (process (getsched))))
 
-              (macro nnptransition_all_subjects ((type ARG1))
+              (macro nnptransition_all ((type ARG1))
                      (allow ARG1 subj_typeattr (process2 (nnp_transition))))
 
-              (macro noatsecure_all_subjects ((type ARG1))
+              (macro noatsecure_all ((type ARG1))
                      (allow ARG1 subj_typeattr (process (noatsecure))))
 
-              (macro nosuidtransition_all_subjects ((type ARG1))
+              (macro nosuidtransition_all ((type ARG1))
                      (allow ARG1 subj_typeattr (process2 (nosuid_transition))))
 
-              (macro ps_all_subjects ((type ARG1))
+              (macro ps_all ((type ARG1))
                      (allow ARG1 subj_typeattr (process (getattr)))
-                     (call read_state_all_subjects (ARG1)))
+                     (call read_state_all (ARG1)))
 
-              (macro ptrace_all_subjects ((type ARG1))
+              (macro ptrace_all ((type ARG1))
                      (allow ARG1 subj_typeattr (process (ptrace))))
 
-              (macro read_state_all_subjects ((type ARG1))
+              (macro read_state_all ((type ARG1))
                      (allow ARG1 subj_typeattr list_dir)
                      (allow ARG1 subj_typeattr read_file)
                      (allow ARG1 subj_typeattr read_lnk_file))
@@ -1963,31 +1963,31 @@
               (macro sendto_all_unix_dgram_sockets ((type ARG1))
                      (allow ARG1 subj_typeattr (unix_dgram_socket (sendto))))
 
-              (macro setrlimit_all_subjects ((type ARG1))
+              (macro setrlimit_all ((type ARG1))
                      (allow ARG1 subj_typeattr (process (setrlimit))))
 
-              (macro setsched_all_subjects ((type ARG1))
+              (macro setsched_all ((type ARG1))
                      (allow ARG1 subj_typeattr (process (setsched))))
 
-              (macro sigchld_all_subjects ((type ARG1))
+              (macro sigchld_all ((type ARG1))
                      (allow ARG1 subj_typeattr (process (sigchld))))
 
-              (macro sigkill_all_subjects ((type ARG1))
+              (macro sigkill_all ((type ARG1))
                      (allow ARG1 subj_typeattr (process (sigkill))))
 
-              (macro signal_all_subjects ((type ARG1))
+              (macro signal_all ((type ARG1))
                      (allow ARG1 subj_typeattr (process (signal))))
 
-              (macro signull_all_subjects ((type ARG1))
+              (macro signull_all ((type ARG1))
                      (allow ARG1 subj_typeattr (process (signull))))
 
-              (macro sigstop_all_subjects ((type ARG1))
+              (macro sigstop_all ((type ARG1))
                      (allow ARG1 subj_typeattr (process (sigstop))))
 
               (macro subj_type ((type ARG1))
                      (typeattributeset subj_typeattr ARG1))
 
-              (macro transition_all_subjects ((type ARG1))
+              (macro transition_all ((type ARG1))
                      (allow ARG1 subj_typeattr (process (transition))))
 
               (macro use_all_fds ((type ARG1))
@@ -2006,19 +2006,19 @@
               (macro dontaudit_getattr_all_sockets ((type ARG1))
                      (dontaudit ARG1 subj_typeattr (allsockets (getattr))))
 
-              (macro dontaudit_noatsecure_all_subjects ((type ARG1))
+              (macro dontaudit_noatsecure_all ((type ARG1))
                      (dontaudit ARG1 subj_typeattr (process (noatsecure))))
 
-              (macro dontaudit_ps_all_subjects ((type ARG1))
+              (macro dontaudit_ps_all ((type ARG1))
                      (dontaudit ARG1 subj_typeattr (process (getattr)))
                      (dontaudit ARG1 subj_typeattr list_dir)
                      (dontaudit ARG1 subj_typeattr read_file)
                      (dontaudit ARG1 subj_typeattr read_lnk_file))
 
-              (macro dontaudit_rlimitinh_all_subjects ((type ARG1))
+              (macro dontaudit_rlimitinh_all ((type ARG1))
                      (dontaudit ARG1 subj_typeattr (process (rlimitinh))))
 
-              (macro dontaudit_siginh_all_subjects ((type ARG1))
+              (macro dontaudit_siginh_all ((type ARG1))
                      (dontaudit ARG1 subj_typeattr (process (siginh))))
 
               ;;
@@ -2049,35 +2049,35 @@
               ;; Macros
               ;;
 
-              (macro change_passwd_subjects ((type ARG1))
+              (macro passwd ((type ARG1))
                      (allow ARG1 subj (passwd (passwd))))
 
               (macro connectto_unix_stream_sockets ((type ARG1))
                      (allow ARG1 subj (unix_stream_socket (connectto))))
 
-              (macro getrlimit_subjects ((type ARG1))
+              (macro getrlimit ((type ARG1))
                      (allow ARG1 subj (process (getrlimit))))
 
-              (macro getsched_subjects ((type ARG1))
+              (macro getsched ((type ARG1))
                      (allow ARG1 subj (process (getsched))))
 
-              (macro nnptransition_subjects ((type ARG1))
+              (macro nnptransition ((type ARG1))
                      (allow ARG1 subj (process2 (nnp_transition))))
 
-              (macro noatsecure_subjects ((type ARG1))
+              (macro noatsecure ((type ARG1))
                      (allow ARG1 subj (process (noatsecure))))
 
-              (macro nosuidtransition_subjects ((type ARG1))
+              (macro nosuidtransition ((type ARG1))
                      (allow ARG1 subj (process2 (nosuid_transition))))
 
-              (macro ps_subjects ((type ARG1))
+              (macro ps ((type ARG1))
                      (allow ARG1 subj (process (getattr)))
-                     (call read_state_subjects (ARG1)))
+                     (call read_state (ARG1)))
 
-              (macro ptrace_subjects ((type ARG1))
+              (macro ptrace ((type ARG1))
                      (allow ARG1 subj (process (ptrace))))
 
-              (macro read_state_subjects ((type ARG1))
+              (macro read_state ((type ARG1))
                      (allow ARG1 subj list_dir)
                      (allow ARG1 subj read_file)
                      (allow ARG1 subj read_lnk_file))
@@ -2108,28 +2108,28 @@
               (macro sendto_unix_dgram_sockets ((type ARG1))
                      (allow ARG1 subj (unix_dgram_socket (sendto))))
 
-              (macro setrlimit_subjects ((type ARG1))
+              (macro setrlimit ((type ARG1))
                      (allow ARG1 subj (process (setrlimit))))
 
-              (macro setsched_subjects ((type ARG1))
+              (macro setsched ((type ARG1))
                      (allow ARG1 subj (process (setsched))))
 
-              (macro sigchld_subjects ((type ARG1))
+              (macro sigchld ((type ARG1))
                      (allow ARG1 subj (process (sigchld))))
 
-              (macro sigkill_subjects ((type ARG1))
+              (macro sigkill ((type ARG1))
                      (allow ARG1 subj (process (sigkill))))
 
-              (macro signal_subjects ((type ARG1))
+              (macro signal ((type ARG1))
                      (allow ARG1 subj (process (signal))))
 
-              (macro signull_subjects ((type ARG1))
+              (macro signull ((type ARG1))
                      (allow ARG1 subj (process (signull))))
 
-              (macro sigstop_subjects ((type ARG1))
+              (macro sigstop ((type ARG1))
                      (allow ARG1 subj (process (sigstop))))
 
-              (macro transition_subjects ((type ARG1))
+              (macro transition ((type ARG1))
                      (allow ARG1 subj (process (transition))))
 
               (macro use_fds ((type ARG1))
@@ -2148,19 +2148,19 @@
               (macro dontaudit_getattr_sockets ((type ARG1))
                      (dontaudit ARG1 subj (allsockets (getattr))))
 
-              (macro dontaudit_noatsecure_subjects ((type ARG1))
+              (macro dontaudit_noatsecure ((type ARG1))
                      (dontaudit ARG1 subj (process (noatsecure))))
 
-              (macro dontaudit_ps_subjects ((type ARG1))
+              (macro dontaudit_ps ((type ARG1))
                      (dontaudit ARG1 subj (process (getattr)))
                      (dontaudit ARG1 subj list_dir)
                      (dontaudit ARG1 subj read_file)
                      (dontaudit ARG1 subj read_lnk_file))
 
-              (macro dontaudit_rlimitinh_subjects ((type ARG1))
+              (macro dontaudit_rlimitinh ((type ARG1))
                      (dontaudit ARG1 subj (process (rlimitinh))))
 
-              (macro dontaudit_siginh_subjects ((type ARG1))
+              (macro dontaudit_siginh ((type ARG1))
                      (dontaudit ARG1 subj (process (siginh))))
 
               ;;
@@ -2204,7 +2204,7 @@
 
               (call .sys.read_rootfile_lnk_files (subj_typeattr))
               (call .sys.search_rootfile_dirs (subj_typeattr))
-              (call .sys.sigchld_subjects (subj_typeattr))
+              (call .sys.sigchld (subj_typeattr))
 
               (call .null.readwrite_nodedev_chr_files (subj_typeattr))
               (call .tty.readwrite_nodedev_chr_files (subj_typeattr))

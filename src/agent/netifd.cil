@@ -146,13 +146,13 @@
        (call .net.sendto_netnodes (subj))
        (call .net.udp_bind_netnodes (subj))
 
-       (call .odhcp6c.signal_subjects (subj))
+       (call .odhcp6c.signal (subj))
        (call .odhcp6c.subj_type_transition (subj))
 
        (call .pppd.list_miscfile_dirs (subj))
        (call .pppd.read_miscfile_files (subj))
-       (call .pppd.sigkill_subjects (subj))
-       (call .pppd.signal_subjects (subj))
+       (call .pppd.sigkill (subj))
+       (call .pppd.signal (subj))
        (call .pppd.subj_type_transition (subj))
 
        (call .proc.list_fs_dirs (subj))
@@ -167,7 +167,7 @@
 
        (call .shell.execute_execfile_files (subj))
 
-       (call .subj.read_state_all_subjects (subj))
+       (call .subj.read_state_all (subj))
 
        (call .sysfile.class.search_all_dirs (subj))
 
@@ -184,7 +184,7 @@
        (call .uci.subj_type_transition (subj))
 
        (call .wpad.search_runtimetmpfile_dirs (subj))
-       (call .wpad.signal_subjects (subj))
+       (call .wpad.signal (subj))
        (call .wpad.subj_type_transition (subj))
 
        (call .xattr.associate_filesystems (miscfile)))

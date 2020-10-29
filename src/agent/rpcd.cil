@@ -170,8 +170,8 @@
 
        (call .shell.execute_execfile_files (subj))
 
-       (call .subj.signal_all_subjects (subj))
-       (call .subj.sigkill_all_subjects (subj))
+       (call .subj.signal_all (subj))
+       (call .subj.sigkill_all (subj))
 
        (call .sysupgrade.read_conffile_files (subj))
 

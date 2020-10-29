@@ -56,9 +56,6 @@
        (macro requestmodule ((type ARG1))
               (allow ARG1 subj (system (module_request))))
 
-       (macro sigchld_subjects ((type ARG1))
-              (allow ARG1 subj (process (sigchld))))
-
        (macro type ((type ARG1))
               (typeattributeset typeattr ARG1))
 

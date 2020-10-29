@@ -40,8 +40,8 @@
        (call .dropbear.manage_certfile_files (subj))
        (call .dropbear.read_runtimetmpfile_files (subj))
        (call .dropbear.relabel_certfile_files (subj))
-       (call .dropbear.sigkill_subjects (subj))
-       (call .dropbear.signal_subjects (subj))
+       (call .dropbear.sigkill (subj))
+       (call .dropbear.signal (subj))
        (call .dropbear.subj_type_transition (subj))
        (call .dropbear.tmp_obj_type_transition_certfile (subj dir "*"))
 
@@ -49,7 +49,7 @@
 
        (call .selinux.setfscreate.subj_type (subj))
 
-       (call .subj.read_state_all_subjects (subj))
+       (call .subj.read_state_all (subj))
 
        (call .tmp.deletename_fs_dirs (subj))
 

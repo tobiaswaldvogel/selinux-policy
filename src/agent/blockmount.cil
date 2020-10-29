@@ -63,7 +63,7 @@
        (call .sys.readringbuffer (subj))
        (call .sys.requestmodule (subj))
        (call .sys.search_fs_dirs (subj))
-       (call .sys.setsched_subjects (subj)) ;; might be able to dontaudit this (could be mount related)
+       (call .sys.setsched (subj)) ;; might be able to dontaudit this (could be mount related)
        (call .sys.writeinherited_fifo_files (subj))
 
        (call .class.list_sysfile_dirs (subj))

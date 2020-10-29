@@ -147,7 +147,7 @@
        (call .recvsendpacket.subj_type (subj_typeattr))
 
        (call .sys.readwriteinherited_fifo_files (subj_typeattr))
-       (call .sys.sigchld_subjects (subj_typeattr))
+       (call .sys.sigchld (subj_typeattr))
 
        (call .dev.sandboxexcept.mapexecute_all_chr_files (subj_typeattr))
        (call .dev.sandboxexcept.readwriteinherited_all_chr_files
@@ -184,7 +184,7 @@
 
        (call .subj.useinteractivefd.subj_type (subj_typeattr))
        (call .subj.dontaudit_getattr_all_sockets (subj_typeattr))
-       (call .subj.dontaudit_ps_all_subjects (subj_typeattr))
+       (call .subj.dontaudit_ps_all (subj_typeattr))
 
        (call .tmp.deletename_fs_dirs (subj_typeattr))
 

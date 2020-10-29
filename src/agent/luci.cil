@@ -181,8 +181,8 @@
 
        (call .stat.read_procfile_files (subj))
 
-       (call .subj.change_passwd_all_subjects (subj))
-       (call .subj.read_state_all_subjects (subj))
+       (call .subj.passwd_all (subj))
+       (call .subj.read_state_all (subj))
 
        (call .swconfig.subj_type_transition (subj))
 
