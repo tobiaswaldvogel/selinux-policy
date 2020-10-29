@@ -122,4 +122,7 @@
                  (call .rcurngd.subj_type_transition (subj)))
 
        (optional rcucitrack_opt_rcwpad
-                 (call .rcwpad.subj_type_transition (subj))))
+                 (call .rcwpad.subj_type_transition (subj)))
+
+       (optional rcucitrack_opt_rczram
+                 (call .rczram.subj_type_transition (subj))))
