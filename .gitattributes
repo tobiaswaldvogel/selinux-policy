@@ -3,5 +3,6 @@
 /doc export-ignore
 /README export-ignore
 /support export-ignore
+/TODO export-ignore
 * text=auto
 *.cil whitespace=tab-in-indent,trailing-space

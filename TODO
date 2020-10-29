@@ -1,0 +1,6 @@
+opkg LuCI
+chronyd LuCI/initscript
+sysupgrade LuCI
+unbound LuCI/initscript
+wireguard LuCI
+zram LuCI/initscript
