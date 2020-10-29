@@ -34,6 +34,9 @@ define Package/selinux-policy-XXXX/description
 endef
 
 define Build/Compile
+#       Do stuff here, for example change tunable defaults
+#       sed -i 's/true)/false)/' $(PKG_BUILD_DIR)/src/selinuxbool/loadpolicyselinuxbool.cil
+#       sed -i 's/true)/false)/' $(PKG_BUILD_DIR)/src/selinuxbool/volatileoverlayselinuxbool.cil
 	$(call Build/Compile/Default,policy)
 endef
 
