@@ -69,9 +69,12 @@
 
        (call .sys.loadkernelmodule.subj_type (subj))
        (call .sys.readringbuffer (subj))
+       (call .sys.readwriteinherited_ptydev_chr_files (subj))
        (call .sys.writeinherited_fifo_files (subj))
 
        (call .debug.search_fs_dirs (subj))
+
+       (call .dev.readwriteinherited_ttydev_chr_files (subj))
 
        (call .file.list_modulesfile_dirs (subj))
        (call .file.modules.load_all_files (subj))
