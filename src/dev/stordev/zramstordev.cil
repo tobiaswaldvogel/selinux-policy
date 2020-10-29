@@ -29,21 +29,7 @@
               (call .tmp.fs_obj_type_transition
                     (ARG1 stordev blk_file "zram1"))
               (call .tmp.fs_obj_type_transition
-                    (ARG1 stordev blk_file "zram2"))
-              (call .tmp.fs_obj_type_transition
-                    (ARG1 stordev blk_file "zram3"))
-              (call .tmp.fs_obj_type_transition
-                    (ARG1 stordev blk_file "zram4"))
-              (call .tmp.fs_obj_type_transition
-                    (ARG1 stordev blk_file "zram5"))
-              (call .tmp.fs_obj_type_transition
-                    (ARG1 stordev blk_file "zram6"))
-              (call .tmp.fs_obj_type_transition
-                    (ARG1 stordev blk_file "zram7"))
-              (call .tmp.fs_obj_type_transition
-                    (ARG1 stordev blk_file "zram8"))
-              (call .tmp.fs_obj_type_transition
-                    (ARG1 stordev blk_file "zram9")))
+                    (ARG1 stordev blk_file "zram2")))
 
        ;;
        ;; Policy
