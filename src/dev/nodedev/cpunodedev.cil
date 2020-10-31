@@ -5,7 +5,7 @@
 (in .dev
     (call .cpu.obj_type_transition_nodedev (unconfined.subj_typeattr)))
 
-(in cpu
+(in .cpu
 
     ;;
     ;; Contexts

@@ -85,7 +85,6 @@
        (call .logd.unix_dgram_send (subj))
 
        (call .mtd.read_procfile_files (subj))
-       (call .mtd.read_stordev_chr_files (subj))
 
        (call .nameservice.read_miscfile_files (subj))
 
@@ -130,6 +129,9 @@
 
        (optional hotplugcall_opt_initscript
                  (call .initscript.use_all_fds (subj)))
+
+       (optional hotplugcall_opt_mtdstordev
+                 (call .mtd.read_stordev_chr_files (subj)))
 
        (optional hotplugcall_opt_rcunbound
                  (call .rcunbound.subj_type_transition (subj)))

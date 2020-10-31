@@ -93,8 +93,6 @@
 
        (call .mountroot.subj_type_transition (subj))
 
-       (call .mtd.read_stordev_chr_files (subj))
-
        (call .net.search_sysctlfile_dirs (subj))
 
        (call .opkg.list_miscfile_dirs (subj))
@@ -149,4 +147,7 @@
        (call .wtmp.readwrite_logtmpfile_files (subj))
 
        (optional rcboot_opt_blockmount
-                 (call .blockmount.subj_type_transition (subj))))
+                 (call .blockmount.subj_type_transition (subj)))
+
+       (optional rcboot_opt_mtdstordev
+                 (call .mtd.read_stordev_chr_files (subj))))

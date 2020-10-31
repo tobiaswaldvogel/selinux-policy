@@ -92,7 +92,6 @@
        (call .mnt.mounton_miscfile_dirs (subj))
 
        (call .mtd.read_procfile_files (subj))
-       (call .mtd.read_stordev_chr_files (subj))
 
        (call .overlay.mounton_miscfile_dirs (subj))
        (call .overlay.search_miscfile_dirs (subj))
@@ -127,6 +126,7 @@
        (optional blockmount_opt_mtdstordev
                  (call .mtd.create_stordev_blk_files (subj))
                  (call .mtd.obj_type_transition_stordev (subj))
+                 (call .mtd.read_stordev_chr_files (subj))
                  (call .mtd.readwrite_stordev_blk_files (subj)))
 
        (optional blockmount_opt_nvmestordev
