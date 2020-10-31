@@ -71,10 +71,7 @@
 
        (call .debug.search_fs_dirs (subj))
 
-       (call .dev.create_stordev_blk_files (subj))
        (call .dev.list_sysfile_dirs (subj))
-       (call .dev.obj_type_transition_stordev (subj))
-       (call .dev.stor.readwrite_all_blk_files (subj))
        (call .dev.stor.readwrite.subj_type (subj))
 
        (call .devices.list_sysfile_dirs (subj))
@@ -117,8 +114,38 @@
        (call .xattr.mount_filesystems (subj))
        (call .xattr.unmount_filesystems (subj))
 
+       (optional blockmount_opt_hdstordev
+                 (call .hd.create_stordev_blk_files (subj))
+                 (call .hd.obj_type_transition_stordev (subj))
+                 (call .hd.readwrite_stordev_blk_files (subj)))
+
+       (optional blockmount_opt_mmcstordev
+                 (call .mmc.create_stordev_blk_files (subj))
+                 (call .mmc.obj_type_transition_stordev (subj))
+                 (call .mmc.readwrite_stordev_blk_files (subj)))
+
+       (optional blockmount_opt_mtdstordev
+                 (call .mtd.create_stordev_blk_files (subj))
+                 (call .mtd.obj_type_transition_stordev (subj))
+                 (call .mtd.readwrite_stordev_blk_files (subj)))
+
+       (optional blockmount_opt_nvmestordev
+                 (call .nvme.create_stordev_blk_files (subj))
+                 (call .nvme.obj_type_transition_stordev (subj))
+                 (call .nvme.readwrite_stordev_blk_files (subj)))
+
        (optional blockmount_opt_rcboot
                  (call .rcboot.use_fds (subj)))
 
        (optional blockmount_opt_rcfstab
-                 (call .rcfstab.use_fds (subj))))
+                 (call .rcfstab.use_fds (subj)))
+
+       (optional blockmount_opt_sdstordev
+                 (call .sd.create_stordev_blk_files (subj))
+                 (call .sd.obj_type_transition_stordev (subj))
+                 (call .sd.readwrite_stordev_blk_files (subj)))
+
+       (optional blockmount_opt_vdstordev
+                 (call .vd.create_stordev_blk_files (subj))
+                 (call .vd.obj_type_transition_stordev (subj))
+                 (call .vd.readwrite_stordev_blk_files (subj))))

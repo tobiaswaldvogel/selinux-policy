@@ -3,12 +3,12 @@
 ;; SPDX-License-Identifier: Unlicense
 
 (in .dev
-    (call .removable.obj_type_transition_stordev (unconfined.subj_typeattr)))
+    (call .mmc.obj_type_transition_stordev (unconfined.subj_typeattr)))
 
 (in .dev.stor
-    (call .removable.obj_type_transition_stordev (unconfined.subj_typeattr)))
+    (call .mmc.obj_type_transition_stordev (unconfined.subj_typeattr)))
 
-(block removable
+(block mmc
 
        ;;
        ;; Contexts
@@ -29,10 +29,6 @@
        (filecon
         "/dev/mmcblk[0-9]+rpmb"
         char
-        stordev_file_context)
-       (filecon
-        "/dev/sr[0-9]+"
-        block
         stordev_file_context)
 
        ;;
@@ -123,13 +119,7 @@
               (call .tmp.fs_obj_type_transition
                     (ARG1 stordev blk_file "mmcblk2p9"))
               (call .tmp.fs_obj_type_transition
-                    (ARG1 stordev chr_file "mmcblk2rpmb"))
-              (call .tmp.fs_obj_type_transition
-                    (ARG1 stordev blk_file "sr0"))
-              (call .tmp.fs_obj_type_transition
-                    (ARG1 stordev blk_file "sr1"))
-              (call .tmp.fs_obj_type_transition
-                    (ARG1 stordev blk_file "sr2")))
+                    (ARG1 stordev chr_file "mmcblk2rpmb")))
 
        ;;
        ;; Policy

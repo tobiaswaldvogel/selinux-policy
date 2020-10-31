@@ -5,55 +5,55 @@
 (in .dev
     (call .cpu.obj_type_transition_nodedev (unconfined.subj_typeattr)))
 
-(block cpu
+(in cpu
 
-       ;;
-       ;; Contexts
-       ;;
+    ;;
+    ;; Contexts
+    ;;
 
-       (filecon
-        "/dev/cpu([0-9]+)?"
-        char
-        nodedev_file_context)
-       (filecon
-        "/dev/cpu/.+"
-        char
-        nodedev_file_context)
-       (filecon
-        "/dev/msr([0-9]+)?"
-        char
-        nodedev_file_context)
+    (filecon
+     "/dev/cpu([0-9]+)?"
+     char
+     nodedev_file_context)
+    (filecon
+     "/dev/cpu/.+"
+     char
+     nodedev_file_context)
+    (filecon
+     "/dev/msr([0-9]+)?"
+     char
+     nodedev_file_context)
 
-       ;;
-       ;; Macros
-       ;;
+    ;;
+    ;; Macros
+    ;;
 
-       (macro obj_type_transition_nodedev ((type ARG1))
-              (call .tmp.fs_obj_type_transition
-                    (ARG1 nodedev chr_file "cpu0"))
-              (call .tmp.fs_obj_type_transition
-                    (ARG1 nodedev chr_file "cpu1"))
-              (call .tmp.fs_obj_type_transition
-                    (ARG1 nodedev chr_file "cpu2"))
-              (call .tmp.fs_obj_type_transition
-                    (ARG1 nodedev chr_file "cpu3"))
-              (call .tmp.fs_obj_type_transition
-                    (ARG1 nodedev chr_file "cpuid"))
-              (call .tmp.fs_obj_type_transition
-                    (ARG1 nodedev chr_file "microcode"))
-              (call .tmp.fs_obj_type_transition
-                    (ARG1 nodedev chr_file "msr"))
-              (call .tmp.fs_obj_type_transition
-                    (ARG1 nodedev chr_file "msr0"))
-              (call .tmp.fs_obj_type_transition
-                    (ARG1 nodedev chr_file "msr1"))
-              (call .tmp.fs_obj_type_transition
-                    (ARG1 nodedev chr_file "msr2"))
-              (call .tmp.fs_obj_type_transition
-                    (ARG1 nodedev chr_file "msr3")))
+    (macro obj_type_transition_nodedev ((type ARG1))
+           (call .tmp.fs_obj_type_transition
+                 (ARG1 nodedev chr_file "cpu0"))
+           (call .tmp.fs_obj_type_transition
+                 (ARG1 nodedev chr_file "cpu1"))
+           (call .tmp.fs_obj_type_transition
+                 (ARG1 nodedev chr_file "cpu2"))
+           (call .tmp.fs_obj_type_transition
+                 (ARG1 nodedev chr_file "cpu3"))
+           (call .tmp.fs_obj_type_transition
+                 (ARG1 nodedev chr_file "cpuid"))
+           (call .tmp.fs_obj_type_transition
+                 (ARG1 nodedev chr_file "microcode"))
+           (call .tmp.fs_obj_type_transition
+                 (ARG1 nodedev chr_file "msr"))
+           (call .tmp.fs_obj_type_transition
+                 (ARG1 nodedev chr_file "msr0"))
+           (call .tmp.fs_obj_type_transition
+                 (ARG1 nodedev chr_file "msr1"))
+           (call .tmp.fs_obj_type_transition
+                 (ARG1 nodedev chr_file "msr2"))
+           (call .tmp.fs_obj_type_transition
+                 (ARG1 nodedev chr_file "msr3")))
 
-       ;;
-       ;; Policy
-       ;;
+    ;;
+    ;; Policy
+    ;;
 
-       (blockinherit .dev.node.obj_template))
+    (blockinherit .dev.node.obj_template))

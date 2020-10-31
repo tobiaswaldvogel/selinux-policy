@@ -47,10 +47,6 @@
         fs_context)
        (fsuse
         xattr
-        "shiftfs"
-        fs_context)
-       (fsuse
-        xattr
         "squashfs"
         fs_context)
        (fsuse
@@ -60,10 +56,6 @@
        (fsuse
         xattr
         "xfs"
-        fs_context)
-       (fsuse
-        xattr
-        "zfs"
         fs_context)
 
        ;;

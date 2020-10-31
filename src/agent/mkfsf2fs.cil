@@ -40,7 +40,6 @@
        (call .sys.writeinherited_fifo_files (subj))
        (call .sys.readwriteinherited_ptydev_chr_files (subj))
 
-       (call .dev.readwrite_stordev_blk_files (subj))
        (call .dev.readwriteinherited_ttydev_chr_files (subj))
        (call .dev.search_sysfile_dirs (subj))
        (call .dev.stor.readwrite.subj_type (subj))
@@ -53,4 +52,28 @@
 
        (call .random.read_nodedev_chr_files (subj))
 
-       (call .version.read_procfile_files (subj)))
+       (call .version.read_procfile_files (subj))
+
+       (optional mkfsf2fs_opt_dmstordev
+                 (call .dm.readwrite_stordev_blk_files (subj)))
+
+       (optional mkfsf2fs_opt_loopstordev
+                 (call .loop.readwrite_stordev_blk_files (subj)))
+
+       (optional mkfsf2fs_opt_mmcstordev
+                 (call .mmc.readwrite_stordev_blk_files (subj)))
+
+       (optional mkfsf2fs_opt_mtdstordev
+                 (call .mtd.readwrite_stordev_blk_files (subj)))
+
+       (optional mkfsf2fs_opt_nvmestordev
+                 (call .nvme.readwrite_stordev_blk_files (subj)))
+
+       (optional mkfsf2fs_opt_sdstordev
+                 (call .sd.readwrite_stordev_blk_files (subj)))
+
+       (optional mkfsf2fs_opt_vdstordev
+                 (call .vd.readwrite_stordev_blk_files (subj)))
+
+       (optional mkfsf2fs_opt_zramstordev
+                 (call .zram.readwrite_stordev_blk_files (subj))))
