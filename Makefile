@@ -12,9 +12,8 @@ modules = $(shell find src -type f -name '*.cil' \
 modulesmin = $(shell find src -type f -name '*.cil' \
 	-regextype posix-egrep \
 	! -regex 'src/(cgi|init)?script/.*\.cil' \
-	! -name acme.cil ! -name autonoseclabelfs.cil \
-	! -name blockmount.cil ! -name chrony.cil ! -name ip.cil \
-	! -name luaexecfile.cil ! -name luci.cil \
+	! -name acme.cil ! -name blockmount.cil ! -name chrony.cil \
+	! -name ip.cil ! -name luaexecfile.cil ! -name luci.cil \
 	! -name opensslexecfile.cil ! -name px5gexecfile.cil \
 	! -name rpcd.cil ! -name sftpserver.cil \
 	! -name socatexecfile.cil ! -name sqm.cil ! -name uhttpd.cil \
@@ -26,22 +25,20 @@ modulesmin = $(shell find src -type f -name '*.cil' \
 modulesminwg = $(shell find src -type f -name '*.cil' \
 	-regextype posix-egrep \
 	! -regex 'src/(cgi|init)?script/.*\.cil' \
-	! -name acme.cil ! -name autonoseclabelfs.cil \
-	! -name blockmount.cil ! -name chrony.cil \
+	! -name acme.cil ! -name blockmount.cil ! -name chrony.cil \
 	! -name luaexecfile.cil ! -name luci.cil \
 	! -name opensslexecfile.cil ! -name px5gexecfile.cil \
 	! -name rpcd.cil ! -name sftpserver.cil \
-	! -name socatexecfile.cil ! -name sqm.cil ! -name uhttpd.cil \
-	! -name unbound.cil ! -name unboundhotplug.cil \
-	! -name wgetexecfile.cil ! -name wgetmiscfile.cil \
-	-printf '%p ')
+	! -name socatexecfile.cil ! -name sqm.cil \
+	! -name uhttpd.cil ! -name unbound.cil \
+	! -name unboundhotplug.cil ! -name wgetexecfile.cil \
+	! -name wgetmiscfile.cil -printf '%p ')
 
 # Selection of least required modules minus DNSMasq (no LuCI), plus unbound-daemon, wireguard and its ip dependency
 modulesminwgub = $(shell find src -type f -name '*.cil' \
 	-regextype posix-egrep \
 	! -regex 'src/(cgi|init)?script/.*\.cil' \
-	! -name acme.cil ! -name autonoseclabelfs.cil \
-	! -name blockmount.cil ! -name chrony.cil \
+	! -name acme.cil ! -name blockmount.cil ! -name chrony.cil \
 	! -name dnsmasq.cil ! -name luaexecfile.cil ! -name luci.cil \
 	! -name opensslexecfile.cil ! -name px5gexecfile.cil \
 	! -name rpcd.cil ! -name sftpserver.cil \
@@ -53,8 +50,7 @@ modulesminwgub = $(shell find src -type f -name '*.cil' \
 modulesminwgubchr = $(shell find src -type f -name '*.cil' \
 	-regextype posix-egrep \
 	! -regex 'src/(cgi|init)?script/.*\.cil' \
-	! -name acme.cil ! -name autonoseclabelfs.cil \
-	! -name blockmount.cil ! -name dnsmasq.cil \
+	! -name acme.cil ! -name blockmount.cil ! -name dnsmasq.cil \
 	! -name luaexecfile.cil ! -name luci.cil \
 	! -name opensslexecfile.cil ! -name px5gexecfile.cil \
 	! -name rpcd.cil ! -name sftpserver.cil \
@@ -66,8 +62,7 @@ modulesminwgubchr = $(shell find src -type f -name '*.cil' \
 modulesminwgubchrsqm = $(shell find src -type f -name '*.cil' \
 	-regextype posix-egrep \
 	! -regex 'src/(cgi|init)?script/.*\.cil' \
-	! -name acme.cil ! -name autonoseclabelfs.cil \
-	! -name blockmount.cil ! -name dnsmasq.cil \
+	! -name acme.cil ! -name blockmount.cil ! -name dnsmasq.cil \
 	! -name luaexecfile.cil ! -name luci.cil \
 	! -name opensslexecfile.cil ! -name px5gexecfile.cil \
 	! -name rpcd.cil ! -name sftpserver.cil \
@@ -86,7 +81,8 @@ modulesmintesttgt = $(shell find src -type f -name '*.cil' \
 	! -name cpunodedev.cil ! -name dmctlnodedev.cil \
 	! -name dmstordev.cil ! -name dnsmasq.cil \
 	! -name drinodedev.cil ! -name framebufnodedev.cil \
-	! -name fusestordev.cil ! -name hdstordev.cil \
+	! -name fusenoseclabelfs.cil ! -name fusestordev.cil \
+	! -name fusefssysfile.cil ! -name hdstordev.cil \
 	! -name luaexecfile.cil ! -name luci.cil \
 	! -name mmcstordev.cil ! -name nvmestordev.cil \
 	! -name nvramnodedev.cil ! -name opensslexecfile.cil \
