@@ -6,4 +6,8 @@ wireguard LuCI
 zram LuCI/initscript
 acme (standalone, dns)
 logread (remote logging)
+
+shadow --with-selinux
+
 tftp
+lvm2
