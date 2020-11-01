@@ -12,7 +12,7 @@
 
            (blockinherit obj_all_macro_template)
 
-           (allow obj_typeattr obj_typeattr (filesystem (associate)))
+           (allow obj_typeattr self (filesystem (associate)))
 
            ;;
            ;; Templates
