@@ -63,9 +63,6 @@
        (optional mkfsf2fs_opt_mmcstordev
                  (call .mmc.readwrite_stordev_blk_files (subj)))
 
-       (optional mkfsf2fs_opt_mtdstordev
-                 (call .mtd.readwrite_stordev_blk_files (subj)))
-
        (optional mkfsf2fs_opt_nvmestordev
                  (call .nvme.readwrite_stordev_blk_files (subj)))
 
