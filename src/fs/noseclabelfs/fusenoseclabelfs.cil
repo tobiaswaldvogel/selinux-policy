@@ -13,10 +13,6 @@
      "/"
      fs_context)
     (genfscon
-     "fuseblk"
-     "/"
-     fs_context)
-    (genfscon
      "fusectl"
      "/"
      fs_context)
