@@ -83,15 +83,15 @@ modulesmintesttgt = $(shell find src -type f -name '*.cil' \
 	! -name drinodedev.cil ! -name framebufnodedev.cil \
 	! -name fusenoseclabelfs.cil ! -name fusestordev.cil \
 	! -name fusefssysfile.cil ! -name hdstordev.cil \
-	! -name luaexecfile.cil ! -name luci.cil \
-	! -name mmcstordev.cil ! -name nvmestordev.cil \
-	! -name nvramnodedev.cil ! -name opensslexecfile.cil \
-	! -name px5gexecfile.cil ! -name rpcd.cil \
-	! -name sftpserver.cil ! -name socatexecfile.cil \
-	! -name srstordev.cil ! -name uhttpd.cil \
-	! -name vdstordev.cil ! -name vmcinodedev.cil \
-	! -name wgetexecfile.cil ! -name wgetmiscfile.cil \
-	-printf '%p ')
+	! -name iso9660noseclabelfs.cil ! -name luaexecfile.cil \
+	! -name luci.cil ! -name mmcstordev.cil \
+	! -name nvmestordev.cil ! -name nvramnodedev.cil \
+	! -name opensslexecfile.cil ! -name px5gexecfile.cil \
+	! -name rpcd.cil ! -name sftpserver.cil \
+	! -name socatexecfile.cil ! -name srstordev.cil \
+	! -name uhttpd.cil ! -name vdstordev.cil \
+	! -name vmcinodedev.cil ! -name wgetexecfile.cil \
+	! -name wgetmiscfile.cil -printf '%p ')
 
 polvers = 31
 
