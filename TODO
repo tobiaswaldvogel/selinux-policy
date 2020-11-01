@@ -4,3 +4,6 @@ sysupgrade LuCI
 unbound LuCI/initscript
 wireguard LuCI
 zram LuCI/initscript
+acme (standalone, dns)
+logread (remote logging)
+tftp
