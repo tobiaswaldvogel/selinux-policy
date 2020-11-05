@@ -76,7 +76,7 @@
                   (macro appendinherited_nodedev_files ((type ARG1))
                          (allow ARG1 nodedev appendinherited_file))
 
-                  (macro create_node ((type ARG1))
+                  (macro create_nodedev ((type ARG1))
                          (allow ARG1 nodedev (allfiles (create))))
 
                   (macro create_nodedev_blk_files ((type ARG1))
@@ -103,7 +103,7 @@
                   (macro deletename_nodedev_dirs ((type ARG1))
                          (allow ARG1 nodedev deletename_dir))
 
-                  (macro delete_node ((type ARG1))
+                  (macro delete_nodedev ((type ARG1))
                          (allow ARG1 nodedev (allfiles (delete))))
 
                   (macro delete_nodedev_blk_files ((type ARG1))
@@ -136,7 +136,7 @@
                   (macro listinherited_nodedev_dirs ((type ARG1))
                          (allow ARG1 nodedev listinherited_dir))
 
-                  (macro manage_node ((type ARG1))
+                  (macro manage_nodedev ((type ARG1))
                          (allow ARG1 nodedev (allfiles (manage))))
 
                   (macro manage_nodedev_blk_files ((type ARG1))
@@ -166,7 +166,7 @@
                   (macro mapexecute_nodedev_files ((type ARG1))
                          (allow ARG1 nodedev mapexecute_file))
 
-                  (macro mounton_node ((type ARG1))
+                  (macro mounton_nodedev ((type ARG1))
                          (allow ARG1 nodedev (allfiles (mounton))))
 
                   (macro mounton_nodedev_blk_files ((type ARG1))
@@ -195,7 +195,7 @@
                          (typetransition ARG1 nodedev ARG3 ARG4 ARG2)
                          (call addname_nodedev_dirs (ARG1)))
 
-                  (macro read_node ((type ARG1))
+                  (macro read_nodedev ((type ARG1))
                          (allow ARG1 nodedev (allfiles (read))))
 
                   (macro read_nodedev_blk_files ((type ARG1))
@@ -231,7 +231,7 @@
                   (macro read_nodedev_sock_files ((type ARG1))
                          (allow ARG1 nodedev read_sock_file))
 
-                  (macro readwrite_node ((type ARG1))
+                  (macro readwrite_nodedev ((type ARG1))
                          (allow ARG1 nodedev (allfiles (readwrite))))
 
                   (macro readwrite_nodedev_blk_files ((type ARG1))
@@ -273,7 +273,7 @@
                   (macro readwrite_nodedev_sock_files ((type ARG1))
                          (allow ARG1 nodedev readwrite_sock_file))
 
-                  (macro relabel_node ((type ARG1))
+                  (macro relabel_nodedev ((type ARG1))
                          (allow ARG1 nodedev (allfiles (relabel))))
 
                   (macro relabel_nodedev_blk_files ((type ARG1))
@@ -297,7 +297,7 @@
                   (macro relabel_nodedev_sock_files ((type ARG1))
                          (allow ARG1 nodedev relabel_sock_file))
 
-                  (macro relabelfrom_node ((type ARG1))
+                  (macro relabelfrom_nodedev ((type ARG1))
                          (allow ARG1 nodedev (allfiles (relabelfrom))))
 
                   (macro relabelfrom_nodedev_blk_files ((type ARG1))
@@ -321,7 +321,7 @@
                   (macro relabelfrom_nodedev_sock_files ((type ARG1))
                          (allow ARG1 nodedev relabelfrom_sock_file))
 
-                  (macro relabelto_node ((type ARG1))
+                  (macro relabelto_nodedev ((type ARG1))
                          (allow ARG1 nodedev (allfiles (relabelto))))
 
                   (macro relabelto_nodedev_blk_files ((type ARG1))
@@ -345,7 +345,7 @@
                   (macro relabelto_nodedev_sock_files ((type ARG1))
                          (allow ARG1 nodedev relabelto_sock_file))
 
-                  (macro rename_node ((type ARG1))
+                  (macro rename_nodedev ((type ARG1))
                          (allow ARG1 nodedev (allfiles (rename))))
 
                   (macro rename_nodedev_blk_files ((type ARG1))
@@ -372,7 +372,7 @@
                   (macro search_nodedev_dirs ((type ARG1))
                          (allow ARG1 nodedev search_dir))
 
-                  (macro write_node ((type ARG1))
+                  (macro write_nodedev ((type ARG1))
                          (allow ARG1 nodedev (allfiles (write))))
 
                   (macro write_nodedev_blk_files ((type ARG1))
