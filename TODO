@@ -1,3 +1,6 @@
+the "readwrite.subj_type" macros arent always called in the right container (review them all)
+mmc, sr, and fd (floppy) are really removable.stordev (move them back to removablestordev.cil)
+
 opkg LuCI
 chronyd LuCI/initscript
 sysupgrade LuCI
