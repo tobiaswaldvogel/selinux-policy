@@ -1,0 +1,31 @@
+;; SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
+;; SPDX-License-Identifier: Unlicense
+
+(block radius
+
+       ;;
+       ;; Contexts
+       ;;
+
+       (portcon
+        "dccp"
+        1812
+        netport_context)
+       (portcon
+        "sctp"
+        1812
+        netport_context)
+       (portcon
+        "tcp"
+        1812
+        netport_context)
+       (portcon
+        "udp"
+        1812
+        netport_context)
+
+       ;;
+       ;; Policy
+       ;;
+
+       (blockinherit .net.port.unreserved.obj_template))

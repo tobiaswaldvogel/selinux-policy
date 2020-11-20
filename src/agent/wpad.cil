@@ -122,6 +122,10 @@
 
        (call .logd.unix_dgram_send (subj))
 
+       (call .net.egress_netifs (subj))
+       (call .net.sendto_netnodes (subj))
+       (call .net.udp_bind_netnodes (subj))
+
        (call .netifd.read_runtimetmpfile_files (subj))
 
        (call .random.read_nodedev_chr_files (subj))
