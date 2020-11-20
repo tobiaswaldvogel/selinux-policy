@@ -130,6 +130,8 @@
 
        (call .xtables.manage_runtimetmpfile_files (subj))
        (call .xtables.obj_type_transition_runtimetmpfile (subj))
+       ;; /etc/firewall.user
+       (call .xtables.subj_type_transition (subj))
 
        (optional firewall_opt_rcfirewall
                  (call .rcfirewall.use_fds (subj))))
