@@ -26,3 +26,5 @@
 /sbin /usr/bin
 /usr/libexec /usr/bin
 /usr/sbin /usr/bin
+
+/new_root /
