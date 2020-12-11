@@ -21,6 +21,9 @@
     ;; Macros
     ;;
 
+    (macro getattr_execfile_files ((type ARG1))
+           (allow ARG1 execfile (file (getattr))))
+
     (macro datafile_obj_type_transition_execfile ((type ARG1))
            (call .file.datafile_obj_type_transition
                  (ARG1 execfile dir "bin"))

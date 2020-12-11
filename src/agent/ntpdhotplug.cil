@@ -36,6 +36,7 @@
 
        (call .sys.dontaudit_readwrite_udp_sockets (subj))
 
+       (call .hotplugcall.nnptransition (subj))
        (call .hotplugcall.subj_type_transition (subj))
 
        (call .selinux.linked.subj_type (subj))

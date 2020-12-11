@@ -70,9 +70,9 @@
        (call .dev.stor.readwrite.subj_type (subj))
 
        ;; this is probably a bug: /boot/boot
-       (call .dos.addname_fs_dirs (subj))
-       (call .dos.create_fs_dirs (subj))
-       (call .dos.setattr_fs_dirs (subj))
+       (call .dos.manage_fs_dirs (subj))
+       (call .dos.manage_fs_files (subj))
+       (call .dos.relabel_fs_files (subj))
 
        ;; the big hammer
        (call .file.unconfined.subj_type (subj))

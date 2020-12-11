@@ -56,9 +56,13 @@
 
        (call .hotplug.list_conffile_dirs (subj))
 
+       (call .ipv6.getattr_sysctlfile_dirs (subj))
+
        (call .ipcalc.subj_type_transition (subj))
 
        (call .logd.unix_dgram_send (subj))
+
+       (call .net.search_sysctlfile_dirs (subj))
 
        (call .odhcpd.getattr_execfile_files (subj))
 
@@ -75,6 +79,8 @@
        (call .resolv.obj_type_transition_tmpfile (subj))
 
        (call .subj.read_state_all (subj))
+
+       (call .sys.search_sysctlfile_dirs (subj))
 
        (call .tmp.delete_fs_lnk_files (subj))
        (call .tmp.readwrite_fs_dirs (subj))

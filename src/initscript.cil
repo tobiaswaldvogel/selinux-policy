@@ -17,11 +17,18 @@
 
        (call .agent.subj_type (subj_typeattr))
 
+       ;; file check for /etc/capabilties/*.json common to initscripts for services that drop privs
+       (call capabilities.getattr_conffile_files (subj_typeattr))
+       (call capabilities.search_conffile_dirs (subj_typeattr))
+
        (call .console.dontaudit_readwriteinherited_ttydev_chr_files
              (subj_typeattr))
 
        (call .dev.dontaudit_readwriteinherited_ttydev_chr_files
              (subj_typeattr))
+
+       ;; file check on /sbin/ujail
+       (call .file.getattr_execfile_files (subj_typeattr))
 
        (call .file.read_conffile_lnk_files (subj_typeattr))
        (call .file.search_initscriptfile_dirs (subj_typeattr))
@@ -35,6 +42,9 @@
 
        (call .libubox.read_datafile_files (subj_typeattr))
        (call .libubox.search_datafile_dirs (subj_typeattr))
+
+       ;; probably /sbin/ujail related
+       (call .mnt.getattr_miscfile_dirs (subj_typeattr))
 
        (call .nameservice.read_miscfile_files (subj_typeattr))
 

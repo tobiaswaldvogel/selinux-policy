@@ -118,6 +118,11 @@
                  (call .hd.obj_type_transition_stordev (subj))
                  (call .hd.readwrite_stordev_blk_files (subj)))
 
+       (optional blockmount_opt_loopstordev
+                 (call .loop.create_stordev_blk_files (subj))
+                 (call .loop.obj_type_transition_stordev (subj))
+                 (call .loop.readwrite_stordev_blk_files (subj)))
+
        (optional blockmount_opt_mmcstordev
                  (call .mmc.create_stordev_blk_files (subj))
                  (call .mmc.obj_type_transition_stordev (subj))
