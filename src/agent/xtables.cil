@@ -80,7 +80,9 @@
 
        (optional xtables_opt_fw3
                  (call .fw3.use_fds (subj))
-                 (call .fw3.writeinherited_runtimetmpfile_files (subj)))
+                 ;; /tmp/run/fw3.lock
+                 (call .fw3.dontaudit_writeinherited_runtimetmpfile_files
+                       (subj)))
 
        (optional xtables_opt_rcfirewall
                  (call .rcfirewall.use_fds (subj)))

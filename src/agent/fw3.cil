@@ -60,6 +60,9 @@
               (call .tmpfile.runtimetmpfile_obj_type_transition
                     (ARG1 runtimetmpfile file "fw3.state")))
 
+       (macro dontaudit_writeinherited_runtimetmpfile_files ((type ARG1))
+              (dontaudit ARG1 runtimetmpfile writeinherited_file_perms))
+
        ;;
        ;; Policy
        ;;
