@@ -22,7 +22,7 @@
 
        (macro obj_type_transition_conffile ((type ARG1))
               (call .file.conffile_obj_type_transition
-                    (ARG1 conffile file "firewall\.user")))
+                    (ARG1 conffile file "firewall.user")))
 
        ;;
        ;; Policy
