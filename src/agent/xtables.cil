@@ -78,5 +78,12 @@
        (optional xtables_opt_acme
                  (call .acme.readinherited_fifo_files (subj)))
 
+       (optional xtables_opt_fw3
+                 (call .fw3.use_fds (subj))
+                 (call .fw3.writeinherited_runtimetmpfile_files (subj)))
+
+       (optional xtables_opt_rcfirewall
+                 (call .rcfirewall.use_fds (subj)))
+
        (optional xtables_opt_sqm
                  (call .sqm.readwriteinherited_fifo_files (subj))))
