@@ -35,6 +35,8 @@
 
        (call obj_type_transition_nodedev (unconfined.subj_typeattr))
 
+       (call readwrite.subj_type (unconfined.subj_typeattr))
+
        (block read
 
               ;;
