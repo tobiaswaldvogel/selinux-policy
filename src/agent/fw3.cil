@@ -88,6 +88,8 @@
        (call manage_runtimetmpfile_files (subj))
        (call obj_type_transition_runtimetmpfile (subj))
 
+       (call .sys.loadkernelmodule.subj_type (subj))
+       (call .sys.requestmodule (subj))
        (call .sys.search_sysctlfile_dirs (subj))
        (call .sys.writeinherited_fifo_files (subj))
 
