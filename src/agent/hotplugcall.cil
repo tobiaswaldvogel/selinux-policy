@@ -110,6 +110,7 @@
 
        (call .tmpfile.addname_locktmpfile_dirs (subj))
        (call .tmpfile.manage_locktmpfile_files (subj))
+       (call .tmpfile.search_runtimetmpfile_dirs (subj))
        (call .tmpfile.search_statetmpfile_dirs (subj))
 
        (call .ubus.subj_type_transition (subj))

@@ -106,6 +106,8 @@
        (call .sys.requestmodule (subj))
        (call .sys.search_sysctlfile_dirs (subj))
 
+       (call .board.read_miscfile_files (subj))
+
        (call .class.list_sysfile_dirs (subj))
 
        (call .devices.list_sysfile_dirs (subj))

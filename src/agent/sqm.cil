@@ -94,8 +94,11 @@
        (blockinherit .file.conf.obj_template)
        (blockinherit .tmpfile.runtime.obj_template)
 
+       (allow subj self (capability (net_admin)))
        (allow subj self create_netlink_route_socket)
+       (allow subj self create_udp_socket)
        (allow subj self create_unix_dgram_socket)
+       (allow subj self (netlink_route_socket (nlmsg_read nlmsg_write)))
 
        (call read_conffile_files (subj))
        (call search_conffile_dirs (subj))
