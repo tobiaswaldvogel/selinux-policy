@@ -94,6 +94,7 @@
        (blockinherit .file.conf.obj_template)
        (blockinherit .tmpfile.runtime.obj_template)
 
+       (allow subj self create_netlink_route_socket)
        (allow subj self create_unix_dgram_socket)
 
        (call read_conffile_files (subj))
@@ -135,6 +136,8 @@
        (call .netifd.readinherited_fifo_files (subj))
        (call .netifd.dontaudit_readwrite_netlink_kobject_uevent_sockets (subj))
        (call .netifd.dontaudit_readwrite_netlink_route_sockets (subj))
+
+       (call .random.read_nodedev_chr_files (subj))
 
        (call .selinux.linked.subj_type (subj))
 

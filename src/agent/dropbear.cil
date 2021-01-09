@@ -146,6 +146,8 @@
 
        (call .subj.interactivefd.subj_type (subj))
 
+       (call .timerlist.read_procfile_files (subj))
+
        (call .tmp.associate_filesystems (certfile))
        (call .tmp.deletename_fs_dirs (subj))
 

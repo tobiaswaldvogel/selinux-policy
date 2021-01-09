@@ -41,7 +41,9 @@
 
        (macro obj_type_transition_hoststmpfile ((type ARG1))
               (call .tmpfile.hoststmpfile_obj_type_transition
-                    (ARG1 hoststmpfile file "odhcpd")))
+                    (ARG1 hoststmpfile file "odhcpd"))
+              (call .tmpfile.hoststmpfile_obj_type_transition
+                    (ARG1 hoststmpfile file "odhcpd.tmp")))
 
        (macro dontaudit_readwrite_netlink_route_sockets ((type ARG1))
               (dontaudit ARG1 subj (netlink_route_socket (read write))))
