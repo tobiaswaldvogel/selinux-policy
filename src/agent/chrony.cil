@@ -15,6 +15,9 @@
     (call .chronyd.obj_type_transition_execfile (unconfined.subj_typeattr)))
 
 (in .hotplugcall
+    (call .chrony.manage_runtimetmpfile_dirs (subj))
+    (call .chrony.manage_runtimetmpfile_files (subj))
+    (call .chrony.obj_type_transition_runtimetmpfile (subj))
     (call .chronyc.subj_type_transition (subj)))
 
 (block chrony
