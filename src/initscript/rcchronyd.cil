@@ -32,4 +32,8 @@
        ;; Policy
        ;;
 
-       (blockinherit .initscript.base_template))
+       (blockinherit .initscript.base_template)
+
+       (call .chrony.manage_conftmpfile_dirs (subj))
+       (call .chrony.manage_conftmpfile_files (subj))
+       (call .chrony.obj_type_transition_conftmpfile (subj)))

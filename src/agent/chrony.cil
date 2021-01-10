@@ -36,6 +36,14 @@
         "/tmp/etc/chrony\.conf"
         file
         conftmpfile_file_context)
+       (filecon
+        "/tmp/etc/chrony\.d"
+        dir
+        conftmpfile_file_context)
+       (filecon
+        "/tmp/etc/chrony\.d/.*"
+        any
+        conftmpfile_file_context)
 
        (filecon
         "/tmp/run/chrony"
@@ -55,6 +63,8 @@
                     (ARG1 conffile dir "chrony")))
 
        (macro obj_type_transition_conftmpfile ((type ARG1))
+              (call .tmpfile.conftmpfile_obj_type_transition
+                    (ARG1 conftmpfile dir "chrony.d"))
               (call .tmpfile.conftmpfile_obj_type_transition
                     (ARG1 conftmpfile file "chrony.conf")))
 
@@ -175,6 +185,7 @@
        (call .chrony.read_conffile_files (subj))
        (call .chrony.read_conftmpfile_files (subj))
        (call .chrony.search_conffile_dirs (subj))
+       (call .chrony.search_conftmpfile_dirs (subj))
        (call .chrony.setattr_conffile_files (subj))
 
        (call .chronyc.sendto_unix_dgram_sockets (subj))
