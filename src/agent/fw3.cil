@@ -61,7 +61,7 @@
                     (ARG1 runtimetmpfile file "fw3.state")))
 
        (macro dontaudit_writeinherited_runtimetmpfile_files ((type ARG1))
-              (dontaudit ARG1 runtimetmpfile writeinherited_file_perms))
+              (dontaudit ARG1 runtimetmpfile writeinherited_file))
 
        ;;
        ;; Policy

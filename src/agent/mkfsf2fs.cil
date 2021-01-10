@@ -72,5 +72,9 @@
        (optional mkfsf2fs_opt_vdstordev
                  (call .vd.readwrite_stordev_blk_files (subj)))
 
+       (optional mkfsf2fs_opt_zramblocksysfile
+                 (call .zram.read_sysfile_files (subj))
+                 (call .zram.search_sysfile_dirs (subj)))
+
        (optional mkfsf2fs_opt_zramstordev
                  (call .zram.readwrite_stordev_blk_files (subj))))
