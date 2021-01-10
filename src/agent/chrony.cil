@@ -53,6 +53,14 @@
         "/tmp/run/chrony/.*"
         any
         runtimetmpfile_file_context)
+       (filecon
+        "/tmp/run/chrony-dhcp"
+        dir
+        runtimetmpfile_file_context)
+       (filecon
+        "/tmp/run/chrony-dhcp/.*"
+        any
+        runtimetmpfile_file_context)
 
        ;;
        ;; Macros
@@ -70,7 +78,9 @@
 
        (macro obj_type_transition_runtimetmpfile ((type ARG1))
               (call .tmpfile.runtimetmpfile_obj_type_transition
-                    (ARG1 runtimetmpfile dir "chrony")))
+                    (ARG1 runtimetmpfile dir "chrony"))
+              (call .tmpfile.runtimetmpfile_obj_type_transition
+                    (ARG1 runtimetmpfile dir "chrony-dhcp")))
 
        (macro setattr_conffile_files ((type ARG1))
               (allow ARG1 conffile (file (setattr))))
