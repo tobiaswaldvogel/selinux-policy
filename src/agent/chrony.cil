@@ -191,6 +191,7 @@
        (call .cpuinfo.read_procfile_files (subj))
 
        (call .chrony.append_conffile_files (subj))
+       (call .chrony.list_conftmpfile_dirs (subj))
        (call .chrony.manage_runtimetmpfile_dirs (subj))
        (call .chrony.manage_runtimetmpfile_files (subj))
        (call .chrony.manage_runtimetmpfile_sock_files (subj))
@@ -198,7 +199,6 @@
        (call .chrony.read_conffile_files (subj))
        (call .chrony.read_conftmpfile_files (subj))
        (call .chrony.search_conffile_dirs (subj))
-       (call .chrony.search_conftmpfile_dirs (subj))
        (call .chrony.setattr_conffile_files (subj))
 
        (call .chronyc.sendto_unix_dgram_sockets (subj))
