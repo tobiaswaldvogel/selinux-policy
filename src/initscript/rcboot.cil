@@ -93,6 +93,8 @@
 
        (call .mountroot.subj_type_transition (subj))
 
+       (call .mtd.read_procfile_files (subj))
+
        (call .net.search_sysctlfile_dirs (subj))
 
        (call .opkg.list_miscfile_dirs (subj))

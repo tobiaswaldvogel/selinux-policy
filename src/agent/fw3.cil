@@ -95,6 +95,9 @@
 
        (call .firewall.read_conffile_files (subj))
 
+       (call .functions.read_miscfile_files (subj))
+       (call .functions.search_miscfile_dirs (subj))
+
        (call .hotplugcall.subj_type_transition (subj))
        (call .hotplugcall.use_fds (subj))
 

@@ -440,6 +440,8 @@
 
               (call .tmpfile.search_runtimetmpfile_dirs (subj))
 
+              (call .uci.search_conffile_dirs (subj))
+
               (call .ubusd.unix_stream_connect (subj))
 
               (call .uhttpd.readwriteinherited_fifo_files (subj))

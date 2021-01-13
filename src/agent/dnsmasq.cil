@@ -173,6 +173,7 @@
        (call obj_type_transition_tmpfile (subj dir "dnsmasq.d"))
 
        (call .sys.readwriteinherited_fifo_files (subj))
+       (call .sys.search_sysctlfile_dirs (subj))
 
        (call .dhcp.udp_bind_netports (subj))
 
