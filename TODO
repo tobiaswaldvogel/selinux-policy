@@ -1,3 +1,7 @@
+figure out why /etc/group /etc/passwd /etc/shadow might end up mislabeled on sysupgrade that introduces a new user or group
+i think this function is used: https://git.openwrt.org/?p=openwrt/openwrt.git;a=blob_plain;f=package/base-files/files/lib/preinit/80_mount_root;h=a15c972220c566b381b35e6095e7a9ee055fe8ae;hb=HEAD
+i guess one way to figure this out might be to add an auditallow rule for file.conffile creation
+
 domains that call both loadkernelmodule and modulerequest might only need modulerequest (it seems that if modulerequest fails it falls back to loadkernelmodule)
 the "readwrite.subj_type" macros arent always called in the right container (review them all)
 mmc, sr, and fd (floppy) are really removable.stordev (move them back to removablestordev.cil)
