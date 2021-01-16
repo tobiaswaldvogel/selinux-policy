@@ -17,9 +17,9 @@ modulesmin = $(shell find src -type f -name '*.cil' \
 	! -name opensslexecfile.cil ! -name px5gexecfile.cil \
 	! -name rpcd.cil ! -name sftpserver.cil \
 	! -name socatexecfile.cil ! -name sqm.cil ! -name uhttpd.cil \
-	! -name unbound.cil ! -name unboundhotplug.cil \
-	! -name wgetexecfile.cil ! -name wgetmiscfile.cil \
-	! -name wireguard.cil -printf '%p ')
+	! -name unbound.cil ! -name unboundcontrol.cil \
+	! -name unboundhotplug.cil ! -name wgetexecfile.cil \
+	! -name wgetmiscfile.cil ! -name wireguard.cil -printf '%p ')
 
 # Selection of least required modules (no LuCI), plus wireguard and its ip dependency
 modulesminwg = $(shell find src -type f -name '*.cil' \
@@ -31,7 +31,8 @@ modulesminwg = $(shell find src -type f -name '*.cil' \
 	! -name rpcd.cil ! -name sftpserver.cil \
 	! -name socatexecfile.cil ! -name sqm.cil \
 	! -name uhttpd.cil ! -name unbound.cil \
-	! -name unboundhotplug.cil ! -name wgetexecfile.cil \
+	! -name unboundcontrol.cil ! -name unboundhotplug.cil \
+	! -name wgetexecfile.cil \
 	! -name wgetmiscfile.cil -printf '%p ')
 
 # Selection of least required modules minus DNSMasq (no LuCI), plus unbound-daemon, wireguard and its ip dependency
@@ -43,7 +44,8 @@ modulesminwgub = $(shell find src -type f -name '*.cil' \
 	! -name opensslexecfile.cil ! -name px5gexecfile.cil \
 	! -name rpcd.cil ! -name sftpserver.cil \
 	! -name socatexecfile.cil ! -name sqm.cil ! -name uhttpd.cil \
-	! -name wgetexecfile.cil ! -name wgetmiscfile.cil \
+	! -name unboundcontrol.cil ! -name wgetexecfile.cil \
+	! -name wgetmiscfile.cil \
 	-printf '%p ')
 
 # Selection of least required modules minus DNSMasq (no LuCI), plus unbound-daemon, chrony, wireguard and its ip dependency
@@ -55,8 +57,8 @@ modulesminwgubchr = $(shell find src -type f -name '*.cil' \
 	! -name opensslexecfile.cil ! -name px5gexecfile.cil \
 	! -name rpcd.cil ! -name sftpserver.cil \
 	! -name socatexecfile.cil ! -name sqm.cil ! -name uhttpd.cil \
-	! -name wgetexecfile.cil ! -name wgetmiscfile.cil \
-	-printf '%p ')
+	! -name unboundcontrol.cil ! -name wgetexecfile.cil \
+	! -name wgetmiscfile.cil -printf '%p ')
 
 # Selection of least required modules minus DNSMasq (no LuCI), plus unbound-daemon, chrony, sqm, wireguard and its ip dependency
 modulesminwgubchrsqm = $(shell find src -type f -name '*.cil' \
@@ -67,10 +69,10 @@ modulesminwgubchrsqm = $(shell find src -type f -name '*.cil' \
 	! -name opensslexecfile.cil ! -name px5gexecfile.cil \
 	! -name rpcd.cil ! -name sftpserver.cil \
 	! -name socatexecfile.cil ! -name uhttpd.cil \
-	! -name wgetexecfile.cil ! -name wgetmiscfile.cil \
-	-printf '%p ')
+	! -name unboundcontrol.cil ! -name wgetexecfile.cil \
+	! -name wgetmiscfile.cil -printf '%p ')
 
-# Selection of least required modules minus DNSMasq (no LuCI), plus unbound-daemon, chrony, sqm, wireguard and its ip dependency
+# Selection of least required modules minus DNSMasq (no LuCI), plus unbound-daemon, plus unbound-control, chrony, sqm, wireguard and its ip dependency
 # No mmc, vd, sr, nvme, hd, fuse, dm stordevs
 # No dmctl, clock, cpu, dri, framebuf, nvram, vmci nodedevs
 modulesmintesttgt = $(shell find src -type f -name '*.cil' \
