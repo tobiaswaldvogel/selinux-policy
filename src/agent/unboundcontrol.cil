@@ -32,4 +32,16 @@
        ;; Policy
        ;;
 
-       (blockinherit .agent.base_template))
+       (blockinherit .agent.base_template)
+
+       (call .file.search_conffile_dirs (subj))
+
+       (call .ssl.read_certfile_files (subj))
+       (call .ssl.search_certfile_dirs (subj))
+
+       (call .tmpfile.search_statetmpfile_dirs (subj))
+
+       (call .ubdnscontrol.tcp_connect_netports (subj))
+
+       (call .unbound.read_statetmpfile_files (subj))
+       (call .unbound.search_statetmpfile_dirs (subj)))

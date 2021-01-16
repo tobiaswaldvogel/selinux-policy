@@ -9,6 +9,7 @@
 (in .file
     (call .odhcpd.obj_type_transition_execfile (unconfined.subj_typeattr))
     (call .odhcpd.obj_type_transition_hoststmpfile (unconfined.subj_typeattr))
+    (call .odhcpd.obj_type_transition_statetmpfile (unconfined.subj_typeattr))
     (call .odhcpd.update.obj_type_transition_execfile
           (unconfined.subj_typeattr)))
 
@@ -22,6 +23,15 @@
         "/tmp/hosts/odhcpd"
         file
         hoststmpfile_file_context)
+
+       (filecon
+        "/tmp/lib/odhcpd"
+        dir
+        statetmpfile_file_context)
+       (filecon
+        "/tmp/lib/odhcpd/.*"
+        any
+        statetmpfile_file_context)
 
        (filecon
         "/usr/bin/odhcpd"
@@ -45,6 +55,10 @@
               (call .tmpfile.hoststmpfile_obj_type_transition
                     (ARG1 hoststmpfile file "odhcpd.tmp")))
 
+       (macro obj_type_transition_statetmpfile ((type ARG1))
+              (call .tmpfile.statetmpfile_obj_type_transition
+                    (ARG1 statetmpfile dir "odhcpd")))
+
        (macro dontaudit_readwrite_netlink_route_sockets ((type ARG1))
               (dontaudit ARG1 subj (netlink_route_socket (read write))))
 
@@ -54,6 +68,7 @@
 
        (blockinherit .agent.base_template)
        (blockinherit .tmpfile.hosts.obj_template)
+       (blockinherit .tmpfile.state.obj_template)
 
        (allow subj self (capability (net_admin net_raw)))
        (allow subj self create_netlink_route_socket)
@@ -65,6 +80,10 @@
 
        (call manage_hoststmpfile_files (subj))
        (call obj_type_transition_hoststmpfile (subj))
+
+       (call manage_statetmpfile_dirs (subj))
+       (call manage_statetmpfile_files (subj))
+       (call obj_type_transition_statetmpfile (subj))
 
        (call update.subj_type_transition (subj))
 
@@ -102,6 +121,32 @@
        (call .uci.read_tmpfile_files (subj))
        (call .uci.search_conffile_dirs (subj))
        (call .uci.search_tmpfile_dirs (subj))
+
+       ;; dhcp-dns records with /usr/lib/unbound/odhcpd.sh
+       (optional odhcpd_opt_unbound
+                 (allow subj self (capability (dac_override)))
+
+                 (call .sys.list_rootfile_dirs (subj))
+
+                 (call .file.read_conffile_lnk_files (subj))
+
+                 (call .functions.read_miscfile_files (subj))
+                 (call .functions.search_miscfile_dirs (subj))
+
+                 (call .locale.read.subj_type (subj))
+
+                 (call .selinux.linked.subj_type (subj))
+
+                 (call .tmp.deletename_fs_dirs (subj))
+
+                 (call .uci.subj_type_transition (subj))
+
+                 (call .unbound.execute_miscfile_files (subj))
+                 (call .unbound.manage_statetmpfile_files (subj))
+                 (call .unbound.manage_tmpfile_files (subj))
+                 (call .unbound.obj_type_transition_statetmpfile (subj))
+                 (call .unbound.readwrite_statetmpfile_dirs (subj))
+                 (call .unbound.search_miscfile_dirs (subj)))
 
        (block update
 
