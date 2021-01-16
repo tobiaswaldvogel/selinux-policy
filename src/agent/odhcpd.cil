@@ -13,6 +13,9 @@
     (call .odhcpd.update.obj_type_transition_execfile
           (unconfined.subj_typeattr)))
 
+(in .uci
+    (call .odhcpd.dontaudit_readwrite_netlink_route_sockets (subj)))
+
 (block odhcpd
 
        ;;

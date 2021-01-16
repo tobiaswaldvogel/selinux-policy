@@ -46,4 +46,7 @@
            (call .ubdnscontrol.tcp_connect_netports (subj))
 
            (call .unbound.read_statetmpfile_files (subj))
-           (call .unbound.search_statetmpfile_dirs (subj))))
+           (call .unbound.search_statetmpfile_dirs (subj))
+
+           (optional unbound_control_opt_odhcpd
+                     (call .odhcpd.use_fds (subj)))))

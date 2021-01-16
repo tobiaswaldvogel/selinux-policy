@@ -18,6 +18,9 @@
     (call .unbound.odhcpd.obj_type_transition_execfile
           (unconfined.subj_typeattr)))
 
+(in .uci
+    (call .unbound.odhcpd.use_fds (subj)))
+
 (block unbound
 
        ;;
@@ -180,6 +183,9 @@
               (blockinherit .agent.base_template)
 
               (allow subj self (capability (dac_override)))
+              (allow subj self create_netlink_route_socket)
+              (allow subj self create_unix_dgram_socket)
+              (allow subj self (netlink_route_socket (nlmsg_read)))
 
               (call .sys.list_rootfile_dirs (subj))
 
@@ -187,6 +193,8 @@
 
               (call .functions.read_miscfile_files (subj))
               (call .functions.search_miscfile_dirs (subj))
+
+              (call .ip.subj_type_transition (subj))
 
               (call .locale.read.subj_type (subj))
 
@@ -200,8 +208,16 @@
 
               (call .unbound.manage_statetmpfile_files (subj))
               (call .unbound.manage_tmpfile_files (subj))
+              (call .unbound.obj_type_transition_tmpfile
+                    (subj file "unbound_odhcpd.lock"))
               (call .unbound.obj_type_transition_statetmpfile (subj))
               (call .unbound.readwrite_statetmpfile_dirs (subj))
+
+              (optional unbound_odhcpd_opt_odhcpd
+                        (call .odhcpd.search_statetmpfile_dirs (subj))
+                        (call .odhcpd.use_fds (subj))
+                        (call .odhcpd.dontaudit_readwrite_netlink_route_sockets
+                              (subj)))
 
               (optional unbound_odhcpd_opt_unboundcontrol
                         (call .unbound.control.subj_type_transition (subj)))))

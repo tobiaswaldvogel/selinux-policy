@@ -110,6 +110,8 @@
 
        (call .ifup.writeinherited_fifo_files (subj))
 
+       (call .net.dontaudit_readinherited_procfile_files (subj))
+
        (call .netifd.readwriteinherited_fifo_files (subj))
        (call .netifd.dontaudit_readwrite_netlink_kobject_uevent_sockets (subj))
        (call .netifd.dontaudit_readwrite_netlink_route_sockets (subj))
