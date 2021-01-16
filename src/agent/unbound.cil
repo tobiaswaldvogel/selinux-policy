@@ -12,7 +12,9 @@
     (call .unbound.obj_type_transition_runtimetmpfile
           (unconfined.subj_typeattr))
     (call .unbound.obj_type_transition_statetmpfile
-          (unconfined.subj_typeattr)))
+          (unconfined.subj_typeattr))
+    (call .unbound.obj_type_transition_tmpfile
+          (unconfined.subj_typeattr file "unbound_odhcpd.lock")))
 
 (block unbound
 
@@ -28,6 +30,15 @@
         "/etc/unbound/.*"
         any
         conffile_file_context)
+
+       (filecon
+        "/tmp/unbound_odhcpd\.lock"
+        file
+        tmpfile_file_context)
+       (filecon
+        "/tmp/unbound_odhcpd\.lock\..*"
+        file
+        tmpfile_file_context)
 
        (filecon
         "/tmp/lib/unbound"
@@ -84,6 +95,10 @@
        (macro setattr_statetmpfile_dirs ((type ARG1))
               (allow ARG1 statetmpfile (dir (setattr))))
 
+       (macro obj_type_transition_tmpfile ((type ARG1)(class ARG2)(name ARG3))
+              (call .tmp.fs_obj_type_transition
+                    (ARG1 tmpfile ARG2 ARG3)))
+
        ;;
        ;; Policy
        ;;
@@ -93,6 +108,7 @@
        (blockinherit .file.misc.obj_template)
        (blockinherit .tmpfile.runtime.obj_template)
        (blockinherit .tmpfile.state.obj_template)
+       (blockinherit .tmpfile.obj_template)
 
        (allow subj self (capability (setgid setuid sys_chroot sys_resource)))
        (allow subj self (process (setrlimit)))
