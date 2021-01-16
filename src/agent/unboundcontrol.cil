@@ -36,6 +36,11 @@
 
            (blockinherit .agent.base_template)
 
+           (call .sys.readwriteinherited_fifo_files (subj))
+           (call .sys.readwriteinherited_ptydev_chr_files (subj))
+
+           (call .dev.readwriteinherited_ttydev_chr_files (subj))
+
            (call .file.search_conffile_dirs (subj))
 
            (call .net.egress_netifs (subj))
@@ -50,6 +55,7 @@
            (call .ubdnscontrol.tcp_connect_netports (subj))
 
            (call .unbound.odhcpd.use_fds (subj))
+           (call .unbound.odhcpd.readinherited_fifo_files (subj))
            (call .unbound.read_statetmpfile_files (subj))
            (call .unbound.search_statetmpfile_dirs (subj))
 
