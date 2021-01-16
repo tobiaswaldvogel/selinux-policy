@@ -38,6 +38,10 @@
 
            (call .file.search_conffile_dirs (subj))
 
+           (call .net.egress_netifs (subj))
+           (call .net.sendto_netnodes (subj))
+           (call .net.dontaudit_readinherited_procfile_files (subj))
+
            (call .ssl.read_certfile_files (subj))
            (call .ssl.search_certfile_dirs (subj))
 
@@ -45,6 +49,7 @@
 
            (call .ubdnscontrol.tcp_connect_netports (subj))
 
+           (call .unbound.odhcpd.use_fds (subj))
            (call .unbound.read_statetmpfile_files (subj))
            (call .unbound.search_statetmpfile_dirs (subj))
 

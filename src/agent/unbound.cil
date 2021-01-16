@@ -19,7 +19,8 @@
           (unconfined.subj_typeattr)))
 
 (in .uci
-    (call .unbound.odhcpd.use_fds (subj)))
+    (call .unbound.odhcpd.use_fds (subj))
+    (call .unbound.odhcpd.writeinherited_fifo_files (subj)))
 
 (block unbound
 
@@ -187,6 +188,15 @@
               (allow subj self create_unix_dgram_socket)
               (allow subj self (netlink_route_socket (nlmsg_read)))
 
+              (call manage_statetmpfile_files (subj))
+              (call manage_tmpfile_files (subj))
+              (call obj_type_transition_tmpfile
+                    (subj file "unbound_odhcpd.lock"))
+              (call obj_type_transition_statetmpfile (subj))
+              (call read_miscfile_files (subj))
+              (call readwrite_statetmpfile_dirs (subj))
+              (call search_miscfile_dirs (subj))
+
               (call .sys.list_rootfile_dirs (subj))
 
               (call .file.read_conffile_lnk_files (subj))
@@ -198,6 +208,8 @@
 
               (call .locale.read.subj_type (subj))
 
+              (call .net.dontaudit_readinherited_procfile_files (subj))
+
               (call .selinux.linked.subj_type (subj))
 
               (call .shell.execute_execfile_files (subj))
@@ -206,14 +218,8 @@
 
               (call .uci.subj_type_transition (subj))
 
-              (call .unbound.manage_statetmpfile_files (subj))
-              (call .unbound.manage_tmpfile_files (subj))
-              (call .unbound.obj_type_transition_tmpfile
-                    (subj file "unbound_odhcpd.lock"))
-              (call .unbound.obj_type_transition_statetmpfile (subj))
-              (call .unbound.readwrite_statetmpfile_dirs (subj))
-
               (optional unbound_odhcpd_opt_odhcpd
+                        (call .odhcpd.read_statetmpfile_files (subj))
                         (call .odhcpd.search_statetmpfile_dirs (subj))
                         (call .odhcpd.use_fds (subj))
                         (call .odhcpd.dontaudit_readwrite_netlink_route_sockets
