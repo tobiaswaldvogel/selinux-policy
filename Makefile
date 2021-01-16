@@ -129,7 +129,7 @@ minwgubchrsqm.%: $(modulesminwgubchrsqm)
 
 policy: policy.$(polvers)
 policy.%: $(modules)
-	secilc -vvv --policyvers=$* $^
+	secilc --policyvers=$* $^
 
 check: check.$(polvers)
 check.%:

@@ -108,11 +108,12 @@
 
        (call .random.read_nodedev_chr_files (subj))
 
-       (call .shell.mapexecute_execfile_files (subj))
-       (call .shell.read_execfile_files (subj))
+       (call .shell.execute_execfile_files (subj))
 
        (call .tmpfile.manage_hoststmpfile_dirs (subj))
+       (call .tmpfile.manage_statetmpfile_dirs (subj))
        (call .tmpfile.obj_type_transition_hoststmpfile (subj))
+       (call .tmpfile.obj_type_transition_statetmpfile (subj))
        (call .tmpfile.search_runtimetmpfile_dirs (subj))
 
        (call .ubusd.unix_stream_connect (subj))
@@ -147,6 +148,9 @@
                  (call .unbound.obj_type_transition_statetmpfile (subj))
                  (call .unbound.readwrite_statetmpfile_dirs (subj))
                  (call .unbound.search_miscfile_dirs (subj)))
+
+       (optional odhcpd_opt_unboundcontrol
+                 (call .unboundcontrol.subj_type_transition (subj)))
 
        (block update
 
