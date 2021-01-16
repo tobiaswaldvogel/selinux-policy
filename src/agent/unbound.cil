@@ -148,4 +148,6 @@
 
        (call .tmp.associate_filesystems (miscfile))
 
-       (call .tmpfile.deletename_runtimetmpfile_dirs (subj)))
+       (call .tmpfile.deletename_runtimetmpfile_dirs (subj))
+
+       (call .ubdnscontrol.tcp_bind_netports (subj)))
