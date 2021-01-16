@@ -108,7 +108,8 @@
 
        (call .random.read_nodedev_chr_files (subj))
 
-       (call .shell.execute_execfile_files (subj))
+       (call .shell.mapexecute_execfile_files (subj))
+       (call .shell.read_execfile_files (subj))
 
        (call .tmpfile.manage_hoststmpfile_dirs (subj))
        (call .tmpfile.manage_statetmpfile_dirs (subj))
@@ -123,34 +124,9 @@
        (call .uci.search_conffile_dirs (subj))
        (call .uci.search_tmpfile_dirs (subj))
 
-       ;; dhcp-dns records with /usr/lib/unbound/odhcpd.sh
        (optional odhcpd_opt_unbound
-                 (allow subj self (capability (dac_override)))
-
-                 (call .sys.list_rootfile_dirs (subj))
-
-                 (call .file.read_conffile_lnk_files (subj))
-
-                 (call .functions.read_miscfile_files (subj))
-                 (call .functions.search_miscfile_dirs (subj))
-
-                 (call .locale.read.subj_type (subj))
-
-                 (call .selinux.linked.subj_type (subj))
-
-                 (call .tmp.deletename_fs_dirs (subj))
-
-                 (call .uci.subj_type_transition (subj))
-
-                 (call .unbound.execute_miscfile_files (subj))
-                 (call .unbound.manage_statetmpfile_files (subj))
-                 (call .unbound.manage_tmpfile_files (subj))
-                 (call .unbound.obj_type_transition_statetmpfile (subj))
-                 (call .unbound.readwrite_statetmpfile_dirs (subj))
+                 (call .unbound.odhcpd.subj_type_transition (subj))
                  (call .unbound.search_miscfile_dirs (subj)))
-
-       (optional odhcpd_opt_unboundcontrol
-                 (call .unboundcontrol.subj_type_transition (subj)))
 
        (block update
 
