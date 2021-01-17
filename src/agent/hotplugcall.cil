@@ -134,18 +134,11 @@
        (optional hotplugcall_opt_mtdstordev
                  (call .mtd.read_stordev_chr_files (subj)))
 
-       (optional hotplugcall_opt_privoxy
-                 (call .privoxy.getattr_tmpfile_files (subj))
-                 (call .privoxy.read_runtimetmpfile_files (subj))
-                 (call .privoxy.signal (subj)))
-
-       (optional hotplugcall_opt_rcprivoxy
-                 (call .rcprivoxy.subj_type_transition (subj)))
-
        (optional hotplugcall_opt_rcunbound
                  (call .rcunbound.subj_type_transition (subj)))
 
        (optional hotplugcall_opt_unbound
+                 ;; bad permissions on /tmp/lib/unbound
                  (allow subj self (capability (dac_override)))
 
                  (call .unbound.manage_statetmpfile_files (subj))

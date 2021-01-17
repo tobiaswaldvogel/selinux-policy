@@ -82,9 +82,6 @@
        (optional rcucitrack_opt_rcodhcpd
                  (call .rcodhcpd.subj_type_transition (subj)))
 
-       (optional rcucitrack_opt_rcprivoxy
-                 (call .rcprivoxy.subj_type_transition (subj)))
-
        (optional rcucitrack_opt_rcrpcd
                  (call .rcrpcd.subj_type_transition (subj)))
 

@@ -249,9 +249,6 @@
        (optional luci_opt_rcodhcpd
                  (call .rcodhcpd.subj_type_transition (subj)))
 
-       (optional luci_opt_rcprivoxy
-                 (call .rcprivoxy.subj_type_transition (subj)))
-
        (optional luci_opt_rcrpcd
                  (call .rcrpcd.subj_type_transition (subj)))
 

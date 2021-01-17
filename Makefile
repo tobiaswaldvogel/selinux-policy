@@ -4,10 +4,9 @@
 
 .PHONY: all clean min mintesttgt minwg minwgub minwgubchr minwgubchrsqm policy check install
 
-# Default selection of modules, unbound/privoxy hotplug can be excluded if rcunbound/rcprivoxy are included (theyre mutually exclusive)
+# Default selection of modules, unboundhotplug can be excluded if rcunbound is included (theyre mutually exclusive)
 modules = $(shell find src -type f -name '*.cil' \
-	! -name privoxyhotplug.cil ! -name unboundhotplug.cil \
-	-printf '%p ')
+	! -name unboundhotplug.cil -printf '%p ')
 
 # Selection of least required modules (no LuCI: optimized for base snapshot image)
 modulesmin = $(shell find src -type f -name '*.cil' \
@@ -15,8 +14,7 @@ modulesmin = $(shell find src -type f -name '*.cil' \
 	! -regex 'src/(cgi|init)?script/.*\.cil' \
 	! -name acme.cil ! -name blockmount.cil ! -name chrony.cil \
 	! -name ip.cil ! -name luaexecfile.cil ! -name luci.cil \
-	! -name opensslexecfile.cil ! -name privoxy.cil \
-	! -name privoxyhotplug.cil ! -name px5gexecfile.cil \
+	! -name opensslexecfile.cil ! -name px5gexecfile.cil \
 	! -name rpcd.cil ! -name sftpserver.cil \
 	! -name socatexecfile.cil ! -name sqm.cil ! -name uhttpd.cil \
 	! -name unbound.cil ! -name unboundcontrol.cil \
@@ -29,8 +27,7 @@ modulesminwg = $(shell find src -type f -name '*.cil' \
 	! -regex 'src/(cgi|init)?script/.*\.cil' \
 	! -name acme.cil ! -name blockmount.cil ! -name chrony.cil \
 	! -name luaexecfile.cil ! -name luci.cil \
-	! -name opensslexecfile.cil ! -name privoxy.cil \
-	! -name privoxyhotplug.cil ! -name px5gexecfile.cil \
+	! -name opensslexecfile.cil ! -name px5gexecfile.cil \
 	! -name rpcd.cil ! -name sftpserver.cil \
 	! -name socatexecfile.cil ! -name sqm.cil \
 	! -name uhttpd.cil ! -name unbound.cil \
@@ -44,8 +41,7 @@ modulesminwgub = $(shell find src -type f -name '*.cil' \
 	! -regex 'src/(cgi|init)?script/.*\.cil' \
 	! -name acme.cil ! -name blockmount.cil ! -name chrony.cil \
 	! -name dnsmasq.cil ! -name luaexecfile.cil ! -name luci.cil \
-	! -name opensslexecfile.cil ! -name privoxy.cil \
-	! -name privoxyhotplug.cil ! -name px5gexecfile.cil \
+	! -name opensslexecfile.cil ! -name px5gexecfile.cil \
 	! -name rpcd.cil ! -name sftpserver.cil \
 	! -name socatexecfile.cil ! -name sqm.cil ! -name uhttpd.cil \
 	! -name unboundcontrol.cil ! -name wgetexecfile.cil \
@@ -58,8 +54,7 @@ modulesminwgubchr = $(shell find src -type f -name '*.cil' \
 	! -regex 'src/(cgi|init)?script/.*\.cil' \
 	! -name acme.cil ! -name blockmount.cil ! -name dnsmasq.cil \
 	! -name luaexecfile.cil ! -name luci.cil \
-	! -name opensslexecfile.cil ! -name privoxy.cil \
-	! -name privoxyhotplug.cil ! -name px5gexecfile.cil \
+	! -name opensslexecfile.cil ! -name px5gexecfile.cil \
 	! -name rpcd.cil ! -name sftpserver.cil \
 	! -name socatexecfile.cil ! -name sqm.cil ! -name uhttpd.cil \
 	! -name unboundcontrol.cil ! -name wgetexecfile.cil \
@@ -71,14 +66,13 @@ modulesminwgubchrsqm = $(shell find src -type f -name '*.cil' \
 	! -regex 'src/(cgi|init)?script/.*\.cil' \
 	! -name acme.cil ! -name blockmount.cil ! -name dnsmasq.cil \
 	! -name luaexecfile.cil ! -name luci.cil \
-	! -name opensslexecfile.cil ! -name privoxy.cil \
-	! -name privoxyhotplug.cil ! -name px5gexecfile.cil \
+	! -name opensslexecfile.cil ! -name px5gexecfile.cil \
 	! -name rpcd.cil ! -name sftpserver.cil \
 	! -name socatexecfile.cil ! -name uhttpd.cil \
 	! -name unboundcontrol.cil ! -name wgetexecfile.cil \
 	! -name wgetmiscfile.cil -printf '%p ')
 
-# Selection of least required modules minus DNSMasq (no LuCI), plus unbound-daemon, unbound-control, privoxy, chrony, sqm, wireguard and its ip dependency
+# Selection of least required modules minus DNSMasq (no LuCI), plus unbound-daemon, plus unbound-control, chrony, sqm, wireguard and its ip dependency
 # No mmc, vd, sr, nvme, hd, fuse, dm stordevs
 # No dmctl, clock, cpu, dri, framebuf, nvram, vmci nodedevs
 modulesmintesttgt = $(shell find src -type f -name '*.cil' \
