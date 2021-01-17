@@ -46,7 +46,8 @@
 
        ;; mknod is caused by "cp", probably copying over a devnode. bug?
        (allow subj self
-              (capability (dac_override dac_read_search mknod sys_admin)))
+              (capability (chown dac_override dac_read_search fsetid mknod
+                                 sys_admin)))
        (allow subj self (capability2 (syslog)))
        (allow subj self create_unix_dgram_socket)
 

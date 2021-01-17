@@ -60,4 +60,6 @@
            (call .unbound.search_statetmpfile_dirs (subj))
 
            (optional unbound_control_opt_odhcpd
-                     (call .odhcpd.use_fds (subj)))))
+                     (call .odhcpd.use_fds (subj))
+                     (call .odhcpd.dontaudit_readwrite_netlink_route_sockets
+                           (subj)))))
