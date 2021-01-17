@@ -96,9 +96,16 @@
        (blockinherit .tmpfile.log.obj_template)
        (blockinherit .tmpfile.obj_template)
 
+       (allow subj self (capability (setgid setuid)))
        (allow subj self create_udp_socket)
 
        (call read_conftmpfile_files (subj))
+
+       (call read_datafile_files (subj))
+       (call search_datafile_dirs (subj))
+
+       (call append_logtmpfile_files (subj))
+       (call read_logtmpfile_files (subj))
 
        (call manage_tmpfile_files (subj))
        (call map_tmpfile_files (subj))
