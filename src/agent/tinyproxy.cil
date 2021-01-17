@@ -6,7 +6,6 @@
     (call .tinyproxy.subj_type_transition (subj)))
 
 (in .file
-    (call .tinyproxy.obj_type_transition_conffile (unconfined.subj_typeattr))
     (call .tinyproxy.obj_type_transition_conftmpfile
           (unconfined.subj_typeattr))
     (call .tinyproxy.obj_type_transition_datafile (unconfined.subj_typeattr))
@@ -19,15 +18,6 @@
        ;;
        ;; Contexts
        ;;
-
-       (filecon
-        "/etc/tinyproxy"
-        dir
-        conffile_file_context)
-       (filecon
-        "/etc/tinyproxy/.*"
-        any
-        conffile_file_context)
 
        (filecon
         "/tmp/etc/tinyproxy\.conf"
@@ -57,6 +47,11 @@
         logtmpfile_file_context)
 
        (filecon
+        "/tmp/tinyproxy\.shared\..*"
+        file
+        tmpfile_file_context)
+
+       (filecon
         "/usr/bin/tinyproxy"
         file
         execfile_file_context)
@@ -65,9 +60,8 @@
        ;; Macros
        ;;
 
-       (macro obj_type_transition_conffile ((type ARG1))
-              (call .file.conffile_obj_type_transition
-                    (ARG1 conffile dir "tinyproxy")))
+       (macro map_tmpfile_files ((type ARG1))
+              (allow ARG1 tmpfile (file (map))))
 
        (macro obj_type_transition_conftmpfile ((type ARG1))
               (call .tmpfile.conftmpfile_obj_type_transition
@@ -85,6 +79,10 @@
               (call .tmpfile.logtmpfile_obj_type_transition
                     (ARG1 logtmpfile file "tinyproxy.log")))
 
+       (macro obj_type_transition_tmpfile ((type ARG1))
+              (call .tmp.fs_obj_type_transition
+                    (ARG1 tmpfile file "*")))
+
        (macro setattr_logtmpfile_files ((type ARG1))
               (allow ARG1 logtmpfile (file (setattr))))
 
@@ -93,17 +91,40 @@
        ;;
 
        (blockinherit .agent.base_template)
-       (blockinherit .file.conf.obj_template)
        (blockinherit .file.data.obj_template)
        (blockinherit .tmpfile.conf.obj_template)
        (blockinherit .tmpfile.log.obj_template)
+       (blockinherit .tmpfile.obj_template)
+
+       (allow subj self create_udp_socket)
+
+       (call read_conftmpfile_files (subj))
+
+       (call manage_tmpfile_files (subj))
+       (call map_tmpfile_files (subj))
+       (call obj_type_transition_tmpfile (subj))
+
+       (call .file.read_conffile_lnk_files (subj))
+       (call .file.search_conffile_dirs (subj))
+
+       (call .http.tcp_connect_netports (subj))
 
        (call .httpproxy.tcp_bind_netports (subj))
 
-       (call .file.search_conffile_dirs (subj))
+       (call .locale.read.subj_type (subj))
 
        (call .logd.unix_dgram_send (subj))
 
+       (call .nameservice.read_miscfile_files (subj))
+
        (call .net.egress_netifs (subj))
        (call .net.sendto_netnodes (subj))
-       (call .net.tcp_bind_netnodes (subj)))
+       (call .net.tcp_bind_netnodes (subj))
+       (call .net.udp_bind_netnodes (subj))
+
+       (call .resolv.read_tmpfile_files (subj))
+
+       (call .tmp.deletename_fs_dirs (subj))
+
+       (call .tmpfile.search_conftmpfile_dirs (subj))
+       (call .tmpfile.search_logtmpfile_dirs (subj)))
