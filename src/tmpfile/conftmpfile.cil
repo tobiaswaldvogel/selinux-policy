@@ -28,6 +28,9 @@
            (call .tmp.fs_obj_type_transition
                  (ARG1 conftmpfile dir "etc")))
 
+    (macro setattr_conftmpfile_dirs ((type ARG1))
+           (allow ARG1 conftmpfile (dir (setattr))))
+
     ;;
     ;; Policy
     ;;

@@ -1,0 +1,109 @@
+;; -*- mode: CIL; fill-column: 79; indent-tabs-mode: nil; -*-
+;; SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
+;; SPDX-License-Identifier: Unlicense
+
+(in .sys
+    (call .tinyproxy.subj_type_transition (subj)))
+
+(in .file
+    (call .tinyproxy.obj_type_transition_conffile (unconfined.subj_typeattr))
+    (call .tinyproxy.obj_type_transition_conftmpfile
+          (unconfined.subj_typeattr))
+    (call .tinyproxy.obj_type_transition_datafile (unconfined.subj_typeattr))
+    (call .tinyproxy.obj_type_transition_execfile (unconfined.subj_typeattr))
+    (call .tinyproxy.obj_type_transition_logtmpfile
+          (unconfined.subj_typeattr)))
+
+(block tinyproxy
+
+       ;;
+       ;; Contexts
+       ;;
+
+       (filecon
+        "/etc/tinyproxy"
+        dir
+        conffile_file_context)
+       (filecon
+        "/etc/tinyproxy/.*"
+        any
+        conffile_file_context)
+
+       (filecon
+        "/tmp/etc/tinyproxy\.conf"
+        file
+        conftmpfile_file_context)
+       (filecon
+        "/tmp/etc/tinyproxy\.conf\..*"
+        file
+        conftmpfile_file_context)
+
+       (filecon
+        "/usr/share/tinyproxy"
+        dir
+        datafile_file_context)
+       (filecon
+        "/usr/share/tinyproxy/.*"
+        any
+        datafile_file_context)
+
+       (filecon
+        "/tmp/log/tinyproxy\.log"
+        file
+        logtmpfile_file_context)
+       (filecon
+        "/tmp/log/tinyproxy\.log\..*"
+        file
+        logtmpfile_file_context)
+
+       (filecon
+        "/usr/bin/tinyproxy"
+        file
+        execfile_file_context)
+
+       ;;
+       ;; Macros
+       ;;
+
+       (macro obj_type_transition_conffile ((type ARG1))
+              (call .file.conffile_obj_type_transition
+                    (ARG1 conffile dir "tinyproxy")))
+
+       (macro obj_type_transition_conftmpfile ((type ARG1))
+              (call .tmpfile.conftmpfile_obj_type_transition
+                    (ARG1 conftmpfile file "tinyproxy.conf")))
+
+       (macro obj_type_transition_datafile ((type ARG1))
+              (call .file.datafile_obj_type_transition
+                    (ARG1 datafile dir "tinyproxy")))
+
+       (macro obj_type_transition_execfile ((type ARG1))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "tinyproxy")))
+
+       (macro obj_type_transition_logtmpfile ((type ARG1))
+              (call .tmpfile.logtmpfile_obj_type_transition
+                    (ARG1 logtmpfile file "tinyproxy.log")))
+
+       (macro setattr_logtmpfile_files ((type ARG1))
+              (allow ARG1 logtmpfile (file (setattr))))
+
+       ;;
+       ;; Policy
+       ;;
+
+       (blockinherit .agent.base_template)
+       (blockinherit .file.conf.obj_template)
+       (blockinherit .file.data.obj_template)
+       (blockinherit .tmpfile.conf.obj_template)
+       (blockinherit .tmpfile.log.obj_template)
+
+       (call .httpproxy.tcp_bind_netports (subj))
+
+       (call .file.search_conffile_dirs (subj))
+
+       (call .logd.unix_dgram_send (subj))
+
+       (call .net.egress_netifs (subj))
+       (call .net.sendto_netnodes (subj))
+       (call .net.tcp_bind_netnodes (subj)))

@@ -16,7 +16,8 @@ modulesmin = $(shell find src -type f -name '*.cil' \
 	! -name ip.cil ! -name luaexecfile.cil ! -name luci.cil \
 	! -name opensslexecfile.cil ! -name px5gexecfile.cil \
 	! -name rpcd.cil ! -name sftpserver.cil \
-	! -name socatexecfile.cil ! -name sqm.cil ! -name uhttpd.cil \
+	! -name socatexecfile.cil ! -name sqm.cil \
+	! -name tinyproxy.cil ! -name uhttpd.cil \
 	! -name unbound.cil ! -name unboundcontrol.cil \
 	! -name unboundhotplug.cil ! -name wgetexecfile.cil \
 	! -name wgetmiscfile.cil ! -name wireguard.cil -printf '%p ')
@@ -30,7 +31,7 @@ modulesminwg = $(shell find src -type f -name '*.cil' \
 	! -name opensslexecfile.cil ! -name px5gexecfile.cil \
 	! -name rpcd.cil ! -name sftpserver.cil \
 	! -name socatexecfile.cil ! -name sqm.cil \
-	! -name uhttpd.cil ! -name unbound.cil \
+	! -name tinyproxy.cil ! -name uhttpd.cil ! -name unbound.cil \
 	! -name unboundcontrol.cil ! -name unboundhotplug.cil \
 	! -name wgetexecfile.cil \
 	! -name wgetmiscfile.cil -printf '%p ')
@@ -43,7 +44,8 @@ modulesminwgub = $(shell find src -type f -name '*.cil' \
 	! -name dnsmasq.cil ! -name luaexecfile.cil ! -name luci.cil \
 	! -name opensslexecfile.cil ! -name px5gexecfile.cil \
 	! -name rpcd.cil ! -name sftpserver.cil \
-	! -name socatexecfile.cil ! -name sqm.cil ! -name uhttpd.cil \
+	! -name socatexecfile.cil ! -name sqm.cil \
+	! -name tinyproxy.cil ! -name uhttpd.cil \
 	! -name unboundcontrol.cil ! -name wgetexecfile.cil \
 	! -name wgetmiscfile.cil \
 	-printf '%p ')
@@ -56,7 +58,8 @@ modulesminwgubchr = $(shell find src -type f -name '*.cil' \
 	! -name luaexecfile.cil ! -name luci.cil \
 	! -name opensslexecfile.cil ! -name px5gexecfile.cil \
 	! -name rpcd.cil ! -name sftpserver.cil \
-	! -name socatexecfile.cil ! -name sqm.cil ! -name uhttpd.cil \
+	! -name socatexecfile.cil ! -name sqm.cil \
+	! -name tinyproxy.cil ! -name uhttpd.cil \
 	! -name unboundcontrol.cil ! -name wgetexecfile.cil \
 	! -name wgetmiscfile.cil -printf '%p ')
 
@@ -68,9 +71,10 @@ modulesminwgubchrsqm = $(shell find src -type f -name '*.cil' \
 	! -name luaexecfile.cil ! -name luci.cil \
 	! -name opensslexecfile.cil ! -name px5gexecfile.cil \
 	! -name rpcd.cil ! -name sftpserver.cil \
-	! -name socatexecfile.cil ! -name uhttpd.cil \
-	! -name unboundcontrol.cil ! -name wgetexecfile.cil \
-	! -name wgetmiscfile.cil -printf '%p ')
+	! -name socatexecfile.cil ! -name tinyproxy.cil \
+	! -name uhttpd.cil ! -name unboundcontrol.cil \
+	! -name wgetexecfile.cil ! -name wgetmiscfile.cil \
+	-printf '%p ')
 
 # Selection of least required modules minus DNSMasq (no LuCI), plus unbound-daemon, plus unbound-control, chrony, sqm, wireguard and its ip dependency
 # No mmc, vd, sr, nvme, hd, fuse, dm stordevs
