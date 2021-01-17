@@ -1,0 +1,29 @@
+;; -*- mode: CIL; fill-column: 79; indent-tabs-mode: nil; -*-
+;; SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
+;; SPDX-License-Identifier: Unlicense
+
+(in .hotplugcall
+
+    ;;
+    ;; installs a hotplug script that runs /etc/init.d/privoxy
+    ;; these rules are needed when initscripts are not targeted
+    ;;
+
+    (allow subj self (capability (chown dac_override fowner fsetid)))
+
+    (call .privoxy.manage_conftmpfile_files (subj))
+    (call .privoxy.obj_type_transition_conftmpfile (subj))
+
+    (call .privoxy.manage_logtmpfile_files (subj))
+    (call .privoxy.obj_type_transition_logtmpfile (subj))
+
+    (call .privoxy.create_tmpfile_dirs (subj))
+    (call .privoxy.manage_tmpfile_files (subj))
+    (call .privoxy.obj_type_transition_tmpfile (subj))
+    (call .privoxy.setattr_tmpfile_dirs (subj))
+
+    (call .tmpfile.create_conftmpfile_dirs (subj))
+    (call .tmpfile.obj_type_transition_conftmpfile (subj))
+
+    (call .tmpfile.create_logtmpfile_dirs (subj))
+    (call .tmpfile.obj_type_transition_logtmpfile (subj)))
