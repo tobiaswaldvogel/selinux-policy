@@ -181,10 +181,6 @@
        ;; RELRO protection
        (call .mountroot.use_fds (subj_typeattr))
 
-       (call .net.egress_netifs (subj_typeattr))
-       (call .net.sendto_netnodes (subj_typeattr))
-       (call .net.udp_bind_netnodes (subj_typeattr))
-
        (call .shadow.getattr_authfile_files (subj_typeattr))
 
        (call .subj.useinteractivefd.subj_type (subj_typeattr))
@@ -213,7 +209,10 @@
 
               (blockinherit .sandbox.subj_template)
 
+              (call .net.egress_netifs (subj))
               (call .net.port.tcp_connect_all_netports (subj))
               (call .net.port.unreserved.tcp_bind_all_netports (subj))
               (call .net.port.unreserved.udp_bind_all_netports (subj))
-              (call .net.tcp_bind_netnodes (subj))))
+              (call .net.sendto_netnodes (subj))
+              (call .net.tcp_bind_netnodes (subj))
+              (call .net.udp_bind_netnodes (subj))))
