@@ -107,8 +107,6 @@
        (blockinherit .file.home.obj_template)
        (blockinherit .tmpfile.obj_template)
 
-       (dontaudit subj_typeattr self (capability (all)))
-       (dontaudit subj_typeattr self (capability2 (all)))
        (allow subj_typeattr self
               (process (not (dyntransition execheap execstack getcap setcap
                                            setcurrent setexec share
@@ -179,8 +177,6 @@
        (call .net.egress_netifs (subj_typeattr))
        (call .net.sendto_netnodes (subj_typeattr))
        (call .net.udp_bind_netnodes (subj_typeattr))
-
-       (call .shadow.dontaudit_read_authfile_files (subj_typeattr))
 
        (call .subj.useinteractivefd.subj_type (subj_typeattr))
        (call .subj.dontaudit_getattr_all_sockets (subj_typeattr))
