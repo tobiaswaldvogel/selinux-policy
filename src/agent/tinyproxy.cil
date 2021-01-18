@@ -6,6 +6,7 @@
     (call .tinyproxy.subj_type_transition (subj)))
 
 (in .file
+    (call .tinyproxy.obj_type_transition_conffile (unconfined.subj_typeattr))
     (call .tinyproxy.obj_type_transition_conftmpfile
           (unconfined.subj_typeattr))
     (call .tinyproxy.obj_type_transition_datafile (unconfined.subj_typeattr))
@@ -18,6 +19,15 @@
        ;;
        ;; Contexts
        ;;
+
+       (filecon
+        "/etc/tinyproxy"
+        dir
+        conffile_file_context)
+       (filecon
+        "/etc/tinyproxy/.*"
+        any
+        conffile_file_context)
 
        (filecon
         "/tmp/etc/tinyproxy\.conf"
@@ -63,6 +73,10 @@
        (macro map_tmpfile_files ((type ARG1))
               (allow ARG1 tmpfile (file (map))))
 
+       (macro obj_type_transition_conffile ((type ARG1))
+              (call .file.conffile_obj_type_transition
+                    (ARG1 conffile dir "tinyproxy")))
+
        (macro obj_type_transition_conftmpfile ((type ARG1))
               (call .tmpfile.conftmpfile_obj_type_transition
                     (ARG1 conftmpfile file "tinyproxy.conf")))
@@ -91,6 +105,7 @@
        ;;
 
        (blockinherit .agent.base_template)
+       (blockinherit .file.conf.obj_template)
        (blockinherit .file.data.obj_template)
        (blockinherit .tmpfile.conf.obj_template)
        (blockinherit .tmpfile.log.obj_template)
@@ -99,6 +114,9 @@
        (allow subj self (capability (setgid setuid)))
        (allow subj self create_udp_socket)
        (allow subj self create_unix_dgram_socket)
+
+       (call read_conffile_files (subj))
+       (call search_conffile_dirs (subj))
 
        (call read_conftmpfile_files (subj))
 
