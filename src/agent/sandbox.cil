@@ -151,8 +151,13 @@
        (call .dev.sandboxexcept.readwriteinherited_all_chr_files
              (subj_typeattr))
        (call .dev.sandboxopen.open_all_chr_files (subj_typeattr))
+       (call .dev.stor.getattr_all_blk_files (subj_typeattr))
+       (call .dev.stor.getattr_all_chr_files (subj_typeattr))
 
        (call .file.deletename_homefile_dirs (subj_typeattr))
+       (call .file.getattr_all_sock_files (subj_typeattr))
+       (call .file.exec.entrypoint_all_files (subj_typeattr))
+       (call .file.exec.execute_all_files (subj_typeattr))
        (call .file.sandboxexcept.list_all_dirs (subj_typeattr))
        (call .file.sandboxexcept.mapexecute_all_files (subj_typeattr))
        (call .file.sandboxexcept.read_all_fifo_files (subj_typeattr))
@@ -162,8 +167,6 @@
        (call .file.sandboxexcept.watch_all_fifo_files (subj_typeattr))
        (call .file.sandboxexcept.watch_all_files (subj_typeattr))
        (call .file.sandboxexcept.watch_all_lnk_files (subj_typeattr))
-       (call .file.exec.entrypoint_all_files (subj_typeattr))
-       (call .file.exec.execute_all_files (subj_typeattr))
 
        (call .fs.getattr_all_filesystems (subj_typeattr))
        (call .fs.list_all_dirs (subj_typeattr))
@@ -171,12 +174,18 @@
        (call .fs.read_all_files (subj_typeattr))
        (call .fs.read_all_lnk_files (subj_typeattr))
 
+       (call .kcore.getattr_procfile_files (subj_typeattr))
+
+       (call .mem.getattr_nodedev_chr_files (subj_typeattr))
+
        ;; RELRO protection
        (call .mountroot.use_fds (subj_typeattr))
 
        (call .net.egress_netifs (subj_typeattr))
        (call .net.sendto_netnodes (subj_typeattr))
        (call .net.udp_bind_netnodes (subj_typeattr))
+
+       (call .shadow.getattr_authfile_files (subj_typeattr))
 
        (call .subj.useinteractivefd.subj_type (subj_typeattr))
        (call .subj.dontaudit_getattr_all_sockets (subj_typeattr))

@@ -25,6 +25,9 @@
        ;; Macros
        ;;
 
+       (macro getattr_authfile_files ((type ARG1))
+              (allow ARG1 authfile (file (getattr))))
+
        (macro obj_type_transition_authfile ((type ARG1))
               (call .file.conffile_obj_type_transition
                     (ARG1 authfile file "shadow")))

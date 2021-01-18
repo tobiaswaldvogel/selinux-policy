@@ -13,6 +13,16 @@
     (block stor
 
            ;;
+           ;; Macros
+           ;;
+
+           (macro getattr_all_blk_files ((type ARG1))
+                  (allow ARG1 obj_typeattr (blk_file (getattr))))
+
+           (macro getattr_all_chr_files ((type ARG1))
+                  (allow ARG1 obj_typeattr (chr_file (getattr))))
+
+           ;;
            ;; Policy
            ;;
 

@@ -2064,6 +2064,13 @@
 (block file
 
        ;;
+       ;; Macros
+       ;;
+
+       (macro getattr_all_sock_files ((type ARG1))
+              (allow ARG1 obj_typeattr (sock_file (getattr))))
+
+       ;;
        ;; Policy
        ;;
 

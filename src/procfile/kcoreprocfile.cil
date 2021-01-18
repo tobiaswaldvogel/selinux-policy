@@ -17,6 +17,13 @@
         procfile_file_context)
 
        ;;
+       ;; Macros
+       ;;
+
+       (macro getattr_procfile_files ((type ARG1))
+              (allow ARG1 procfile (file (getattr))))
+
+       ;;
        ;; Policy
        ;;
 

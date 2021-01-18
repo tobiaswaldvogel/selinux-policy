@@ -29,6 +29,9 @@
        ;; Macros
        ;;
 
+       (macro getattr_miscfile_sock_files ((type ARG1))
+              (allow ARG1 miscfile (sock_file (getattr))))
+
        (macro obj_type_transition_execfile ((type ARG1))
               (call .file.execfile_obj_type_transition
                     (ARG1 execfile file "logd")))
