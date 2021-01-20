@@ -1,21 +1,27 @@
-figure out why /etc/group /etc/passwd /etc/shadow might end up mislabeled on sysupgrade that introduces a new user or group
-i think this function is used: https://git.openwrt.org/?p=openwrt/openwrt.git;a=blob_plain;f=package/base-files/files/lib/preinit/80_mount_root;h=a15c972220c566b381b35e6095e7a9ee055fe8ae;hb=HEAD
-i guess one way to figure this out might be to add an auditallow rule for file.conffile creation
+https://git.openwrt.org/?p=openwrt/openwrt.git;a=blob;f=package/base-files/files/lib/functions.sh#l353
+Were this:
+sed -i "s/$grp/$grp$delim$2/g" ${IPKG_INSTROOT}/etc/group
+creates /etc/groupRANDOM and renames it to /etc/group afterwards
+if i understand correctly then:
+sed -i'' "s/$grp/$grp$delim$2/g" ${IPKG_INSTROOT}/etc/group
+fixes it
 
 domains that call both loadkernelmodule and modulerequest might only need modulerequest (it seems that if modulerequest fails it falls back to loadkernelmodule)
+
 the "readwrite.subj_type" macros arent always called in the right container (review them all)
+
 mmc, sr, and fd (floppy) are really removable.stordev (move them back to removablestordev.cil)
 
 opkg LuCI
 chronyd LuCI/initscript
 sysupgrade LuCI
 unbound LuCI/initscript
+tinyproxy LuCI/initscript
+sqm LuCI/initscript
 wireguard LuCI
 zram LuCI/initscript
 acme (standalone, dns)
-logread (remote logging)
-
-shadow --with-selinux
 
 tftp
 lvm2
+cryptsetup
