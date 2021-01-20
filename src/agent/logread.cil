@@ -57,6 +57,8 @@
        (blockinherit .tmpfile.log.obj_template)
        (blockinherit .tmpfile.runtime.obj_template)
 
+       (allow subj self create_udp_socket)
+       (allow subj self create_unix_dgram_socket)
        (allow subj self create_unix_stream_socket)
 
        (call manage_logtmpfile_files (subj))
@@ -75,7 +77,13 @@
 
        (call .locale.read.subj_type (subj))
 
+       (call .logd.unix_dgram_send (subj))
        (call .logd.readinherited_fifo_files (subj))
+
+       (call .net.egress_netifs (subj))
+       ;; support ncat -4 -l 5555
+       (call .net.port.unreserved.tcp_connect_all_netports (subj))
+       (call .net.sendto_netnodes (subj))
 
        (call .syslog.tcp_connect_netports (subj))
 
