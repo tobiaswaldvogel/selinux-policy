@@ -72,6 +72,7 @@
        (blockinherit .file.conf.obj_template)
        (blockinherit .tmpfile.runtime.obj_template)
 
+       (allow subj self (capability (dac_read_search sys_ptrace)))
        (allow subj self create_udp_socket)
        (allow subj self create_unix_dgram_socket)
        (allow subj self create_unix_stream_socket)

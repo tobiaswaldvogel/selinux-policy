@@ -96,7 +96,7 @@
 
        (call read_conffile_files (subj))
 
-       (call conf.search_all_dirs (subj))
+       (call conf.list_all_dirs (subj))
 
        (call keyfiles.readwrite_conffile_files (subj))
 
@@ -120,10 +120,12 @@
        (call .net.egress_netifs (subj))
        (call .net.sendto_netnodes (subj))
        (call .net.tcp_bind_netnodes (subj))
+       (call .net.udp_bind_netnodes (subj))
 
        (call .random.read_nodedev_chr_files (subj))
 
        (call .resolv.read_tmpfile_files (subj))
+       (call .resolv.search_tmpfile_dirs (subj))
 
        (call .tmp.search_fs_dirs (subj))
 
