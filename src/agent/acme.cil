@@ -74,6 +74,8 @@
 
        (allow subj self create_udp_socket)
        (allow subj self create_unix_dgram_socket)
+       (allow subj self create_unix_stream_socket)
+       (allow subj self (unix_dgram_socket (sendto)))
 
        (call manage_conffile_dirs (subj))
        (call manage_conffile_files (subj))
@@ -91,10 +93,13 @@
 
        (call .file.read_conffile_lnk_files (subj))
        (call .file.search_initscriptfile_dirs (subj))
+       ;; run-acme check_cron() without rccron (this is not strictly needed anyway)
+       (call .file.dontaudit_auditexecuteaccess_initscriptfile_files (subj))
 
        (call .functions.read_miscfile_files (subj))
        (call .functions.search_miscfile_dirs (subj))
 
+       (call .http.tcp_bind_netports (subj))
        (call .http.tcp_connect_netports (subj))
 
        (call .locale.read.subj_type (subj))
@@ -104,10 +109,20 @@
        (call .nameservice.read_miscfile_files (subj))
 
        (call .net.egress_netifs (subj))
+       ;; support alternate (unreserved only) --tlsport=
+       (call .net.port.unreserved.tcp_bind_all_netports (subj))
        (call .net.sendto_netnodes (subj))
+       (call .net.tcp_bind_netnodes (subj))
        (call .net.udp_bind_netnodes (subj))
 
        (call .openssl.execute_execfile_files (subj))
+
+       (call .proc.list_fs_dirs (subj))
+
+       ;; its running netstat
+       (call .procfile.getattr_all_dirs (subj))
+       (call .procfile.getattr_all_files (subj))
+       (call .procfile.getattr_all_lnk_files (subj))
 
        (call .resolv.read_tmpfile_files (subj))
 

@@ -79,6 +79,9 @@
        (optional rcucitrack_opt_rcnetwork
                  (call .rcnetwork.subj_type_transition (subj)))
 
+       (optional rcucitrack_opt_rcngircd
+                 (call .rcngircd.subj_type_transition (subj)))
+
        (optional rcucitrack_opt_rcodhcpd
                  (call .rcodhcpd.subj_type_transition (subj)))
 

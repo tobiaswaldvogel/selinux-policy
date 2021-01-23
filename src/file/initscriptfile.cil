@@ -25,6 +25,9 @@
            (call .file.conffile_obj_type_transition
                  (ARG1 initscriptfile dir "init.d")))
 
+    (macro dontaudit_auditexecuteaccess_initscriptfile_files ((type ARG1))
+           (dontaudit ARG1 initscriptfile (file (getattr execute))))
+
     ;;
     ;; Policy
     ;;

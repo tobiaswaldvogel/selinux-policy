@@ -69,13 +69,13 @@
        ;;
 
        (macro libfile_obj_type_transition_execfile ((type ARG1))
-              (call .file.execfile_obj_type_transition
+              (call .file.libfile_obj_type_transition
                     (ARG1 execfile file "run.sh"))
-              (call .file.execfile_obj_type_transition
+              (call .file.libfile_obj_type_transition
                     (ARG1 execfile file "start-sqm"))
-              (call .file.execfile_obj_type_transition
+              (call .file.libfile_obj_type_transition
                     (ARG1 execfile file "stop-sqm"))
-              (call .file.execfile_obj_type_transition
+              (call .file.libfile_obj_type_transition
                     (ARG1 execfile file "update-available-qdiscs")))
 
        (macro obj_type_transition_conffile ((type ARG1))

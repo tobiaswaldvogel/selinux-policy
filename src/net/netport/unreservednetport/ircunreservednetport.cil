@@ -2,7 +2,7 @@
 ;; SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
 ;; SPDX-License-Identifier: Unlicense
 
-(block httpproxy
+(block irc
 
        ;;
        ;; Contexts
@@ -10,35 +10,35 @@
 
        (portcon
         "dccp"
-        8080
+        6697
         netport_context)
        (portcon
         "dccp"
-        8888
+        (6667 6669)
         netport_context)
        (portcon
         "sctp"
-        8080
+        6697
         netport_context)
        (portcon
         "sctp"
-        8888
+        (6667 6669)
         netport_context)
        (portcon
         "tcp"
-        8080
+        6697
         netport_context)
        (portcon
         "tcp"
-        8888
+        (6667 6669)
         netport_context)
        (portcon
         "udp"
-        8080
+        6697
         netport_context)
        (portcon
         "udp"
-        8888
+        (6667 6669)
         netport_context)
 
        ;;

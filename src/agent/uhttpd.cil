@@ -22,7 +22,15 @@
         file
         certfile_file_context)
        (filecon
+        "/etc/uhttpd\.crt\..*"
+        file
+        certfile_file_context)
+       (filecon
         "/etc/uhttpd\.key"
+        file
+        certfile_file_context)
+       (filecon
+        "/etc/uhttpd\.key\..*"
         file
         certfile_file_context)
 
