@@ -119,7 +119,7 @@
 
        (call .proc.list_fs_dirs (subj))
 
-       ;; its running netstat
+       ;; netstat
        (call .procfile.getattr_all_dirs (subj))
        (call .procfile.getattr_all_files (subj))
        (call .procfile.getattr_all_lnk_files (subj))
@@ -135,6 +135,9 @@
        (call .ssl.read_certfile_files (subj))
        (call .ssl.read_certfile_lnk_files (subj))
        (call .ssl.search_certfile_dirs (subj))
+
+       ;; netstat
+       (call .subj.read_state_all (subj))
 
        (call .tmpfile.deletename_runtimetmpfile_dirs (subj))
 
