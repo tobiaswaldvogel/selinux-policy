@@ -112,6 +112,7 @@
        (call .net.egress_netifs (subj))
        ;; support alternate (unreserved only) --tlsport=
        (call .net.port.unreserved.tcp_bind_all_netports (subj))
+       (call .net.read_procfile_files (subj))
        (call .net.sendto_netnodes (subj))
        (call .net.tcp_bind_netnodes (subj))
        (call .net.udp_bind_netnodes (subj))
