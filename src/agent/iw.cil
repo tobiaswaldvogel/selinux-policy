@@ -42,6 +42,7 @@
        (call .sys.readwriteinherited_ptydev_chr_files (subj))
        (call .sys.requestmodule (subj))
        (call .sys.search_fs_dirs (subj))
+       (call .sys.writeinherited_fifo_files (subj))
 
        (call .class.search_sysfile_dirs (subj))
 
