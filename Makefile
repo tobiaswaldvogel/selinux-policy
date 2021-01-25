@@ -14,7 +14,7 @@ modulesmin = $(shell find src -type f -name '*.cil' \
 	! -regex 'src/(cgi|init)?script/.*\.cil' \
 	! -name acme.cil ! -name blockmount.cil ! -name chrony.cil \
 	! -name ip.cil ! -name luaexecfile.cil ! -name luci.cil \
-	! -name ngircd.cil \
+	! -name murmur.cil ! -name ngircd.cil \
 	! -name opensslexecfile.cil ! -name px5gexecfile.cil \
 	! -name rpcd.cil ! -name sftpserver.cil \
 	! -name socatexecfile.cil ! -name sqm.cil \

@@ -243,6 +243,9 @@
        (optional luci_opt_rclog
                  (call .rclog.subj_type_transition (subj)))
 
+       (optional luci_opt_rcmurmur
+                 (call .rcmurmur.subj_type_transition (subj)))
+
        (optional luci_opt_rcnetwork
                  (call .rcnetwork.subj_type_transition (subj)))
 

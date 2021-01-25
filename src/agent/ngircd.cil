@@ -127,8 +127,6 @@
        (call .resolv.read_tmpfile_files (subj))
        (call .resolv.search_tmpfile_dirs (subj))
 
-       (call .tmp.search_fs_dirs (subj))
-
        (optional ngircd_opt_acme
                  (call .acme.read_conffile_files (subj))
                  (call .acme.read_conffile_lnk_files (subj))
