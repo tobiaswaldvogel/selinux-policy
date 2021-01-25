@@ -35,5 +35,6 @@
        (blockinherit .initscript.base_template)
 
        (call .murmur.read_runtimetmpfile_files (subj))
+       (call .murmur.signal (subj))
 
        (call .tmpfile.search_runtimetmpfile_dirs (subj)))

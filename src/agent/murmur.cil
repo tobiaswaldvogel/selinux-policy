@@ -87,18 +87,20 @@
     ;; Policy
     ;;
 
+    (blockinherit conf.obj_template)
     (blockinherit .agent.base_template)
     (blockinherit .file.cert.obj_template)
-    (blockinherit .file.conf.obj_template)
     (blockinherit .tmpfile.log.obj_template)
     (blockinherit .tmpfile.runtime.obj_template)
 
     (allow subj self (capability (setgid setuid)))
     (allow subj self create_udp_socket)
     (allow subj self create_unix_dgram_socket)
+    (allow subj self create_unix_stream_socket)
 
-    (call list_certfile_dirs (subj))
-    (call read_certfile_files (subj))
+    (call addname_certfile_dirs (subj))
+    (call create_certfile_files (subj))
+    (call readwrite_certfile_files (subj))
 
     (call append_logtmpfile_files (subj))
     (call create_logtmpfile_files (subj))
@@ -112,17 +114,26 @@
 
     (call conf.read_all_files (subj))
 
+    (call .sys.writeinherited_fifo_files (subj))
+
+    (call .file.read_conffile_lnk_files (subj))
     (call .file.search_conffile_dirs (subj))
 
     (call .murmur.tcp_bind_netports (subj))
     (call .murmur.udp_bind_netports (subj))
 
+    (call .locale.read.subj_type (subj))
+
     (call .logd.unix_dgram_send (subj))
+
+    (call .nameservice.read_miscfile_files (subj))
 
     (call .net.egress_netifs (subj))
     (call .net.sendto_netnodes (subj))
     (call .net.tcp_bind_netnodes (subj))
     (call .net.udp_bind_netnodes (subj))
+
+    (call .tmpfile.deletename_runtimetmpfile_dirs (subj))
 
     (optional murmur_opt_acme
               (call .acme.read_conffile_files (subj))
