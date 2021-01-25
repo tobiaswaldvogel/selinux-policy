@@ -109,6 +109,9 @@
     (call manage_runtimetmpfile_files (subj))
     (call obj_type_transition_runtimetmpfile (subj))
 
+    (call tcp_bind_netports (subj))
+    (call udp_bind_netports (subj))
+
     (call banfile.write_conffile_files (subj))
 
     (call conf.read_all_files (subj))
@@ -117,9 +120,6 @@
 
     (call .file.read_conffile_lnk_files (subj))
     (call .file.search_conffile_dirs (subj))
-
-    (call .murmur.tcp_bind_netports (subj))
-    (call .murmur.udp_bind_netports (subj))
 
     (call .locale.read.subj_type (subj))
 
