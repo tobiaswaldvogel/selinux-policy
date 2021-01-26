@@ -42,9 +42,6 @@
 
        (call .random.read_nodedev_chr_files (subj))
 
-       (call .ssl.read_certfile_files (subj))
-       (call .ssl.search_certfile_dirs (subj))
-
        (call .uhttpd.conffile_obj_type_transition_certfile (subj))
        (call .uhttpd.manage_certfile_files (subj))
        (call .uhttpd.manage_conftmpfile_dirs (subj))
@@ -54,4 +51,9 @@
                  (call .acme.getattr_conffile_files (subj))
                  (call .acme.read_conffile_lnk_files (subj))
                  (call .acme.search_conffile_dirs (subj))
-                 (call .acme.use_fds (subj))))
+                 (call .acme.use_fds (subj)))
+
+       (optional rcuhttpd_opt_sslcertfile
+                 (call .ssl.read_certfile_files (subj))
+                 (call .ssl.read_certfile_lnk_files (subj))
+                 (call .ssl.search_certfile_dirs (subj))))

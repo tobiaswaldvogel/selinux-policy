@@ -149,14 +149,16 @@
        (call .net.tcp_bind_netnodes (subj))
        (call .net.udp_bind_netnodes (subj))
 
-       (call .ssl.read_certfile_files (subj))
-       (call .ssl.search_certfile_dirs (subj))
-
        (call .tmp.associate_filesystems (miscfile))
 
        (call .tmpfile.deletename_runtimetmpfile_dirs (subj))
 
        (call .ubdnscontrol.tcp_bind_netports (subj))
+
+       (optional unbound_opt_sslcertfile
+                 (call .ssl.read_certfile_files (subj))
+                 (call .ssl.read_certfile_lnk_files (subj))
+                 (call .ssl.search_certfile_dirs (subj)))
 
        (block odhcpd
 

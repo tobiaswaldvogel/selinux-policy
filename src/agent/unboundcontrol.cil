@@ -47,9 +47,6 @@
            (call .net.sendto_netnodes (subj))
            (call .net.dontaudit_readinherited_procfile_files (subj))
 
-           (call .ssl.read_certfile_files (subj))
-           (call .ssl.search_certfile_dirs (subj))
-
            (call .tmpfile.search_statetmpfile_dirs (subj))
 
            (call .ubdnscontrol.tcp_connect_netports (subj))
@@ -62,4 +59,9 @@
            (optional unbound_control_opt_odhcpd
                      (call .odhcpd.use_fds (subj))
                      (call .odhcpd.dontaudit_readwrite_netlink_route_sockets
-                           (subj)))))
+                           (subj)))
+
+           (optional unbound_control_opt_sslcertfile
+                     (call .ssl.read_certfile_files (subj))
+                     (call .ssl.read_certfile_lnk_files (subj))
+                     (call .ssl.search_certfile_dirs (subj)))))

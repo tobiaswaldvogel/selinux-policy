@@ -16,9 +16,6 @@
     (call .resolv.manage_tmpfile_files (subj))
     (call .resolv.obj_type_transition_tmpfile (subj))
 
-    (call .ssl.read_certfile_files (subj))
-    (call .ssl.search_certfile_dirs (subj))
-
     (call .subj.read_state_all (subj))
 
     (call .tmp.manage_fs_lnk_files (subj))
@@ -29,4 +26,9 @@
     (call .unbound.read_conffile_files (subj))
     (call .unbound.read_miscfile_files (subj))
     (call .unbound.search_miscfile_dirs (subj))
-    (call .unbound.setattr_statetmpfile_dirs (subj)))
+    (call .unbound.setattr_statetmpfile_dirs (subj))
+
+    (optional unboundhotplug_opt_sslcertfile
+              (call .ssl.read_certfile_files (subj))
+              (call .ssl.read_certfile_lnk_files (subj))
+              (call .ssl.search_certfile_dirs (subj))))

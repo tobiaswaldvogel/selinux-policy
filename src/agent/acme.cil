@@ -134,10 +134,6 @@
 
        (call .socat.execute_execfile_files (subj))
 
-       (call .ssl.read_certfile_files (subj))
-       (call .ssl.read_certfile_lnk_files (subj))
-       (call .ssl.search_certfile_dirs (subj))
-
        ;; netstat
        (call .subj.read_state_all (subj))
 
@@ -158,4 +154,9 @@
                  (call .rccron.subj_type_transition (subj)))
 
        (optional acme_opt_rcuhttpd
-                 (call .rcuhttpd.subj_type_transition (subj))))
+                 (call .rcuhttpd.subj_type_transition (subj)))
+
+       (optional acme_opt_sslcertfile
+                 (call .ssl.read_certfile_files (subj))
+                 (call .ssl.read_certfile_lnk_files (subj))
+                 (call .ssl.search_certfile_dirs (subj))))

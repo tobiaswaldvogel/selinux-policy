@@ -90,7 +90,7 @@
     (call read_certfile_files (subj))
 
     (call obj_type_transition_ptydev (subj))
-    (call write_ptydev_chr_files (subj))
+    (call readwrite_ptydev_chr_files (subj))
 
     (call manage_runtimetmpfile_sock_files (subj))
     (call obj_type_transition_runtimetmpfile (subj))
@@ -101,7 +101,7 @@
     (call .sys.readwriteinherited_ptydev_chr_files (subj))
     (call .sys.signal (subj))
     (call .sys.transition (subj))
-    (call .sys.writeinherited_fifo_files (subj))
+    (call .sys.readwriteinherited_fifo_files (subj))
     (call .sys.dontaudit_noatsecure (subj))
     (call .sys.dontaudit_rlimitinh (subj))
     (call .sys.dontaudit_siginh (subj))
@@ -111,9 +111,11 @@
     ;; execute generic execfiles with an automatic transition to sys.subj by default
     (call .file.execfile_subj_type_transition (subj .sys.subj))
     (call .file.mapexecute_execfile_files (subj))
+    (call .file.read_conffile_lnk_files (subj))
     (call .file.read_execfile_files (subj))
-
     (call .file.search_conffile_dirs (subj))
+
+    (call .locale.read.subj_type (subj))
 
     (call .logd.unix_dgram_send (subj))
 
@@ -122,6 +124,8 @@
     (call .net.egress_netifs (subj))
     (call .net.sendto_netnodes (subj))
     (call .net.tcp_bind_netnodes (subj))
+
+    (call .ptmx.readwrite_nodedev_chr_files (subj))
 
     (call .random.read_nodedev_chr_files (subj))
 
@@ -144,4 +148,5 @@
 
     (optional ttyd_opt_sslcertfile
               (call .ssl.read_certfile_files (subj))
+              (call .ssh.read_certfile_lnk_files (subj))
               (call .ssl.search_certfile_dirs (subj))))
