@@ -18,7 +18,7 @@ modulesmin = $(shell find src -type f -name '*.cil' \
 	! -name opensslexecfile.cil ! -name px5gexecfile.cil \
 	! -name rpcd.cil ! -name sftpserver.cil \
 	! -name socatexecfile.cil ! -name sqm.cil \
-	! -name tinyproxy.cil ! -name uhttpd.cil \
+	! -name tinyproxy.cil ! -name ttyd.cil ! -name uhttpd.cil \
 	! -name unbound.cil ! -name unboundcontrol.cil \
 	! -name unboundhotplug.cil ! -name wgetexecfile.cil \
 	! -name wgetmiscfile.cil ! -name wireguard.cil -printf '%p ')

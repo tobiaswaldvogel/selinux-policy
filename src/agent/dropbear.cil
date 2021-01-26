@@ -63,7 +63,8 @@
               (call .file.conffile_obj_type_transition
                     (ARG1 certfile dir "dropbear")))
 
-       (macro tmp_obj_type_transition_certfile ((type ARG1)(class ARG2)(name ARG3))
+       (macro tmp_obj_type_transition_certfile
+              ((type ARG1)(class ARG2)(name ARG3))
               (call .tmp.fs_obj_type_transition
                     (ARG1 certfile ARG2 ARG3)))
 
@@ -71,7 +72,8 @@
               (call .file.execfile_obj_type_transition
                     (ARG1 execfile file "dropbear")))
 
-       (macro obj_type_transition_runtimetmpfile ((type ARG1)(class ARG2)(name ARG3))
+       (macro obj_type_transition_runtimetmpfile
+              ((type ARG1)(class ARG2)(name ARG3))
               (call .tmpfile.runtimetmpfile_obj_type_transition
                     (ARG1 runtimetmpfile ARG2 ARG3)))
 

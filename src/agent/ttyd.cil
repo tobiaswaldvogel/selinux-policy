@@ -1,0 +1,127 @@
+;; -*- mode: CIL; fill-column: 79; indent-tabs-mode: nil; -*-
+;; SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
+;; SPDX-License-Identifier: Unlicense
+
+(in .sys
+    (call .ttyd.subj_type_transition (subj)))
+
+(in .file
+    (call .ttyd.conffile_obj_type_transition_certfile
+          (unconfined.subj_typeattr))
+    (call .ttyd.obj_type_transition_execfile (unconfined.subj_typeattr))
+    (call .ttyd.obj_type_transition_runtimetmpfile
+          (unconfined.subj_typeattr)))
+
+(in ttyd
+
+    ;;
+    ;; Contexts
+    ;;
+
+    (filecon
+     "/etc/ttyd\.crt"
+     file
+     certfile_file_context)
+    (filecon
+     "/etc/ttyd\.crt\..*"
+     file
+     certfile_file_context)
+    (filecon
+     "/etc/ttyd\.key"
+     file
+     certfile_file_context)
+    (filecon
+     "/etc/ttyd\.key\..*"
+     file
+     certfile_file_context)
+
+    (filecon
+     "/tmp/run/ttyd\.sock"
+     socket
+     runtimetmpfile_file_context)
+
+    (filecon
+     "/usr/bin/ttyd"
+     file
+     execfile_file_context)
+
+    ;;
+    ;; Macros
+    ;;
+
+    (macro conffile_obj_type_transition_certfile ((type ARG1))
+           (call .file.conffile_obj_type_transition
+                 (ARG1 certfile file "ttyd.crt"))
+           (call .file.conffile_obj_type_transition
+                 (ARG1 certfile file "ttyd.key")))
+
+    (macro obj_type_transition_execfile ((type ARG1))
+           (call .file.execfile_obj_type_transition
+                 (ARG1 execfile file "ttyd")))
+
+    (macro obj_type_transition_runtimetmpfile ((type ARG1))
+           (call .tmpfile.runtimetmpfile_obj_type_transition
+                 (ARG1 runtimetmpfile sock_file "ttyd.sock")))
+
+    (macro unix_stream_connect ((type ARG1))
+           (call connectto_unix_stream_sockets (ARG1))
+           (call write_runtimetmpfile_sock_files (ARG1)))
+
+    ;;
+    ;; Policy
+    ;;
+
+    (blockinherit .agent.base_template)
+    (blockinherit .file.cert.obj_template)
+    (blockinherit .tmpfile.runtime.obj_template)
+
+    (allow subj self (capability (setgid setuid)))
+    (allow subj self create_unix_dgram_socket)
+    (allow subj self create_unix_stream_socket)
+    (allow subj self (unix_stream_socket (accept listen)))
+
+    (call read_certfile_files (subj))
+
+    (call manage_runtimetmpfile_sock_files (subj))
+    (call obj_type_transition_runtimetmpfile (subj))
+
+    (call tcp_bind_netports (subj))
+
+    (call .sys.readwriteinherited_ptydev_chr_files (subj))
+    (call .sys.writeinherited_fifo_files (subj))
+
+    (call .dev.readwriteinherited_ttydev_chr_files (subj))
+
+    ;; execute generic execfiles with an automatic transition to sys.subj by default
+    (call .file.execfile_subj_type_transition (subj .sys.subj))
+    (call .file.mapexecute_execfile_files (subj))
+    (call .file.read_execfile_files (subj))
+
+    (call .file.search_conffile_dirs (subj))
+
+    (call .logd.unix_dgram_send (subj))
+
+    (call .nameservice.read_miscfile_files (subj))
+
+    (call .net.egress_netifs (subj))
+    (call .net.sendto_netnodes (subj))
+    (call .net.tcp_bind_netnodes (subj))
+
+    ;; execute shell execfiles with an automatic transition to sys.subj by default
+    (call .shell.execfile_subj_type_transition (subj .sys.subj))
+    (call .shell.mapexecute_execfile_files (subj))
+    (call .shell.read_execfile_files (subj))
+
+    (call .tmpfile.deletename_runtimetmpfile_dirs (subj))
+
+    (optional ttyd_opt_acme
+              (call .acme.read_conffile_files (subj))
+              (call .acme.read_conffile_lnk_files (subj))
+              (call .acme.search_conffile_dirs (subj)))
+
+    (optional ttyd_opt_sandbox
+              (call .sandbox.transition_all (subj)))
+
+    (optional ttyd_opt_sslcertfile
+              (call .ssl.read_certfile_files (subj))
+              (call .ssl.search_certfile_dirs (subj))))

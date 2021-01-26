@@ -279,6 +279,9 @@
        (optional luci_opt_rctinyproxy
                  (call .rctinyproxy.subj_type_transition (subj)))
 
+       (optional luci_opt_rcttyd
+                 (call .rcttyd.subj_type_transition (subj)))
+
        (optional luci_opt_rcucitrack
                  (call .rcucitrack.subj_type_transition (subj)))
 
