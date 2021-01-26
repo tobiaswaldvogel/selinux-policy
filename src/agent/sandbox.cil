@@ -199,7 +199,7 @@
        (call .tmp.deletename_fs_dirs (subj_typeattr))
 
        (optional sandbox_opt_ttyd
-                 (call readwriteinherited_fifo_files (subj_typeattr)))
+                 (call .ttyd.readwriteinherited_fifo_files (subj_typeattr)))
 
        (block subj_template
 
