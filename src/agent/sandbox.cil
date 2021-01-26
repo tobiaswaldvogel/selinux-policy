@@ -80,6 +80,9 @@
        ;; Macros
        ;;
 
+       (macro getpgid_all ((type ARG1))
+              (allow ARG1 subj_typeattr (process (getpgid))))
+
        (macro obj_type_transition_homefile ((type ARG1)(class ARG2)(name ARG3))
               (call .file.homefile_obj_type_transition
                     (ARG1 homefile ARG2 ARG3)))
@@ -91,6 +94,9 @@
        (macro obj_type_transition_tmpfile ((type ARG1)(class ARG2)(name ARG3))
               (call .tmp.fs_obj_type_transition
                     (ARG1 tmpfile ARG2 ARG3)))
+
+       (macro signal_all ((type ARG1))
+              (allow ARG1 subj_typeattr (process (signal))))
 
        (macro subj_type ((type ARG1))
               (typeattributeset subj_typeattr ARG1))
@@ -197,6 +203,12 @@
               ;;
               ;; Macros
               ;;
+
+              (macro getpgid ((type ARG1))
+                     (allow ARG1 subj (process (getpgid))))
+
+              (macro signal ((type ARG1))
+                     (allow ARG1 subj (process (signal))))
 
               (macro transition ((type ARG1))
                      (allow ARG1 subj (process (transition))))

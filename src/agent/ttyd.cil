@@ -59,6 +59,10 @@
            (call .file.execfile_obj_type_transition
                  (ARG1 execfile file "ttyd")))
 
+    (macro obj_type_transition_ptydev ((type ARG1))
+           (call .pts.fs_obj_type_transition
+                 (ARG1 ptydev chr_file "*")))
+
     (macro obj_type_transition_runtimetmpfile ((type ARG1))
            (call .tmpfile.runtimetmpfile_obj_type_transition
                  (ARG1 runtimetmpfile sock_file "ttyd.sock")))
@@ -72,23 +76,35 @@
     ;;
 
     (blockinherit .agent.base_template)
+    (blockinherit .dev.pty.obj_template)
     (blockinherit .file.cert.obj_template)
     (blockinherit .tmpfile.runtime.obj_template)
 
-    (allow subj self (capability (setgid setuid)))
+    (allow subj self (capability (chown setgid setuid)))
+    (allow subj self create_netlink_route_socket)
     (allow subj self create_unix_dgram_socket)
     (allow subj self create_unix_stream_socket)
+    (allow subj self (netlink_route_socket (nlmsg_read)))
     (allow subj self (unix_stream_socket (accept listen)))
 
     (call read_certfile_files (subj))
+
+    (call obj_type_transition_ptydev (subj))
+    (call write_ptydev_chr_files (subj))
 
     (call manage_runtimetmpfile_sock_files (subj))
     (call obj_type_transition_runtimetmpfile (subj))
 
     (call tcp_bind_netports (subj))
 
+    (call .sys.getpgid (subj))
     (call .sys.readwriteinherited_ptydev_chr_files (subj))
+    (call .sys.signal (subj))
+    (call .sys.transition (subj))
     (call .sys.writeinherited_fifo_files (subj))
+    (call .sys.dontaudit_noatsecure (subj))
+    (call .sys.dontaudit_rlimitinh (subj))
+    (call .sys.dontaudit_siginh (subj))
 
     (call .dev.readwriteinherited_ttydev_chr_files (subj))
 
@@ -107,6 +123,8 @@
     (call .net.sendto_netnodes (subj))
     (call .net.tcp_bind_netnodes (subj))
 
+    (call .random.read_nodedev_chr_files (subj))
+
     ;; execute shell execfiles with an automatic transition to sys.subj by default
     (call .shell.execfile_subj_type_transition (subj .sys.subj))
     (call .shell.mapexecute_execfile_files (subj))
@@ -120,6 +138,8 @@
               (call .acme.search_conffile_dirs (subj)))
 
     (optional ttyd_opt_sandbox
+              (call .sandbox.getpgid_all (subj))
+              (call .sandbox.signal_all (subj))
               (call .sandbox.transition_all (subj)))
 
     (optional ttyd_opt_sslcertfile

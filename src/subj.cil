@@ -1909,6 +1909,9 @@
                      (allow ARG1 subj_typeattr
                             (unix_stream_socket (connectto))))
 
+              (macro getpgid_all ((type ARG1))
+                     (allow ARG1 subj_typeattr (process (getpgid))))
+
               (macro getrlimit_all ((type ARG1))
                      (allow ARG1 subj_typeattr (process (getrlimit))))
 
@@ -2054,6 +2057,9 @@
 
               (macro connectto_unix_stream_sockets ((type ARG1))
                      (allow ARG1 subj (unix_stream_socket (connectto))))
+
+              (macro getpgid ((type ARG1))
+                     (allow ARG1 subj (process (getpgid))))
 
               (macro getrlimit ((type ARG1))
                      (allow ARG1 subj (process (getrlimit))))
