@@ -1,3 +1,6 @@
+(call .tmp.associate_filesystems (.file.obj_typeattr)))) in volatileoverlayselinuxbool.cil is too broad
+since file.obj_typeattr applies to all non fs files (do a grep -r xattr.associate to see which types need to associate with tmp.fs in a volatile root scenario)
+
 https://git.openwrt.org/?p=openwrt/openwrt.git;a=blob;f=package/base-files/files/lib/functions.sh#l353
 Were this:
 sed -i "s/$grp/$grp$delim$2/g" ${IPKG_INSTROOT}/etc/group
