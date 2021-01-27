@@ -1,5 +1,5 @@
 # -*- Mode: makefile; indent-tabs-mode: t -*-
-# SPDX-FileCopyrightText: © 2020 Dominick Grift <dominick.grift@defensec.nl>
+# SPDX-FileCopyrightText: © 2021 Dominick Grift <dominick.grift@defensec.nl>
 # SPDX-License-Identifier: Unlicense
 
 .PHONY: all clean min mintesttgt policy check install
