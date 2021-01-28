@@ -95,8 +95,6 @@
     (call manage_runtimetmpfile_sock_files (subj))
     (call obj_type_transition_runtimetmpfile (subj))
 
-    (call tcp_bind_netports (subj))
-
     (call .sys.getpgid (subj))
     (call .sys.readwriteinherited_ptydev_chr_files (subj))
     (call .sys.signal (subj))
@@ -122,6 +120,8 @@
     (call .nameservice.read_miscfile_files (subj))
 
     (call .net.egress_netifs (subj))
+    ;; allow random port functionality
+    (call .net.port.unreserved.tcp_bind_all_netports (subj))
     (call .net.sendto_netnodes (subj))
     (call .net.tcp_bind_netnodes (subj))
 
