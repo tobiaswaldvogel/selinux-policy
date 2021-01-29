@@ -9,6 +9,10 @@
        ;;
 
        (filecon
+        "/dev/kmem"
+        char
+        nodedev_file_context)
+       (filecon
         "/dev/mem"
         char
         nodedev_file_context)
@@ -25,6 +29,8 @@
               (allow ARG1 nodedev (chr_file (getattr))))
 
        (macro obj_type_transition_nodedev ((type ARG1))
+              (call .tmp.fs_obj_type_transition
+                    (ARG1 nodedev chr_file "kmem"))
               (call .tmp.fs_obj_type_transition
                     (ARG1 nodedev chr_file "mem"))
               (call .tmp.fs_obj_type_transition
