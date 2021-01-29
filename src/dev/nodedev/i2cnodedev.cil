@@ -12,7 +12,7 @@
        ;;
 
        (filecon
-        "/dev/i2c([0-9]+)?"
+        "/dev/i2c-[0-9]+"
         char
         nodedev_file_context)
 
