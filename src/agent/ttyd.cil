@@ -2,6 +2,9 @@
 ;; SPDX-FileCopyrightText: © 2021 Dominick Grift <dominick.grift@defensec.nl>
 ;; SPDX-License-Identifier: Unlicense
 
+(in .subj
+    (call .ttyd.readwriteinherited_fifo_files (subj_typeattr)))
+
 (in .sys
     (call .ttyd.subj_type_transition (subj)))
 
