@@ -17,6 +17,7 @@
             (and dev.obj_typeattr
                  (not
                   (stor.obj_typeattr
+                   .random.nodedev
                    .mem.nodedev)))))
 
     (block sandboxopen
