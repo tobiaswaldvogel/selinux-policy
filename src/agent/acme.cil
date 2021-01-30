@@ -156,6 +156,9 @@
        (optional acme_opt_rcuhttpd
                  (call .rcuhttpd.subj_type_transition (subj)))
 
+       (optional acme_opt_sandbox
+                 (call .file.sandboxexception.obj_type (conffile)))
+
        (optional acme_opt_sslcertfile
                  (call .ssl.read_certfile_files (subj))
                  (call .ssl.read_certfile_lnk_files (subj))

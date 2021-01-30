@@ -16,6 +16,9 @@
 
            (call .xattr.associate_filesystems (obj_typeattr))
 
+           (optional file_cert_opt_sandbox
+                     (call .file.sandboxexception.obj_type (obj_typeattr)))
+
            ;;
            ;; Templates
            ;;
