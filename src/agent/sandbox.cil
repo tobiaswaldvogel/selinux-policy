@@ -80,6 +80,9 @@
            ;; Macros
            ;;
 
+           (macro getattr_all_dirs ((type ARG1))
+                  (allow ARG1 obj_typeattr (dir (getattr))))
+
            (macro getattr_all_files ((type ARG1))
                   (allow ARG1 obj_typeattr (file (getattr))))
 
@@ -191,6 +194,7 @@
        (call .file.sandboxexcept.watch_all_fifo_files (subj_typeattr))
        (call .file.sandboxexcept.watch_all_files (subj_typeattr))
        (call .file.sandboxexcept.watch_all_lnk_files (subj_typeattr))
+       (call .file.sandboxexception.getattr_all_dirs (subj_typeattr))
        (call .file.sandboxexception.getattr_all_files (subj_typeattr))
 
        (call .fs.getattr_all_filesystems (subj_typeattr))
