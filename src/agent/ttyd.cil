@@ -95,9 +95,7 @@
     (call manage_runtimetmpfile_sock_files (subj))
     (call obj_type_transition_runtimetmpfile (subj))
 
-    (call .sys.getpgid (subj))
     (call .sys.readwriteinherited_ptydev_chr_files (subj))
-    (call .sys.signal (subj))
     (call .sys.transition (subj))
     (call .sys.readwriteinherited_fifo_files (subj))
     (call .sys.dontaudit_noatsecure (subj))
@@ -106,11 +104,7 @@
 
     (call .dev.readwriteinherited_ttydev_chr_files (subj))
 
-    ;; execute generic execfiles with an automatic transition to sys.subj by default
-    (call .file.execfile_subj_type_transition (subj .sys.subj))
-    (call .file.mapexecute_execfile_files (subj))
     (call .file.read_conffile_lnk_files (subj))
-    (call .file.read_execfile_files (subj))
     (call .file.search_conffile_dirs (subj))
 
     (call .locale.read.subj_type (subj))
@@ -134,17 +128,15 @@
     (call .shell.mapexecute_execfile_files (subj))
     (call .shell.read_execfile_files (subj))
 
+    (call .subj.getpgid_all (subj))
+    (call .subj.signal_all (subj))
+
     (call .tmpfile.deletename_runtimetmpfile_dirs (subj))
 
     (optional ttyd_opt_acme
               (call .acme.read_conffile_files (subj))
               (call .acme.read_conffile_lnk_files (subj))
               (call .acme.search_conffile_dirs (subj)))
-
-    (optional ttyd_opt_sandbox
-              (call .sandbox.getpgid_all (subj))
-              (call .sandbox.signal_all (subj))
-              (call .sandbox.transition_all (subj)))
 
     (optional ttyd_opt_sslcertfile
               (call .ssl.read_certfile_files (subj))
