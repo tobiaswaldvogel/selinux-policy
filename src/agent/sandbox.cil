@@ -38,7 +38,6 @@
             obj_typeattr
             (.null.nodedev
              .ptmx.nodedev
-             .random.nodedev
              .tty.nodedev
              .zero.nodedev))))
 
@@ -189,6 +188,8 @@
 
        ;; RELRO protection
        (call .mountroot.use_fds (subj_typeattr))
+
+       (call .random.read_nodedev_chr_files (subj_typeattr))
 
        (call .shadow.getattr_authfile_files (subj_typeattr))
 
