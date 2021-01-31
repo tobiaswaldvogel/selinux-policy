@@ -207,6 +207,9 @@
            (call .tmp.fs_obj_type_transition
                  (ARG1 ttydev chr_file "vcsu1")))
 
+    (macro readwriteinherited_ttydev_chr_files ((type ARG1))
+           (typeattributeset readwriteinherited_ttydev.subj_typeattr ARG1))
+
     (macro dontaudit_readwriteinherited_ttydev_chr_files ((type ARG1))
            (dontaudit ARG1 ttydev readwriteinherited_chr_file))
 
@@ -218,7 +221,25 @@
 
     (call obj_type_transition_ttydev (unconfined.subj_typeattr))
 
+    (block readwriteinherited_ttydev
+
+           ;;
+           ;; Policy
+           ;;
+
+           (blockinherit .subj.subj_all_macro_template)
+
+           (allowx subj_typeattr ttydev (ioctl chr_file (not (0x5412))))
+           (allow subj_typeattr ttydev readwriteinherited_chr_file))
+
     (block tty
+
+           ;;
+           ;; Macros
+           ;;
+
+           (macro readwriteinherited_all_chr_files ((type ARG1))
+                  (typeattributeset readwriteinherited_all.subj_typeattr ARG1))
 
            ;;
            ;; Policy
@@ -462,6 +483,7 @@
                          (allow ARG1 ttydev readwriteinherited_blk_file))
 
                   (macro readwriteinherited_ttydev_chr_files ((type ARG1))
+                         (allowx ARG1 ttydev (ioctl chr_file (not (0x5412))))
                          (allow ARG1 ttydev readwriteinherited_chr_file))
 
                   (macro readwriteinherited_ttydev_dirs ((type ARG1))
@@ -643,4 +665,17 @@
                   (blockabstract obj_template)
 
                   (blockinherit .dev.tty.obj_base_template)
-                  (blockinherit .dev.tty.obj_macro_template))))
+                  (blockinherit .dev.tty.obj_macro_template))
+
+           (block readwriteinherited_all
+
+                  ;;
+                  ;; Policy
+                  ;;
+
+                  (blockinherit .subj.subj_all_macro_template)
+
+                  (allowx subj_typeattr obj_typeattr
+                          (ioctl chr_file (not (0x5412))))
+                  (allow subj_typeattr obj_typeattr
+                         readwriteinherited_chr_file))))

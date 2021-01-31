@@ -48,6 +48,14 @@
     (block sandboxexcept
 
            ;;
+           ;; Macros
+           ;;
+
+           (macro readwriteinherited_all_chr_files ((type ARG1))
+                  (allowx ARG1 obj_typeattr (ioctl chr_file (not (0x5412))))
+                  (allow ARG1 obj_typeattr readwriteinherited_chr_file))
+
+           ;;
            ;; Policy
            ;;
 
@@ -238,9 +246,6 @@
        (call .dev.stor.getattr_all_blk_files (subj_typeattr))
        (call .dev.stor.getattr_all_chr_files (subj_typeattr))
 
-       ;; block use of TIOCSTI by the sandbox domains on any pty's other than sandbox pty's
-       (allowx subj_typeattr .dev.pty.sandboxexcept.obj_typeattr
-               (ioctl chr_file (not (0x5412))))
        (call .dev.pty.sandboxexcept.readwriteinherited_all_chr_files
              (subj_typeattr))
 

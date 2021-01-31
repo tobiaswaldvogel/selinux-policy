@@ -12,6 +12,9 @@
            (call .pts.fs_obj_type_transition
                  (ARG1 ptydev chr_file "*")))
 
+    (macro readwriteinherited_ptydev_chr_files ((type ARG1))
+           (typeattributeset readwriteinherited_ptydev.subj_typeattr ARG1))
+
     (macro setattr_ptydev_chr_files ((type ARG1))
            (allow ARG1 ptydev (chr_file (setattr))))
 
@@ -24,4 +27,15 @@
 
     (blockinherit .dev.pty.obj_template)
 
-    (call obj_type_transition_ptydev (subj)))
+    (call obj_type_transition_ptydev (subj))
+
+    (block readwriteinherited_ptydev
+
+           ;;
+           ;; Policy
+           ;;
+
+           (blockinherit .subj.subj_all_macro_template)
+
+           (allowx subj_typeattr ptydev (ioctl chr_file (not (0x5412))))
+           (allow subj_typeattr ptydev readwriteinherited_chr_file)))
