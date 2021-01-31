@@ -1,3 +1,7 @@
+13:38 < bauen1> but there is a lot of low-hanging fruit, like dontauditing 0x5401 (TCGETS) and TCGETA, and
+moving ioctl to the "write" set for files, at least once linux 5.11 hits with my dontauditx
+patch to make it work
+
 (call .tmp.associate_filesystems (.file.obj_typeattr)))) in volatileoverlayselinuxbool.cil is too broad
 since file.obj_typeattr applies to all non fs files (do a grep -r xattr.associate to see which types need to associate with tmp.fs in a volatile root scenario)
 
