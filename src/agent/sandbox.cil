@@ -14,9 +14,10 @@
 
            (typeattributeset
             obj_typeattr
-            (and dev.obj_typeattr
+            (and .dev.obj_typeattr
                  (not
-                  (stor.obj_typeattr
+                  (.dev.pty.obj_typeattr
+                   .dev.stor.obj_typeattr
                    .random.nodedev
                    .mem.nodedev)))))
 
@@ -41,6 +42,22 @@
              .ptmx.nodedev
              .tty.nodedev
              .zero.nodedev))))
+
+(in .dev.pty
+
+    (block sandboxexcept
+
+           ;;
+           ;; Policy
+           ;;
+
+           (blockinherit .file.obj_all_macro_template)
+
+           (typeattributeset
+            obj_typeattr
+            (and .dev.pty.obj_typeattr
+                 (not
+                  (.sandbox.ptydev))))))
 
 (in .file
 
@@ -70,7 +87,7 @@
 
            (typeattributeset
             obj_typeattr
-            (and except.obj_typeattr
+            (and .file.except.obj_typeattr
                  (not
                   (.kcore.procfile sandboxexception.obj_typeattr)))))
 
@@ -85,6 +102,46 @@
 
            (macro getattr_all_files ((type ARG1))
                   (allow ARG1 obj_typeattr (file (getattr))))
+
+           (macro getattr_all_lnk_files ((type ARG1))
+                  (allow ARG1 obj_typeattr (lnk_file (getattr))))
+
+           ;;
+           ;; Policy
+           ;;
+
+           (blockinherit obj_all_macro_template)))
+
+(in .fs
+
+    (block sandboxexcept
+
+           ;;
+           ;; Policy
+           ;;
+
+           (blockinherit .file.obj_all_macro_template)
+
+           (typeattributeset
+            obj_typeattr
+            (and .fs.obj_typeattr
+                 (not
+                  (sandboxexception.obj_typeattr)))))
+
+    (block sandboxexception
+
+           ;;
+           ;; Macros
+           ;;
+
+           (macro getattr_all_dirs ((type ARG1))
+                  (allow ARG1 obj_typeattr (dir (getattr))))
+
+           (macro getattr_all_files ((type ARG1))
+                  (allow ARG1 obj_typeattr (file (getattr))))
+
+           (macro getattr_lnk_all_files ((type ARG1))
+                  (allow ARG1 obj_typeattr (lnk_file (getattr))))
 
            ;;
            ;; Policy
@@ -181,6 +238,10 @@
        (call .dev.stor.getattr_all_blk_files (subj_typeattr))
        (call .dev.stor.getattr_all_chr_files (subj_typeattr))
 
+       ;; block use of TIOCSTI by the sandbox domains on any pty's other than sandbox pty's
+       (allowx subj_typeattr .dev.pty.sandboxexcept.obj_typeattr
+               (ioctl chr_file (not (0x5412))))
+
        (call .file.deletename_homefile_dirs (subj_typeattr))
        (call .file.getattr_all_sock_files (subj_typeattr))
        (call .file.exec.entrypoint_all_files (subj_typeattr))
@@ -196,12 +257,16 @@
        (call .file.sandboxexcept.watch_all_lnk_files (subj_typeattr))
        (call .file.sandboxexception.getattr_all_dirs (subj_typeattr))
        (call .file.sandboxexception.getattr_all_files (subj_typeattr))
+       (call .file.sandboxexception.getattr_all_lnk_files (subj_typeattr))
 
        (call .fs.getattr_all_filesystems (subj_typeattr))
-       (call .fs.list_all_dirs (subj_typeattr))
-       (call .fs.read_all_fifo_files (subj_typeattr))
-       (call .fs.read_all_files (subj_typeattr))
-       (call .fs.read_all_lnk_files (subj_typeattr))
+       (call .fs.sandboxexcept.list_all_dirs (subj_typeattr))
+       (call .fs.sandboxexcept.read_all_fifo_files (subj_typeattr))
+       (call .fs.sandboxexcept.read_all_files (subj_typeattr))
+       (call .fs.sandboxexcept.read_all_lnk_files (subj_typeattr))
+       (call .fs.sandboxexception.getattr_all_dirs (subj_typeattr))
+       (call .fs.sandboxexception.getattr_all_files (subj_typeattr))
+       (call .fs.sandboxexception.getattr_all_lnk_files (subj_typeattr))
 
        (call .kcore.getattr_procfile_files (subj_typeattr))
 

@@ -20,4 +20,7 @@
        (blockinherit .fs.obj_file_macro_template)
        (blockinherit .fs.seclabel.obj_template)
 
-       (allow fs self (filesystem (associate))))
+       (allow fs self (filesystem (associate)))
+
+       (optional debugseclabelfs_opt_sandbox
+                 (call .fs.sandboxexception.obj_type (fs))))

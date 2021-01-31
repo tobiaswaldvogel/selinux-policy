@@ -14,6 +14,9 @@
 
        (call .debug.associate_filesystems (obj_typeattr))
 
+       (optional debugfile_opt_sandbox
+                 (call .file.sandboxexception.obj_type (obj_typeattr)))
+
        ;;
        ;; Templates
        ;;

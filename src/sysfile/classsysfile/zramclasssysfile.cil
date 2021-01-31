@@ -17,4 +17,7 @@
        ;; Policy
        ;;
 
-       (blockinherit .sysfile.class.obj_template))
+       (blockinherit .sysfile.class.obj_template)
+
+       (optional zramctl_opt_sandbox
+                 (call .file.sandboxexception.obj_type (sysfile))))
