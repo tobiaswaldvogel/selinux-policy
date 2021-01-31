@@ -16,9 +16,6 @@
 
            (call .xattr.associate_filesystems (obj_typeattr))
 
-           (optional certfile_opt_sandbox
-                     (call .file.sandboxexception.obj_type (obj_typeattr)))
-
            ;;
            ;; Templates
            ;;
@@ -437,4 +434,31 @@
                   (blockabstract obj_template)
 
                   (blockinherit .file.cert.obj_base_template)
-                  (blockinherit .file.cert.obj_macro_template))))
+                  (blockinherit .file.cert.obj_macro_template))
+
+           (block except
+
+                  ;;
+                  ;; Policy
+                  ;;
+
+                  (blockinherit obj_all_macro_template)
+
+                  (typeattributeset
+                   obj_typeattr
+                   (and
+                    cert.obj_typeattr
+                    (not
+                     (exception.obj_typeattr))))
+
+                  (optional certfile_opt_sandbox
+                            (call .file.sandboxexception.obj_type
+                                  (obj_typeattr))))
+
+           (block exception
+
+                  ;;
+                  ;; Policy
+                  ;;
+
+                  (blockinherit obj_all_macro_template))))

@@ -32,4 +32,6 @@
        ;; Policy
        ;;
 
-       (blockinherit file.cert.obj_template))
+       (blockinherit file.cert.obj_template)
+
+       (call .file.cert.exception.obj_type (certfile)))
