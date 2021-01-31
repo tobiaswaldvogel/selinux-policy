@@ -241,6 +241,8 @@
        ;; block use of TIOCSTI by the sandbox domains on any pty's other than sandbox pty's
        (allowx subj_typeattr .dev.pty.sandboxexcept.obj_typeattr
                (ioctl chr_file (not (0x5412))))
+       (call .dev.pty.sandboxexcept.readwriteinherited_all_chr_files
+             (subj_typeattr))
 
        (call .file.deletename_homefile_dirs (subj_typeattr))
        (call .file.getattr_all_sock_files (subj_typeattr))
