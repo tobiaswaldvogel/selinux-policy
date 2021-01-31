@@ -219,7 +219,7 @@
        (call obj_type_transition_homefile (subj_typeattr allfiles "*"))
 
        (call obj_type_transition_ptydev (subj_typeattr))
-       (call write_ptydev_chr_files (subj_typeattr))
+       (call readwrite_ptydev_chr_files (subj_typeattr))
 
        (call manage_tmpfile (subj_typeattr))
        (call obj_type_transition_tmpfile (subj_typeattr allfiles "*"))
