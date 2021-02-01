@@ -13,6 +13,10 @@
            (macro readwriteinherited_all_chr_files ((type ARG1))
                   (typeattributeset readwriteinherited_all.subj_typeattr ARG1))
 
+           (macro writeinherited_all_chr_files ((type ARG1))
+                  (allowx ARG1 obj_typeattr (ioctl chr_file (not (0x5412))))
+                  (allow ARG1 obj_typeattr writeinherited_chr_file))
+
            ;;
            ;; Policy
            ;;
@@ -404,6 +408,7 @@
                          (allow ARG1 ptydev writeinherited_blk_file))
 
                   (macro writeinherited_ptydev_chr_files ((type ARG1))
+                         (allowx ARG1 ptydev (ioctl chr_file (not (0x5412))))
                          (allow ARG1 ptydev writeinherited_chr_file))
 
                   (macro writeinherited_ptydev_dirs ((type ARG1))
