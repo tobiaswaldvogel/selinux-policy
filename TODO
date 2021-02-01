@@ -1,3 +1,5 @@
+keep an eye on possible replacement of busybox -k with hwclock (and /etc/init.d/system): target hwclock
+
 13:38 < bauen1> but there is a lot of low-hanging fruit, like dontauditing 0x5401 (TCGETS) and TCGETA, and
 moving ioctl to the "write" set for files, at least once linux 5.11 hits with my dontauditx
 patch to make it work
