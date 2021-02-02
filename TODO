@@ -1,3 +1,20 @@
+Urgent (loose ends):
+--------------------
+opkg LuCI
+chronyd LuCI/initscript
+sysupgrade LuCI
+unbound LuCI/initscript
+tinyproxy LuCI/initscript
+sqm LuCI/initscript
+wireguard LuCI
+zram LuCI/initscript
+acme (dns)
+
+ngircd initscript
+umurmur initscript
+
+Various misc:
+-------------
 keep an eye on possible replacement of busybox -k with hwclock (and /etc/init.d/system): target hwclock
 
 13:38 < bauen1> but there is a lot of low-hanging fruit, like dontauditing 0x5401 (TCGETS) and TCGETA, and
@@ -18,19 +35,3 @@ fixes it
 domains that call both loadkernelmodule and modulerequest might only need modulerequest (it seems that if modulerequest fails it falls back to loadkernelmodule)
 
 the "readwrite.subj_type" macros arent always called in the right container (review them all)
-
-mmc, sr, and fd (floppy) are really removable.stordev (move them back to removablestordev.cil)
-
-opkg LuCI
-chronyd LuCI/initscript
-sysupgrade LuCI
-unbound LuCI/initscript
-tinyproxy LuCI/initscript
-sqm LuCI/initscript
-wireguard LuCI
-zram LuCI/initscript
-acme (standalone, dns)
-
-tftp
-lvm2
-cryptsetup
