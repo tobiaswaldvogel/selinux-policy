@@ -2,28 +2,20 @@
 # SPDX-FileCopyrightText: © 2021 Dominick Grift <dominick.grift@defensec.nl>
 # SPDX-License-Identifier: Unlicense
 
-.PHONY: all clean min mintesttgt policy check install
+.PHONY: all clean noluci mintesttgt policy check install
 
-# Default selection of modules, unboundhotplug can be excluded if rcunbound is included (theyre mutually exclusive)
+# default target, all modules: unboundhotplug and rcunbound are mutually exclusive
 modules = $(shell find src -type f -name '*.cil' \
 	! -name unboundhotplug.cil -printf '%p ')
 
-# Selection of least required modules (no LuCI: optimized for base snapshot image)
-modulesmin = $(shell find src -type f -name '*.cil' \
+# no luci: this target is more robust but does it not cover luci and does not target initscripts
+modulesnoluci = $(shell find src -type f -name '*.cil' \
 	-regextype posix-egrep \
 	! -regex 'src/(cgi|init)?script/.*\.cil' \
-	! -name acme.cil ! -name blockmount.cil ! -name chrony.cil \
-	! -name ip.cil ! -name luaexecfile.cil ! -name luci.cil \
-	! -name murmur.cil ! -name ngircd.cil \
-	! -name opensslexecfile.cil ! -name px5gexecfile.cil \
-	! -name rpcd.cil ! -name sftpserver.cil \
-	! -name socatexecfile.cil ! -name sqm.cil \
-	! -name tinyproxy.cil ! -name ttyd.cil ! -name uhttpd.cil \
-	! -name unbound.cil ! -name unboundcontrol.cil \
-	! -name unboundhotplug.cil ! -name wgetexecfile.cil \
-	! -name wgetmiscfile.cil ! -name wireguard.cil -printf '%p ')
+	! -name luci.cil ! -name rpcd.cil ! -name uhttpd.cil \
+	-printf '%p ')
 
-# selection of modules that i use on my own router
+# my own customised target, tailored to my personal requirements
 modulesmintesttgt = $(shell find src -type f -name '*.cil' \
 	-regextype posix-egrep \
 	! -regex 'src/(cgi|init)?script/.*\.cil' \
@@ -51,8 +43,8 @@ clean: clean.$(polvers)
 clean.%:
 	rm -f policy.$* file_contexts
 
-min: min.$(polvers)
-min.%: $(modulesmin)
+noluci: noluci.$(polvers)
+noluci.%: $(modulesnoluci)
 	secilc --policyvers=$* $^
 
 mintesttgt: mintesttgt.$(polvers)
