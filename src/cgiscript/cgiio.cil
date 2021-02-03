@@ -37,14 +37,22 @@
               (call .file.execfile_obj_type_transition
                     (ARG1 cgiscriptfile file "cgi-io")))
 
+       (macro obj_type_transition_tmpfile ((type ARG1)(class ARG2)(name ARG3))
+              (call .tmp.fs_obj_type_transition
+                    (ARG1 tmpfile ARG2 ARG3)))
+
        ;;
        ;; Policy
        ;;
 
        (blockinherit .cgiscript.base_template)
+       (blockinherit .tmpfile.obj_template)
 
        (allow subj self (capability2 (syslog)))
        (allow subj self create_unix_stream_socket)
+
+       (call manage_tmpfile_files (subj))
+       (call obj_type_transition_tmpfile (subj file "*"))
 
        (call .sys.readringbuffer (subj))
        (call .sys.transition (subj))

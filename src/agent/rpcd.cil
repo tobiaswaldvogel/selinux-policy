@@ -102,6 +102,9 @@
 
        (call .board.read_miscfile_files (subj))
 
+       (call .cgiio.delete_tmpfile_files (subj))
+       (call .cgiio.read_tmpfile_files (subj))
+
        (call .class.list_sysfile_dirs (subj))
 
        (call .cron.readwrite_miscfile_files (subj))
@@ -181,6 +184,8 @@
        (call .sysupgrade.mapexecute_execfile_files (subj))
        (call .sysupgrade.read_conffile_files (subj))
        (call .sysupgrade.read_execfile_files (subj))
+
+       (call .tmp.deletename_fs_dirs (subj))
 
        (call .tmpfile.deletename_runtimetmpfile_dirs (subj))
        (call .tmpfile.search_hoststmpfile_dirs (subj))
