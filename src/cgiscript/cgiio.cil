@@ -86,5 +86,10 @@
 
        (call .xtables.subj_type_transition (subj))
 
+       (optional cgiio_opt_mtdstoredev
+                 ;; save mtdblock contents
+                 (call .dev.stor.read.subj_type (subj))
+                 (call .mtd.read_stordev_blk_files (subj)))
+
        (optional cgiio_opt_rcfirewall
                  (call .rcfirewall.subj_type_transition (subj))))
