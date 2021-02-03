@@ -50,5 +50,7 @@
        (call .tmpfile.search_statetmpfile_dirs (subj))
 
        (call .unbound.obj_type_transition_statetmpfile (subj))
+       (call .unbound.manage_statetmpfile_dirs (subj))
+       (call .unbound.manage_statetmpfile_files (subj))
        (call .unbound.read_miscfile_files (subj))
        (call .unbound.search_miscfile_dirs (subj)))

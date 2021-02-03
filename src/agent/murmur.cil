@@ -139,6 +139,9 @@
               (call .acme.read_conffile_lnk_files (subj))
               (call .acme.search_conffile_dirs (subj)))
 
+    (optional murmur_opt_rcmurmur
+              (call .rcmurmur.use_fds (subj)))
+
     (optional murmur_opt_sslcertfile
               (call .ssl.read_certfile_files (subj))
               (call .ssl.read_certfile_lnk_files (subj))

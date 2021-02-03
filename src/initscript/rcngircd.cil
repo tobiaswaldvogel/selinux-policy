@@ -34,6 +34,8 @@
 
        (blockinherit .initscript.base_template)
 
+       (allow subj self (capability (sys_ptrace)))
+
        (call .ngircd.subj_type_transition (subj))
 
        (call .proc.list_fs_dirs (subj))

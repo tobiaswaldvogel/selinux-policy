@@ -40,6 +40,8 @@
 
        (call .block.search_sysfile_dirs (subj))
 
+       (call .dev.stor.readwrite.subj_type (subj))
+
        (call .devices.search_sysfile_dirs (subj))
 
        (call .logd.unix_dgram_send (subj))
@@ -48,6 +50,7 @@
 
        (call .swaps.read_procfile_files (subj))
 
-       (call .zram.getattr_stordev_blk_files (subj))
+       (call .zram.readwrite_stordev_blk_files (subj))
 
-       (call .zram.search_sysfile_dirs (subj)))
+       (call .zram.manage_sysfile_files (subj))
+       (call .zram.readwrite_sysfile_dirs (subj)))
