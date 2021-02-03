@@ -87,5 +87,7 @@
        (call .uci.readwrite_conffile_files (subj))
        (call .uci.subj_type_transition (subj))
 
+       (call .xattr.associate_filesystems (miscfile))
+
        (optional wifi_opt_rcnetwork
                  (call .rcnetwork.use_fds (subj))))
