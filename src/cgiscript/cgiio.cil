@@ -86,7 +86,7 @@
 
        (call .xtables.subj_type_transition (subj))
 
-       (optional cgiio_opt_mtdstoredev
+       (optional cgiio_opt_mtdstordev
                  ;; save mtdblock contents
                  (call .dev.stor.read.subj_type (subj))
                  (call .mtd.read_stordev_blk_files (subj)))
