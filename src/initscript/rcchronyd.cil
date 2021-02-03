@@ -36,4 +36,7 @@
 
        (call .chrony.manage_conftmpfile_dirs (subj))
        (call .chrony.manage_conftmpfile_files (subj))
-       (call .chrony.obj_type_transition_conftmpfile (subj)))
+       (call .chrony.obj_type_transition_conftmpfile (subj))
+
+       (call .tmpfile.create_conftmpfile_dirs (subj))
+       (call .tmpfile.obj_type_transition_conftmpfile (subj)))

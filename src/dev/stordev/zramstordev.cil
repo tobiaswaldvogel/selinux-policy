@@ -23,6 +23,9 @@
        ;; Macros
        ;;
 
+       (macro getattr_stordev_blk_files ((type ARG1))
+              (allow ARG1 stordev (blk_file (getattr))))
+
        (macro obj_type_transition_stordev ((type ARG1))
               (call .tmp.fs_obj_type_transition
                     (ARG1 stordev blk_file "zram0"))

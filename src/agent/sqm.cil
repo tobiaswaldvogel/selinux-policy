@@ -148,5 +148,8 @@
 
        (call .uci.subj_type_transition (subj))
 
+       (optional sqm_opt_rcsqm
+                 (call .rcsqm.use_fds (subj)))
+
        (optional sqm_opt_xtables
                  (call .xtables.subj_type_transition (subj))))

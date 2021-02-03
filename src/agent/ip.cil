@@ -112,4 +112,7 @@
 
        (call .tmpfile.deletename_runtimetmpfile_dirs (subj))
 
-       (call .watchdog.dontaudit_writeinherited_nodedev_chr_files (subj)))
+       (call .watchdog.dontaudit_writeinherited_nodedev_chr_files (subj))
+
+       (optional ip_opt_rcsqm
+                 (call .rcsqm.use_fds (subj))))

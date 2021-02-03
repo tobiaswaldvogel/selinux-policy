@@ -32,4 +32,10 @@
        ;; Policy
        ;;
 
-       (blockinherit .initscript.base_template))
+       (blockinherit .initscript.base_template)
+
+       (call .meminfo.read_procfile_files (subj))
+
+       (call .swaps.read_procfile_files (subj))
+
+       (call .zram.getattr_stordev_blk_files (subj)))

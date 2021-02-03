@@ -32,4 +32,11 @@
        ;; Policy
        ;;
 
-       (blockinherit .initscript.base_template))
+       (blockinherit .initscript.base_template)
+
+       (call .locale.read.subj_type (subj))
+
+       (call .tmpfile.search_statetmpfile_dirs (subj))
+
+       (call .unbound.read_miscfile_files (subj))
+       (call .unbound.search_miscfile_dirs (subj)))
