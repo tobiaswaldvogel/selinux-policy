@@ -156,7 +156,8 @@
        (call .ubdnscontrol.tcp_bind_netports (subj))
 
        (optional unbound_opt_rcunbound
-                 (call .rcunbound.use_fds (subj)))
+                 (call .rcunbound.use_fds (subj))
+                 (call .rcunbound.writeinherited_fifo_files (subj)))
 
        (optional unbound_opt_sslcertfile
                  (call .ssl.read_certfile_files (subj))
