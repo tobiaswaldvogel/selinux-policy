@@ -127,6 +127,8 @@
 
        (call .firewall.readwrite_conffile_files (subj))
 
+       (call .firstboot.subj_type_transition (subj))
+
        (call .fsck.subj_type_transition (subj))
 
        (call .ifup.subj_type_transition (subj))
