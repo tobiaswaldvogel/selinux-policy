@@ -39,6 +39,8 @@
 
        (blockinherit .agent.base_template)
 
+       (allow subj self create_unix_dgram_socket)
+
        (call execute_execfile_files (subj))
 
        (call .dev.getattr_all_chr_files (subj))
@@ -51,7 +53,11 @@
 
        (call .filesystems.read_procfile_files (subj))
 
-       (call .logd.getattr_miscfile_sock_files (subj))
+       (call .logd.unix_dgram_send (subj))
+
+       (call .overlay.deletename_miscfile_dirs (subj))
+       (call .overlay.delete_miscfile_lnk_files (subj))
+       (call .overlay.read_miscfile_lnk_files (subj))
 
        (call .pts.search_fs_dirs (subj))
 
