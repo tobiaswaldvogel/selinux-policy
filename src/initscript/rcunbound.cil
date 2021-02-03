@@ -35,7 +35,8 @@
        (blockinherit .initscript.base_template)
 
        (allow subj self
-              (capability (chown dac_override dac_read_search fowner fsetid)))
+              (capability (chown dac_override dac_read_search fowner fsetid
+                                 sys_ptrace)))
        (allow subj self create_udp_socket)
        (allow subj self create_unix_dgram_socket)
 
@@ -44,6 +45,7 @@
        (call .logd.unix_dgram_send (subj))
 
        (call .net.egress_netifs (subj))
+       (call .net.sendto_netnodes (subj))
        (call .net.udp_bind_netnodes (subj))
 
        (call .proc.list_fs_dirs (subj))

@@ -34,6 +34,7 @@
 
        (blockinherit .initscript.base_template)
 
+       (allow subj self (capability (sys_admin)))
        (allow subj self create_unix_dgram_socket)
 
        (call .sys.read_fs_lnk_files (subj))
