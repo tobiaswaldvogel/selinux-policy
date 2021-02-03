@@ -96,6 +96,9 @@
        (macro getattr_datafile_files ((type ARG1))
               (allow ARG1 datafile (file (getattr))))
 
+       (macro getattr_execfile_files ((type ARG1))
+              (allow ARG1 execfile (file (getattr))))
+
        (macro obj_type_transition_conffile ((type ARG1))
               (call .file.conffile_obj_type_transition
                     (ARG1 conffile file "dnsmasq.conf")))

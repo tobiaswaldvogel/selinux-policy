@@ -24,6 +24,9 @@
        ;; Macros
        ;;
 
+       (macro getattr_certfile_files ((type ARG1))
+              (allow ARG1 certfile (file (getattr))))
+
        (macro obj_type_transition_certfile ((type ARG1))
               (call .file.conffile_obj_type_transition
                     (ARG1 certfile dir "ssl")))
