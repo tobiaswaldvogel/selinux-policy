@@ -164,6 +164,9 @@
 
        (call .odhcpd.read_hoststmpfile_files (subj))
 
+       (call .opkg.list_conffile_dirs (subj))
+       (call .opkg.readwrite_conffile_files (subj))
+
        (call .partitions.read_procfile_files (subj))
 
        (call .random.read_nodedev_chr_files (subj))

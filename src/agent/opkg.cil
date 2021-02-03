@@ -139,6 +139,19 @@
               (call read_miscfile_files (subj))
               (call search_miscfile_dirs (subj))
 
+              (call manage_tmpfile_files (subj))
+              (call obj_type_transition_tmpfile (subj))
+
+              ;; opkg is "trusted"
+              (call opkg.execfile_subj_type_transition (subj .sys.subj))
+              (call opkg.mapexecute_execfile_files (subj))
+              (call opkg.read_execfile_files (subj))
+
+              (call .sys.transition (subj))
+              (call .sys.dontaudit_noatsecure (subj))
+              (call .sys.dontaudit_rlimitinh (subj))
+              (call .sys.dontaudit_siginh (subj))
+
               (call .libubox.read_datafile_files (subj))
               (call .libubox.search_datafile_dirs (subj))
 
