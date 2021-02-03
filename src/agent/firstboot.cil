@@ -42,11 +42,18 @@
        (call execute_execfile_files (subj))
 
        (call .dev.getattr_all_chr_files (subj))
-       (call .dev.stor.getattr_all_blk_files (subj))
+       (call .dev.stor.read.subj_type (subj))
+       (call .dev.stor.read_all_blk_files (subj))
+       (call .dev.stor.read_all_chr_files (subj))
+
+       (call .devices.list_sysfile_dirs (subj))
+       (call .devices.read_sysfile_files (subj))
 
        (call .filesystems.read_procfile_files (subj))
 
        (call .logd.getattr_miscfile_sock_files (subj))
+
+       (call .pts.search_fs_dirs (subj))
 
        (call .selinux.linked.subj_type (subj))
 
