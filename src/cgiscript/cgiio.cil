@@ -47,7 +47,11 @@
        (allow subj self create_unix_stream_socket)
 
        (call .sys.readringbuffer (subj))
+       (call .sys.transition (subj))
        (call .sys.writeinherited_fifo_files (subj))
+       (call .sys.dontaudit_noatsecure (subj))
+       (call .sys.dontaudit_rlimitinh (subj))
+       (call .sys.dontaudit_siginh (subj))
 
        (call .file.read_conffile_lnk_files (subj))
        (call .file.search_initscriptfile_dirs (subj))
@@ -61,6 +65,10 @@
        (call .selinux.linked.subj_type (subj))
 
        (call .shell.execute_execfile_files (subj))
+
+       (call .sysupgrade.execfile_subj_type_transition (subj .sys.subj))
+       (call .sysupgrade.mapexecute_execfile_files (subj))
+       (call .sysupgrade.read_execfile_files (subj))
 
        (call .tmpfile.search_runtimetmpfile_dirs (subj))
 

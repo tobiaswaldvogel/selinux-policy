@@ -95,6 +95,10 @@
        (call .sys.read_fs_lnk_files (subj))
        (call .sys.requestmodule (subj))
        (call .sys.search_sysctlfile_dirs (subj))
+       (call .sys.transition (subj))
+       (call .sys.dontaudit_noatsecure (subj))
+       (call .sys.dontaudit_rlimitinh (subj))
+       (call .sys.dontaudit_siginh (subj))
 
        (call .board.read_miscfile_files (subj))
 
@@ -173,7 +177,10 @@
        (call .subj.signal_all (subj))
        (call .subj.sigkill_all (subj))
 
+       (call .sysupgrade.execfile_subj_type_transition (subj .sys.subj))
+       (call .sysupgrade.mapexecute_execfile_files (subj))
        (call .sysupgrade.read_conffile_files (subj))
+       (call .sysupgrade.read_execfile_files (subj))
 
        (call .tmpfile.deletename_runtimetmpfile_dirs (subj))
        (call .tmpfile.search_hoststmpfile_dirs (subj))
