@@ -45,15 +45,15 @@ clean.%:
 
 noluci: noluci.$(polvers)
 noluci.%: $(modulesnoluci)
-	secilc -vvv --policyvers=$* $^
+	secilc --policyvers=$* $^
 
 mintesttgt: mintesttgt.$(polvers)
 mintesttgt.%: $(modulesmintesttgt)
-	secilc -vvv --policyvers=$* $^
+	secilc --policyvers=$* $^
 
 policy: policy.$(polvers)
 policy.%: $(modules)
-	secilc -vvv --policyvers=$* $^
+	secilc --policyvers=$* $^
 
 check: check.$(polvers)
 check.%:
