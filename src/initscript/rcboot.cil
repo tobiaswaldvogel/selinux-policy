@@ -64,6 +64,8 @@
        (call .debug.mount_filesystems (subj))
 
        (call .dev.stor.read.subj_type (subj))
+       (call .dev.stor.read_all_blk_files (subj))
+       (call .dev.stor.read_all_chr_files (subj))
 
        (call .devices.read_sysfile_files (subj))
        (call .devices.search_sysfile_dirs (subj))
@@ -149,7 +151,4 @@
        (call .wtmp.readwrite_logtmpfile_files (subj))
 
        (optional rcboot_opt_blockmount
-                 (call .blockmount.subj_type_transition (subj)))
-
-       (optional rcboot_opt_mtdstordev
-                 (call .mtd.read_stordev_chr_files (subj))))
+                 (call .blockmount.subj_type_transition (subj))))

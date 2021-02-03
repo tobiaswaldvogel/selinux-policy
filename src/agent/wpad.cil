@@ -71,6 +71,9 @@
               (call .tmp.fs_obj_type_transition
                     (ARG1 tmpfile ARG2 ARG3)))
 
+       (macro setattr_runtimetmpfile_dirs ((type ARG1))
+              (allow ARG1 runtimetmpfile (dir (setattr))))
+
        (macro unix_dgram_send_runtimetmpfile ((type ARG1))
               (call search_runtimetmpfile_dirs (ARG1))
               (call sendto_unix_dgram_sockets (ARG1))
