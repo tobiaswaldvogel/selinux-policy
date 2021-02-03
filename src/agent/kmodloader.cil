@@ -98,4 +98,7 @@
        (call .watchdog.dontaudit_writeinherited_nodedev_chr_files (subj))
 
        (optional kmodloader_opt_rcboot
-                 (call .rcboot.use_fds (subj))))
+                 (call .rcboot.use_fds (subj)))
+
+       (optional kmodloader_opt_rcsqm
+                 (call .rcsqm.use_fds (subj))))

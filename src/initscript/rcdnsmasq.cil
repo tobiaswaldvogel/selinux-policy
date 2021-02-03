@@ -99,4 +99,7 @@
        (call .tmpfile.obj_type_transition_conftmpfile (subj))
        (call .tmpfile.obj_type_transition_hoststmpfile (subj))
        (call .tmpfile.obj_type_transition_runtimetmpfile (subj))
-       (call .tmpfile.obj_type_transition_statetmpfile (subj)))
+       (call .tmpfile.obj_type_transition_statetmpfile (subj))
+
+       (optional rcdnsmasq_opt_rcunbound
+                 (call .rcunbound.use_fds (subj))))

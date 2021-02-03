@@ -36,11 +36,15 @@
 
        (allow subj self
               (capability (chown dac_override dac_read_search fowner fsetid)))
+       (allow subj self create_udp_socket)
        (allow subj self create_unix_dgram_socket)
 
        (call .locale.read.subj_type (subj))
 
        (call .logd.unix_dgram_send (subj))
+
+       (call .net.egress_netifs (subj))
+       (call .net.udp_bind_netnodes (subj))
 
        (call .proc.list_fs_dirs (subj))
 
@@ -65,6 +69,7 @@
        (call .unbound.read_conffile_files (subj))
        (call .unbound.read_miscfile_files (subj))
        (call .unbound.search_miscfile_dirs (subj))
+       (call .unbound.subj_type_transition (subj))
 
        (optional rcunbound_opt_dnsmasq
                  (call .dnsmasq.getattr_execfile_files (subj)))

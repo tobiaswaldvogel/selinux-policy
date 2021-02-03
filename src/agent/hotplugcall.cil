@@ -141,5 +141,8 @@
                  ;; bad permissions on /tmp/lib/unbound
                  (allow subj self (capability (dac_override)))
 
+                 (call .unbound.read_miscfile_files (subj))
+                 (call .unbound.search_miscfile_dirs (subj))
+
                  (call .unbound.manage_statetmpfile_files (subj))
                  (call .unbound.readwrite_statetmpfile_dirs (subj))))

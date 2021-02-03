@@ -40,6 +40,7 @@
 
        (call .tinyproxy.create_logtmpfile_files (subj))
        (call .tinyproxy.obj_type_transition_logtmpfile (subj))
+       (call .tinyproxy.readwrite_logtmpfile_files (subj))
        (call .tinyproxy.setattr_logtmpfile_files (subj))
 
        (call .tmpfile.create_conftmpfile_dirs (subj))
