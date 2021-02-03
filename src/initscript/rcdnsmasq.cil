@@ -82,7 +82,7 @@
 
        (call .sys.search_sysctlfile_dirs (subj))
 
-       (call .tmp.delete_fs_lnk_files (subj))
+       (call .tmp.manage_fs_lnk_files (subj))
        (call .tmp.readwrite_fs_dirs (subj))
 
        (call .tmpfile.addname_statetmpfile_dirs (subj))

@@ -36,5 +36,6 @@
 
        (call .murmur.read_runtimetmpfile_files (subj))
        (call .murmur.signal (subj))
+       (call .murmur.subj_type_transition (subj))
 
        (call .tmpfile.search_runtimetmpfile_dirs (subj)))

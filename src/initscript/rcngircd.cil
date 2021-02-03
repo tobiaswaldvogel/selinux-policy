@@ -34,7 +34,7 @@
 
        (blockinherit .initscript.base_template)
 
-       (call .ngircd.getattr_execfile_files (subj))
+       (call .ngircd.subj_type_transition (subj))
 
        (call .proc.list_fs_dirs (subj))
 

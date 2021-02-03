@@ -1,16 +1,14 @@
 Urgent (loose ends):
 --------------------
-chronyd LuCI/initscript
-unbound LuCI/initscript
-tinyproxy LuCI/initscript
-sqm LuCI/initscript
+chronyd LuCI
+unbound LuCI
+tinyproxy LuCI
+sqm LuCI
 wireguard LuCI
-zram LuCI/initscript
+zram LuCI
+ttyd initscript/LuCI
 
 acme (dns)
-
-ngircd initscript
-umurmur initscript
 
 Various misc:
 -------------
