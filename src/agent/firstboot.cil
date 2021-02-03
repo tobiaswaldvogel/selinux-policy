@@ -39,4 +39,10 @@
 
        (blockinherit .agent.base_template)
 
-       (call execute_execfile_files (subj)))
+       (call execute_execfile_files (subj))
+
+       (call .filesystems.read_procfile_files (subj))
+
+       (call .selinux.linked.subj_type (subj))
+
+       (call .shell.execute_execfile_files (subj)))
