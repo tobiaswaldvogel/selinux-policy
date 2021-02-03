@@ -53,6 +53,9 @@
        (call .devices.list_sysfile_dirs (subj))
        (call .devices.read_sysfile_files (subj))
 
+       ;; the big hammer
+       (call .file.delete_all (subj))
+
        (call .filesystems.read_procfile_files (subj))
 
        (call .logd.unix_dgram_send (subj))

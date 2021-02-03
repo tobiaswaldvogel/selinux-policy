@@ -32,6 +32,10 @@
         conffile_file_context)
 
        (filecon
+        "/tmp/opkg\.err"
+        file
+        tmpfile_file_context)
+       (filecon
         "/tmp/opkg\.lock"
         file
         tmpfile_file_context)
@@ -98,6 +102,8 @@
               (call .tmp.fs_obj_type_transition
                     (ARG1 tmpfile dir "opkg-lists"))
               (call .tmp.fs_obj_type_transition
+                    (ARG1 tmpfile file "opkg.err"))
+              (call .tmp.fs_obj_type_transition
                     (ARG1 tmpfile file "opkg.lock"))
               (call .tmp.fs_obj_type_transition
                     (ARG1 tmpfile file "opkg.out")))
@@ -145,6 +151,7 @@
               (call read_miscfile_files (subj))
               (call search_miscfile_dirs (subj))
 
+              (call list_tmpfile_dirs (subj))
               (call manage_tmpfile_files (subj))
               (call obj_type_transition_tmpfile (subj))
 
