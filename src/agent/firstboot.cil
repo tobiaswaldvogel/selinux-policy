@@ -39,7 +39,8 @@
 
        (blockinherit .agent.base_template)
 
-       (allow subj self (capability (dac_override dac_read_search sys_boot)))
+       (allow subj self
+              (capability (dac_override dac_read_search sys_admin sys_boot)))
        (allow subj self create_unix_dgram_socket)
 
        (call execute_execfile_files (subj))

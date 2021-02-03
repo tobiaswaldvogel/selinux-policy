@@ -1,13 +1,12 @@
 Urgent (loose ends):
 --------------------
-opkg LuCI
 chronyd LuCI/initscript
-sysupgrade LuCI
 unbound LuCI/initscript
 tinyproxy LuCI/initscript
 sqm LuCI/initscript
 wireguard LuCI
 zram LuCI/initscript
+
 acme (dns)
 
 ngircd initscript
