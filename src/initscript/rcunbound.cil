@@ -77,4 +77,4 @@
                  (call .dnsmasq.getattr_execfile_files (subj)))
 
        (optional rcunbound_opt_rcdnsmasq
-                 (call .rcdnsmasq.subj_type_transition (subj))))
+                 (call .rcdnsmasq.execute_initscriptfile_files (subj))))
