@@ -108,6 +108,9 @@
               (call .tmp.fs_obj_type_transition
                     (ARG1 tmpfile file "opkg.out")))
 
+       (macro dontaudit_writeinherited_tmpfile_files ((type ARG1))
+              (dontaudit ARG1 tmpfile writeinherited_file))
+
        ;;
        ;; Policy
        ;;

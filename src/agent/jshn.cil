@@ -65,6 +65,7 @@
        (call .odhcpd.update.writeinherited_fifo_files (subj))
 
        (call .opkg.call.writeinherited_fifo_files (subj))
+       (call .opkg.dontaudit_writeinherited_tmpfile_files (subj))
 
        (call .pppd.writeinherited_fifo_files (subj))
        (call .pppd.dontaudit_readwrite_packet_sockets (subj))
