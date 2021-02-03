@@ -34,8 +34,20 @@
 
        (blockinherit .initscript.base_template)
 
+       (allow subj self create_unix_dgram_socket)
+
+       (call .sys.read_fs_lnk_files (subj))
+
+       (call .block.search_sysfile_dirs (subj))
+
+       (call .devices.search_sysfile_dirs (subj))
+
+       (call .logd.unix_dgram_send (subj))
+
        (call .meminfo.read_procfile_files (subj))
 
        (call .swaps.read_procfile_files (subj))
 
-       (call .zram.getattr_stordev_blk_files (subj)))
+       (call .zram.getattr_stordev_blk_files (subj))
+
+       (call .zram.search_sysfile_dirs (subj)))

@@ -62,6 +62,9 @@
        ;; Macros
        ;;
 
+       (macro getattr_execfile_files ((type ARG1))
+              (allow ARG1 execfile (file (getattr))))
+
        (macro conffile_obj_type_transition_certfile ((type ARG1))
               (call .file.conffile_obj_type_transition
                     (ARG1 certfile file "ngircd.pem"))

@@ -36,6 +36,8 @@
 
        (call .locale.read.subj_type (subj))
 
+       (call .subj.read_state_all (subj))
+
        (call .tmpfile.search_statetmpfile_dirs (subj))
 
        (call .unbound.read_miscfile_files (subj))

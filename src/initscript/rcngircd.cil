@@ -32,4 +32,10 @@
        ;; Policy
        ;;
 
-       (blockinherit .initscript.base_template))
+       (blockinherit .initscript.base_template)
+
+       (call .ngircd.getattr_execfile_files (subj))
+
+       (call .proc.list_fs_dirs (subj))
+
+       (call .subj.read_state_all (subj)))
