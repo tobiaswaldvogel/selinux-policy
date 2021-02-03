@@ -43,6 +43,8 @@
 
        (call execute_execfile_files (subj))
 
+       (call .sys.list_rootfile_dirs (subj))
+
        (call .dev.getattr_all_chr_files (subj))
        (call .dev.stor.read.subj_type (subj))
        (call .dev.stor.read_all_blk_files (subj))
@@ -55,9 +57,8 @@
 
        (call .logd.unix_dgram_send (subj))
 
-       (call .overlay.deletename_miscfile_dirs (subj))
-       (call .overlay.delete_miscfile_lnk_files (subj))
-       (call .overlay.read_miscfile_lnk_files (subj))
+       (call .overlay.manage_miscfile_lnk_files (subj))
+       (call .overlay.readwrite_miscfile_dirs (subj))
 
        (call .pts.search_fs_dirs (subj))
 

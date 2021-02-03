@@ -35,6 +35,10 @@
         "/tmp/opkg\.lock"
         file
         tmpfile_file_context)
+       (filecon
+        "/tmp/opkg\.out"
+        file
+        tmpfile_file_context)
 
        (filecon
         "/tmp/opkg-lists"
@@ -94,7 +98,9 @@
               (call .tmp.fs_obj_type_transition
                     (ARG1 tmpfile dir "opkg-lists"))
               (call .tmp.fs_obj_type_transition
-                    (ARG1 tmpfile file "opkg.lock")))
+                    (ARG1 tmpfile file "opkg.lock"))
+              (call .tmp.fs_obj_type_transition
+                    (ARG1 tmpfile file "opkg.out")))
 
        ;;
        ;; Policy
@@ -152,12 +158,16 @@
               (call .sys.dontaudit_rlimitinh (subj))
               (call .sys.dontaudit_siginh (subj))
 
+              (call .jshn.subj_type_transition (subj))
+
               (call .libubox.read_datafile_files (subj))
               (call .libubox.search_datafile_dirs (subj))
 
               (call .selinux.linked.subj_type (subj))
 
               (call .shell.execute_execfile_files (subj))
+
+              (call .tmp.deletename_fs_dirs (subj))
 
               (optional opkg_call_opt_cgiio
                         (call .cgiio.writeinherited_fifo_files (subj))))
