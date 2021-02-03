@@ -34,6 +34,11 @@
 
        (blockinherit .initscript.base_template)
 
+       (call .sys.search_sysctlfile_dirs (subj))
+
+       (call .kernel.read_sysctlfile_files (subj))
+       (call .kernel.search_sysctlfile_dirs (subj))
+
        (call .tmp.addname_fs_dirs (subj))
 
        (call .tmpfile.create_logtmpfile_dirs (subj))
