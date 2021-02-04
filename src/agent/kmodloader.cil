@@ -101,4 +101,7 @@
                  (call .rcboot.use_fds (subj)))
 
        (optional kmodloader_opt_rcsqm
-                 (call .rcsqm.use_fds (subj))))
+                 (call .rcsqm.use_fds (subj)))
+
+       (optional kmodloader_opt_sqm
+                 (call .sqm.appendinherited_runtimetmpfile_files (subj))))

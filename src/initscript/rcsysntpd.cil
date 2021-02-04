@@ -34,9 +34,6 @@
 
        (blockinherit .initscript.base_template)
 
-       (call .file.manage_conffile_lnk_files (subj))
-       (call .file.readwrite_conffile_dirs (subj))
-
        (call .ntpdhotplug.subj_type_transition (subj))
 
        (call .tmp.list_fs_dirs (subj)))

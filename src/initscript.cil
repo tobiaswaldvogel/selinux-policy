@@ -30,7 +30,9 @@
        ;; file check on /sbin/ujail
        (call .file.getattr_execfile_files (subj_typeattr))
 
-       (call .file.read_conffile_lnk_files (subj_typeattr))
+       ;; service foo enable|disable
+       (call .file.manage_conffile_lnk_files (subj_typeattr))
+       (call .file.readwrite_conffile_dirs (subj_typeattr))
        (call .file.search_initscriptfile_dirs (subj_typeattr))
 
        (call .functions.read_miscfile_files (subj_typeattr))

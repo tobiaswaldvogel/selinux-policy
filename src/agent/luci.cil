@@ -430,12 +430,19 @@
 
               (call .dropbear.auditexecute_execfile_files (subj))
 
+              (call .file.manage_conffile_lnk_files (subj))
+              (call .file.readwrite_conffile_dirs (subj))
+              (call .file.search_initscriptfile_dirs (subj))
               (call .file.search_cgiscriptfile_dirs (subj))
-              (call .file.search_conffile_dirs (subj))
+
+              (call .functions.read_miscfile_files (subj))
+              (call .functions.search_miscfile_dirs (subj))
 
               (call .fw3.auditexecute_execfile_files (subj))
 
               (call .leds.list_sysfile_dirs (subj))
+
+              (call .locale.read.subj_type (subj))
 
               (call .lua.execute_execfile_files (subj))
 
@@ -445,13 +452,21 @@
 
               (call .random.read_nodedev_chr_files (subj))
 
+              (call .rccommon.read_conffile_files (subj))
+
+              (call .selinux.linked.subj_type (subj))
+
               (call .shadow.read_authfile_files (subj))
               (call .shadow.read.subj_type (subj))
+
+              (call .shell.execute_execfile_files (subj))
 
               (call .swconfig.auditexecute_execfile_files (subj))
 
               (call .tmpfile.search_runtimetmpfile_dirs (subj))
+              (call .tmpfile.search_statetmpfile_dirs (subj))
 
+              (call .uci.getattr_conffile_files (subj))
               (call .uci.search_conffile_dirs (subj))
 
               (call .ubusd.unix_stream_connect (subj))
@@ -461,7 +476,17 @@
               (call .www.search_miscfile_dirs (subj))
 
               (optional luci_cgi_opt_acme
-                        (call .acme.search_conffile_dirs (subj))))
+                        (call .acme.search_conffile_dirs (subj)))
+
+              ;; luci-app-tinyproxy
+              (optional luci_cgi_opt_wget
+                        (call .httpproxy.tcp_connect_netports (subj))
+                        (call .net.egress_netifs (subj))
+                        (call .net.sendto_netnodes (subj))
+                        (call .wget.execute_execfile_files (subj)))
+
+              (optional luci_cgi_opt_wireguard
+                        (call .wireguard.subj_type_transition (subj))))
 
        (block peeraddr
 

@@ -98,9 +98,10 @@
     (call manage_runtimetmpfile_sock_files (subj))
     (call obj_type_transition_runtimetmpfile (subj))
 
+    (call .sys.list_rootfile_dirs (subj))
     (call .sys.readwriteinherited_ptydev_chr_files (subj))
-    (call .sys.transition (subj))
     (call .sys.readwriteinherited_fifo_files (subj))
+    (call .sys.transition (subj))
     (call .sys.dontaudit_noatsecure (subj))
     (call .sys.dontaudit_rlimitinh (subj))
     (call .sys.dontaudit_siginh (subj))
@@ -114,6 +115,8 @@
 
     (call .logd.unix_dgram_send (subj))
 
+    (call .login.execute_execfile_files (subj))
+
     (call .nameservice.read_miscfile_files (subj))
 
     (call .net.egress_netifs (subj))
@@ -126,6 +129,8 @@
 
     (call .random.read_nodedev_chr_files (subj))
 
+    (call .selinux.linked.subj_type (subj))
+
     ;; execute shell execfiles with an automatic transition to sys.subj by default
     (call .shell.execfile_subj_type_transition (subj .sys.subj))
     (call .shell.mapexecute_execfile_files (subj))
@@ -135,6 +140,8 @@
     (call .subj.signal_all (subj))
 
     (call .tmpfile.deletename_runtimetmpfile_dirs (subj))
+
+    (call .uci.getattr_execfile_files (subj))
 
     (optional ttyd_opt_acme
               (call .acme.read_conffile_files (subj))

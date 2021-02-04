@@ -223,4 +223,9 @@
                  (call .ip.subj_type_transition (subj)))
 
        (optional rpcd_opt_rcfirewall
-                 (call .rcfirewall.subj_type_transition (subj))))
+                 (call .rcfirewall.subj_type_transition (subj)))
+
+       (optional rpcd_opt_sqm
+                 (call .sqm.getattr_execfile_files (subj))
+                 (call .sqm.getattr_runtimetmpfile_files (subj))
+                 (call .sqm.list_runtimetmpfile_dirs (subj))))

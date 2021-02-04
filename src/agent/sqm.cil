@@ -68,6 +68,12 @@
        ;; Macros
        ;;
 
+       (macro getattr_execfile_files ((type ARG1))
+              (allow ARG1 execfile (file (getattr))))
+
+       (macro getattr_runtimetmpfile_files ((type ARG1))
+              (allow ARG1 runtimetmpfile (file (getattr))))
+
        (macro libfile_obj_type_transition_execfile ((type ARG1))
               (call .file.libfile_obj_type_transition
                     (ARG1 execfile file "run.sh"))
