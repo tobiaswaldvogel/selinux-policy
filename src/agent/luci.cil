@@ -419,6 +419,8 @@
 
               (allow subj self create_netlink_generic_socket)
               (allow subj self create_netlink_route_socket)
+              (allow subj self create_udp_socket)
+              (allow subj self create_unix_dgram_socket)
               (allow subj self create_unix_stream_socket)
               (allow subj self (netlink_route_socket (nlmsg_read)))
 
@@ -431,6 +433,7 @@
               (call obj_type_transition_tmpfile (subj file "*"))
 
               (call .sys.read_fs_lnk_files (subj))
+              (call .sys.requestmodule (subj))
               (call .sys.writeinherited_fifo_files (subj))
 
               (call .blockmount.auditexecute_execfile_files (subj))
@@ -440,6 +443,7 @@
               (call .class.list_sysfile_dirs (subj))
 
               (call .devices.list_sysfile_dirs (subj))
+              (call .devices.read_sysfile_files (subj))
 
               (call .dropbear.auditexecute_execfile_files (subj))
 
@@ -452,6 +456,8 @@
               (call .leds.list_sysfile_dirs (subj))
 
               (call .locale.read.subj_type (subj))
+
+              (call .logread.subj_type_transition (subj))
 
               (call .lua.execute_execfile_files (subj))
 
@@ -473,8 +479,10 @@
               (call .tmpfile.search_runtimetmpfile_dirs (subj))
               (call .tmpfile.search_statetmpfile_dirs (subj))
 
-              (call .uci.getattr_conffile_files (subj))
+              (call .uci.readwrite_conffile_files (subj))
+              (call .uci.read_tmpfile_files (subj))
               (call .uci.search_conffile_dirs (subj))
+              (call .uci.search_tmpfile_dirs (subj))
 
               (call .ubusd.unix_stream_connect (subj))
 
@@ -492,7 +500,13 @@
                         (call .rcunbound.subj_type_transition (subj)))
 
               (optional luci_cgi_opt_unbound
+                        (call .unbound.read_statetmpfile_files (subj))
+                        (call .unbound.readwrite_conffile_files (subj))
+                        (call .unbound.search_conffile_dirs (subj))
                         (call .unbound.search_statetmpfile_dirs (subj)))
+
+              (optional luci_cgi_opt_unboundcontrol
+                        (call .unbound.control.subj_type_transition (subj)))
 
               ;; luci-app-tinyproxy
               (optional luci_cgi_opt_wget
