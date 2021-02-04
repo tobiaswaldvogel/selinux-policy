@@ -115,4 +115,7 @@
        (call .watchdog.dontaudit_writeinherited_nodedev_chr_files (subj))
 
        (optional ip_opt_rcsqm
-                 (call .rcsqm.use_fds (subj))))
+                 (call .rcsqm.use_fds (subj)))
+
+       (optional ip_opt_ttyd
+                 (call .ttyd.readwriteinherited_ptydev_chr_files (subj))))

@@ -89,4 +89,7 @@
                  (call .rcfirewall.use_fds (subj)))
 
        (optional xtables_opt_sqm
-                 (call .sqm.readwriteinherited_fifo_files (subj))))
+                 (call .sqm.readwriteinherited_fifo_files (subj)))
+
+       (optional xtables_opt_ttyd
+                 (call .ttyd.readwriteinherited_ptydev_chr_files (subj))))

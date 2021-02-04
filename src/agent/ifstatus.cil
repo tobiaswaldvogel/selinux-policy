@@ -51,4 +51,7 @@
 
        (call .shell.execute_execfile_files (subj))
 
-       (call .ubus.subj_type_transition (subj)))
+       (call .ubus.subj_type_transition (subj))
+
+       (optional ifstatus_opt_ttyd
+                 (call .ttyd.readwriteinherited_ptydev_chr_files (subj))))

@@ -143,6 +143,9 @@
                  (call .ssl.read_certfile_lnk_files (subj))
                  (call .ssl.search_certfile_dirs (subj)))
 
+       (optional ngircd_opt_ttyd
+                 (call .ttyd.readwriteinherited_ptydev_chr_files (subj)))
+
        (block conf
 
               ;;

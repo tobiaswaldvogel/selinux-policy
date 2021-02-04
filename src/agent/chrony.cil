@@ -156,7 +156,10 @@
        (call .resolv.read_tmpfile_files (subj))
        (call .resolv.search_tmpfile_dirs (subj))
 
-       (call .tmpfile.search_runtimetmpfile_dirs (subj)))
+       (call .tmpfile.search_runtimetmpfile_dirs (subj))
+
+       (optional chronyc_opt_ttyd
+                 (call .ttyd.readwriteinherited_ptydev_chr_files (subj))))
 
 (block chronyd
 

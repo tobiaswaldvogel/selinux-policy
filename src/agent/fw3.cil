@@ -145,5 +145,8 @@
        ;; /etc/firewall.user
        (call .xtables.subj_type_transition (subj))
 
-       (optional firewall_opt_rcfirewall
-                 (call .rcfirewall.use_fds (subj))))
+       (optional fw3_opt_rcfirewall
+                 (call .rcfirewall.use_fds (subj)))
+
+       (optional fw3_opt_ttyd
+                 (call .ttyd.readwriteinherited_ptydev_chr_files (subj))))

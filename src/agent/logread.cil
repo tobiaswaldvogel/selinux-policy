@@ -89,4 +89,7 @@
 
        (call .tmpfile.deletename_runtimetmpfile_dirs (subj))
 
-       (call .ubusd.unix_stream_connect (subj)))
+       (call .ubusd.unix_stream_connect (subj))
+
+       (optional logread_opt_ttyd
+                 (call .ttyd.readwriteinherited_ptydev_chr_files (subj))))

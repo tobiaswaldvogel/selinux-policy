@@ -77,5 +77,8 @@
        (optional ubus_opt_initscript
                  (call .initscript.writeinherited_all_fifo_files (subj)))
 
+       (optional ubus_opt_ttyd
+                 (call .ttyd.readwriteinherited_ptydev_chr_files (subj)))
+
        (optional ubus_opt_uhttpd
                  (call .uhttpd.readinherited_fifo_files (subj))))

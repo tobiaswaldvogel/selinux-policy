@@ -69,6 +69,9 @@
        (optional mkfsf2fs_opt_sdstordev
                  (call .sd.readwrite_stordev_blk_files (subj)))
 
+       (optional mkfsf2fs_opt_ttyd
+                 (call .ttyd.readwriteinherited_ptydev_chr_files (subj)))
+
        (optional mkfsf2fs_opt_vdstordev
                  (call .vd.readwrite_stordev_blk_files (subj)))
 

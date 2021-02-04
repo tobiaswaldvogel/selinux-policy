@@ -70,6 +70,9 @@
            (call .tmpfile.runtimetmpfile_obj_type_transition
                  (ARG1 runtimetmpfile sock_file "ttyd.sock")))
 
+    (macro readwriteinherited_ptydev_chr_files ((type ARG1))
+           (typeattributeset readwriteinherited_ptydev.subj_typeattr ARG1))
+
     (macro unix_stream_connect ((type ARG1))
            (call connectto_unix_stream_sockets (ARG1))
            (call write_runtimetmpfile_sock_files (ARG1)))
@@ -143,7 +146,9 @@
 
     (call .uci.execute_execfile_files (subj))
     (call .uci.read_conffile_files (subj))
+    (call .uci.read_tmpfile_files (subj))
     (call .uci.search_conffile_dirs (subj))
+    (call .uci.search_tmpfile_dirs (subj))
 
     (optional ttyd_opt_acme
               (call .acme.read_conffile_files (subj))
@@ -153,4 +158,15 @@
     (optional ttyd_opt_sslcertfile
               (call .ssl.read_certfile_files (subj))
               (call .ssl.read_certfile_lnk_files (subj))
-              (call .ssl.search_certfile_dirs (subj))))
+              (call .ssl.search_certfile_dirs (subj)))
+
+    (block readwriteinherited_ptydev
+
+           ;;
+           ;; Policy
+           ;;
+
+           (blockinherit .subj.subj_all_macro_template)
+
+           (allowx subj_typeattr ptydev (ioctl chr_file (not (0x5412))))
+           (allow subj_typeattr ptydev readwriteinherited_chr_file)))
