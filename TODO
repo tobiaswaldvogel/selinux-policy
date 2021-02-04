@@ -1,18 +1,7 @@
-Urgent (loose ends):
---------------------
-chronyd LuCI
-unbound LuCI
-tinyproxy LuCI
-sqm LuCI
-wireguard LuCI
-zram LuCI
-ttyd initscript/LuCI
-
 acme (dns)
 
 Various misc:
 -------------
-keep an eye on possible replacement of busybox -k with hwclock (and /etc/init.d/system): target hwclock
 
 13:38 < bauen1> but there is a lot of low-hanging fruit, like dontauditing 0x5401 (TCGETS) and TCGETA, and
 moving ioctl to the "write" set for files, at least once linux 5.11 hits with my dontauditx
@@ -28,7 +17,3 @@ creates /etc/groupRANDOM and renames it to /etc/group afterwards
 if i understand correctly then:
 sed -i'' "s/$grp/$grp$delim$2/g" ${IPKG_INSTROOT}/etc/group
 fixes it
-
-domains that call both loadkernelmodule and modulerequest might only need modulerequest (it seems that if modulerequest fails it falls back to loadkernelmodule)
-
-the "readwrite.subj_type" macros arent always called in the right container (review them all)
