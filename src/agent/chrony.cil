@@ -154,6 +154,7 @@
        (call .netifd.dontaudit_readwrite_netlink_route_sockets (subj))
 
        (call .resolv.read_tmpfile_files (subj))
+       (call .resolv.search_tmpfile_dirs (subj))
 
        (call .tmpfile.search_runtimetmpfile_dirs (subj)))
 

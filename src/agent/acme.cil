@@ -127,6 +127,7 @@
        (call .procfile.getattr_all_lnk_files (subj))
 
        (call .resolv.read_tmpfile_files (subj))
+       (call .resolv.search_tmpfile_dirs (subj))
 
        (call .selinux.linked.subj_type (subj))
 

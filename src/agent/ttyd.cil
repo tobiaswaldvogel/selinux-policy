@@ -141,7 +141,9 @@
 
     (call .tmpfile.deletename_runtimetmpfile_dirs (subj))
 
-    (call .uci.getattr_execfile_files (subj))
+    (call .uci.execute_execfile_files (subj))
+    (call .uci.read_conffile_files (subj))
+    (call .uci.search_conffile_dirs (subj))
 
     (optional ttyd_opt_acme
               (call .acme.read_conffile_files (subj))

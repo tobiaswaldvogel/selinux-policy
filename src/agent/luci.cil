@@ -430,13 +430,9 @@
 
               (call .dropbear.auditexecute_execfile_files (subj))
 
-              (call .file.manage_conffile_lnk_files (subj))
-              (call .file.readwrite_conffile_dirs (subj))
               (call .file.search_initscriptfile_dirs (subj))
               (call .file.search_cgiscriptfile_dirs (subj))
-
-              (call .functions.read_miscfile_files (subj))
-              (call .functions.search_miscfile_dirs (subj))
+              (call .file.search_conffile_dirs (subj))
 
               (call .fw3.auditexecute_execfile_files (subj))
 
@@ -451,8 +447,6 @@
               (call .osrelease.read_miscfile_files (subj))
 
               (call .random.read_nodedev_chr_files (subj))
-
-              (call .rccommon.read_conffile_files (subj))
 
               (call .selinux.linked.subj_type (subj))
 
@@ -477,6 +471,15 @@
 
               (optional luci_cgi_opt_acme
                         (call .acme.search_conffile_dirs (subj)))
+
+              (optional luci_cgi_opt_rctinyproxy
+                        (call .rctinyproxy.subj_type_transition (subj)))
+
+              (optional luci_cgi_opt_rcunbound
+                        (call .rcunbound.subj_type_transition (subj)))
+
+              (optional luci_cgi_opt_unbound
+                        (call .unbound.search_statetmpfile_dirs (subj)))
 
               ;; luci-app-tinyproxy
               (optional luci_cgi_opt_wget

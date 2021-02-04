@@ -80,6 +80,12 @@
 
     (call .tmpfile.search_runtimetmpfile_dirs (subj))
 
+    (optional wireguard_opt_luci
+              (call .luci.cgi.writeinherited_fifo_files (subj)))
+
+    (optional wireguard_opt_uhttpd
+              (call .uhttpd.readinherited_fifo_files (subj)))
+
     (block watchdog
 
            ;;

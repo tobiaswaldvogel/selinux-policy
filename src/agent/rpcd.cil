@@ -174,6 +174,7 @@
        (call .rclocal.readwrite_conffile_files (subj))
 
        (call .resolv.read_tmpfile_files (subj))
+       (call .resolv.search_tmpfile_dirs (subj))
 
        (call .selinux.linked.subj_type (subj))
 
@@ -228,4 +229,7 @@
        (optional rpcd_opt_sqm
                  (call .sqm.getattr_execfile_files (subj))
                  (call .sqm.getattr_runtimetmpfile_files (subj))
-                 (call .sqm.list_runtimetmpfile_dirs (subj))))
+                 (call .sqm.list_runtimetmpfile_dirs (subj)))
+
+       (optional rpcd_opt_wireguard
+                 (call .wireguard.subj_type_transition (subj))))
