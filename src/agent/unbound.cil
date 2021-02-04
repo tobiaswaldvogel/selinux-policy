@@ -155,6 +155,9 @@
 
        (call .ubdnscontrol.tcp_bind_netports (subj))
 
+       (optional unbound_opt_luci
+                 (call .luci.cgi.writeinherited_fifo_files (subj)))
+
        (optional unbound_opt_rcunbound
                  (call .rcunbound.use_fds (subj))
                  (call .rcunbound.writeinherited_fifo_files (subj)))
@@ -163,6 +166,9 @@
                  (call .ssl.read_certfile_files (subj))
                  (call .ssl.read_certfile_lnk_files (subj))
                  (call .ssl.search_certfile_dirs (subj)))
+
+       (optional unbound_opt_uhttpd
+                (call .uhttpd.readinherited_fifo_files (subj)))
 
        (block odhcpd
 

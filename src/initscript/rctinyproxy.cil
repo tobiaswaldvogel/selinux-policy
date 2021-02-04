@@ -45,4 +45,10 @@
 
        (call .tmpfile.create_conftmpfile_dirs (subj))
        (call .tmpfile.obj_type_transition_conftmpfile (subj))
-       (call .tmpfile.setattr_conftmpfile_dirs (subj)))
+       (call .tmpfile.setattr_conftmpfile_dirs (subj))
+
+       (optional rctinyproxy_opt_luci
+                 (call .luci.cgi.writeinherited_fifo_files (subj)))
+
+       (optional rctinyproxy_opt_uhttpd
+                 (call .uhttpd.readinherited_fifo_files (subj))))

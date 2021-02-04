@@ -73,8 +73,16 @@
        (call .unbound.search_miscfile_dirs (subj))
        (call .unbound.subj_type_transition (subj))
 
+       (call .www.list_miscfile_dirs (subj))
+
        (optional rcunbound_opt_dnsmasq
                  (call .dnsmasq.getattr_execfile_files (subj)))
 
+       (optional rcunbound_opt_luci
+                 (call .luci.cgi.writeinherited_fifo_files (subj)))
+
        (optional rcunbound_opt_rcdnsmasq
-                 (call .rcdnsmasq.execute_initscriptfile_files (subj))))
+                 (call .rcdnsmasq.execute_initscriptfile_files (subj)))
+
+       (optional rcunbound_opt_uhttpd
+                 (call .uhttpd.readinherited_fifo_files (subj))))

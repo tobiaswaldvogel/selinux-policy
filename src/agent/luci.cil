@@ -63,6 +63,10 @@
         "/usr/bin/rpcd/luci"
         file
         execfile_file_context)
+       (filecon
+        "/usr/bin/rpcd/luci\.wireguard"
+        file
+        execfile_file_context)
 
        (filecon
         "/usr/share/luci"
@@ -87,7 +91,9 @@
 
        (macro obj_type_transition_execfile ((type ARG1))
               (call .file.execfile_obj_type_transition
-                    (ARG1 execfile file "luci")))
+                    (ARG1 execfile file "luci"))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "luci.wireguard")))
 
        (macro obj_type_transition_tmpfile ((type ARG1)(class ARG2)(name ARG3))
               (call .tmp.fs_obj_type_transition
@@ -411,7 +417,9 @@
 
               (blockinherit .cgiscript.base_template)
 
+              (allow subj self create_netlink_route_socket)
               (allow subj self create_unix_stream_socket)
+              (allow subj self (netlink_route_socket (nlmsg_read)))
 
               (call list_datafile_dirs (subj))
               (call read_datafile_files (subj))
@@ -421,18 +429,20 @@
               (call obj_type_transition_tmpfile (subj dir "luci-modulecache"))
               (call obj_type_transition_tmpfile (subj file "*"))
 
-              (call .sys.search_fs_dirs (subj))
+              (call .sys.read_fs_lnk_files (subj))
               (call .sys.writeinherited_fifo_files (subj))
 
               (call .blockmount.auditexecute_execfile_files (subj))
 
-              (call .class.search_sysfile_dirs (subj))
+              (call .board.read_miscfile_files (subj))
+
+              (call .class.list_sysfile_dirs (subj))
 
               (call .dropbear.auditexecute_execfile_files (subj))
 
+              (call .file.read_conffile_lnk_files (subj))
               (call .file.search_initscriptfile_dirs (subj))
               (call .file.search_cgiscriptfile_dirs (subj))
-              (call .file.search_conffile_dirs (subj))
 
               (call .fw3.auditexecute_execfile_files (subj))
 

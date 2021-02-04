@@ -136,6 +136,12 @@
        (optional uci_opt_initscript
                  (call .initscript.readwriteinherited_all_fifo_files (subj)))
 
+       (optional uci_opt_luci
+                 (call .luci.cgi.writeinherited_fifo_files (subj)))
+
+       (optional uci_opt_uhttpd
+                 (call .uhttpd.readinherited_fifo_files (subj)))
+
        (block defaults
 
               ;;
