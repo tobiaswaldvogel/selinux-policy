@@ -91,5 +91,11 @@
 
        (call .ubusd.unix_stream_connect (subj))
 
+       (optional logread_opt_luci
+                 (call .luci.cgi.writeinherited_fifo_files (subj)))
+
        (optional logread_opt_ttyd
-                 (call .ttyd.readwriteinherited_ptydev_chr_files (subj))))
+                 (call .ttyd.readwriteinherited_ptydev_chr_files (subj)))
+
+       (optional logread_opt_uhttpd
+                 (call .uhttpd.readinherited_fifo_files (subj))))
