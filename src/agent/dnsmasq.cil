@@ -183,9 +183,6 @@
        (call .dns.tcp_bind_netports (subj))
        (call .dns.udp_bind_netports (subj))
 
-       (call .file.read_conffile_lnk_files (subj))
-       (call .file.search_conffile_dirs (subj))
-
        (call .locale.read.subj_type (subj))
 
        (call .logd.unix_dgram_send (subj))
@@ -201,7 +198,7 @@
        (call .random.read_nodedev_chr_files (subj))
 
        (call .resolv.list_tmpfile_dirs (subj))
-       (call .resolv.read_tmpfile_files (subj))
+       (call .resolv.read.subj_type (subj))
        (call .resolv.watch_tmpfile_dirs (subj))
 
        (call .tmp.deletename_fs_dirs (subj))

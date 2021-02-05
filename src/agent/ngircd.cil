@@ -108,9 +108,6 @@
 
        (call .dev.readwriteinherited_ttydev_chr_files (subj))
 
-       (call .file.read_conffile_lnk_files (subj))
-       (call .file.search_conffile_dirs (subj))
-
        (call .irc.tcp_bind_netports (subj))
        (call .irc.tcp_connect_netports (subj))
 
@@ -127,8 +124,7 @@
 
        (call .random.read_nodedev_chr_files (subj))
 
-       (call .resolv.read_tmpfile_files (subj))
-       (call .resolv.search_tmpfile_dirs (subj))
+       (call .resolv.read.subj_type (subj))
 
        (optional ngircd_opt_acme
                  (call .acme.read_conffile_files (subj))

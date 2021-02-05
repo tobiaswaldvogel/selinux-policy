@@ -138,9 +138,6 @@
 
        (call .dev.readwriteinherited_ttydev_chr_files (subj))
 
-       (call .file.read_conffile_lnk_files (subj))
-       (call .file.search_conffile_dirs (subj))
-
        (call .hotplugcall.readinherited_fifo_files (subj))
 
        (call .nameservice.read_miscfile_files (subj))
@@ -153,8 +150,7 @@
        (call .netifd.dontaudit_readwrite_netlink_kobject_uevent_sockets (subj))
        (call .netifd.dontaudit_readwrite_netlink_route_sockets (subj))
 
-       (call .resolv.read_tmpfile_files (subj))
-       (call .resolv.search_tmpfile_dirs (subj))
+       (call .resolv.read.subj_type (subj))
 
        (call .tmpfile.search_runtimetmpfile_dirs (subj))
 
@@ -209,9 +205,6 @@
 
        (call .chronycmd.udp_bind_netports (subj))
 
-       (call .file.read_conffile_lnk_files (subj))
-       (call .file.search_conffile_dirs (subj))
-
        (call .logd.unix_dgram_send (subj))
 
        (call .nameservice.read_miscfile_files (subj))
@@ -224,8 +217,7 @@
 
        (call .ntpnts.tcp_connect_netports (subj))
 
-       (call .resolv.read_tmpfile_files (subj))
-       (call .resolv.search_tmpfile_dirs (subj))
+       (call .resolv.read.subj_type (subj))
 
        (call .tmpfile.search_conftmpfile_dirs (subj))
 

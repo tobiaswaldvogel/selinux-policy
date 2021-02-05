@@ -70,4 +70,7 @@
               (call list_miscfile_dirs (subj_typeattr))
               (call map_miscfile_files (subj_typeattr))
               (call read_miscfile_files (subj_typeattr))
-              (call read_miscfile_lnk_files (subj_typeattr))))
+              (call read_miscfile_lnk_files (subj_typeattr))
+
+              (call .file.read_conffile_lnk_files (subj_typeattr))
+              (call .file.search_conffile_dirs (subj_typeattr))))

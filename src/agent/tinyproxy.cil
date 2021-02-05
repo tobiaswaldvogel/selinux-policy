@@ -130,9 +130,6 @@
        (call map_tmpfile_files (subj))
        (call obj_type_transition_tmpfile (subj))
 
-       (call .file.read_conffile_lnk_files (subj))
-       (call .file.search_conffile_dirs (subj))
-
        (call .http.tcp_connect_netports (subj))
 
        (call .httpproxy.tcp_bind_netports (subj))
@@ -148,8 +145,7 @@
        (call .net.tcp_bind_netnodes (subj))
        (call .net.udp_bind_netnodes (subj))
 
-       (call .resolv.read_tmpfile_files (subj))
-       (call .resolv.search_tmpfile_dirs (subj))
+       (call .resolv.read.subj_type (subj))
 
        (call .tmp.deletename_fs_dirs (subj))
 

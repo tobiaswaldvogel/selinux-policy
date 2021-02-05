@@ -92,7 +92,6 @@
        (call .cron.create_miscfile_files (subj))
        (call .cron.readwrite_miscfile_files (subj))
 
-       (call .file.read_conffile_lnk_files (subj))
        (call .file.search_initscriptfile_dirs (subj))
        ;; run-acme check_cron() without rccron (this is not strictly needed anyway)
        (call .file.dontaudit_auditexecuteaccess_initscriptfile_files (subj))
@@ -126,8 +125,7 @@
        (call .procfile.getattr_all_files (subj))
        (call .procfile.getattr_all_lnk_files (subj))
 
-       (call .resolv.read_tmpfile_files (subj))
-       (call .resolv.search_tmpfile_dirs (subj))
+       (call .resolv.read.subj_type (subj))
 
        (call .selinux.linked.subj_type (subj))
 

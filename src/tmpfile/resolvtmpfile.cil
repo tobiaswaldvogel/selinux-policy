@@ -53,5 +53,20 @@
        ;; Policy
        ;;
 
+       (blockinherit .tmpfile.obj_template)
 
-       (blockinherit .tmpfile.obj_template))
+       (block read
+
+              ;;
+              ;; Policy
+              ;;
+
+              (blockinherit subj.subj_all_macro_template)
+
+              (call read_tmpfile_files (subj_typeattr))
+              (call search_tmpfile_dirs (subj_typeattr))
+
+              (call .file.read_conffile_lnk_files (subj_typeattr))
+              (call .file.search_conffile_dirs (subj_typeattr))
+
+              (call .tmp.read_fs_lnk_files (subj_typeattr))))

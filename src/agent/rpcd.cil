@@ -120,7 +120,6 @@
        (call .dropbear.readwrite_certfile_files (subj))
 
        (call .file.list_execfile_dirs (subj))
-       (call .file.read_conffile_lnk_files (subj))
        (call .file.search_initscriptfile_dirs (subj))
 
        (call .filesystems.read_procfile_files (subj))
@@ -173,8 +172,7 @@
 
        (call .rclocal.readwrite_conffile_files (subj))
 
-       (call .resolv.read_tmpfile_files (subj))
-       (call .resolv.search_tmpfile_dirs (subj))
+       (call .resolv.read.subj_type (subj))
 
        (call .selinux.linked.subj_type (subj))
 

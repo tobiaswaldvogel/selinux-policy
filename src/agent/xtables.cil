@@ -59,9 +59,6 @@
 
        (call .dev.readwriteinherited_ttydev_chr_files (subj))
 
-       (call .file.read_conffile_lnk_files (subj))
-       (call .file.search_conffile_dirs (subj))
-
        (call .nameservice.read_miscfile_files (subj))
 
        (call .net.egress_netifs (subj))
@@ -71,8 +68,7 @@
 
        (call .proc.getattr_filesystems (subj))
 
-       (call .resolv.read_tmpfile_files (subj))
-       (call .resolv.search_tmpfile_dirs (subj))
+       (call .resolv.read.subj_type (subj))
 
        (call .xattr.associate_filesystems (miscfile))
 
