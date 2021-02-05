@@ -112,7 +112,6 @@
     (call .dev.readwriteinherited_ttydev_chr_files (subj))
 
     (call .file.read_conffile_lnk_files (subj))
-    (call .file.search_conffile_dirs (subj))
 
     (call .locale.read.subj_type (subj))
 

@@ -50,7 +50,6 @@
        (call .file.manage_homefile_files (subj))
        (call .file.manage_homefile_lnk_files (subj))
        (call .file.read_conffile_lnk_files (subj))
-       (call .file.search_conffile_dirs (subj))
        (call .file.dontaudit_manage_all_dirs (subj))
        (call .file.dontaudit_manage_all_files (subj))
        (call .file.dontaudit_manage_all_lnk_files (subj))
