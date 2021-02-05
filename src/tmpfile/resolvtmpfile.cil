@@ -67,6 +67,5 @@
               (call search_tmpfile_dirs (subj_typeattr))
 
               (call .file.read_conffile_lnk_files (subj_typeattr))
-              (call .file.search_conffile_dirs (subj_typeattr))
 
               (call .tmp.read_fs_lnk_files (subj_typeattr))))

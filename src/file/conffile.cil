@@ -25,6 +25,9 @@
            (call .sys.rootfile_obj_type_transition
                  (ARG1 conffile dir "etc")))
 
+    (macro read_conffile_lnk_files ((type ARG1))
+           (typeattributeset read_conffile_lnk_file.subj_typeattr ARG1))
+
     ;;
     ;; Policy
     ;;
@@ -460,4 +463,15 @@
                   (blockabstract obj_template)
 
                   (blockinherit .file.conf.obj_base_template)
-                  (blockinherit .file.conf.obj_macro_template))))
+                  (blockinherit .file.conf.obj_macro_template)))
+
+    (block read_conffile_lnk_file
+
+           ;;
+           ;; Policy
+           ;;
+
+           (blockinherit .subj.subj_all_macro_template)
+
+           (allow subj_typeattr conffile read_lnk_file)
+           (allow subj_typeattr conffile search_dir)))
