@@ -29,6 +29,11 @@
         any
         ())
 
+       ;; compatibility
+       (fsuse
+        trans
+        "devtmpfs"
+        fs_context)
        (fsuse
         trans
         "ramfs"
