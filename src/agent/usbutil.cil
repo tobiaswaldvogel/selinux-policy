@@ -42,15 +42,17 @@
        (allow subj self create_netlink_kobject_uevent_socket)
 
        (call .sys.getattr_filesystems (subj))
+       (call .sys.read_fs_lnk_files (subj))
        (call .sys.readwriteinherited_ptydev_chr_files (subj))
        (call .sys.search_fs_dirs (subj))
 
-       (call .bus.search_sysfile_dirs (subj))
+       (call .bus.list_sysfile_dirs (subj))
 
        (call .debug.search_fs_dirs (subj))
 
        (call .dev.readwriteinherited_ttydev_chr_files (subj))
 
+       (call .devices.read_sysfile_files (subj))
        (call .devices.search_sysfile_dirs (subj))
 
        (call .file.search_conffile_dirs (subj))

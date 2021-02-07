@@ -33,11 +33,14 @@
 
        (blockinherit .agent.base_template)
 
+       (allow subj self (capability (sys_rawio)))
+
+       (call .sys.read_fs_lnk_files (subj))
        (call .sys.readwriteinherited_ptydev_chr_files (subj))
 
        (call .dev.readwriteinherited_ttydev_chr_files (subj))
        (call .dev.search_sysfile_dirs (subj))
-       (call .dev.stor.read.subj_type (subj))
+       (call .dev.stor.readwrite.subj_type (subj))
 
        (call .devices.read_sysfile_files (subj))
        (call .devices.search_sysfile_dirs (subj))
@@ -51,22 +54,22 @@
        (call .version.read_procfile_files (subj))
 
        (optional fsck_opt_dmstordev
-                 (call .dm.read_stordev_blk_files (subj)))
+                 (call .dm.readwrite_stordev_blk_files (subj)))
 
        (optional fsck_opt_hdstordev
-                 (call .hd.read_stordev_blk_files (subj)))
+                 (call .hd.readwrite_stordev_blk_files (subj)))
 
        (optional fsck_opt_mmcstordev
-                 (call .mmc.read_stordev_blk_files (subj)))
+                 (call .mmc.readwrite_stordev_blk_files (subj)))
 
        (optional fsck_opt_nvmestordev
-                 (call .nvme.read_stordev_blk_files (subj)))
+                 (call .nvme.readwrite_stordev_blk_files (subj)))
 
        (optional fsck_opt_sdstordev
-                 (call .sd.read_stordev_blk_files (subj)))
+                 (call .sd.readwrite_stordev_blk_files (subj)))
 
        (optional fsck_opt_ttyd
                  (call .ttyd.readwriteinherited_ptydev_chr_files (subj)))
 
        (optional fsck_opt_vdstordev
-                 (call .vd.read_stordev_blk_files (subj))))
+                 (call .vd.readwrite_stordev_blk_files (subj))))

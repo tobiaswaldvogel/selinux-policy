@@ -51,6 +51,8 @@
 
        (blockinherit .agent.base_template)
 
+       (allow subj self (capability (sys_admin)))
+
        (call .sys.read_fs_lnk_files (subj))
        (call .sys.search_fs_dirs (subj))
        (call .sys.readwriteinherited_ptydev_chr_files (subj))
