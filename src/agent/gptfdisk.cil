@@ -49,4 +49,47 @@
        ;; Policy
        ;;
 
-       (blockinherit .agent.base_template))
+       (blockinherit .agent.base_template)
+
+       (call .sys.read_fs_lnk_files (subj))
+       (call .sys.search_fs_dirs (subj))
+       (call .sys.readwriteinherited_ptydev_chr_files (subj))
+
+       (call .block.search_sysfile_dirs (subj))
+
+       (call .file.search_conffile_dirs (subj))
+
+       (call .dev.readwriteinherited_ttydev_chr_files (subj))
+       (call .dev.stor.readwrite.subj_type (subj))
+
+       (call .devices.read_sysfile_files (subj))
+       (call .devices.search_sysfile_dirs (subj))
+
+       (call .random.read_nodedev_chr_files (subj))
+
+       (optional gptfdisk_opt_dmstordev
+                 (call .dm.readwrite_stordev_blk_files (subj)))
+
+       (optional gptfdisk_opt_hdstordev
+                 (call .hd.readwrite_stordev_blk_files (subj)))
+
+       (optional gptfdisk_opt_loopstordev
+                 (call .loop.readwrite_stordev_blk_files (subj)))
+
+       (optional gptfdisk_opt_mmcstordev
+                 (call .mmc.readwrite_stordev_blk_files (subj)))
+
+       (optional gptfdisk_opt_nvmestordev
+                 (call .nvme.readwrite_stordev_blk_files (subj)))
+
+       (optional gptfdisk_opt_sdstordev
+                 (call .sd.readwrite_stordev_blk_files (subj)))
+
+       (optional gptfdisk_opt_ttyd
+                 (call .ttyd.readwriteinherited_ptydev_chr_files (subj)))
+
+       (optional gptfdisk_opt_vdstordev
+                 (call .vd.readwrite_stordev_blk_files (subj)))
+
+       (optional gptfdisk_opt_zramstordev
+                 (call .zram.readwrite_stordev_blk_files (subj))))

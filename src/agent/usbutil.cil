@@ -37,4 +37,21 @@
        ;; Policy
        ;;
 
-       (blockinherit .agent.base_template))
+       (blockinherit .agent.base_template)
+
+       (allow subj self create_netlink_kobject_uevent_socket)
+
+       (call .sys.getattr_filesystems (subj))
+       (call .sys.search_fs_dirs (subj))
+
+       (call .bus.search_sysfile_dirs (subj))
+
+       (call .file.search_conffile_dirs (subj))
+
+       (call .debug.search_fs_dirs (subj))
+
+       (call .devices.search_sysfile_dirs (subj))
+
+       (call .tmp.list_fs_dirs (subj))
+
+       (call .usb.write_nodedev_chr_files (subj)))

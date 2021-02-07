@@ -33,6 +33,7 @@
 
        (blockinherit .agent.base_template)
 
+       (allow subj self (capability (sys_rawio)))
        (allow subj self create_unix_stream_socket)
 
        (call .sys.read_fs_lnk_files (subj))

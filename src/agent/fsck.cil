@@ -31,4 +31,42 @@
        ;; Policy
        ;;
 
-       (blockinherit .agent.base_template))
+       (blockinherit .agent.base_template)
+
+       (call .sys.readwriteinherited_ptydev_chr_files (subj))
+
+       (call .dev.readwriteinherited_ttydev_chr_files (subj))
+       (call .dev.search_sysfile_dirs (subj))
+       (call .dev.stor.read.subj_type (subj))
+
+       (call .devices.read_sysfile_files (subj))
+       (call .devices.search_sysfile_dirs (subj))
+
+       (call .file.read_conffile_lnk_file.subj_type (subj))
+
+       (call .fs.search_sysfile_dirs (subj))
+
+       (call .selinux.linked.subj_type (subj))
+
+       (call .version.read_procfile_files (subj))
+
+       (optional fsck_opt_dmstordev
+                 (call .dm.read_stordev_blk_files (subj)))
+
+       (optional fsck_opt_hdstordev
+                 (call .hd.read_stordev_blk_files (subj)))
+
+       (optional fsck_opt_mmcstordev
+                 (call .mmc.read_stordev_blk_files (subj)))
+
+       (optional fsck_opt_nvmestordev
+                 (call .nvme.read_stordev_blk_files (subj)))
+
+       (optional fsck_opt_sdstordev
+                 (call .sd.read_stordev_blk_files (subj)))
+
+       (optional fsck_opt_ttyd
+                 (call .ttyd.readwriteinherited_ptydev_chr_files (subj)))
+
+       (optional fsck_opt_vdstordev
+                 (call .vd.read_stordev_blk_files (subj))))
