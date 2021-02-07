@@ -116,7 +116,8 @@
        (blockinherit .tmpfile.state.obj_template)
        (blockinherit .tmpfile.obj_template)
 
-       (allow subj self (capability (setgid setuid sys_chroot sys_resource)))
+       (allow subj self
+              (capability (net_admin setgid setuid sys_chroot sys_resource)))
        (allow subj self (process (setrlimit)))
        (allow subj self create_unix_dgram_socket)
        (allow subj self create_unix_stream_socket)
@@ -128,6 +129,8 @@
        (call manage_statetmpfile_files (subj))
        (call obj_type_transition_statetmpfile (subj))
 
+       (call .sys.loadkernelmodule.subj_type (subj))
+       (call .sys.requestmodule (subj))
        (call .sys.writeinherited_fifo_files (subj))
 
        (call .dns.tcp_bind_netports (subj))
