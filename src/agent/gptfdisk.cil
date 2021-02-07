@@ -1,0 +1,52 @@
+;; -*- mode: CIL; fill-column: 79; indent-tabs-mode: nil; -*-
+;; SPDX-FileCopyrightText: © 2021 Dominick Grift <dominick.grift@defensec.nl>
+;; SPDX-License-Identifier: Unlicense
+
+(in .sys
+    (call .gptfdisk.subj_type_transition (subj)))
+
+(in .file
+    (call .gptfdisk.obj_type_transition_execfile (unconfined.subj_typeattr)))
+
+(block gptfdisk
+
+       ;;
+       ;; Contexts
+       ;;
+
+       (filecon
+        "/usr/bin/cgdisk"
+        file
+        execfile_file_context)
+       (filecon
+        "/usr/bin/fixparts"
+        file
+        execfile_file_context)
+       (filecon
+        "/usr/bin/gdisk"
+        file
+        execfile_file_context)
+       (filecon
+        "/usr/bin/sgdisk"
+        file
+        execfile_file_context)
+
+       ;;
+       ;; Macros
+       ;;
+
+       (macro obj_type_transition_execfile ((type ARG1))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "cgdisk"))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "fixparts"))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "gdisk"))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "sgdisk")))
+
+       ;;
+       ;; Policy
+       ;;
+
+       (blockinherit .agent.base_template))
