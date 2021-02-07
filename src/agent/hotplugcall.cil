@@ -139,7 +139,7 @@
 
        (optional hotplugcall_opt_unbound
                  ;; bad permissions on /tmp/lib/unbound
-                 (allow subj self (capability (dac_override)))
+                 (allow subj self (capability (dac_override dac_read_search)))
 
                  (call .unbound.read_miscfile_files (subj))
                  (call .unbound.search_miscfile_dirs (subj))
