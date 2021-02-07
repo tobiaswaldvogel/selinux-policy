@@ -243,6 +243,9 @@
        (optional luci_opt_rcgpioswitch
                  (call .rcgpioswitch.subj_type_transition (subj)))
 
+       (optional luci_opt_rcirqbalance
+                 (call .rcirqbalance.subj_type_transition (subj)))
+
        (optional luci_opt_rcled
                  (call .rcled.subj_type_transition (subj)))
 

@@ -207,7 +207,6 @@
        (call .tmpfile.list_hoststmpfile_dirs (subj))
        (call .tmpfile.read_conftmpfile_files (subj))
        (call .tmpfile.search_conftmpfile_dirs (subj))
-       (call .tmpfile.search_runtimetmpfile_dirs (subj))
        (call .tmpfile.search_statetmpfile_dirs (subj))
 
        (call .ubusd.unix_stream_connect (subj))

@@ -1,0 +1,53 @@
+;; -*- mode: CIL; fill-column: 79; indent-tabs-mode: nil; -*-
+;; SPDX-FileCopyrightText: © 2021 Dominick Grift <dominick.grift@defensec.nl>
+;; SPDX-License-Identifier: Unlicense
+
+(in .sys
+    (call .irqbalance.subj_type_transition (subj)))
+
+(in .file
+    (call .irqbalance.obj_type_transition_execfile (unconfined.subj_typeattr))
+    (call .irqbalance.obj_type_transition_runtimetmpfile
+          (unconfined.subj_typeattr)))
+
+(block irqbalance
+
+       ;;
+       ;; Contexts
+       ;;
+
+       (filecon
+        "/tmp/run/irqbalance"
+        dir
+        runtimetmpfile_file_context)
+       (filecon
+        "/tmp/run/irqbalance/.*"
+        any
+        runtimetmpfile_file_context)
+
+       (filecon
+        "/usr/bin/irqbalance"
+        file
+        execfile_file_context)
+
+       ;;
+       ;; Macros
+       ;;
+
+       (macro obj_type_transition_execfile ((type ARG1))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "irqbalance")))
+
+       (macro obj_type_transition_runtimetmpfile ((type ARG1))
+              (call .tmpfile.runtimetmpfile_obj_type_transition
+                    (ARG1 runtimetmpfile dir "irqbalance")))
+
+       ;;
+       ;; Policy
+       ;;
+
+       (blockinherit .agent.base_template)
+       (blockinherit .tmpfile.runtime.obj_template)
+
+       (call manage_runtimetmpfile_dirs (subj))
+       (call obj_type_transition_runtimetmpfile (subj)))
