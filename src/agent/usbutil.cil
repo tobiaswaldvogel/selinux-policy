@@ -42,16 +42,22 @@
        (allow subj self create_netlink_kobject_uevent_socket)
 
        (call .sys.getattr_filesystems (subj))
+       (call .sys.readwriteinherited_ptydev_chr_files (subj))
        (call .sys.search_fs_dirs (subj))
 
        (call .bus.search_sysfile_dirs (subj))
 
-       (call .file.search_conffile_dirs (subj))
-
        (call .debug.search_fs_dirs (subj))
+
+       (call .dev.readwriteinherited_ttydev_chr_files (subj))
 
        (call .devices.search_sysfile_dirs (subj))
 
+       (call .file.search_conffile_dirs (subj))
+
        (call .tmp.list_fs_dirs (subj))
 
-       (call .usb.write_nodedev_chr_files (subj)))
+       (call .usb.write_nodedev_chr_files (subj))
+
+       (optional usbutil_opt_ttyd
+                 (call .ttyd.readwriteinherited_ptydev_chr_files (subj))))
