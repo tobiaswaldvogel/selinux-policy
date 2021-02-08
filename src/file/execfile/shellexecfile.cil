@@ -19,6 +19,10 @@
         "/usr/bin/busybox"
         file
         execfile_file_context)
+       (filecon
+        "/usr/bin/tcsh"
+        file
+        execfile_file_context)
 
        ;;
        ;; Macros
@@ -28,7 +32,9 @@
               (call .file.execfile_obj_type_transition
                     (ARG1 execfile file "bash"))
               (call .file.execfile_obj_type_transition
-                    (ARG1 execfile file "busybox")))
+                    (ARG1 execfile file "busybox"))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "tcsh")))
 
        ;;
        ;; Policy
