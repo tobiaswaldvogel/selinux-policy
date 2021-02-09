@@ -30,9 +30,9 @@
 
        (macro execute_execfile_files ((type ARG1))
               (allow ARG1 execfile execute_file)
-
-              (optional shellexecfile_opt_coreutilexecfile
-                        (call .coreutil.execute_execfile_files (ARG1))))
+              ;; coreutils, audit these events
+              (call .file.auditallow_execute_execfile_files (ARG1))
+              (call .file.execute_execfile_files (ARG1)))
 
        (macro obj_type_transition_execfile ((type ARG1))
               (call .file.execfile_obj_type_transition

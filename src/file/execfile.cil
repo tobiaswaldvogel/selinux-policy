@@ -21,6 +21,9 @@
     ;; Macros
     ;;
 
+    (macro auditallow_execute_execfile_files ((type ARG1))
+           (auditallow ARG1 execfile (file (execute_no_trans))))
+
     (macro getattr_execfile_files ((type ARG1))
            (allow ARG1 execfile (file (getattr))))
 
