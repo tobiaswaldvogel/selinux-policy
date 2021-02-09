@@ -1,12 +1,12 @@
 acme (dns)
 
-deal with kmod, sysctl(-procps-ng), and chroot
+deal with kmod, sysctl(-procps-ng)
 
 Various misc:
 -------------
 
 I added a coreutilexecfile.cil module for coreutils and a call in shell.execute_execfile_files():
-but it is probably sub-optimal as its too expensive and it currently includes priv stuff like kmod and sysctl
+but it is probably sub-optimal as its very expensive
 Might eventually be better to just not use coreutilexecfile.cil and instead allow callers of shell.execute_execfile_files()
 to execute file.execfile as well (much cheaper and easier to maintain)
 
