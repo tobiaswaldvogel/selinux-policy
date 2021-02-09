@@ -15,7 +15,15 @@
        ;;
 
        (filecon
+        "/usr/bin/cfdisk"
+        file
+        execfile_file_context)
+       (filecon
         "/usr/bin/cgdisk"
+        file
+        execfile_file_context)
+       (filecon
+        "/usr/bin/fdisk"
         file
         execfile_file_context)
        (filecon
@@ -24,6 +32,10 @@
         execfile_file_context)
        (filecon
         "/usr/bin/gdisk"
+        file
+        execfile_file_context)
+       (filecon
+        "/usr/bin/sfdisk"
         file
         execfile_file_context)
        (filecon
@@ -37,11 +49,17 @@
 
        (macro obj_type_transition_execfile ((type ARG1))
               (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "cfdisk"))
+              (call .file.execfile_obj_type_transition
                     (ARG1 execfile file "cgdisk"))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "fdisk"))
               (call .file.execfile_obj_type_transition
                     (ARG1 execfile file "fixparts"))
               (call .file.execfile_obj_type_transition
                     (ARG1 execfile file "gdisk"))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "sfdisk"))
               (call .file.execfile_obj_type_transition
                     (ARG1 execfile file "sgdisk")))
 
