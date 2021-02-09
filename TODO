@@ -1,7 +1,14 @@
 acme (dns)
 
+deal with kmod, sysctl(-procps-ng), and chroot
+
 Various misc:
 -------------
+
+I added a coreutilexecfile.cil module for coreutils and a call in shell.execute_execfile_files():
+but it is probably sub-optimal as its too expensive and it currently includes priv stuff like kmod and sysctl
+Might eventually be better to just not use coreutilexecfile.cil and instead allow callers of shell.execute_execfile_files()
+to execute file.execfile as well (much cheaper and easier to maintain)
 
 13:38 < bauen1> but there is a lot of low-hanging fruit, like dontauditing 0x5401 (TCGETS) and TCGETA, and
 moving ioctl to the "write" set for files, at least once linux 5.11 hits with my dontauditx

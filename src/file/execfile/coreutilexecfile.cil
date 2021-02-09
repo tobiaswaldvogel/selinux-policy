@@ -52,10 +52,6 @@
         file
         execfile_file_context)
        (filecon
-        "/usr/bin/chroot"
-        file
-        execfile_file_context)
-       (filecon
         "/usr/bin/cksum"
         file
         execfile_file_context)
@@ -213,10 +209,6 @@
         execfile_file_context)
        (filecon
         "/usr/bin/killall"
-        file
-        execfile_file_context)
-       (filecon
-        "/usr/bin/kmod"
         file
         execfile_file_context)
        (filecon
@@ -452,10 +444,6 @@
         file
         execfile_file_context)
        (filecon
-        "/usr/bin/sysctl-procps-ng"
-        file
-        execfile_file_context)
-       (filecon
         "/usr/bin/tac"
         file
         execfile_file_context)
@@ -634,8 +622,6 @@
               (call .file.execfile_obj_type_transition
                     (ARG1 execfile file "chown"))
               (call .file.execfile_obj_type_transition
-                    (ARG1 execfile file "chroot"))
-              (call .file.execfile_obj_type_transition
                     (ARG1 execfile file "chsum"))
               (call .file.execfile_obj_type_transition
                     (ARG1 execfile file "comm"))
@@ -715,8 +701,6 @@
                     (ARG1 execfile file "kill-procps-ng"))
               (call .file.execfile_obj_type_transition
                     (ARG1 execfile file "killall"))
-              (call .file.execfile_obj_type_transition
-                    (ARG1 execfile file "kmod"))
               (call .file.execfile_obj_type_transition
                     (ARG1 execfile file "less-gnu"))
               (call .file.execfile_obj_type_transition
@@ -833,8 +817,6 @@
                     (ARG1 execfile file "sum"))
               (call .file.execfile_obj_type_transition
                     (ARG1 execfile file "sync"))
-              (call .file.execfile_obj_type_transition
-                    (ARG1 execfile file "sysctl-procps-ng"))
               (call .file.execfile_obj_type_transition
                     (ARG1 execfile file "tac"))
               (call .file.execfile_obj_type_transition
