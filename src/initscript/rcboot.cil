@@ -51,6 +51,8 @@
        (call obj_type_transition_tmpfile (subj))
 
        (call .sys.read_fs_lnk_files (subj))
+       ;;bpf_preload
+       (call .sys.requestmodule (subj))
        (call .sys.search_sysctlfile_dirs (subj))
 
        (call .board.read_miscfile_files (subj))
@@ -151,4 +153,11 @@
        (call .wtmp.readwrite_logtmpfile_files (subj))
 
        (optional rcboot_opt_blockmount
-                 (call .blockmount.subj_type_transition (subj))))
+                 (call .blockmount.subj_type_transition (subj)))
+
+       (optional rcboot_opt_dnsmasq
+                 (call .dnsmasq.getattr_execfile_files (subj)))
+
+       (optional rcboot_opt_pstoreseclabelfs
+                 ;; pstore is optional (/etc/init.d/boot references it)
+                 (call .pstore.mount_filesystems (subj))))
