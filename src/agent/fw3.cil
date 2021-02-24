@@ -110,6 +110,7 @@
 
        (call .module.search_sysfile_dirs (subj))
 
+       (call .net.read_procfile_lnk_files (subj))
        (call .net.readwrite_procfile_files (subj))
        (call .net.search_sysctlfile_dirs (subj))
 

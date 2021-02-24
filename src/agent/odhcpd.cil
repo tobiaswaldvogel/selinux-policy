@@ -106,6 +106,7 @@
 
        (call .net.egress_netifs (subj))
        (call .net.read_procfile_files (subj))
+       (call .net.read_procfile_lnk_files (subj))
        (call .net.search_sysctlfile_dirs (subj))
        (call .net.sendto_netnodes (subj))
        (call .net.udp_bind_netnodes (subj))
@@ -169,6 +170,7 @@
               (call .libubox.search_datafile_dirs (subj))
 
               (call .net.read_procfile_files (subj))
+              (call .net.read_procfile_lnk_files (subj))
 
               (call .selinux.linked.subj_type (subj))
 

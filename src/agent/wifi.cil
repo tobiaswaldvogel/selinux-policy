@@ -52,7 +52,11 @@
        (call list_miscfile_dirs (subj))
        (call read_miscfile_files (subj))
 
+       ;; compat with genfs_seclabel_symlinks=0
+       (call .sys.read_fs_lnk_files (subj))
+
        (call .class.list_sysfile_dirs (subj))
+       (call .class.read_sysfile_lnk_files (subj))
 
        (call .devices.list_sysfile_dirs (subj))
        (call .devices.read_sysfile_files (subj))
@@ -77,8 +81,6 @@
        (call .selinux.linked.subj_type (subj))
 
        (call .shell.execute_execfile_files (subj))
-
-       (call .sys.read_fs_lnk_files (subj))
 
        (call .ubus.subj_type_transition (subj))
 

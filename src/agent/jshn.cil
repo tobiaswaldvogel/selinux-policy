@@ -57,6 +57,8 @@
        (call .netifd.dontaudit_readwrite_netlink_kobject_uevent_sockets (subj))
        (call .netifd.dontaudit_readwrite_netlink_route_sockets (subj))
 
+       (call .ntpdhotplug.writeinherited_fifo_files (subj))
+
        (call .odhcp6c.writeinherited_fifo_files (subj))
 
        (call .odhcpd.use_fds (subj))

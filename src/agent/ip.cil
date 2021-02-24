@@ -103,6 +103,7 @@
        (call .iproute2.read_conffile_files (subj))
 
        (call .net.read_procfile_files (subj))
+       (call .net.read_procfile_lnk_files (subj))
 
        (call .netifd.readwriteinherited_fifo_files (subj))
        (call .netifd.dontaudit_readwrite_netlink_kobject_uevent_sockets (subj))

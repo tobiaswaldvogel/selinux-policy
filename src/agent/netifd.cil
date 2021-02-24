@@ -102,6 +102,7 @@
 
        (call .sys.list_rootfile_dirs (subj))
        (call .sys.loadkernelmodule.subj_type (subj))
+       ;; compat with genfs_seclabel_symlinks=0
        (call .sys.read_fs_lnk_files (subj))
        (call .sys.requestmodule (subj))
        (call .sys.search_sysctlfile_dirs (subj))
@@ -109,8 +110,10 @@
        (call .board.read_miscfile_files (subj))
 
        (call .class.list_sysfile_dirs (subj))
+       (call .class.read_sysfile_lnk_files (subj))
 
        (call .devices.list_sysfile_dirs (subj))
+       (call .devices.read_sysfile_lnk_files (subj))
        (call .devices.readwrite_sysfile_files (subj))
 
        (call .dhcp.udp_bind_netports (subj))

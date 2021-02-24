@@ -38,12 +38,14 @@
        (allow subj self create_unix_dgram_socket)
 
        (call .sys.loadkernelmodule.subj_type (subj))
+       ;; compat with genfs_seclabel_symlinks=0
        (call .sys.read_fs_lnk_files (subj))
        (call .sys.readwriteinherited_ptydev_chr_files (subj))
        (call .sys.requestmodule (subj))
        (call .sys.search_fs_dirs (subj))
        (call .sys.writeinherited_fifo_files (subj))
 
+       (call .class.read_sysfile_lnk_files (subj))
        (call .class.search_sysfile_dirs (subj))
 
        (call .debug.search_fs_dirs (subj))

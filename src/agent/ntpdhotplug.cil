@@ -46,4 +46,6 @@
 
        (call .selinux.linked.subj_type (subj))
 
-       (call .shell.execute_execfile_files (subj)))
+       (call .shell.execute_execfile_files (subj))
+
+       (call .ubus.subj_type_transition (subj)))

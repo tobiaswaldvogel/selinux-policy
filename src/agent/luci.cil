@@ -167,6 +167,7 @@
        (call .nameservice.manage_miscfile_files (subj))
 
        (call .net.read_procfile_files (subj))
+       (call .net.read_procfile_lnk_files (subj))
 
        (call .proc.list_fs_dirs (subj))
 
@@ -392,6 +393,7 @@
               (call .loadavg.read_procfile_files (subj))
 
               (call .net.read_procfile_files (subj))
+              (call .net.read_procfile_lnk_files (subj))
 
               (call .tmpfile.deletename_runtimetmpfile_dirs (subj)))
 

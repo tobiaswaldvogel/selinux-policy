@@ -151,6 +151,7 @@
 
        (call .net.egress_netifs (subj))
        (call .net.read_procfile_files (subj))
+       (call .net.read_procfile_lnk_files (subj))
        (call .net.search_sysctlfile_dirs (subj))
        (call .net.sendto_netnodes (subj))
        (call .net.rawip_bind_netnodes (subj))

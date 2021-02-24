@@ -101,11 +101,13 @@
 
        (allow subj self (capability (sys_resource)))
 
+       ;; compat with genfs_seclabel_symlinks=0
        (call .sys.read_fs_lnk_files (subj))
        (call .sys.search_fs_dirs (subj))
 
        (call .class.list_sysfile_dirs (subj))
        (call .class.read_sysfile_files (subj))
+       (call .class.read_sysfile_lnk_files (subj))
 
        (call .debug.search_fs_dirs (subj))
 

@@ -112,6 +112,7 @@
        (call .nameservice.read_miscfile_files (subj))
 
        (call .net.read_procfile_files (subj))
+       (call .net.read_procfile_lnk_files (subj))
 
        (call .netifd.execute_miscfile_files (subj))
        (call .netifd.search_miscfile_dirs (subj))
