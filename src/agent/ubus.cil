@@ -56,6 +56,8 @@
        (call .netifd.dontaudit_readwrite_netlink_kobject_uevent_sockets (subj))
        (call .netifd.dontaudit_readwrite_netlink_route_sockets (subj))
 
+       (call .ntpdhotplug.use_fds (subj))
+
        (call .odhcp6c.use_fds (subj))
 
        (call .odhcpd.use_fds (subj))

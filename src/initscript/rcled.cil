@@ -51,13 +51,13 @@
        ;; compat with genfs_seclabel_symlinks=0
        (call .sys.read_fs_lnk_files (subj))
 
-       (call .class.read_sysfile_lnk_files (subj))
        (call .class.search_sysfile_dirs (subj))
 
        (call .devices.addname_sysfile_dirs (subj))
        (call .devices.create_sysfile_files (subj))
        (call .devices.readwrite_sysfile_files (subj))
 
+       (call .leds.read_sysfile_lnk_files (subj))
        (call .leds.search_sysfile_dirs (subj))
        (call .leds.write_sysfile_files (subj))
 

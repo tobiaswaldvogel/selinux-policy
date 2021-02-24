@@ -60,6 +60,7 @@
 
        (call .devices.list_sysfile_dirs (subj))
        (call .devices.read_sysfile_files (subj))
+       (call .devices.read_sysfile_lnk_files (subj))
 
        (call .functions.read_miscfile_files (subj))
        (call .functions.search_miscfile_dirs (subj))
