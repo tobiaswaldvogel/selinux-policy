@@ -112,11 +112,13 @@
        (call obj_type_transition_tmpfile (subj sock_file "*"))
 
        (call .sys.loadkernelmodule.subj_type (subj))
+       ;; compat with genfs_seclabel_symlinks=0
        (call .sys.read_fs_lnk_files (subj))
        (call .sys.readinherited_fifo_files (subj))
        (call .sys.requestmodule (subj))
        (call .sys.search_fs_dirs (subj))
 
+       (call .class.read_sysfile_lnk_files (subj))
        (call .class.search_sysfile_dirs (subj))
 
        (call .debug.search_fs_dirs (subj))

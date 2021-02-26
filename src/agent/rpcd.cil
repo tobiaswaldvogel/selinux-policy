@@ -92,6 +92,7 @@
        (call obj_type_transition_runtimetmpfile (subj sock_file "*"))
 
        (call .sys.loadkernelmodule.subj_type (subj))
+       ;; compat with genfs_seclabel_symlinks=0
        (call .sys.read_fs_lnk_files (subj))
        (call .sys.requestmodule (subj))
        (call .sys.search_sysctlfile_dirs (subj))
@@ -105,13 +106,16 @@
        (call .cgiio.delete_tmpfile_files (subj))
        (call .cgiio.read_tmpfile_files (subj))
 
+       (call .class.read_sysfile_lnk_files (subj))
        (call .class.list_sysfile_dirs (subj))
 
+       (call .cron.create_miscfile_files (subj))
        (call .cron.readwrite_miscfile_files (subj))
-       (call .cron.search_miscfile_dirs (subj))
+       (call .cron.addname_miscfile_dirs (subj))
 
        (call .devices.list_sysfile_dirs (subj))
        (call .devices.read_sysfile_files (subj))
+       (call .devices.read_sysfile_lnk_files (subj))
 
        (call .dnsmasq.read_tmpfile_files (subj))
 
