@@ -19,7 +19,7 @@ modulesnoluci = $(shell find src -type f -name '*.cil' \
 modulesmintesttgt = $(shell find src -type f -name '*.cil' \
 	-regextype posix-egrep \
 	! -regex 'src/(cgi|init)?script/.*\.cil' \
-	! -name autonoseclabelfs.cil \
+	! -name autonoseclabelfs.cil ! -name blockd.cil \
 	! -name blockmount.cil ! -name clocknodedev.cil \
 	! -name cpunodedev.cil ! -name dmctlnodedev.cil \
 	! -name dmstordev.cil ! -name dnsmasq.cil \
