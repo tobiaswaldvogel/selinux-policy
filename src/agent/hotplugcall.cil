@@ -37,10 +37,12 @@
        (allow subj self create_unix_dgram_socket)
 
        (call .sys.list_rootfile_dirs (subj))
+       ;; compat with genfs_seclabel_symlinks=0
        (call .sys.read_fs_lnk_files (subj))
        (call .sys.search_sysctlfile_dirs (subj))
        (call .sys.dontaudit_readwrite_udp_sockets (subj))
 
+       (call .block.read_sysfile_lnk_files (subj))
        (call .block.search_sysfile_dirs (subj))
 
        (call .class.search_sysfile_dirs (subj))

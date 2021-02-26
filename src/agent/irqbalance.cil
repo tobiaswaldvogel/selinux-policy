@@ -61,10 +61,12 @@
        (call manage_runtimetmpfile_sock_files (subj))
        (call obj_type_transition_runtimetmpfile (subj))
 
+       ;; compat with genfs_seclabel_symlinks=0
        (call .sys.read_fs_lnk_files (subj))
        (call .sys.search_fs_dirs (subj))
 
        (call .bus.list_sysfile_dirs (subj))
+       (call .bus.read_sysfile_lnk_files (subj))
 
        (call .devices.list_sysfile_dirs (subj))
        (call .devices.read_sysfile_files (subj))
