@@ -149,6 +149,8 @@
 
        (call .luci.subj_type_transition (subj))
 
+       (call .mnt.search_miscfile_dirs (subj))
+
        (call .mtd.read_procfile_files (subj))
 
        (call .nameservice.read_miscfile_files (subj))
@@ -217,6 +219,8 @@
 
        (call .www.list_miscfile_dirs (subj))
        (call .www.read_miscfile_files (subj))
+
+       (call .xattr.unmount_filesystems (subj))
 
        (call .xtables.subj_type_transition (subj))
 

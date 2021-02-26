@@ -1,5 +1,3 @@
-blockd
-
 update polver to 33 for name-base file type transition optimization
        no rush here because this actually increases the size of the policy :-(
        32 adds glblub which i dont use anyway

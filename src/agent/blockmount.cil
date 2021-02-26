@@ -142,6 +142,9 @@
                  (call .nvme.obj_type_transition_stordev (subj))
                  (call .nvme.readwrite_stordev_blk_files (subj)))
 
+       (optional blockmount_opt_rcblockd
+                 (call .rcblockd.use_fds (subj)))
+
        (optional blockmount_opt_rcboot
                  (call .rcboot.use_fds (subj)))
 

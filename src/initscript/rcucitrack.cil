@@ -43,6 +43,9 @@
        (optional rcucitrack_opt_rcacme
                  (call .rcacme.subj_type_transition (subj)))
 
+       (optional rcucitrack_opt_rcblockd
+                 (call .rcblockd.subj_type_transition (subj)))
+
        (optional rcucitrack_opt_rcboot
                  (call .rcboot.subj_type_transition (subj)))
 
