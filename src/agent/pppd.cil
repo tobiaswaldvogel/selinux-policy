@@ -82,10 +82,12 @@
        (blockinherit .tmpfile.runtime.obj_template)
 
        (allow subj self (capability (net_admin net_raw setgid setuid)))
+       (allow subj self create_netlink_route_socket)
        (allow subj self create_packet_socket)
        (allow subj self create_pppox_socket)
        (allow subj self create_udp_socket)
        (allow subj self create_unix_dgram_socket)
+       (allow subj self (netlink_route_socket (nlmsg_write)))
 
        (call read_conffile_files (subj))
        (call read_conffile_lnk_files (subj))

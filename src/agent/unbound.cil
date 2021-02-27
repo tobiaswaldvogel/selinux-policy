@@ -197,7 +197,7 @@
 
               (blockinherit .agent.base_template)
 
-              (allow subj self (capability (dac_override)))
+              (allow subj self (capability (dac_override net_admin)))
               (allow subj self create_netlink_route_socket)
               (allow subj self create_unix_dgram_socket)
               (allow subj self (netlink_route_socket (nlmsg_read)))
@@ -212,6 +212,9 @@
               (call search_miscfile_dirs (subj))
 
               (call .sys.list_rootfile_dirs (subj))
+              ;; busybox ip builtin: netdev-br-lan
+              (call .sys.loadkernelmodule.subj_type (subj))
+              (call .sys.requestmodule (subj))
 
               (call .file.read_conffile_lnk_files (subj))
 
