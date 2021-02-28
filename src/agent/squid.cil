@@ -9,6 +9,7 @@
 (in .file
     (call .squid.helper.libfile_obj_type_transition_execfile
           (unconfined.subj_typeattr))
+    (call .squid.obj_type_transition_certfile (unconfined.subj_typeattr))
     (call .squid.obj_type_transition_conffile (unconfined.subj_typeattr))
     (call .squid.obj_type_transition_execfile (unconfined.subj_typeattr))
     (call .squid.obj_type_transition_runtimetmpfile (unconfined.subj_typeattr))
@@ -31,6 +32,15 @@
         "/etc/squid/.*"
         any
         conffile_file_context)
+
+       (filecon
+        "/etc/squid/ssl_cert"
+        dir
+        certfile_file_context)
+       (filecon
+        "/etc/squid/ssl_cert/.*"
+        any
+        certfile_file_context)
 
        (filecon
         "/tmp/squid"
@@ -58,6 +68,10 @@
        (macro map_tmpfile_files ((type ARG1))
               (allow ARG1 tmpfile (file (map))))
 
+       (macro obj_type_transition_certfile ((type ARG1))
+              (call .squid.conffile_obj_type_transition
+                    (ARG1 certfile dir "ssl_cert")))
+
        (macro obj_type_transition_conffile ((type ARG1))
               (call .file.conffile_obj_type_transition
                     (ARG1 conffile dir "squid")))
@@ -79,6 +93,7 @@
        ;;
 
        (blockinherit .agent.base_template)
+       (blockinherit .file.cert.obj_template)
        (blockinherit .file.conf.obj_template)
        (blockinherit .tmpfile.obj_template)
        (blockinherit .tmpfile.runtime.obj_template)
@@ -87,6 +102,9 @@
        (allow subj self create_udp_socket)
        (allow subj self create_unix_dgram_socket)
        (allow subj self create_unix_stream_socket)
+
+       (call read_certfile_files (subj))
+       (call search_certfile_dirs (subj))
 
        (call read_conffile_files (subj))
        (call search_conffile_dirs (subj))
@@ -101,8 +119,12 @@
 
        (call helper.execute_execfile_files (subj))
 
+       (call .sys.readwriteinherited_fifo_files (subj))
+
        (call .file.read_datafile_files (subj))
        (call .file.search_datafile_dirs (subj))
+
+       (call .http.tcp_connect_netports (subj))
 
        (call .httpproxy.tcp_bind_netports (subj))
 
