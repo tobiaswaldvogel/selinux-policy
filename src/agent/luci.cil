@@ -280,6 +280,9 @@
        (optional luci_opt_rcsqm
                  (call .rcsqm.subj_type_transition (subj)))
 
+       (optional luci_opt_rcsquid
+                 (call .rcsquid.subj_type_transition (subj)))
+
        (optional luci_opt_rcsysctl
                  (call .rcsysctl.subj_type_transition (subj)))
 

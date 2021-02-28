@@ -1,0 +1,92 @@
+;; -*- mode: CIL; fill-column: 79; indent-tabs-mode: nil; -*-
+;; SPDX-FileCopyrightText: © 2021 Dominick Grift <dominick.grift@defensec.nl>
+;; SPDX-License-Identifier: Unlicense
+
+(in .sys
+    (call .squid.sslcrtd.subj_type_transition (subj))
+    (call .squid.subj_type_transition (subj)))
+
+(in .file
+    (call .squid.obj_type_transition_conffile (unconfined.subj_typeattr))
+    (call .squid.obj_type_transition_execfile (unconfined.subj_typeattr))
+    (call .squid.obj_type_transition_tmpfile (unconfined.subj_typeattr))
+    (call .squid.sslcrtd.libfile_obj_type_transition_execfile
+          (unconfined.subj_typeattr)))
+
+(block squid
+
+       ;;
+       ;; Contexts
+       ;;
+
+       (filecon
+        "/etc/squid"
+        dir
+        conffile_file_context)
+       (filecon
+        "/etc/squid/.*"
+        any
+        conffile_file_context)
+
+       (filecon
+        "/tmp/squid"
+        dir
+        tmpfile_file_context)
+       (filecon
+        "/tmp/squid/.*"
+        any
+        tmpfile_file_context)
+
+       (filecon
+        "/usr/bin/squid"
+        file
+        execfile_file_context)
+
+       ;;
+       ;; Macros
+       ;;
+
+       (macro obj_type_transition_conffile ((type ARG1))
+              (call .file.conffile_obj_type_transition
+                    (ARG1 conffile dir "squid")))
+
+       (macro obj_type_transition_execfile ((type ARG1))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "squid")))
+
+       (macro obj_type_transition_tmpfile ((type ARG1))
+              (call .tmp.fs_obj_type_transition
+                    (ARG1 tmpfile dir "squid")))
+
+       ;;
+       ;; Policy
+       ;;
+
+       (blockinherit .agent.base_template)
+       (blockinherit .file.conf.obj_template)
+       (blockinherit .tmpfile.obj_template)
+
+       (block sslcrtd
+
+              ;;
+              ;; Contexts
+              ;;
+
+              (filecon
+               "/usr/lib/squid/security_file_certgen"
+               file
+               execfile_file_context)
+
+              ;;
+              ;; Macros
+              ;;
+
+              (macro libfile_obj_type_transition_execfile ((type ARG1))
+                     (call .file.libfile_obj_type_transition
+                           (ARG1 execfile file "security_file_certgen")))
+
+              ;;
+              ;; Policy
+              ;;
+
+              (blockinherit .agent.base_template)))
