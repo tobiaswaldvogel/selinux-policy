@@ -31,7 +31,7 @@ modulesmintesttgt = $(shell find src -type f -name '*.cil' \
 	! -name nvmestordev.cil ! -name nvramnodedev.cil \
 	! -name px5gexecfile.cil \
 	! -name rpcd.cil ! -name sftpserver.cil \
-	! -name srstordev.cil \
+	! -name srstordev.cil ! -name tinyproxy.cil \
 	! -name uhttpd.cil ! -name vdstordev.cil \
 	! -name vmcinodedev.cil -printf '%p ')
 
