@@ -34,6 +34,14 @@
 
        (blockinherit .initscript.base_template)
 
-       (call .squid.obj_type_transition_tmpfile (subj))
+       (allow subj self (capability (chown dac_override dac_read_search)))
+
+       (call .squid.read_conffile_files (subj))
+       (call .squid.search_conffile_dirs (subj))
+
+       (call .squid.manage_tmpfile_dirs (subj))
+       (call .squid.manage_tmpfile_files (subj))
+       (call .squid.obj_type_transition_tmpfile (subj dir "squid"))
+
        (call .squid.sslcrtd.subj_type_transition (subj))
        (call .squid.subj_type_transition (subj)))
