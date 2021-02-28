@@ -135,6 +135,9 @@
                  (call .ssl.read_certfile_lnk_files (subj))
                  (call .ssl.search_certfile_dirs (subj)))
 
+       (optional squid_opt_uhttpd
+                 (call .uhttpd.readinherited_fifo_files (subj)))
+
        (block helper
 
               ;;

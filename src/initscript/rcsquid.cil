@@ -44,4 +44,12 @@
        (call .squid.obj_type_transition_tmpfile (subj dir "squid"))
 
        (call .squid.sslcrtd.subj_type_transition (subj))
-       (call .squid.subj_type_transition (subj)))
+       (call .squid.subj_type_transition (subj))
+
+       (call .www.search_miscfile_dirs (subj))
+
+       (optional rcsquid_opt_luci
+                 (call .luci.cgi.use_fds (subj)))
+
+       (optional rcsquid_opt_uhttpd
+                 (call .uhttpd.readinherited_fifo_files (subj))))

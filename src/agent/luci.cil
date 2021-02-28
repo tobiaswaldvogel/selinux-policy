@@ -515,11 +515,18 @@
               (optional luci_cgi_opt_acme
                         (call .acme.search_conffile_dirs (subj)))
 
+              (optional luci_cgi_opt_rcsquid
+                        (call .rcsquid.subj_type_transition (subj)))
+
               (optional luci_cgi_opt_rctinyproxy
                         (call .rctinyproxy.subj_type_transition (subj)))
 
               (optional luci_cgi_opt_rcunbound
                         (call .rcunbound.subj_type_transition (subj)))
+
+              (optional luci_cgi_opt_squid
+                        (call .squid.readwrite_conffile_files (subj))
+                        (call .squid.search_conffile_dirs (subj)))
 
               (optional luci_cgi_opt_unbound
                         (call .unbound.read_statetmpfile_files (subj))
