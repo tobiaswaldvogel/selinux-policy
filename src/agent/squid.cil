@@ -54,7 +54,7 @@
        (filecon
         "/tmp/run/squid\.pid"
         file
-        tmpfile_file_context)
+        runtimetmpfile_file_context)
 
        (filecon
         "/usr/bin/squid"
