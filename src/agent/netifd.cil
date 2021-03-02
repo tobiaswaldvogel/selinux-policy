@@ -195,4 +195,5 @@
        (call .xattr.associate_filesystems (miscfile))
 
        (optional netifd_opt_fwenv
+                 ;; local customisation, should not be needed
                  (call .fwenv.subj_type_transition (subj))))
