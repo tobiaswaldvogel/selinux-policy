@@ -62,6 +62,10 @@
 
        (call read_conffile_files (subj))
 
+       (call .sys.readwriteinherited_ptydev_chr_files (subj))
+       (call .sys.writeinherited_fifo_files (subj))
+
+       (call .dev.readwriteinherited_ttydev_chr_files (subj))
        (call .dev.stor.readwrite.subj_type (subj))
 
        (call .file.search_conffile_dirs (subj))
@@ -71,4 +75,7 @@
        (call .tmpfile.manage_locktmpfile_files (subj))
        (call .tmpfile.readwrite_locktmpfile_dirs (subj))
 
-       (call .xattr.associate_filesystems (miscfile)))
+       (call .xattr.associate_filesystems (miscfile))
+
+       (optional fwenv_opt_rcbootcount
+                 (call .rcbootcount.writeinherited_fifo_files (subj))))

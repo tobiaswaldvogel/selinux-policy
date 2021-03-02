@@ -192,4 +192,7 @@
        (call .wpad.signal (subj))
        (call .wpad.subj_type_transition (subj))
 
-       (call .xattr.associate_filesystems (miscfile)))
+       (call .xattr.associate_filesystems (miscfile))
+
+       (optional netifd_opt_fwenv
+                 (call .fwenv.subj_type_transition (subj))))
