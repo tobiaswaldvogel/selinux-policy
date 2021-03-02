@@ -22,6 +22,15 @@
         miscfile_file_context)
 
        (filecon
+        "/rwm"
+        dir
+        miscfile_file_context)
+       (filecon
+        "/rwm/.*"
+        any
+        miscfile_file_context)
+
+       (filecon
         "/tmp/overlay"
         dir
         miscfile_file_context)
@@ -48,7 +57,9 @@
 
        (macro obj_type_transition_miscfile ((type ARG1))
               (call .sys.rootfile_obj_type_transition
-                    (ARG1 miscfile dir "overlay")))
+                    (ARG1 miscfile dir "overlay"))
+              (call .sys.rootfile_obj_type_transition
+                    (ARG1 miscfile dir "rwm")))
 
        (macro tmp_obj_type_transition_miscfile ((type ARG1))
               (call .tmp.fs_obj_type_transition

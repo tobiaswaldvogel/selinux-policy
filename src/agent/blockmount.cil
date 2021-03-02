@@ -27,7 +27,6 @@
        ;; Macros
        ;;
 
-
        (macro auditexecute_execfile_files ((type ARG1))
               (allow ARG1 execfile (file (getattr execute))))
 
@@ -83,6 +82,8 @@
        (call .file.mounton_homefile_dirs (subj))
        (call .file.search_conffile_dirs (subj))
 
+       (call .filesystems.read_procfile_files (subj))
+
        (call .hotplugcall.use_fds (subj))
 
        (call .kmsg.readwrite_nodedev_chr_files (subj))
@@ -97,7 +98,9 @@
        (call .mtd.read_procfile_files (subj))
 
        (call .overlay.mounton_miscfile_dirs (subj))
-       (call .overlay.search_miscfile_dirs (subj))
+       (call .overlay.manage_miscfile_dirs (subj))
+       (call .overlay.manage_miscfile_files (subj))
+       (call .overlay.obj_type_transition_miscfile (subj))
 
        (call .tmp.deletename_fs_dirs (subj))
 
