@@ -21,6 +21,10 @@
         "/etc/fw_env\.config"
         file
         conffile_file_context)
+       (filecon
+        "/etc/fw_env\.config\..*"
+        file
+        conffile_file_context)
 
        (filecon
         "/usr/bin/fw_printenv"
@@ -64,7 +68,7 @@
 
        (call .mtd.read_stordev_chr_files (subj))
 
-       (call .tmpfile.readwrite_locktmpfile_dirs (subj))
        (call .tmpfile.manage_locktmpfile_files (subj))
+       (call .tmpfile.readwrite_locktmpfile_dirs (subj))
 
        (call .xattr.associate_filesystems (miscfile)))
