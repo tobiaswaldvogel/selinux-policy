@@ -70,6 +70,7 @@
        (call .sys.loadkernelmodule.subj_type (subj))
        (call .sys.readringbuffer (subj))
        (call .sys.readwriteinherited_ptydev_chr_files (subj))
+       (call .sys.search_keyrings (subj))
        (call .sys.writeinherited_fifo_files (subj))
 
        (call .debug.search_fs_dirs (subj))

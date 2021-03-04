@@ -56,6 +56,9 @@
        (macro requestmodule ((type ARG1))
               (allow ARG1 subj (system (module_request))))
 
+       (macro search_keyrings ((type ARG1))
+              (allow ARG1 subj (key (search))))
+
        (macro type ((type ARG1))
               (typeattributeset typeattr ARG1))
 

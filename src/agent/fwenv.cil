@@ -72,6 +72,9 @@
 
        (call .mtd.readwrite_stordev_chr_files (subj))
 
+       ;; local customisation, should not be needed (netifd runs fw_printenv with a domain transition)
+       (call .netifd.writeinherited_fifo_files (subj))
+
        (call .tmpfile.manage_locktmpfile_files (subj))
        (call .tmpfile.readwrite_locktmpfile_dirs (subj))
 
