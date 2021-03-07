@@ -38,3 +38,10 @@ Installation:
 
     Please see support/selinux-policy-XXXX for an example package
     manifest for OpenWrt.
+
+Notes:
+
+    Some chips might lack support for CONFIG_STRICT_KERNEL_RWX and in
+    that scenario you will see unexplained "execute", "execmem" and
+    possibly "execstack" events. These events can be suppressed with:
+    echo 1 > /sys/fs/selinux/checkreqprot.

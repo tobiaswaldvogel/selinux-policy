@@ -48,5 +48,7 @@
        (call .uci.search_conffile_dirs (subj))
        (call .uci.search_tmpfile_dirs (subj))
 
+       (call .watchdog.dontaudit_writeinherited_nodedev_chr_files (subj))
+
        (optional swconfig_opt_rcnetwork
                  (call .rcnetwork.use_fds (subj))))
