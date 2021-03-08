@@ -39,6 +39,7 @@
        (call .hotplugcall.nnptransition (subj))
        (call .hotplugcall.subj_type_transition (subj))
 
+       (call .jshn.nnptransition (subj))
        (call .jshn.subj_type_transition (subj))
 
        (call .libubox.read_datafile_files (subj))
@@ -47,5 +48,8 @@
        (call .selinux.linked.subj_type (subj))
 
        (call .shell.execute_execfile_files (subj))
+
+       (call .tmpfile.search_conftmpfile_dirs (subj))
+       (call .tmpfile.search_statetmpfile_dirs (subj))
 
        (call .ubus.subj_type_transition (subj)))

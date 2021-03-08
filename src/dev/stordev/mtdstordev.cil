@@ -221,6 +221,8 @@
                  (ARG1 stordev blk_file "ubiblock0_3"))
            (call .tmp.fs_obj_type_transition
                  (ARG1 stordev blk_file "ubiblock0_4"))
+          (call .tmp.fs_obj_type_transition
+                 (ARG1 stordev blk_file "ubiblock0_4p1"))
            (call .tmp.fs_obj_type_transition
                  (ARG1 stordev blk_file "ubiblock0_5"))
            (call .tmp.fs_obj_type_transition
