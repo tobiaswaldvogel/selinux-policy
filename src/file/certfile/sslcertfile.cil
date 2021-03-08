@@ -37,4 +37,16 @@
 
        (blockinherit file.cert.obj_template)
 
-       (call .file.cert.exception.obj_type (certfile)))
+       (call .file.cert.exception.obj_type (certfile))
+
+       (block read
+
+              ;;
+              ;; Policy
+              ;;
+
+              (blockinherit .subj.subj_all_macro_template)
+
+              (call read_certfile_files (subj_typeattr))
+              (call read_certfile_lnk_files (subj_typeattr))
+              (call search_certfile_dirs (subj_typeattr))))

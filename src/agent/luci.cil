@@ -187,8 +187,6 @@
 
        (call .shell.execute_execfile_files (subj))
 
-       (call .ssl.search_certfile_dirs (subj))
-
        (call .stat.read_procfile_files (subj))
 
        (call .subj.passwd_all (subj))
@@ -324,6 +322,9 @@
 
        (optional luci_opt_rczram
                  (call .rczram.subj_type_transition (subj)))
+
+       (optional luci_opt_sslcertfile
+                 (call .ssl.search_certfile_dirs (subj)))
 
        (block bwc
 

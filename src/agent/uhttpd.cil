@@ -121,6 +121,4 @@
                  (call .acme.search_conffile_dirs (subj)))
 
        (optional uhttpd_opt_sslcertfile
-                 (call .ssl.read_certfile_files (subj))
-                 (call .ssl.read_certfile_lnk_files (subj))
-                 (call .ssl.search_certfile_dirs (subj))))
+                 (call .ssl.read.subj_type (subj))))
