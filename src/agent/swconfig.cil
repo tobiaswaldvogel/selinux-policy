@@ -39,7 +39,10 @@
        (allow subj self (capability (net_admin)))
        (allow subj self create_netlink_generic_socket)
 
+       (call .sys.readwriteinherited_ptydev_chr_files (subj))
        (call .sys.readwriteinherited_fifo_files (subj))
+
+       (call .dev.readwriteinherited_ttydev_chr_files (subj))
 
        (call .file.search_conffile_dirs (subj))
 
