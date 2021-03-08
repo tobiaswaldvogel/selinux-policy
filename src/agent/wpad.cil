@@ -117,6 +117,7 @@
        (call .sys.readinherited_fifo_files (subj))
        (call .sys.requestmodule (subj))
        (call .sys.search_fs_dirs (subj))
+       (call .sys.search_sysctlfile_dirs (subj))
 
        (call .class.read_sysfile_lnk_files (subj))
        (call .class.search_sysfile_dirs (subj))
@@ -127,9 +128,16 @@
 
        (call .file.search_conffile_dirs (subj))
 
+       (call .ipv4.readwrite_sysctlfile_files (subj))
+       (call .ipv4.search_sysctlfile_dirs (subj))
+
+       (call .ipv6.readwrite_sysctlfile_files (subj))
+       (call .ipv6.search_sysctlfile_dirs (subj))
+
        (call .logd.unix_dgram_send (subj))
 
        (call .net.egress_netifs (subj))
+       (call .net.search_sysctlfile_dirs (subj))
        (call .net.sendto_netnodes (subj))
        (call .net.udp_bind_netnodes (subj))
 
