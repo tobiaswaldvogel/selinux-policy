@@ -142,4 +142,9 @@
        (call .ubusd.unix_stream_connect (subj))
 
        (optional wpad_opt_rpcd
-                 (call .rpcd.unix_dgram_send (subj))))
+                 (call .rpcd.unix_dgram_send (subj)))
+
+       (optional wpad_opt_sslcertfile
+                 (call .ssl.read_certfile_files (subj))
+                 (call .ssl.read_certfile_lnk_files (subj))
+                 (call .ssl.search_certfile_dirs (subj))))
