@@ -39,6 +39,10 @@
      "/dev/ubiblock[0-9]+_[0-9]+"
      block
      stordev_file_context)
+    (filecon
+     "/dev/ubiblock[0-9]+_[0-9]+p[0-9]+"
+     block
+     stordev_file_context)
 
     ;;
     ;; Macros
