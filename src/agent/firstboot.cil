@@ -47,6 +47,8 @@
 
        (call .sys.list_rootfile_dirs (subj))
 
+       (call .cmdline.read_procfile_files (subj))
+
        (call .dev.getattr_all_chr_files (subj))
        (call .dev.stor.read.subj_type (subj))
        (call .dev.stor.read_all_blk_files (subj))

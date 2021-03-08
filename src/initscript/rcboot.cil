@@ -50,6 +50,7 @@
        (call manage_tmpfile_files (subj))
        (call obj_type_transition_tmpfile (subj))
 
+       ;; compat with genfs_seclabel_symlinks=0
        (call .sys.read_fs_lnk_files (subj))
        ;;bpf_preload
        (call .sys.requestmodule (subj))
@@ -59,7 +60,10 @@
 
        (call .bpf.mount_filesystems (subj))
 
+       (call .class.read_sysfile_lnk_files (subj))
        (call .class.search_sysfile_dirs (subj))
+
+       (call .cmdline.read_procfile_files (subj))
 
        (call .configgenerate.subj_type_transition (subj))
 
@@ -69,8 +73,9 @@
        (call .dev.stor.read_all_blk_files (subj))
        (call .dev.stor.read_all_chr_files (subj))
 
+       (call .devices.list_sysfile_dirs (subj))
        (call .devices.read_sysfile_files (subj))
-       (call .devices.search_sysfile_dirs (subj))
+       (call .devices.read_sysfile_lnk_files (subj))
 
        (call .filesystems.read_procfile_files (subj))
 
@@ -133,6 +138,9 @@
        (call .uci.addname_conffile_dirs (subj))
        (call .uci.setattr_tmpfile_dirs (subj))
        (call .uci.subj_type_transition (subj))
+
+       (call .upgrade.read_miscfile_files (subj))
+       (call .upgrade.search_miscfile_dirs (subj))
 
        (call .tmp.addname_fs_dirs (subj))
        (call .tmp.create_fs_dirs (subj))
