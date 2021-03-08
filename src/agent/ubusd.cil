@@ -24,6 +24,10 @@
         "/tmp/run/ubus/.*"
         any
         runtimetmpfile_file_context)
+       (filecon
+        "/tmp/run/ubus\.sock"
+        socket
+        runtimetmpfile_file_context)
 
        (filecon
         "/usr/bin/ubusd"
@@ -40,7 +44,9 @@
 
        (macro obj_type_transition_runtimetmpfile ((type ARG1))
               (call .tmpfile.runtimetmpfile_obj_type_transition
-                    (ARG1 runtimetmpfile dir "ubus")))
+                    (ARG1 runtimetmpfile dir "ubus"))
+              (call .tmpfile.runtimetmpfile_obj_type_transition
+                    (ARG1 runtimetmpfile sock_file "ubus.sock")))
 
        (macro unix_stream_connect ((type ARG1))
               (call connectto_unix_stream_sockets (ARG1))
