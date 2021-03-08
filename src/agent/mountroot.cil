@@ -19,6 +19,10 @@
         "/tmp/\.switch_jffs2"
         file
         tmpfile_file_context)
+       (filecon
+        "/tmp/sysupgrade\.tar"
+        file
+        tmpfile_file_context)
 
        (filecon
         "/usr/bin/mount_root"
@@ -35,7 +39,9 @@
 
        (macro obj_type_transition_tmpfile ((type ARG1))
               (call .tmp.fs_obj_type_transition
-                    (ARG1 tmpfile file ".switch_jffs2")))
+                    (ARG1 tmpfile file ".switch_jffs2"))
+              (call .tmp.fs_obj_type_transition
+                    (ARG1 tmpfile file "sysupgrade.tar")))
 
        ;;
        ;; Policy
