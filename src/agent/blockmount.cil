@@ -66,6 +66,9 @@
        (call .sys.setsched (subj)) ;; might be able to dontaudit this (could be mount related)
        (call .sys.writeinherited_fifo_files (subj))
 
+       (call .block.read_sysfile_lnk_files (subj))
+       (call .block.search_sysfile_dirs (subj))
+
        (call .class.list_sysfile_dirs (subj))
        (call .class.read_sysfile_files (subj))
        (call .class.read_sysfile_lnk_files (subj))
@@ -132,6 +135,7 @@
        (optional blockmount_opt_mmcstordev
                  (call .mmc.create_stordev_blk_files (subj))
                  (call .mmc.obj_type_transition_stordev (subj))
+                 (call .mmc.read_stordev_chr_files (subj))
                  (call .mmc.readwrite_stordev_blk_files (subj)))
 
        (optional blockmount_opt_mtdstordev

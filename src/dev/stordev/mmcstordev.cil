@@ -63,6 +63,8 @@
               (call .tmp.fs_obj_type_transition
                     (ARG1 stordev blk_file "mmcblk0p9"))
               (call .tmp.fs_obj_type_transition
+                    (ARG1 stordev blk_file "mmcblk0p130"))
+              (call .tmp.fs_obj_type_transition
                     (ARG1 stordev chr_file "mmcblk0rpmb"))
               (call .tmp.fs_obj_type_transition
                     (ARG1 stordev blk_file "mmcblk1"))
@@ -91,6 +93,8 @@
               (call .tmp.fs_obj_type_transition
                     (ARG1 stordev blk_file "mmcblk1p9"))
               (call .tmp.fs_obj_type_transition
+                    (ARG1 stordev blk_file "mmcblk1p130"))
+              (call .tmp.fs_obj_type_transition
                     (ARG1 stordev chr_file "mmcblk1rpmb"))
               (call .tmp.fs_obj_type_transition
                     (ARG1 stordev blk_file "mmcblk2"))
@@ -118,6 +122,8 @@
                     (ARG1 stordev blk_file "mmcblk2p8"))
               (call .tmp.fs_obj_type_transition
                     (ARG1 stordev blk_file "mmcblk2p9"))
+              (call .tmp.fs_obj_type_transition
+                    (ARG1 stordev blk_file "mmcblk2p130"))
               (call .tmp.fs_obj_type_transition
                     (ARG1 stordev chr_file "mmcblk2rpmb")))
 
