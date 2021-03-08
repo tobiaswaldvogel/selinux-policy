@@ -74,6 +74,9 @@
 
        (call .random.read_nodedev_chr_files (subj))
 
+       (call .tmpfile.search_conftmpfile_dirs (subj))
+       (call .tmpfile.search_statetmpfile_dirs (subj))
+
        (call .watchdog.dontaudit_writeinherited_nodedev_chr_files (subj))
 
        (call .wifi.writeinherited_fifo_files (subj))
