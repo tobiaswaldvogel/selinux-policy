@@ -153,6 +153,8 @@
 
        (call .tmp.associate_filesystems (certfile))
        (call .tmp.deletename_fs_dirs (subj))
+       ;; scp tmpfs files created by sys.subj out
+       (call .tmp.read_fs_files (subj))
 
        (call .tmpfile.deletename_runtimetmpfile_dirs (subj))
 
