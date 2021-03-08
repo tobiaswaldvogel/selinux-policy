@@ -168,13 +168,4 @@
 
        (optional rcboot_opt_pstoreseclabelfs
                  ;; pstore is optional (/etc/init.d/boot references it)
-                 (call .pstore.mount_filesystems (subj)))
-
-       (optional rcboot_opt_rcrpcd
-                 (call .rcrpcd.execute_initscriptfile_files (subj)))
-
-       (optional rcboot_opt_rcuhttpd
-                 (call .rcuhttpd.execute_initscriptfile_files (subj)))
-
-       (optional rcboot_opt_uhttpd
-                 (call .uhttpd.getattr_certfile_files (subj))))
+                 (call .pstore.mount_filesystems (subj))))

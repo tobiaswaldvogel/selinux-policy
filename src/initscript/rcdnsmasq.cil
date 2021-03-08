@@ -72,6 +72,8 @@
 
        (call .rcodhcpd.execute_initscriptfile_files (subj))
 
+       (call .rcsysntpd.execute_initscriptfile_files (subj))
+
        (call .resolv.addname_tmpfile_dirs (subj))
        (call .resolv.manage_tmpfile_files (subj))
        (call .resolv.obj_type_transition_tmpfile (subj))
@@ -80,8 +82,8 @@
 
        (call .sys.search_sysctlfile_dirs (subj))
 
-       (call .tmp.deletename_fs_dirs (subj))
        (call .tmp.manage_fs_lnk_files (subj))
+       (call .tmp.readwrite_fs_dirs (subj))
 
        (call .tmpfile.addname_statetmpfile_dirs (subj))
        (call .tmpfile.create_conftmpfile_dirs (subj))
@@ -98,9 +100,6 @@
        (call .tmpfile.obj_type_transition_hoststmpfile (subj))
        (call .tmpfile.obj_type_transition_runtimetmpfile (subj))
        (call .tmpfile.obj_type_transition_statetmpfile (subj))
-
-       (optional rcdnsmasq_opt_rcsysntpd
-                 (call .rcsysntpd.execute_initscriptfile_files (subj)))
 
        (optional rcdnsmasq_opt_rcunbound
                  (call .rcunbound.use_fds (subj))))
