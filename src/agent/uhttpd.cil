@@ -62,6 +62,9 @@
               (call .file.conffile_obj_type_transition
                     (ARG1 certfile file "uhttpd.key.new")))
 
+       (macro getattr_certfile_files ((type ARG1))
+              (allow ARG1 certfile (file (getattr))))
+
        (macro getattr_execfile_files ((type ARG1))
               (allow ARG1 execfile (file (getattr))))
 
