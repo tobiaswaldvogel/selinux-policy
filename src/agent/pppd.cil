@@ -65,7 +65,8 @@
               (call .file.execfile_obj_type_transition
                     (ARG1 execfile file "pppd")))
 
-       (macro obj_type_transition_runtimetmpfile ((type ARG1)(class ARG2)(name ARG3))
+       (macro obj_type_transition_runtimetmpfile
+              ((type ARG1)(class ARG2)(name ARG3))
               (call .tmpfile.runtimetmpfile_obj_type_transition
                     (ARG1 runtimetmpfile ARG2 ARG3)))
 
