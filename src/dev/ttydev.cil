@@ -195,6 +195,10 @@
            (call .tmp.fs_obj_type_transition
                  (ARG1 ttydev chr_file "ttyUSB1"))
            (call .tmp.fs_obj_type_transition
+                 (ARG1 ttydev chr_file "ttyUSB2"))
+           (call .tmp.fs_obj_type_transition
+                 (ARG1 ttydev chr_file "ttyUSB3"))
+           (call .tmp.fs_obj_type_transition
                  (ARG1 ttydev chr_file "vcs"))
            (call .tmp.fs_obj_type_transition
                  (ARG1 ttydev chr_file "vcs1"))
