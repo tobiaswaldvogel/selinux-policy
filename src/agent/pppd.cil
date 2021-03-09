@@ -102,6 +102,9 @@
 
        (call .sys.requestmodule (subj))
 
+       ;; /dev/ttyUSBN used by pppd to send AT commands to modem
+       (call .dev.readwrite_ttydev_chr_files (subj))
+
        (call .fw3.subj_type_transition (subj))
 
        (call .jshn.subj_type_transition (subj))
