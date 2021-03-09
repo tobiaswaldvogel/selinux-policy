@@ -81,4 +81,7 @@
        (call .xattr.associate_filesystems (miscfile))
 
        (optional fwenv_opt_rcbootcount
-                 (call .rcbootcount.writeinherited_fifo_files (subj))))
+                 (call .rcbootcount.writeinherited_fifo_files (subj)))
+
+       (optional fwenv_opt_ttyd
+                 (call .ttyd.readwriteinherited_ptydev_chr_files (subj))))

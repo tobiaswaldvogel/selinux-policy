@@ -54,4 +54,7 @@
        (call .watchdog.dontaudit_writeinherited_nodedev_chr_files (subj))
 
        (optional swconfig_opt_rcnetwork
-                 (call .rcnetwork.use_fds (subj))))
+                 (call .rcnetwork.use_fds (subj)))
+
+       (optional swconfig_opt_ttyd
+                 (call .ttyd.readwriteinherited_ptydev_chr_files (subj))))

@@ -77,6 +77,9 @@
            (call connectto_unix_stream_sockets (ARG1))
            (call write_runtimetmpfile_sock_files (ARG1)))
 
+    (macro dontaudit_readwriteinherited_ptydev_chr_files ((type ARG1))
+           (dontaudit ARG1 ptydev readwriteinherited_chr_file))
+
     ;;
     ;; Policy
     ;;

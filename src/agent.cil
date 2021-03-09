@@ -38,6 +38,10 @@
        (optional agent_opt_rpcd
                  (call .rpcd.readwriteinherited_fifo_files (subj_typeattr)))
 
+       (optional agent_opt_ttyd
+                 (call .ttyd.dontaudit_readwriteinherited_ptydev_chr_files
+                       (subj_typeattr)))
+
        (block exec
 
               ;;
