@@ -95,6 +95,8 @@
        (call readwrite_certfile_dirs (subj))
        (call tmp_obj_type_transition_certfile (subj file "*"))
 
+       (call execute_execfile_files (subj))
+
        (call manage_runtimetmpfile_files (subj))
        (call obj_type_transition_runtimetmpfile (subj file "*"))
 
@@ -129,12 +131,15 @@
        (call .net.read_procfile_lnk_files (subj))
        (call .net.sendto_netnodes (subj))
        (call .net.tcp_bind_netnodes (subj))
+       (call .net.udp_bind_netnodes (subj))
 
        (call .ptmx.readwrite_nodedev_chr_files (subj))
 
        (call .random.read_sysctlfile_files (subj))
        (call .random.readwrite_nodedev_chr_files (subj))
        (call .random.search_sysctlfile_dirs (subj))
+
+       (call .resolv.read.subj_type (subj))
 
        (call .shadow.read_authfile_files (subj))
        (call .shadow.read.subj_type (subj))
