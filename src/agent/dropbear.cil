@@ -146,6 +146,7 @@
        (call .shells.read_conffile_files (subj))
 
        (call .ssh.tcp_bind_netports (subj))
+       (call .ssh.tcp_connect_netports (subj))
 
        (call .subj.interactivefd.subj_type (subj))
 
