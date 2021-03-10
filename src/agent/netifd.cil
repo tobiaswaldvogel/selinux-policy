@@ -8,6 +8,7 @@
 (in .file
     (call .netifd.libfile_obj_type_transition_miscfile
           (unconfined.subj_typeattr))
+    (call .netifd.obj_type_transition_conffile (unconfined.subj_typeattr))
     (call .netifd.obj_type_transition_execfile (unconfined.subj_typeattr)))
 
 (block netifd
@@ -15,6 +16,15 @@
        ;;
        ;; Contexts
        ;;
+
+       (filecon
+        "/etc/udhcpc\.user"
+        file
+        conffile_file_context)
+       (filecon
+        "/etc/udhcpc\.user\..*"
+        file
+        conffile_file_context)
 
        (filecon
         "/tmp/run/hostapd-.*\.conf"
@@ -57,13 +67,17 @@
        ;; Macro
        ;;
 
-       (macro obj_type_transition_execfile ((type ARG1))
-              (call .file.execfile_obj_type_transition
-                    (ARG1 execfile file "netifd")))
-
        (macro libfile_obj_type_transition_miscfile ((type ARG1))
               (call .file.libfile_obj_type_transition
                     (ARG1 miscfile dir "netifd")))
+
+       (macro obj_type_transition_conffile ((type ARG1))
+              (call .file.conffile_obj_type_transition
+                    (ARG1 conffile file "udhcpc.user")))
+
+       (macro obj_type_transition_execfile ((type ARG1))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "netifd")))
 
        (macro obj_type_transition_runtimetmpfile ((type ARG1)(class ARG2)(name ARG3))
               (call .tmpfile.runtimetmpfile_obj_type_transition
@@ -81,6 +95,7 @@
        ;;
 
        (blockinherit .agent.base_template)
+       (blockinherit .file.conf.obj_template)
        (blockinherit .file.misc.obj_template)
        (blockinherit .tmpfile.runtime.obj_template)
 
@@ -93,6 +108,8 @@
        (allow subj self create_unix_dgram_socket)
        (allow subj self create_unix_stream_socket)
        (allow subj self (netlink_route_socket (nlmsg_read nlmsg_write)))
+
+       (call read_conffile_files (subj))
 
        (call execute_miscfile_files (subj))
        (call list_miscfile_dirs (subj))
