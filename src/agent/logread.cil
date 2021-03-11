@@ -83,8 +83,11 @@
        ;; support ncat -4 -l 5555
        (call .net.port.unreserved.tcp_connect_all_netports (subj))
        (call .net.sendto_netnodes (subj))
+       (call .net.udp_bind_netnodes (subj))
 
        (call .syslog.tcp_connect_netports (subj))
+
+       (call .resolv.read.subj_type (subj))
 
        (call .tmpfile.deletename_runtimetmpfile_dirs (subj))
 
