@@ -221,5 +221,5 @@
 
        (call .tmpfile.search_conftmpfile_dirs (subj))
 
-       (optional chrony_opt_sslcertfile
+       (optional chronyd_opt_sslcertfile
                  (call .ssl.read.subj_type (subj))))

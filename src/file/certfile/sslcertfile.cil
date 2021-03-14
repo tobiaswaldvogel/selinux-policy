@@ -49,4 +49,4 @@
 
               (call read_certfile_files (subj_typeattr))
               (call read_certfile_lnk_files (subj_typeattr))
-              (call search_certfile_dirs (subj_typeattr))))
+              (call list_certfile_dirs (subj_typeattr))))
