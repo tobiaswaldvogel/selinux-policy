@@ -48,6 +48,7 @@
        (allow subj self (capability (net_raw)))
        (allow subj self create_rawip_socket)
        (allow subj self create_udp_socket)
+       (allow subj self create_unix_dgram_socket)
 
        (call read_conftmpfile_files (subj))
 
@@ -56,6 +57,11 @@
        (call .dev.readwriteinherited_ttydev_chr_files (subj))
 
        (call .file.search_conffile_dirs (subj))
+
+       (call .logd.unix_dgram_send (subj))
+
+       (call .net.egress_netifs (subj))
+       (call .net.sendto_netnodes (subj))
 
        (call .tmpfile.search_conftmpfile_dirs (subj))
 
