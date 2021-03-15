@@ -9,7 +9,7 @@ PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://XXXX/selinux-policy-XXXX.git
 PKG_SOURCE_DATE:=XXXX-XX-XX
 PKG_SOURCE_VERSION:=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-# use 'make package/selinux-policy-XXXX/check V=s' to generate
+# use 'make package/selinux-policy-XXXX/check V=s' to generate, or 'skip'
 PKG_MIRROR_HASH:=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 PKG_BUILD_DEPENDS:=secilc/host
 
