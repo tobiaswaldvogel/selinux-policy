@@ -143,6 +143,7 @@
 
     (call .subj.getpgid_all (subj))
     (call .subj.signal_all (subj))
+    (call .subj.signull_all (subj))
 
     (call .tmpfile.deletename_runtimetmpfile_dirs (subj))
 
