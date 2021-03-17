@@ -54,6 +54,7 @@
 
        ;; compat with genfs_seclabel_symlinks=0
        (call .sys.read_fs_lnk_files (subj))
+       (call .sys.writeinherited_fifo_files (subj))
 
        (call .class.list_sysfile_dirs (subj))
        (call .class.read_sysfile_lnk_files (subj))
