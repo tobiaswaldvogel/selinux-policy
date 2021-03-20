@@ -7,6 +7,7 @@
 
 (in .file
     (call .acme.obj_type_transition_conffile (unconfined.subj_typeattr))
+    (call .acme.obj_type_transition_execfile (unconfined.subj_typeattr))
     (call .acme.libfile_obj_type_transition_execfile
           (unconfined.subj_typeattr))
     (call .acme.obj_type_transition_runtimetmpfile (unconfined.subj_typeattr)))
@@ -35,6 +36,15 @@
         runtimetmpfile_file_context)
 
        (filecon
+        "/usr/bin/acme_cleanup\.sh"
+        file
+        execfile_file_context)
+       (filecon
+        "/usr/bin/acme_setup\.sh"
+        file
+        execfile_file_context)
+
+       (filecon
         "/usr/lib/acme/acme\.sh"
         file
         execfile_file_context)
@@ -50,15 +60,21 @@
        (macro getattr_conffile_files ((type ARG1))
               (allow ARG1 conffile (file (getattr))))
 
-       (macro obj_type_transition_conffile ((type ARG1))
-              (call .file.conffile_obj_type_transition
-                    (ARG1 conffile dir "acme")))
-
        (macro libfile_obj_type_transition_execfile ((type ARG1))
               (call .file.libfile_obj_type_transition
                     (ARG1 execfile file "acme.sh"))
               (call .file.libfile_obj_type_transition
                     (ARG1 execfile file "run-acme")))
+
+       (macro obj_type_transition_conffile ((type ARG1))
+              (call .file.conffile_obj_type_transition
+                    (ARG1 conffile dir "acme")))
+
+       (macro obj_type_transition_execfile ((type ARG1))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "acme_cleanup.sh"))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "acme_setup.sh")))
 
        (macro obj_type_transition_runtimetmpfile ((type ARG1))
               (call .tmpfile.runtimetmpfile_obj_type_transition
@@ -152,6 +168,15 @@
 
        (optional acme_opt_rccron
                  (call .rccron.subj_type_transition (subj)))
+
+       (optional acme_opt_rcmurmur
+                 (call .rcmurmur.subj_type_transition (subj)))
+
+       (optional acme_opt_rcngircd
+                 (call .rcngircd.subj_type_transition (subj)))
+
+       (optional acme_opt_rcttyd
+                 (call .rcttyd.subj_type_transition (subj)))
 
        (optional acme_opt_rcuhttpd
                  (call .rcuhttpd.subj_type_transition (subj)))
