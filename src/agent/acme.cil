@@ -102,7 +102,11 @@
        (call delete_runtimetmpfile_files (subj))
 
        (call .sys.deletename_rootfile_dirs (subj))
+       (call .sys.transition (subj))
        (call .sys.writeinherited_fifo_files (subj))
+       (call .sys.dontaudit_noatsecure (subj))
+       (call .sys.dontaudit_rlimitinh (subj))
+       (call .sys.dontaudit_siginh (subj))
 
        (call .cron.addname_miscfile_dirs (subj))
        (call .cron.create_miscfile_files (subj))
