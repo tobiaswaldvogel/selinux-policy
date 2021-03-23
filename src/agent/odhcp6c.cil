@@ -25,6 +25,15 @@
         conffile_file_context)
 
        (filecon
+        "/etc/odhcp6c\.user\.d"
+        dir
+        conffile_file_context)
+       (filecon
+        "/etc/odhcp6c\.user\.d/.*"
+        any
+        conffile_file_context)
+
+       (filecon
         "/usr/bin/odhcp6c"
         file
         execfile_file_context)
@@ -34,6 +43,8 @@
        ;;
 
        (macro obj_type_transition_conffile ((type ARG1))
+              (call .file.conffile_obj_type_transition
+                    (ARG1 conffile dir "odhcp6c.user.d"))
               (call .file.conffile_obj_type_transition
                     (ARG1 conffile file "odhcp6c.user")))
 
@@ -55,6 +66,7 @@
        (allow subj self create_unix_dgram_socket)
        (allow subj self (netlink_route_socket (nlmsg_read)))
 
+       (call list_conffile_dirs (subj))
        (call read_conffile_files (subj))
 
        (call .sys.requestmodule (subj))
