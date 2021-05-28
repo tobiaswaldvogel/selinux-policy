@@ -2433,7 +2433,12 @@
 
               (allow subj_typeattr .subj.subj_typeattr
                      (process (not (execheap execstack))))
-              (allow subj_typeattr .subj.subj_typeattr (process2 (all)))
+              ;; nosuid_transition shouldnt be needed and indicated misconfig
+              ;; blocking this access prevents transitions on untrusted
+              ;; removable storage aslong as you mount it with nosuid which
+              ;; you should do
+              (allow subj_typeattr .subj.subj_typeattr
+                     (process2 (not nosuid_transition)))
 
               ;; old busybox
               (allow subj_typeattr .subj.subj_typeattr (passwd (all))))
