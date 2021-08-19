@@ -2,6 +2,11 @@
 ;; SPDX-FileCopyrightText: © 2021 Dominick Grift <dominick.grift@defensec.nl>
 ;; SPDX-License-Identifier: Unlicense
 
+(in rcboot
+
+    ;; probably related to uci-defaults
+    (call .rcuhttpd.subj_type_transition (subj)))
+
 (in .sys
     (call .rcuhttpd.subj_type_transition (subj)))
 
@@ -39,6 +44,9 @@
        (call .px5g.execute_execfile_files (subj))
 
        (call .random.read_nodedev_chr_files (subj))
+
+       (call .tmpfile.create_conftmpfile_dirs (subj))
+       (call .tmpfile.obj_type_transition_conftmpfile (subj))
 
        (call .uhttpd.conffile_obj_type_transition_certfile (subj))
        (call .uhttpd.manage_certfile_files (subj))
