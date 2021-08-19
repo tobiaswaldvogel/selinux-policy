@@ -6,13 +6,20 @@
     (call .ubiutil.subj_type_transition (subj)))
 
 (in .file
-    (call .ubiutil.obj_type_transition_execfile (unconfined.subj_typeattr)))
+    (call .ubiutil.obj_type_transition_execfile (unconfined.subj_typeattr))
+    (call .ubiutil.obj_type_transition_runtimetmpfile
+          (unconfined.subj_typeattr)))
 
 (block ubiutil
 
        ;;
        ;; Contexts
        ;;
+
+       (filecon
+        "/tmp/run/uvol\.lock"
+        file
+        runtimetmpfile_file_context)
 
        (filecon
         "/usr/bin/ubiattach"
@@ -93,13 +100,21 @@
               (call .file.execfile_obj_type_transition
                     (ARG1 execfile file "ubiupdatevol")))
 
+       (macro obj_type_transition_runtimetmpfile ((type ARG1))
+              (call .tmpfile.runtimetmpfile_obj_type_transition
+                    (ARG1 runtimetmpfile file "uvol.lock")))
+
        ;;
        ;; Policy
        ;;
 
        (blockinherit .agent.base_template)
+       (blockinherit .tmpfile.runtime.obj_template)
 
        (allow subj self (capability (sys_resource)))
+
+       (call manage_runtimetmpfile_files (subj))
+       (call obj_type_transition_runtimetmpfile (subj))
 
        ;; compat with genfs_seclabel_symlinks=0
        (call .sys.read_fs_lnk_files (subj))
@@ -113,11 +128,13 @@
 
        (call .dev.stor.read.subj_type (subj))
 
+       (call .devices.list_sysfile_dirs (subj))
        (call .devices.read_sysfile_files (subj))
-       (call .devices.search_sysfile_dirs (subj))
 
        (call .file.search_conffile_dirs (subj))
 
        (call .mtd.read_stordev_chr_files (subj))
+
+       (call .tmpfile.deletename_runtimetmpfile_dirs (subj))
 
        (call .watchdog.dontaudit_writeinherited_nodedev_chr_files (subj)))

@@ -95,6 +95,9 @@
 
        (call .logd.unix_dgram_send (subj))
 
+       (call .net.read_procfile_files (subj))
+       (call .net.read_procfile_lnk_files (subj))
+
        (call .netifd.execute_miscfile_files (subj))
        (call .netifd.search_miscfile_dirs (subj))
        (call .netifd.readwriteinherited_fifo_files (subj))
@@ -106,5 +109,7 @@
        (call .selinux.linked.subj_type (subj))
 
        (call .shell.execute_execfile_files (subj))
+
+       (call .tmpfile.search_runtimetmpfile_dirs (subj))
 
        (call .ubus.subj_type_transition (subj)))

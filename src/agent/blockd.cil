@@ -56,6 +56,7 @@
        (blockinherit .tmpfile.runtime.obj_template)
 
        (allow subj self (capability (sys_admin)))
+       (allow subj self (process (setpgid)))
        (allow subj self create_unix_dgram_socket)
        (allow subj self create_unix_stream_socket)
 
@@ -68,6 +69,9 @@
        (call .auto.unmount_filesystems (subj))
 
        (call .blockmount.subj_type_transition (subj))
+
+       (call .dev.stor.getattr_all_blk_files (subj))
+       (call .dev.stor.getattr_all_chr_files (subj))
 
        (call .hotplugcall.subj_type_transition (subj))
 
