@@ -55,6 +55,8 @@
 
        (call .shell.execute_execfile_files (subj))
 
+       (call .sys.list_rootfile_dirs (subj))
+
        (call .uci.manage_conffile_dirs (subj))
        (call .uci.manage_conffile_files (subj))
        (call .uci.obj_type_transition_conffile (subj))

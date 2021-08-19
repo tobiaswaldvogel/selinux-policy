@@ -57,7 +57,8 @@
               (call .file.execfile_obj_type_transition
                     (ARG1 execfile file "rpcd")))
 
-       (macro obj_type_transition_runtimetmpfile ((type ARG1)(class ARG2)(name ARG3))
+       (macro obj_type_transition_runtimetmpfile
+              ((type ARG1)(class ARG2)(name ARG3))
               (call .tmpfile.runtimetmpfile_obj_type_transition
                     (ARG1 runtimetmpfile ARG2 ARG3)))
 
@@ -172,6 +173,9 @@
 
        (call .opkg.list_conffile_dirs (subj))
        (call .opkg.readwrite_conffile_files (subj))
+
+       (call .opkg.read_miscfile_files (subj))
+       (call .opkg.search_miscfile_dirs (subj))
 
        (call .partitions.read_procfile_files (subj))
 
