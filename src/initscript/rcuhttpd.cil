@@ -45,8 +45,13 @@
 
        (call .random.read_nodedev_chr_files (subj))
 
+       (call .rcboot.use_fds (subj))
+
        (call .tmpfile.create_conftmpfile_dirs (subj))
        (call .tmpfile.obj_type_transition_conftmpfile (subj))
+
+       (call .uci.defaults.read_conffile_files (subj))
+       (call .uci.defaults.search_conffile_dirs (subj))
 
        (call .uhttpd.conffile_obj_type_transition_certfile (subj))
        (call .uhttpd.manage_certfile_files (subj))
