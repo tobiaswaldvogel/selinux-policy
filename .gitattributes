@@ -4,4 +4,5 @@
 /support export-ignore
 /TODO export-ignore
 * text=auto
-*.cil whitespace=tab-in-indent,trailing-space,linguist-detectable=true
+*.cil linguist-detectable=true
+*.cil whitespace=tab-in-indent,trailing-space
