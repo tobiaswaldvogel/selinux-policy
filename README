@@ -1,20 +1,10 @@
 SELinux security policy for OpenWrt
 
-Git:
-    git://git.defensec.nl/selinux-policy.git
-    https://git.defensec.nl/selinux-policy.git
-Git web:
-    https://git.defensec.nl/?p=selinux-policy.git
-Author:
-    Dominick Grift <dominick.grift@defensec.nl>
-License:
-    Unlicense
+Homepage:
+    https://github.com/DefenSec/selinux-policy
+
 Requirements:
     SELinux CIL compiler (secilc) and optionally policycoreutils (setfiles) for the check Makefile target (make check)
-Contributing:
-    Please sign-off on your patches and send them to <dominick.grift@defensec.nl> with git send-email
-Feedback:
-    Found a bug? Send AVC denials (`dmesg | grep -i denied`) along with a brief description of what you were doing to <dominick.grift@defensec.nl>
 
 Introduction:
 
