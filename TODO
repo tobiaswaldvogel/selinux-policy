@@ -1,5 +1,3 @@
-remove policycoreutils/host build-dependency from upstream Makefile (its not needed)
-
 add a /var /tmp equivalency (and ensure that /var and /var/run symlinks are labeled properly regardless):
 https://github.com/openwrt/openwrt/commit/57807f50ded6cf0996284a850084183af13d5894
 probably also need to ensure that all of tmpfile.typeattr can associate with xattr.fs
