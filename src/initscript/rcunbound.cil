@@ -40,6 +40,8 @@
        (allow subj self create_udp_socket)
        (allow subj self create_unix_dgram_socket)
 
+       (call .file.list_initscriptfile_dirs (subj))
+
        (call .locale.read.subj_type (subj))
 
        (call .logd.unix_dgram_send (subj))
@@ -81,8 +83,15 @@
        (optional rcunbound_opt_luci
                  (call .luci.cgi.writeinherited_fifo_files (subj)))
 
+       (optional rcunbound_opt_odhcpd
+                 (call .odhcpd.getattr_execfile_files (subj))
+                 (call .odhcpd.getattr_statetmpfile_dirs (subj)))
+
        (optional rcunbound_opt_rcdnsmasq
                  (call .rcdnsmasq.execute_initscriptfile_files (subj)))
+
+       (optional rcunbound_opt_rcodhcpd
+                 (call .rcodhcpd.execute_initscriptfile_files (subj)))
 
        (optional rcunbound_opt_uhttpd
                  (call .uhttpd.readinherited_fifo_files (subj))))

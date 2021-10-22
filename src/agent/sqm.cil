@@ -116,6 +116,7 @@
        (call obj_type_transition_runtimetmpfile (subj))
 
        (call .sys.read_fs_lnk_files (subj))
+       (call .sys.requestmodule (subj))
        (call .sys.writeinherited_fifo_files (subj))
 
        (call .class.search_sysfile_dirs (subj))
@@ -141,6 +142,9 @@
        (call .module.search_sysfile_dirs (subj))
 
        (call .nameservice.read_miscfile_files (subj))
+
+       (call .net.read_procfile_files (subj))
+       (call .net.read_procfile_lnk_files (subj))
 
        (call .netifd.readinherited_fifo_files (subj))
        (call .netifd.dontaudit_readwrite_netlink_kobject_uevent_sockets (subj))
