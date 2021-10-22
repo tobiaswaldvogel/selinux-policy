@@ -32,4 +32,6 @@
        ;; Policy
        ;;
 
-       (blockinherit .initscript.base_template))
+       (blockinherit .initscript.base_template)
+
+       (call .file.list_initscriptfile_dirs (subj)))
