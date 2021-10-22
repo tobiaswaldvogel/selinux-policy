@@ -119,6 +119,7 @@
        (call .sys.requestmodule (subj))
        (call .sys.writeinherited_fifo_files (subj))
 
+       (call .class.read_sysfile_lnk_files (subj))
        (call .class.search_sysfile_dirs (subj))
 
        (call .devices.read_sysfile_files (subj))
