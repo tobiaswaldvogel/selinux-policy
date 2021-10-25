@@ -483,6 +483,8 @@
 
               (call .locale.read.subj_type (subj))
 
+              (call .logd.unix_dgram_send (subj))
+
               (call .logread.subj_type_transition (subj))
 
               (call .lua.execute_execfile_files (subj))
@@ -512,6 +514,7 @@
 
               (call .ubusd.unix_stream_connect (subj))
 
+              (call .uhttpd.getattr_execfile_files (subj))
               (call .uhttpd.readwriteinherited_fifo_files (subj))
 
               (call .www.search_miscfile_dirs (subj))

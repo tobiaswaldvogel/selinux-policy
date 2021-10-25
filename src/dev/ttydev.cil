@@ -171,6 +171,10 @@
            (call .tmp.fs_obj_type_transition
                  (ARG1 ttydev chr_file "ttyS9"))
            (call .tmp.fs_obj_type_transition
+                 (ARG1 ttydev chr_file "ttyACM0"))
+           (call .tmp.fs_obj_type_transition
+                 (ARG1 ttydev chr_file "ttyACM1"))
+           (call .tmp.fs_obj_type_transition
                  (ARG1 ttydev chr_file "ttyMSM0"))
            (call .tmp.fs_obj_type_transition
                  (ARG1 ttydev chr_file "ttyMSM1"))

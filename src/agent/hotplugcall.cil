@@ -91,6 +91,8 @@
 
        (call .nameservice.read_miscfile_files (subj))
 
+       (call .netifd.read_miscfile_files (subj))
+       (call .netifd.search_miscfile_dirs (subj))
        (call .netifd.readinherited_fifo_files (subj))
        (call .netifd.dontaudit_readwrite_netlink_kobject_uevent_sockets (subj))
        (call .netifd.dontaudit_readwrite_netlink_route_sockets (subj))
