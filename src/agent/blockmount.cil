@@ -141,7 +141,7 @@
        (optional blockmount_opt_mtdstordev
                  (call .mtd.create_stordev_blk_files (subj))
                  (call .mtd.obj_type_transition_stordev (subj))
-                 (call .mtd.read_stordev_chr_files (subj))
+                 (call .mtd.readwrite_stordev_chr_files (subj))
                  (call .mtd.readwrite_stordev_blk_files (subj)))
 
        (optional blockmount_opt_nvmestordev

@@ -69,6 +69,9 @@
        ;; the big hammer
        (call .agent.exec.execute_all_files (subj))
 
+       (call .block.read_sysfile_lnk_files (subj))
+       (call .block.search_sysfile_dirs (subj))
+
        (call .debug.search_fs_dirs (subj))
 
        (call .dev.getattr_all_chr_files (subj))
@@ -103,6 +106,8 @@
        (call .selinux.linked.subj_type (subj))
 
        (call .shell.execute_execfile_files (subj))
+
+       (call .sys.read_fs_lnk_files (subj))
 
        (call .sysctl.list_conffile_dirs (subj))
        (call .sysctl.read_conffile_files (subj))

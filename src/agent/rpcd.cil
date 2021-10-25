@@ -131,6 +131,9 @@
 
        (call .firewall.readwrite_conffile_files (subj))
 
+       (call .firmware.read_sysfile_files (subj))
+       (call .firmware.search_sysfile_dirs (subj))
+
        (call .firstboot.subj_type_transition (subj))
 
        (call .fsck.subj_type_transition (subj))
