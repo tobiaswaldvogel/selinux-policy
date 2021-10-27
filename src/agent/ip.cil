@@ -67,7 +67,9 @@
               (call .file.execfile_obj_type_transition
                     (ARG1 execfile file "ip-tiny"))
               (call .file.execfile_obj_type_transition
-                    (ARG1 execfile file "tc")))
+                    (ARG1 execfile file "tc"))
+              (call .file.execfile_obj_type_transition
+                    (ARG1 execfile file "tc-tiny")))
 
        (macro obj_type_transition_runtimetmpfile
               ((type ARG1)(class ARG2)(name ARG3))
