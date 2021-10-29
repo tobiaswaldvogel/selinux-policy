@@ -76,6 +76,7 @@
        (call .debug.search_fs_dirs (subj))
 
        (call .dev.list_sysfile_dirs (subj))
+       (call .dev.node.getattr_all_chr_files (subj))
        (call .dev.read_sysfile_lnk_files (subj))
        (call .dev.stor.readwrite.subj_type (subj))
 

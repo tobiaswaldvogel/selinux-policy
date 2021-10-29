@@ -151,6 +151,8 @@
 
        (call .logread.subj_type_transition (subj))
 
+       (call .lua.execute_execfile_files (subj))
+
        (call .luci.subj_type_transition (subj))
 
        (call .mnt.search_miscfile_dirs (subj))
@@ -173,6 +175,8 @@
        (call .netifd.read_runtimetmpfile_files (subj))
 
        (call .odhcpd.read_hoststmpfile_files (subj))
+       (call .odhcpd.read_statetmpfile_files (subj))
+       (call .odhcpd.search_statetmpfile_dirs (subj))
 
        (call .opkg.list_conffile_dirs (subj))
        (call .opkg.readwrite_conffile_files (subj))
@@ -207,6 +211,7 @@
 
        (call .tmpfile.deletename_runtimetmpfile_dirs (subj))
        (call .tmpfile.search_hoststmpfile_dirs (subj))
+       (call .tmpfile.search_statetmpfile_dirs (subj))
 
        (call .ubusd.unix_stream_connect (subj))
 

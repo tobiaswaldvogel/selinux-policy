@@ -34,6 +34,7 @@
 
        (blockinherit .agent.base_template)
 
+       (allow subj self (process (getsched)))
        (allow subj self create_unix_dgram_socket)
 
        (call .sys.list_rootfile_dirs (subj))
