@@ -467,6 +467,16 @@
 (classmapping
  allsockets
  common
+ (mctp_socket
+  (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
+(classmapping
+ allsockets
+ getattr
+ (mctp_socket
+  (getattr)))
+(classmapping
+ allsockets
+ common
  (netrom_socket
   (not (accept listen map name_bind relabelfrom relabelto recvfrom sendto))))
 (classmapping
@@ -1237,6 +1247,7 @@
 (classpermission create_iucv_socket)
 (classpermission create_kcm_socket)
 (classpermission create_llc_socket)
+(classpermission create_mctp_socket)
 (classpermission create_netrom_socket)
 (classpermission create_nfc_socket)
 (classpermission create_phonet_socket)
@@ -1268,6 +1279,7 @@
 (classpermission read_iucv_socket)
 (classpermission read_kcm_socket)
 (classpermission read_llc_socket)
+(classpermission read_mctp_socket)
 (classpermission read_netrom_socket)
 (classpermission read_nfc_socket)
 (classpermission read_phonet_socket)
@@ -1298,6 +1310,7 @@
 (classpermission readwrite_iucv_socket)
 (classpermission readwrite_kcm_socket)
 (classpermission readwrite_llc_socket)
+(classpermission readwrite_mctp_socket)
 (classpermission readwrite_netrom_socket)
 (classpermission readwrite_nfc_socket)
 (classpermission readwrite_phonet_socket)
@@ -1328,6 +1341,7 @@
 (classpermission write_iucv_socket)
 (classpermission write_kcm_socket)
 (classpermission write_llc_socket)
+(classpermission write_mctp_socket)
 (classpermission write_netrom_socket)
 (classpermission write_nfc_socket)
 (classpermission write_phonet_socket)
@@ -1431,6 +1445,11 @@
 (classpermissionset
  create_llc_socket
  (llc_socket
+  (append bind connect create getattr getopt ioctl read setattr setopt shutdown
+          write)))
+(classpermissionset
+ create_mctp_socket
+ (mctp_socket
   (append bind connect create getattr getopt ioctl read setattr setopt shutdown
           write)))
 (classpermissionset
@@ -1573,6 +1592,10 @@
  (llc_socket
   (bind connect getattr getopt ioctl read shutdown)))
 (classpermissionset
+ read_mctp_socket
+ (mctp_socket
+  (bind connect getattr getopt ioctl read shutdown)))
+(classpermissionset
  read_netrom_socket
  (netrom_socket
   (bind connect getattr getopt ioctl read shutdown)))
@@ -1693,6 +1716,10 @@
  (llc_socket
   (append bind connect getattr getopt ioctl read setopt shutdown write)))
 (classpermissionset
+ readwrite_mctp_socket
+ (mctp_socket
+  (append bind connect getattr getopt ioctl read setopt shutdown write)))
+(classpermissionset
  readwrite_netrom_socket
  (netrom_socket
   (append bind connect getattr getopt ioctl read setopt shutdown write)))
@@ -1811,6 +1838,10 @@
 (classpermissionset
  write_llc_socket
  (llc_socket
+  (append bind connect getattr getopt ioctl setopt shutdown write)))
+(classpermissionset
+ write_mctp_socket
+ (mctp_socket
   (append bind connect getattr getopt ioctl setopt shutdown write)))
 (classpermissionset
  write_netrom_socket
