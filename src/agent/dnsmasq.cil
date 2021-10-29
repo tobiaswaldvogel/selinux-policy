@@ -201,6 +201,8 @@
        (call .resolv.read.subj_type (subj))
        (call .resolv.watch_tmpfile_dirs (subj))
 
+       (call .selinux.linked.subj_type (subj))
+
        (call .tmp.deletename_fs_dirs (subj))
 
        (call .tmpfile.hosts.read_all_files (subj))
