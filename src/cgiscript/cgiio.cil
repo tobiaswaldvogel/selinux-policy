@@ -54,6 +54,8 @@
        (call manage_tmpfile_files (subj))
        (call obj_type_transition_tmpfile (subj file "*"))
 
+       (call .random.read_nodedev_chr_files (subj))
+
        (call .sys.readringbuffer (subj))
        (call .sys.transition (subj))
        (call .sys.writeinherited_fifo_files (subj))

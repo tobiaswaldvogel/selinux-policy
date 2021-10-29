@@ -138,6 +138,7 @@
                  (call .initscript.use_all_fds (subj)))
 
        (optional hotplugcall_opt_mtdstordev
+                 (call .mtd.read_stordev_blk_files (subj))
                  (call .mtd.read_stordev_chr_files (subj)))
 
        (optional hotplugcall_opt_rcunbound
