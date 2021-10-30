@@ -153,6 +153,8 @@
 
        (call .lua.execute_execfile_files (subj))
 
+       (call .luci.list_datafile_dirs (subj))
+       (call .luci.read_datafile_files (subj))
        (call .luci.subj_type_transition (subj))
 
        (call .mnt.search_miscfile_dirs (subj))
@@ -219,9 +221,6 @@
        (call .uci.list_tmpfile_dirs (subj))
        (call .uci.manage_conffile_files (subj))
        (call .uci.read_tmpfile_files (subj))
-
-       (call .luci.read_datafile_files (subj))
-       (call .luci.list_datafile_dirs (subj))
 
        (call .uhttpd.getattr_execfile_files (subj))
 

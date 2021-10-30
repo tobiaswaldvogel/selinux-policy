@@ -24,9 +24,9 @@
                  (ARG1 tmpfile dir "rrd")))
 
     (blockinherit .tmpfile.obj_template)
-    
+
     (block rrdtool
-    
+
            ;;
            ;; Contexts
            ;;
@@ -44,11 +44,8 @@
                   (call .file.execfile_obj_type_transition
                         (ARG1 execfile file "rrdtool")))
 
-           (macro execute_execfile_files ((type ARG1))
-              (allow ARG1 execfile execute_file))
-
            ;;
            ;; Policy
            ;;
 
-           (blockinherit file.exec.obj_template)))
+           (blockinherit .agent.base_template)))
