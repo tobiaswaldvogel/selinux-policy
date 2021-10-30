@@ -51,4 +51,13 @@
            ;; Policy
            ;;
 
-           (blockinherit .agent.base_template)))
+           (blockinherit .agent.base_template)
+
+           (call list_tmpfile_dirs (subj))
+           (call read_tmpfile_files (subj))
+           (call read_tmpfile_lnk_files (subj))
+
+           (call .locale.read.subj_type (subj))
+
+           (optional rrd_opt_cgiio
+                  (call .cgiio.writeinherited_fifo_files (subj)))))
