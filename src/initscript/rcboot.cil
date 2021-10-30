@@ -147,7 +147,7 @@
        (call .tmp.create_fs_lnk_files (subj))
        (call .tmp.rootfile_obj_type_transition_fs (subj))
 
-       (call .tmpfile.create_locktmpfile_dirs (subj))
+       (call .tmpfile.manage_locktmpfile_dirs (subj))
        (call .tmpfile.create_logtmpfile_dirs (subj))
        (call .tmpfile.create_runtimetmpfile_dirs (subj))
        (call .tmpfile.create_statetmpfile_dirs (subj))

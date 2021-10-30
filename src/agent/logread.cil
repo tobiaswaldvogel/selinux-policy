@@ -89,6 +89,8 @@
 
        (call .resolv.read.subj_type (subj))
 
+       (call .random.read_nodedev_chr_files (subj))
+
        (call .tmpfile.deletename_runtimetmpfile_dirs (subj))
 
        (call .ubusd.unix_stream_connect (subj))

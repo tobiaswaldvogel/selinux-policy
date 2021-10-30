@@ -69,6 +69,8 @@
 
        (call .proc.getattr_filesystems (subj))
 
+       (call .random.read_nodedev_chr_files (subj))
+
        (call .resolv.read.subj_type (subj))
 
        (call .xattr.associate_filesystems (miscfile))
