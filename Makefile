@@ -12,7 +12,7 @@ modules = $(shell find src -type f -name '*.cil' \
 modulesnoluci = $(shell find src -type f -name '*.cil' \
 	-regextype posix-egrep \
 	! -regex 'src/(cgi|init)?script/.*\.cil' \
-	! -name luci.cil ! -name rpcd.cil ! -name uhttpd.cil \
+	! -name luci.cil ! -name rpcd.cil ! -name rrd.cil ! -name uhttpd.cil \
 	-printf '%p ')
 
 # my own customised target, tailored to my personal requirements
@@ -30,7 +30,7 @@ modulesmintesttgt = $(shell find src -type f -name '*.cil' \
 	! -name luci.cil ! -name mmcstordev.cil \
 	! -name nvmestordev.cil ! -name nvramnodedev.cil \
 	! -name px5gexecfile.cil \
-	! -name rpcd.cil ! -name sftpserver.cil \
+	! -name rpcd.cil ! -name rrd.cil ! -name sftpserver.cil \
 	! -name srstordev.cil ! -name squid.cil \
 	! -name uhttpd.cil ! -name vdstordev.cil \
 	! -name vmcinodedev.cil -printf '%p ')
