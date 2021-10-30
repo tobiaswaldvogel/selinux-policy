@@ -66,6 +66,9 @@
        (call .file.read_conffile_lnk_files (subj))
        (call .file.search_initscriptfile_dirs (subj))
 
+       (call .luci.read_datafile_files (subj))
+       (call .luci.list_datafile_dirs (subj))
+
        (call .locale.read.subj_type (subj))
 
        (call .logread.subj_type_transition (subj))
@@ -94,4 +97,10 @@
                  (call .mtd.read_stordev_blk_files (subj)))
 
        (optional cgiio_opt_rcfirewall
-                 (call .rcfirewall.subj_type_transition (subj))))
+                 (call .rcfirewall.subj_type_transition (subj)))
+
+       (optional cgiio_opt_rrd
+                     (call .rrd.list_tmpfile_dirs (subj))
+                     (call .rrd.read_tmpfile_files (subj))
+                     (call .rrd.read_tmpfile_lnk_files (subj))
+                     (call .rrd.rrdtool.execute_execfile_files (subj))))

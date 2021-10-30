@@ -220,6 +220,9 @@
        (call .uci.manage_conffile_files (subj))
        (call .uci.read_tmpfile_files (subj))
 
+       (call .luci.read_datafile_files (subj))
+       (call .luci.list_datafile_dirs (subj))
+
        (call .uhttpd.getattr_execfile_files (subj))
 
        (call .upgrade.read_miscfile_files (subj))
@@ -244,6 +247,11 @@
 
        (optional rpcd_opt_rcfirewall
                  (call .rcfirewall.subj_type_transition (subj)))
+
+       (optional rpcd_opt_rrd
+                 (call .rrd.list_tmpfile_dirs (subj))
+                 (call .rrd.read_tmpfile_files (subj))
+                 (call .rrd.read_tmpfile_lnk_files (subj)))
 
        (optional rpcd_opt_sqm
                  (call .sqm.getattr_execfile_files (subj))
