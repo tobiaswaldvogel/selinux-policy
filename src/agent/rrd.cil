@@ -2,6 +2,9 @@
 ;; SPDX-FileCopyrightText: © 2021 Dominick Grift <dominick.grift@defensec.nl>
 ;; SPDX-License-Identifier: Unlicense
 
+(in .sys
+    (call .rrd.rrdtool.subj_type_transition (subj)))
+
 (in .file
     (call .rrd.obj_type_transition_tmpfile (unconfined.subj_typeattr))
     (call .rrd.rrdtool.obj_type_transition_execfile
