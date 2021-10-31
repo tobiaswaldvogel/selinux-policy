@@ -60,4 +60,4 @@
            (call .locale.read.subj_type (subj))
 
            (optional rrd_opt_cgiio
-                  (call .cgiio.writeinherited_fifo_files (subj)))))
+                     (call .cgiio.writeinherited_fifo_files (subj)))))
