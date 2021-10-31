@@ -100,7 +100,4 @@
                  (call .rcfirewall.subj_type_transition (subj)))
 
        (optional cgiio_opt_rrd
-                 (call .rrd.list_tmpfile_dirs (subj))
-                 (call .rrd.read_tmpfile_files (subj))
-                 (call .rrd.read_tmpfile_lnk_files (subj))
-                 (call .rrd.rrdtool.execute_execfile_files (subj))))
+                 (call .rrd.rrdtool.subj_type_transition (subj))))
